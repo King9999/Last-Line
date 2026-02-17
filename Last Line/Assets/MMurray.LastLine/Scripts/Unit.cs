@@ -9,6 +9,7 @@ namespace MMurray.LastLine
     public abstract class Unit : MonoBehaviour
     {
         [SerializeField]protected UnitData unitData;
+        [SerializeField]protected string unitName;
         public int HitPoints {get; set;}    
         public float Cooldown {get; set;}   //time in seconds that must pass before unit can fire weapon, if applicable
         public float MoveSpeed {get; set;}
@@ -16,10 +17,11 @@ namespace MMurray.LastLine
         
 
         //gets data from scriptable object
-        public void GetUnitData(UnitData data)
+        public virtual void GetUnitData(UnitData data)
         {
+            unitName = data.unitName;
             Cooldown = data.weaponCooldown;
-            MoveSpeed = data.moveSpeed;
+            //MoveSpeed = data.moveSpeed;
             HitPoints = data.hitPoints;
         }
 
