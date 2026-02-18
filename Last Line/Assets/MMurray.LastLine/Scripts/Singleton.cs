@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MMurray.LastLine;
 using LoLSDK;
+using MMurray.GenericCode;
 
 /* This is the master singleton that's used to access various managers, i.e. other singletons. */
 namespace MMurray.LastLine
@@ -14,7 +15,7 @@ namespace MMurray.LastLine
         public GameManager GameManager {get; set;}
         //public DialogueManager DialogueManager { get; set; }
         //public HintDialogueManager HintDialogueManager { get; set; }
-        //public ScreenFade ScreenFade {get; private set;}
+        public ScreenFade ScreenFade {get; private set;}
         //public UI UI { get; set; }
         //public AudioManager AudioManager { get; private set; }
         //public TitleManager TitleManager {get; private set;}
@@ -36,7 +37,11 @@ namespace MMurray.LastLine
             }
             
             instance = this;
-            //ScreenFade = GetComponentInChildren<ScreenFade>();
+            if (instance != null)
+                Debug.Log("Singleton found");
+            ScreenFade = GetComponentInChildren<ScreenFade>();
+            if (ScreenFade != null)
+                Debug.Log("ScreenFade not null");
             //AudioManager = GetComponentInChildren<AudioManager>();
             //gameData = new GameData();
             //saveState = new SaveState();
