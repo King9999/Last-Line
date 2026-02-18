@@ -43,7 +43,7 @@ public class Loader : MonoBehaviour
 #endif
 
         // Initialize the object, passing in the WebGL
-        LOLSDK.Init(webGL, "com.legends-of-learning.unity.sdk.v5.4.example-game");
+        LOLSDK.Init(webGL, "com.Mike-Murray.LastLine");
 
         // Register event handlers
         LOLSDK.Instance.StartGameReceived += new StartGameReceivedHandler(HandleStartGame);
@@ -65,7 +65,7 @@ public class Loader : MonoBehaviour
     IEnumerator _WaitForData ()
     {
         yield return new WaitUntil(() => (_receivedData & _expectedData) == _expectedData);
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        SceneManager.LoadScene("Title", LoadSceneMode.Single);
     }
 
     // Start the game here

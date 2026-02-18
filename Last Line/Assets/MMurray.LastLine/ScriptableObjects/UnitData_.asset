@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca55a0dabc910273390b8232aea2b9ef, type: 3}
   m_Name: UnitData_
   m_EditorClassIdentifier: 
-  unitName: 
-  hitPoints: 0
+  unitName: test_unit
+  unitCost: 10
+  hitPoints: 3
+  moveSpeed: 4
   weaponCooldown: 0
