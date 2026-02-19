@@ -18,12 +18,12 @@ namespace MMurray.LastLine
         public ScreenFade ScreenFade {get; private set;}
         //public UI UI { get; set; }
         //public AudioManager AudioManager { get; private set; }
-        //public TitleManager TitleManager {get; private set;}
+        public TitleManager TitleManager {get; private set;}
 
         //save state data
-        //public GameData gameData;
-        //public SaveState saveState;
-        //public bool saveStateFound;
+        public GameData gameData;
+        public SaveState saveState;
+        public bool saveStateFound;
 
         //TTS and music
         public bool ttsEnabled, musicEnabled;
@@ -43,8 +43,8 @@ namespace MMurray.LastLine
             if (ScreenFade != null)
                 Debug.Log("ScreenFade not null");
             //AudioManager = GetComponentInChildren<AudioManager>();
-            //gameData = new GameData();
-            //saveState = new SaveState();
+            gameData = new GameData();
+            saveState = new SaveState();
             Application.runInBackground = false;
 
             //PlayerPrefs.DeleteAll();
