@@ -37,11 +37,11 @@ namespace MMurray.LastLine
             }
             
             instance = this;
-            if (instance != null)
-                Debug.Log("Singleton found");
+            //if (instance != null)
+                //Debug.Log("Singleton found");
             ScreenFade = GetComponentInChildren<ScreenFade>();
-            if (ScreenFade != null)
-                Debug.Log("ScreenFade not null");
+            //if (ScreenFade != null)
+                //Debug.Log("ScreenFade not null");
             //AudioManager = GetComponentInChildren<AudioManager>();
             gameData = new GameData();
             saveState = new SaveState();
@@ -52,6 +52,12 @@ namespace MMurray.LastLine
             musicEnabled = true;
 
             DontDestroyOnLoad(instance);
+        }
+
+        public string GetText(string key)
+        {
+            string value = SharedState.LanguageDefs?[key];
+            return value ?? "--missing--";
         }
     }
 }

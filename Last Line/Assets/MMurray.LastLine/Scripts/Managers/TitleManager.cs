@@ -11,12 +11,22 @@ using TMPro;
 /* Manager for the title screen. */
 public class TitleManager : MonoBehaviour
 {
+    [SerializeField]private Button startButton;
+    [SerializeField]private Button continueButton;
+    [SerializeField]private Button creditsButton;
+    [SerializeField]private TextMeshProUGUI startButtonText, continueButtonText, creditsButtonText;
+    [SerializeField]private TextMeshProUGUI version;
     // Start is called before the first frame update
     void Start()
     {
         //Must call the screen fade since the game begins with a black background on init.
         ScreenFade sf = Singleton.instance.ScreenFade;
         sf.FadeIn();
+
+        //button text setup
+        startButtonText.text = GetText("startButton");
+        //continueButtonText.text = GetText("continueButton");
+        //creditsButtonText.text = GetText("creditsButton");
 
         /***save state check***/
         LOLSDK.Instance.LoadState<GameData>(state =>
@@ -47,5 +57,29 @@ public class TitleManager : MonoBehaviour
     {
         
     }
+
+    string GetText(string key)
+    {
+        string value = SharedState.LanguageDefs?[key];
+        return value ?? "--missing--";
+    }
+
+    public void StartButtonClicked()
+    {
+        ScreenFade sf = Singleton.instance.ScreenFade;
+
+        if (sf.coroutineOn)
+            return;
+
+        //the save state is deleted when starting a new game.
+        //AudioManager audio = Singleton.instance.AudioManager;
+        //audio.soundSource.PlayOneShot(audio.click, audio.soundVolume);
+        PlayerPrefs.DeleteAll();
+        Singleton.instance.musicEnabled = true;
+        Singleton.instance.ttsEnabled = true;
+        Singleton.instance.saveStateFound = false;
+        sf.ChangeSceneFadeOut("Game");
+    }
+
 
 }
