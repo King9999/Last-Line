@@ -81,5 +81,22 @@ public class TitleManager : MonoBehaviour
         sf.ChangeSceneFadeOut("Game");
     }
 
+    public void ContinueButtonClicked()
+    {
+        ScreenFade sf = Singleton.instance.ScreenFade;
+
+        if (sf.coroutineOn)
+            return;
+
+        //the save state is deleted when starting a new game.
+        //AudioManager audio = Singleton.instance.AudioManager;
+        //audio.soundSource.PlayOneShot(audio.click, audio.soundVolume);
+        //PlayerPrefs.DeleteAll();
+        //Singleton.instance.musicEnabled = true;
+        //Singleton.instance.ttsEnabled = true;
+        //Singleton.instance.saveStateFound = false;
+        sf.ChangeSceneFadeOut("Game");
+    }
+
 
 }

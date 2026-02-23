@@ -16,6 +16,7 @@ namespace MMurray.LastLine
         /***********player data. Includes positions of all player units, as well as money *******/
         public List<Vector2> unit_positions;
         public int money;
+        public Vector2 test_unit_pos;
 
         /**********Enemy data**********/
 

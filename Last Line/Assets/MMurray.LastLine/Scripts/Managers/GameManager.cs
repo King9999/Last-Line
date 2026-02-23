@@ -30,6 +30,16 @@ public class GameManager : MonoBehaviour
         //must always make sure singleton grabs reference to the managers
         Singleton.instance.GameManager = this;
         //enteringValueX = true;
+
+        //load save state
+        Singleton s = Singleton.instance;
+        if (s.saveStateFound)
+        {
+            s.saveState.LoadState(s.saveState.ReadState);
+            //s.saveState.ReadState(s.gameData);
+        }
+
+       
     }
 
     // Update is called once per frame
@@ -46,9 +56,15 @@ public class GameManager : MonoBehaviour
     public void PlaceUnit(PlayerUnit unit, Point point)
     {
         //generate an instance of selected unit
+        if (point.unit != null)
+            return;
 
         //must convert the point's location to world coordinates.
         Vector2 newPos = Camera.main.ScreenToWorldPoint(point.transform.position);
-        unit.transform.position = newPos;     
+        unit.transform.position = newPos;
+        point.unit = unit;
+
+        //save unit's position
+        Singleton.instance.saveState.WriteState(Singleton.instance.gameData);     
     }
 }
