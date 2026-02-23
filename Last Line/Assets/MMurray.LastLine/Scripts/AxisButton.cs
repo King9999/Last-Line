@@ -44,7 +44,7 @@ public class AxisButton : MonoBehaviour
                 gm.enteringValueX = false;
                 gm.enteringValueY = false;
             }
-            return;
+            //return;
         }
 
         else if (axisValue == AxisValue.X_AXIS)
@@ -77,6 +77,7 @@ public class AxisButton : MonoBehaviour
                 if (gm.points[i].point == gm.playerCoordinates)
                 {
                     pointFound = true;
+                    gm.PlaceUnit(gm.testUnit, gm.points[i]);
                     Debug.LogFormat("Player entered {0}", gm.points[i].point);
                 }
                 else

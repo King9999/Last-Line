@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour
     public bool enteringValueX, enteringValueY; //determines which axis value is being entered. X is always entered first.
     public List<Point> points;                //the locations on the map where all units are placed.
 
+    //unit setup
+    public List<PlayerUnit> playerUnits;
+    public List<EnemyUnit> enemyUnits;
+    public PlayerUnit testUnit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,5 +36,19 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    /// <summary>
+    /// Places a player unit at the specified location.
+    /// </summary>
+    /// <param name="unit">The unit to be deployed.</param>
+    /// <param name="point">The location where the unit will be deployed.</param>
+    public void PlaceUnit(PlayerUnit unit, Point point)
+    {
+        //generate an instance of selected unit
+
+        //must convert the point's location to world coordinates.
+        Vector2 newPos = Camera.main.ScreenToWorldPoint(point.transform.position);
+        unit.transform.position = newPos;     
     }
 }
