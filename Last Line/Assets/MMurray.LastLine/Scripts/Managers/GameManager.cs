@@ -6,6 +6,15 @@ using MMurray.LastLine;
 
 public class GameManager : MonoBehaviour
 {
+    /// <summary>
+    /// Game State
+    /// </summary>
+    public enum GameState
+    {
+        UNIT_SELECT,
+        COORDINATES_SELECT, ///player is entering coordinates
+    }
+    public GameState gameState;
     public Vector2 playerCoordinates;                 //the coordinates manually entered by player
     public bool enteringValueX, enteringValueY; //determines which axis value is being entered. X is always entered first.
     public List<Point> points;                //the locations on the map where all units are placed.
