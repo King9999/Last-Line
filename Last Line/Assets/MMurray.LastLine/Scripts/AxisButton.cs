@@ -23,19 +23,19 @@ public class AxisButton : MonoBehaviour
         if (axisValue == AxisValue.ORIGIN)
         {
             if (gm.enteringValueX)
-                gm.coordinates.x = value;
+                gm.playerCoordinates.x = value;
             else
-                gm.coordinates.y = value;
+                gm.playerCoordinates.y = value;
             Debug.Log("We're in the origin");
             return;
         }
 
         if (axisValue == AxisValue.X_AXIS)
-            gm.coordinates.x = value;
+            gm.playerCoordinates.x = value;
         else
-            gm.coordinates.y = value;
+            gm.playerCoordinates.y = value;
         
-        Debug.LogFormat("Coordinates {0}", gm.coordinates);
+        Debug.LogFormat("player Coordinates {0}", gm.playerCoordinates);
     }
 
 

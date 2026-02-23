@@ -2,29 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using MMurray.LastLine;
+//using MMurray.LastLine;
 
 /* Unit that's controlled by hte player. Player units don't move, and cost money to deploy. 
 The player's base counts as a unit. */
-public class PlayerUnit : Unit
+namespace MMurray.LastLine
 {
-    public int UnitCost {get; set;}
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerUnit : Unit
     {
-        GetUnitData(unitData);
-        Debug.Log(UnitCost);
-    }
+        public int UnitCost {get; set;}
+        // Start is called before the first frame update
+        void Start()
+        {
+            GetUnitData(unitData);
+            Debug.Log(UnitCost);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        // Update is called once per frame
+        void Update()
+        {
+            
+        }
 
-    public override void GetUnitData(UnitData data)
-    {
-        base.GetUnitData(data);
-        UnitCost = data.unitCost;
+        public override void GetUnitData(UnitData data)
+        {
+            base.GetUnitData(data);
+            UnitCost = data.unitCost;
+        }
     }
 }
