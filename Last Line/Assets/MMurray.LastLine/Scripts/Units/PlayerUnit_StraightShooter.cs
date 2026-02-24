@@ -9,17 +9,24 @@ Enhanced Unit: unlimited weapon range, and weapon pierces targets. */
 public class PlayerUnit_StraightShooter : PlayerUnit
 {
     public Bullet bullet;
+    public float bulletRange;
     private float cooldownTimer;            //tracks when weapon fires.
     // Start is called before the first frame update
     void Start()
     {
         //bullet setup
         GameManager gm = Singleton.instance.GameManager;
+        GetUnitData(unitData);
+        
         bullet = Instantiate(gm.bulletPrefab, parent: this.transform);
         SetupBullet(bullet);
         bullet.gameObject.SetActive(false);
 
+        //range of bullet is the unit's position + 2 units
+        bulletRange = transform.position.x + (bullet.distance * bullet.direction.x);
+
         cooldownTimer = 0;
+        
     }
 
     // Update is called once per frame
@@ -31,16 +38,26 @@ public class PlayerUnit_StraightShooter : PlayerUnit
 
         if (!bullet.gameObject.activeSelf && Time.time > cooldownTimer + weaponCooldown)
         {
-            cooldownTimer = Time.time;
+            //cooldownTimer = Time.time;
             bullet.gameObject.SetActive(true);
+        }
+        else
+        {
+            if (bullet.transform.position.x > bulletRange)
+            {
+                cooldownTimer = Time.time;
+                bullet.gameObject.SetActive(false);
+                bullet.transform.position = this.transform.position;
+            }
         }
     }
 
-    void SetupBullet(Bullet bullet)
+    public override void SetupBullet(Bullet bullet)
     {
-        bullet.moveSpeed = 3f;
+        base.SetupBullet(bullet);
+        //bullet.moveSpeed = 6;
         bullet.direction = Vector2.right;
-        bullet.damage = 1;
-        bullet.distance = 2;
+        //bullet.damage = 1;
+        //bullet.distance = 4;
     }
 }

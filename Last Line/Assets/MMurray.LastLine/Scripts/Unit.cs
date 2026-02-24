@@ -13,7 +13,9 @@ namespace MMurray.LastLine
         public int hitPoints;    
         public float weaponCooldown;   //time in seconds that must pass before unit can fire weapon, if applicable
         //public float moveSpeed; 
-        
+        public float bulletSpeed;
+        public float bulletDistance;
+        public int weaponDamage;
 
         //gets data from scriptable object
         public virtual void GetUnitData(UnitData data)
@@ -22,6 +24,9 @@ namespace MMurray.LastLine
             weaponCooldown = data.weaponCooldown;
             //MoveSpeed = data.moveSpeed;
             hitPoints = data.hitPoints;
+            bulletSpeed = data.bulletSpeed;
+            weaponDamage = data.weaponDamage;
+            bulletDistance = data.bulletDistance;
         }
 
         /// <summary>
@@ -43,6 +48,14 @@ namespace MMurray.LastLine
         public virtual void FireWeapon()
         {
             
+        }
+
+        public virtual void SetupBullet(Bullet bullet)
+        {
+            bullet.moveSpeed = bulletSpeed;
+            bullet.direction = Vector2.right;
+            bullet.damage = weaponDamage;
+            bullet.distance = bulletDistance;
         } 
     }
 }

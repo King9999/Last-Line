@@ -5,6 +5,11 @@ using MMurray.LastLine;
 using LoLSDK;
 using MMurray.GenericCode;
 
+//we want to disable debug logs when not in unity editor to prevent potential performance issues.
+#if !(UNITY_EDITOR || DEBUG)
+    Debug.unityLogger.logEnabled = false;
+#endif
+
 /* This is the master singleton that's used to access various managers, i.e. other singletons. */
 namespace MMurray.LastLine
 {
@@ -50,6 +55,7 @@ namespace MMurray.LastLine
             //PlayerPrefs.DeleteAll();
             ttsEnabled = true;      //tts is on by default
             musicEnabled = true;
+
 
             DontDestroyOnLoad(instance);
         }

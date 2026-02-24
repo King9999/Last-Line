@@ -10,6 +10,10 @@ public class UnitData : ScriptableObject
     public int unitCost;                //only applies to player units
     public int hitPoints;
     public float moveSpeed;             //this only applies to enemy units
+    [Header("---Weapon Data---")]
     public float weaponCooldown;
+    public float bulletSpeed;
+    public float bulletDistance;
+    public int weaponDamage;
     
 }

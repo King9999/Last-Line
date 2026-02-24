@@ -4,6 +4,7 @@ using UnityEngine;
 using LoLSDK;
 using MMurray.LastLine;
 
+
 public class GameManager : MonoBehaviour
 {
     /// <summary>
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
         Singleton.instance.GameManager = this;
         //enteringValueX = true;
 
+        Logger.DebugLog("Testing!");
         //load save state
         Singleton s = Singleton.instance;
         if (s.saveStateFound)
@@ -56,9 +58,9 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Places a player unit at the specified location.
+    /// Instantiates and places a player unit at the specified location.
     /// </summary>
-    /// <param name="unit">The unit to be deployed.</param>
+    /// <param name="unit">The unit type to be deployed.</param>
     /// <param name="point">The location where the unit will be deployed.</param>
     public void PlaceUnit(PlayerUnitType unit, Point point)
     {
@@ -82,6 +84,9 @@ public class GameManager : MonoBehaviour
         Vector2 newPos = Camera.main.ScreenToWorldPoint(point.transform.position);
         newUnit.transform.position = newPos;
         point.unit = newUnit;
+
+        //add to list
+        playerUnits.Add(newUnit);
 
         //save unit's position
         Singleton.instance.saveState.WriteState(Singleton.instance.gameData);     
