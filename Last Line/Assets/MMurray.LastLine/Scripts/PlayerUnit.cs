@@ -10,24 +10,22 @@ namespace MMurray.LastLine
 {
     public class PlayerUnit : Unit
     {
-        public int UnitCost {get; set;}
+        public int unitCost;
+
         // Start is called before the first frame update
         void Start()
         {
             GetUnitData(unitData);
-            Debug.Log(UnitCost);
+            Debug.Log(unitCost);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
 
         public override void GetUnitData(UnitData data)
         {
             base.GetUnitData(data);
-            UnitCost = data.unitCost;
+            unitCost = data.unitCost;
         }
+
+        
     }
 }

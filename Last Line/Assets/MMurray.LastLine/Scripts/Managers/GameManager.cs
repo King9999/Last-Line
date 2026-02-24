@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
         UNIT_SELECT,
         COORDINATES_SELECT, ///player is entering coordinates
     }
+
+    public enum PlayerUnitType {StraightShooter, VerticalShooter}
+    public PlayerUnitType playerUnitType;
     public GameState gameState;
     public Vector2 playerCoordinates;                 //the coordinates manually entered by player
     public bool enteringValueX, enteringValueY; //determines which axis value is being entered. X is always entered first.
@@ -23,6 +26,10 @@ public class GameManager : MonoBehaviour
     public List<PlayerUnit> playerUnits;
     public List<EnemyUnit> enemyUnits;
     public PlayerUnit testUnit;
+
+    [Header("---Prefabs---")]
+    public Bullet bulletPrefab;
+    public PlayerUnit_StraightShooter straightShooterPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -53,16 +60,28 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="unit">The unit to be deployed.</param>
     /// <param name="point">The location where the unit will be deployed.</param>
-    public void PlaceUnit(PlayerUnit unit, Point point)
+    public void PlaceUnit(PlayerUnitType unit, Point point)
     {
-        //generate an instance of selected unit
+        //if space is occupied, do nothing
         if (point.unit != null)
             return;
 
+        PlayerUnit newUnit = null;
+        //check what player picked and instantiate
+        switch (unit)
+        {
+            case PlayerUnitType.StraightShooter:
+                newUnit = Instantiate(straightShooterPrefab);
+                break;
+            
+            case PlayerUnitType.VerticalShooter:
+                break;
+        }
+
         //must convert the point's location to world coordinates.
         Vector2 newPos = Camera.main.ScreenToWorldPoint(point.transform.position);
-        unit.transform.position = newPos;
-        point.unit = unit;
+        newUnit.transform.position = newPos;
+        point.unit = newUnit;
 
         //save unit's position
         Singleton.instance.saveState.WriteState(Singleton.instance.gameData);     

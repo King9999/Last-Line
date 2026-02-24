@@ -7,6 +7,7 @@ namespace MMurray.LastLine
 {
     public class EnemyUnit : Unit
     {
+        public float moveSpeed;
         // Start is called before the first frame update
         void Start()
         {

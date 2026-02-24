@@ -77,7 +77,7 @@ public class AxisButton : MonoBehaviour
                 if (gm.points[i].point == gm.playerCoordinates)
                 {
                     pointFound = true;
-                    gm.PlaceUnit(gm.testUnit, gm.points[i]);
+                    gm.PlaceUnit(gm.playerUnitType, gm.points[i]);
                     Debug.LogFormat("Player entered {0}", gm.points[i].point);
                 }
                 else
