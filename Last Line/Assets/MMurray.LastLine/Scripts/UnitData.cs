@@ -8,6 +8,7 @@ public class UnitData : ScriptableObject
 {
     public string unitName;             //internal name that won't be used in game
     public int unitCost;                //only applies to player units
+    public int unitMoneyReward;         //applies to enemy units. Money earned for defeating them.
     public int hitPoints;
     public float moveSpeed;             //this only applies to enemy units
     [Header("---Weapon Data---")]

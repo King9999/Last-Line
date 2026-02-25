@@ -12,4 +12,10 @@ public static class Logger
    {
         UnityEngine.Debug.Log(logStr);
    }
+
+   [Conditional("UNITY_EDITOR")]
+   public static void DebugLogFormat(string logStr, params object[] args)
+   {
+        UnityEngine.Debug.LogFormat(logStr, args);
+   }
 }

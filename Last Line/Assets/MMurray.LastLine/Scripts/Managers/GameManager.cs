@@ -64,9 +64,12 @@ public class GameManager : MonoBehaviour
     /// <param name="point">The location where the unit will be deployed.</param>
     public void PlaceUnit(PlayerUnitType unit, Point point)
     {
-        //if space is occupied, do nothing
+        //if space is occupied, activate context-sensitive ability. nothing happens if unit doesn't have one.
         if (point.unit != null)
+        {
+            point.unit.ActivateAbility();
             return;
+        }
 
         PlayerUnit newUnit = null;
         //check what player picked and instantiate

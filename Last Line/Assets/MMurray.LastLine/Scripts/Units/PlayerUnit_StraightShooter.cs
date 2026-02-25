@@ -9,8 +9,9 @@ Enhanced Unit: unlimited weapon range, and weapon pierces targets. */
 public class PlayerUnit_StraightShooter : PlayerUnit
 {
     public Bullet bullet;
-    public float bulletRange;
+    public Vector2 bulletRange;
     private float cooldownTimer;            //tracks when weapon fires.
+    [SerializeField]private bool reverseDirection;  //if true, unit fires left.
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         bullet.gameObject.SetActive(false);
 
         //range of bullet is the unit's position + 2 units
-        bulletRange = transform.position.x + (bullet.distance * bullet.direction.x);
+        bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
 
         cooldownTimer = 0;
         
@@ -43,11 +44,23 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         }
         else
         {
-            if (bullet.transform.position.x > bulletRange)
+            float distance = Vector2.Distance(bulletRange,  bullet.transform.position);
+            Logger.DebugLog("Bullet distance to target: " + distance);
+            //if (bullet.transform.position.x > bulletRange.x)
+            if (distance < 0.5f)
             {
                 cooldownTimer = Time.time;
+                //check if unit's firing direction needs to change.
+                if (reverseDirection == true)
+                {
+                    reverseDirection = false;
+                    bullet.direction *= -1;
+                    bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
+                }
+                Logger.DebugLog("Bullet range: " + bulletRange);
+                bullet.transform.position = transform.position;
                 bullet.gameObject.SetActive(false);
-                bullet.transform.position = this.transform.position;
+
             }
         }
     }
@@ -59,5 +72,12 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         bullet.direction = Vector2.right;
         //bullet.damage = 1;
         //bullet.distance = 4;
+    }
+
+    //change firing direction.
+    public override void ActivateAbility()
+    {
+        Logger.DebugLog("Reversing Unit firing direction!");
+        reverseDirection = true;
     }
 }
