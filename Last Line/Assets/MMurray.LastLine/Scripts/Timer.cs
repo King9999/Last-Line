@@ -12,6 +12,17 @@ namespace MMurray.GenericCode
         public float time;           //time in seconds. Will use this value to get the minutes, seconds and milliseconds
         public float initTime;      //the initial start time. Used to get time elapsed.
         public bool timerRunning;
+        public string timeText;     //the format to display the time.
+        private float minutes, seconds, milliseconds; 
+
+        public enum TimeFormat 
+        {
+            Default,                ///Displays time in minutes, seconds, and milliseconds
+            MinutesAndSeconds,      ///Displays time in minutes and seconds.
+            Seconds                 ///Displays only seconds.
+        }
+
+        public TimeFormat timeFormat;
 
         [Header("---Timer UI---")]
         public TextMeshProUGUI timerUI;
@@ -39,13 +50,12 @@ namespace MMurray.GenericCode
             
             }
 
-            //update timer display
-            if (time <= 10)
-                timerUI.color = Color.red;
-            else
-                timerUI.color = Color.white;
-
-            timerUI.text = DisplayTimer();
+            //update timer display. Colour changes if less than 30% time left. I use rounding to prevent decimal 
+            //values from delaying the colour change.
+            UpdateTime();
+            timerUI.color = (time <= Mathf.Round(initTime * 0.3f)) ? Color.red : Color.white;
+            //timerUI.text = DisplayTimer();
+            timerUI.text = timeText;
         }
 
         public void SetTimer(float seconds)
@@ -54,16 +64,44 @@ namespace MMurray.GenericCode
             initTime = time;
         }
 
-        public string DisplayTimer()
+        public string CurrentTimeFormat(TimeFormat format)
         {
-            float minutes = Mathf.FloorToInt(time / 60);
-            float seconds = Mathf.FloorToInt(time % 60);
-            float milliseconds = time % 1 * 99;    //I only want the first two digits displayed so I'm not using 1000. Format wouldn't remove the extra digits.
-
-            //change format as needed
-            string timeText = string.Format("{0:0}:{1:00}:{2:00}", minutes, seconds, milliseconds);
+            string timeText = "";
+            switch (format)
+            {
+                case TimeFormat.Default:
+                    timeText = string.Format("{0:0}:{1:00}:{2:00}", minutes, seconds, milliseconds);
+                    break;
+                
+                case TimeFormat.MinutesAndSeconds:
+                    timeText = string.Format("{0:0}:{1:00}", minutes, seconds);
+                    break;
+                
+                case TimeFormat.Seconds:
+                    timeText = seconds.ToString();
+                    break;
+            }
 
             return timeText;
+        }
+
+        public string DisplayTimer()
+        {
+            UpdateTime();
+
+            //change format as needed
+            //string timeText = string.Format("{0:0}:{1:00}:{2:00}", minutes, seconds, milliseconds);
+            timeText = CurrentTimeFormat(timeFormat);
+
+            return timeText;
+        }
+
+        void UpdateTime()
+        {
+            minutes = Mathf.FloorToInt(time / 60);
+            seconds = Mathf.FloorToInt(time % 60);
+            milliseconds = time % 1 * 99;    //I only want the first two digits displayed so I'm not using 1000. Format wouldn't remove the extra digits.
+            timeText = CurrentTimeFormat(timeFormat);
         }
 
         public string DisplayElapsedTime()
