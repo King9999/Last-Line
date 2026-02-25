@@ -11,6 +11,7 @@ public class UnitData : ScriptableObject
     public int unitMoneyReward;         //applies to enemy units. Money earned for defeating them.
     public int hitPoints;
     public float moveSpeed;             //this only applies to enemy units
+    public int collisionDamage;         //only applies to enemies. How much damage they deal to the base.
     [Header("---Weapon Data---")]
     public float weaponCooldown;
     public float bulletSpeed;

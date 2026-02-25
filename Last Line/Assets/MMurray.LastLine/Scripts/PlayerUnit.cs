@@ -12,14 +12,6 @@ namespace MMurray.LastLine
     {
         public int unitCost;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            GetUnitData(unitData);
-            Debug.Log(unitCost);
-        }
-
-
         public override void GetUnitData(UnitData data)
         {
             base.GetUnitData(data);

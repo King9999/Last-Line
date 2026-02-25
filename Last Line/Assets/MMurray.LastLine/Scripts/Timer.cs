@@ -9,7 +9,7 @@ namespace MMurray.GenericCode
 {
     public class Timer : MonoBehaviour
     {
-        public float time;           //time in seconds. Will use this value to get the minutes, seconds and milliseconds
+        private float time;           //time in seconds. Will use this value to get the minutes, seconds and milliseconds
         public float initTime;      //the initial start time. Used to get time elapsed.
         public bool timerRunning;
         public string timeText;     //the format to display the time.
@@ -32,6 +32,7 @@ namespace MMurray.GenericCode
         {
             //timerRunning = false;
         // time = 120;             //default time is 2 minutes.
+            time = initTime;
         }
 
         // Update is called once per frame
