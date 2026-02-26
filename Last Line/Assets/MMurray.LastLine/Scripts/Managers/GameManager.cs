@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         Singleton.instance.GameManager = this;
         //enteringValueX = true;
 
-        Logger.DebugLog("Testing!");
+        Logger.DebugLogFormat("Testing {0}", enemyUnits.Count);
         LoadLevel(0);
         //load save state
         Singleton s = Singleton.instance;

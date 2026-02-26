@@ -13,21 +13,32 @@ public class Portal : MonoBehaviour
     public int enemyCount;              //the number of enemies in the portal.
     private int nextEnemy;              //iterator for the enemy unit list.
     [SerializeField]private GameObject unitIcon;    //appears above portal to show player which enemy is deployed.
+    [Header("---Path---")]
+    public LineRenderer enemyPath;
+    public List<Vector2>pathPoints;
 
     // Start is called before the first frame update
     void Start()
     {
-        //timer setup
-        timer.timerUI.transform.position = Camera.main.WorldToScreenPoint(transform.position);
-        timer.timeFormat = Timer.TimeFormat.Seconds;
-        //timer.SetTimer(10);
-        timer.StartTimer();
-
         nextEnemy = 0;
         currentDeployTime = 0;
+
         //icon setup
         SpriteRenderer renderer = unitIcon.GetComponent<SpriteRenderer>();
         renderer.sprite = enemyUnits[0].GetComponent<SpriteRenderer>().sprite;
+        
+
+        //path setup TODO: Why can't I just get a reference to the line renderer's vertices directly?
+        for (int i = 0; i < enemyPath.positionCount; i++)
+        {
+            pathPoints.Add(enemyPath.GetPosition(i));
+        }
+        Logger.DebugLogFormat("Vertex count in portal {0}: {1}", gameObject.name, pathPoints.Count);
+
+        //timer setup
+        timer.timerUI.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        timer.timeFormat = Timer.TimeFormat.Seconds;
+        timer.StartTimer();
     }
 
     // Update is called once per frame
@@ -44,6 +55,7 @@ public class Portal : MonoBehaviour
             //deploy unit
             currentDeployTime = Time.time;
             enemyUnits[nextEnemy].gameObject.SetActive(true);
+            enemyUnits[nextEnemy].SetPath(pathPoints);
             nextEnemy++;
         }
     }
