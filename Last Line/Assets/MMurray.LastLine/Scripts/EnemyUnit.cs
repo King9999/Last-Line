@@ -17,12 +17,16 @@ namespace MMurray.LastLine
         [Header("---Pathing---")]
         public List<Vector2> path;          //the path the enemy follows towards the player's base.
         [SerializeField]private int pathIndex;
+        public Vector2 currentPoint, nextPoint;
 
-        void Start()
+        /*void Start()
         {
             GetUnitData(unitData);
             pathIndex = 0;
-        }
+
+            isInvul = true;
+            currentInvulTime = Time.time;
+        }*/
         
         public override void GetUnitData(UnitData data)
         {
@@ -34,6 +38,8 @@ namespace MMurray.LastLine
 
         void OnEnable()
         {
+            GetUnitData(unitData);
+            pathIndex = 0;
             isInvul = true;
             currentInvulTime = Time.time;
 
@@ -54,7 +60,15 @@ namespace MMurray.LastLine
             }
 
             //update movement
-            transform.Translate(direction * moveSpeed * Time.deltaTime);
+            if (currentPoint != nextPoint)
+            {
+                transform.Translate(direction * moveSpeed * Time.deltaTime);
+
+                if (Vector2.Distance(transform.position, nextPoint) < 0.01f)
+                {
+                    GetNextPoint();
+                }
+            }
         }
 
         public void SetPath(List<Vector2> newPath)
@@ -62,7 +76,24 @@ namespace MMurray.LastLine
             path = newPath;
 
             //get the first point
-            direction = new Vector2(path[pathIndex].x - transform.position.x, path[pathIndex].y - transform.position.y);
+            //direction = new Vector2(path[pathIndex].x - transform.position.x, path[pathIndex].y - transform.position.y);
+            //currentPoint = path[pathIndex];
+
+            //get the destination
+            //nextPoint = pathIndex + 1 < path.Count ? path[++pathIndex] : currentPoint;
+            GetNextPoint();
+        }
+
+        /// <summary>
+        /// Returns the next point in the path and sets the direction to that point.
+        /// </summary>
+        /// <returns></returns>
+        public void GetNextPoint()
+        {
+            currentPoint = path[pathIndex];
+            nextPoint = pathIndex + 1 < path.Count ? path[++pathIndex] : currentPoint;
+            transform.position = currentPoint;
+            direction = new Vector2(nextPoint.x - transform.position.x, nextPoint.y - transform.position.y);
         }
     }
 }
