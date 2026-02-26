@@ -42,9 +42,6 @@ namespace MMurray.LastLine
             pathIndex = 0;
             isInvul = true;
             currentInvulTime = Time.time;
-
-            //get direction of the player's base. TODO: Enemy will move along a path until it reaches player base.
-            //direction = Vector2.left;
         }
 
         void Update()
@@ -87,7 +84,6 @@ namespace MMurray.LastLine
         /// <summary>
         /// Returns the next point in the path and sets the direction to that point.
         /// </summary>
-        /// <returns></returns>
         public void GetNextPoint()
         {
             currentPoint = path[pathIndex];
