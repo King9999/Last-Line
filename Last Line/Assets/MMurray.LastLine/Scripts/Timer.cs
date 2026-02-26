@@ -47,6 +47,7 @@ namespace MMurray.GenericCode
                 {
                     time = 0;
                     timerRunning = false;
+                    gameObject.SetActive(false);
                 }
             
             }

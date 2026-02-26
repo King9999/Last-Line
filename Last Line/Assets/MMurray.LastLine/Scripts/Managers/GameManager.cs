@@ -66,10 +66,13 @@ public class GameManager : MonoBehaviour
         //generate portals
         //each portal instantiates number of units.
         //EnemyUnit enemyUnit = null;
-        EnemyUnit enemyUnit = Instantiate(scoutPrefab, parent: testPortal.transform);
-        enemyUnit.transform.position = testPortal.transform.position;
-        enemyUnit.gameObject.SetActive(false);
-        testPortal.enemyUnits.Add(enemyUnit);
+        for (int i = 0; i < testPortal.enemyCount; i++)
+        {
+            EnemyUnit enemyUnit = Instantiate(scoutPrefab, parent: testPortal.transform);
+            enemyUnit.transform.position = testPortal.transform.position;
+            enemyUnit.gameObject.SetActive(false);
+            testPortal.enemyUnits.Add(enemyUnit);
+        }
     }
 
     /// <summary>

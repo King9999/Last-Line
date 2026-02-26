@@ -583,11 +583,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
+      propertyPath: unitIcon
+      value: 
+      objectReference: {fileID: 1709465635546160781}
+    - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
+      propertyPath: enemyCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
+      propertyPath: deployCooldown
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
+--- !u!1 &1709465635546160781 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 785235606525344305, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
+  m_PrefabInstance: {fileID: 1709465635546160780}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6859608517825341613
 PrefabInstance:
   m_ObjectHideFlags: 0

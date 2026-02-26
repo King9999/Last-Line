@@ -9,6 +9,9 @@ public class Portal : MonoBehaviour
     public Timer timer;                 //time in seconds before portal starts sending units.
     public List<EnemyUnit> enemyUnits;      //the unit that's deployed.
     public float deployCooldown;        //the time that must pass before another unit is generated.
+    private float currentDeployTime;
+    public int enemyCount;              //the number of enemies in the portal.
+    private int nextEnemy;              //iterator for the enemy unit list.
     [SerializeField]private GameObject unitIcon;    //appears above portal to show player which enemy is deployed.
 
     // Start is called before the first frame update
@@ -20,21 +23,28 @@ public class Portal : MonoBehaviour
         //timer.SetTimer(10);
         timer.StartTimer();
 
+        nextEnemy = 0;
+        currentDeployTime = 0;
         //icon setup
-        //SpriteRenderer renderer = unitIcon.GetComponent<SpriteRenderer>();
-        //renderer.sprite = enemyUnits[0].GetComponent<SpriteRenderer>().sprite;
+        SpriteRenderer renderer = unitIcon.GetComponent<SpriteRenderer>();
+        renderer.sprite = enemyUnits[0].GetComponent<SpriteRenderer>().sprite;
     }
 
     // Update is called once per frame
     void Update()
     {
         //hide timer if time is up
-        if (timer.TimeUp())
+        if (!timer.TimeUp())
+            return;
+
+        if (nextEnemy < enemyCount && Time.time > currentDeployTime + deployCooldown)
         {
-            timer.gameObject.SetActive(false);
+            //timer.gameObject.SetActive(false);
 
             //deploy unit
-            enemyUnits[0].gameObject.SetActive(true);
+            currentDeployTime = Time.time;
+            enemyUnits[nextEnemy].gameObject.SetActive(true);
+            nextEnemy++;
         }
     }
 }
