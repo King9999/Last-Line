@@ -17,7 +17,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
     {
         //bullet setup
         GameManager gm = Singleton.instance.GameManager;
-        GetUnitData(unitData);
+        //GetUnitData(unitData);
         
         bullet = Instantiate(gm.bulletPrefab, parent: this.transform);
         SetupBullet(bullet);
@@ -47,9 +47,11 @@ public class PlayerUnit_StraightShooter : PlayerUnit
             float distance = Vector2.Distance(bulletRange,  bullet.transform.position);
             Logger.DebugLog("Bullet distance to target: " + distance);
             //if (bullet.transform.position.x > bulletRange.x)
-            if (distance < 0.5f)
+            if (distance < 0.5f || bullet.bulletStruckUnit)
             {
                 cooldownTimer = Time.time;
+                bullet.bulletStruckUnit = false;
+
                 //check if unit's firing direction needs to change.
                 if (reverseDirection == true)
                 {
@@ -70,6 +72,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         base.SetupBullet(bullet);
         //bullet.moveSpeed = 6;
         bullet.direction = Vector2.right;
+        bullet.owner = Bullet.Owner.Player;
         //bullet.damage = 1;
         //bullet.distance = 4;
     }

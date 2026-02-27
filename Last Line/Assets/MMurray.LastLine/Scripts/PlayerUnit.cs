@@ -18,6 +18,23 @@ namespace MMurray.LastLine
             unitCost = data.unitCost;
         }
 
-        
+        void OnEnable()
+        {
+            GetUnitData(unitData);
+            //healthBar.gameObject.SetActive(true);
+            //health bar setup. Only visible when damaged.
+            //healthBar.transform.position = Camera.main.WorldToScreenPoint(new Vector2(transform.position.x + 0.2f, 
+                        //transform.position.y + 0.4f));
+            healthBar.maxValue = maxHitPoints;
+            //UpdateHealthBar(transform.position);
+            //TODO: For some reason the player unit's health bar is not positioning correctly.
+        }
+
+        /*void Update()
+        {
+            if (healthBar.gameObject.activeSelf)
+                UpdateHealthBar(transform.position);
+        }*/
+
     }
 }

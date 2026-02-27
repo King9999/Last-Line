@@ -70,6 +70,22 @@ namespace MMurray.LastLine
             healthBar.value = hitPoints;
 
             //health bar is only visible when unit is damaged.
+            /*if (healthBar.value >= healthBar.maxValue)
+                healthBar.gameObject.SetActive(false);
+            else
+                healthBar.gameObject.SetActive(true);*/
+        }
+
+        //updates health bar's slider value, position, and visibility.
+        public void UpdateHealthBar(Vector2 unitPos)
+        {
+
+            healthBar.value = hitPoints;
+
+            healthBar.transform.position = Camera.main.WorldToScreenPoint(new Vector2(unitPos.x + 0.2f, 
+                        unitPos.y + 0.4f));
+
+            //health bar is only visible when unit is damaged.
             if (healthBar.value >= healthBar.maxValue)
                 healthBar.gameObject.SetActive(false);
             else

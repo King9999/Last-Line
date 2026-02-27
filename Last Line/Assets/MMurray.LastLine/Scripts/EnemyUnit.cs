@@ -45,7 +45,7 @@ namespace MMurray.LastLine
 
             //health bar setup. Only visible when damaged.
             healthBar.maxValue = maxHitPoints;
-            SetHealth(maxHitPoints);
+            //SetHealth(maxHitPoints);
         }
 
         void Update()
@@ -68,8 +68,9 @@ namespace MMurray.LastLine
                 //update healthbar position if necessary
                 if (healthBar.gameObject.activeSelf)
                 {
-                    healthBar.transform.position = Camera.main.WorldToScreenPoint(new Vector2(transform.position.x + 0.2f, 
-                        transform.position.y + 0.4f));
+                    UpdateHealthBar(transform.position);
+                    //healthBar.transform.position = Camera.main.WorldToScreenPoint(new Vector2(transform.position.x + 0.2f, 
+                        //transform.position.y + 0.4f));
                 }
 
                 if (Vector2.Distance(transform.position, nextPoint) < 0.01f)
