@@ -42,6 +42,10 @@ namespace MMurray.LastLine
             pathIndex = 0;
             isInvul = true;
             currentInvulTime = Time.time;
+
+            //health bar setup. Only visible when damaged.
+            healthBar.maxValue = maxHitPoints;
+            SetHealth(maxHitPoints);
         }
 
         void Update()
@@ -60,6 +64,13 @@ namespace MMurray.LastLine
             if (currentPoint != nextPoint)
             {
                 transform.Translate(direction * moveSpeed * Time.deltaTime);
+
+                //update healthbar position if necessary
+                if (healthBar.gameObject.activeSelf)
+                {
+                    healthBar.transform.position = Camera.main.WorldToScreenPoint(new Vector2(transform.position.x + 0.2f, 
+                        transform.position.y + 0.4f));
+                }
 
                 if (Vector2.Distance(transform.position, nextPoint) < 0.01f)
                 {
