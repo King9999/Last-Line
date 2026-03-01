@@ -14,6 +14,7 @@ namespace MMurray.LastLine
         protected const float INVUL_TIME = 0.8f;    //time that unit can't be damaged after being delpoyed.
         protected float currentInvulTime;
         protected bool isInvul;
+        public Portal portal;               //reference to the portal the enemy belongs to.
         [Header("---Pathing---")]
         public List<Vector2> path;          //the path the enemy follows towards the player's base.
         [SerializeField]private int pathIndex;
@@ -102,6 +103,21 @@ namespace MMurray.LastLine
             nextPoint = pathIndex + 1 < path.Count ? path[++pathIndex] : currentPoint;
             transform.position = currentPoint;
             direction = new Vector2(nextPoint.x - transform.position.x, nextPoint.y - transform.position.y);
+        }
+
+        //Checks for collision against player units.
+        void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
+            {
+                Logger.DebugLog("Hit Unit " + unit.name);
+
+                //both player unit and enemy unit die.
+                GameManager gm = Singleton.instance.GameManager;
+                gm.RemovePlayerUnit(unit);
+                //gm.deadPlayerUnits.Add(unit);
+                gm.RemoveEnemyUnit(this);
+            }
         }
     }
 }

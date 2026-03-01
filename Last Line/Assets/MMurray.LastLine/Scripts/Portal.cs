@@ -57,6 +57,16 @@ public class Portal : MonoBehaviour
             enemyUnits[nextEnemy].gameObject.SetActive(true);
             enemyUnits[nextEnemy].SetPath(pathPoints);
             nextEnemy++;
+            Logger.DebugLog("nextEnemy index: " + nextEnemy);
         }
+    }
+
+    //when an enemy dies, we must adjust the index so it points to the correct enemy in case there are more
+    //in the list to deploy.
+    public void ReduceEnemyCount()
+    {
+        nextEnemy--;
+        enemyCount--;
+        Logger.DebugLog("nextEnemy index: " + nextEnemy);
     }
 }

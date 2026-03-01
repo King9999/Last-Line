@@ -14,7 +14,7 @@ namespace MMurray.LastLine
        public void WriteState(GameData data)
         {
             GameManager gm = Singleton.instance.GameManager;
-            data.test_unit_pos = gm.testUnit.transform.position;
+            //data.test_unit_pos = gm.testUnit.transform.position;
 
             LOLSDK.Instance.SaveState(data);
         }

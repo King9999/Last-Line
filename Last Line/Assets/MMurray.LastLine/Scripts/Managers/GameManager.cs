@@ -24,15 +24,24 @@ public class GameManager : MonoBehaviour
     public List<Point> points;                //the locations on the map where all units are placed.
 
     //unit setup
-    public List<PlayerUnit> playerUnits;
-    public List<EnemyUnit> enemyUnits;
+    public List<PlayerUnit> activePlayerUnits;
+    public List<EnemyUnit> activeEnemyUnits;
     public PlayerUnit testUnit;
     public Portal testPortal;
+
+    [Header("---Containers---")]
+    public GameObject playerUnitContainer;      //all instantiated units are placed here
 
     [Header("---Prefabs---")]
     public Bullet bulletPrefab;
     public PlayerUnit_StraightShooter straightShooterPrefab;
-    public EnemyUnit_Scout scoutPrefab;
+    public EnemyUnit scoutPrefab;
+
+    /***Units that are destroyed are sent to an array, and recycled whenever a new unit needs to be generated. 
+    This is to reduce the amount of calls to the garbage collector. */
+    [Header("---Graveyard---")]
+    public List<EnemyUnit> deadEnemyUnits;
+    public List<PlayerUnit> deadPlayerUnits;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +50,7 @@ public class GameManager : MonoBehaviour
         Singleton.instance.GameManager = this;
         //enteringValueX = true;
 
-        Logger.DebugLogFormat("Testing {0}", enemyUnits.Count);
+        Logger.DebugLogFormat("Testing {0}", activeEnemyUnits.Count);
         LoadLevel(0);
         //load save state
         Singleton s = Singleton.instance;
@@ -51,7 +60,6 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-       
     }
 
     // Update is called once per frame
@@ -60,6 +68,9 @@ public class GameManager : MonoBehaviour
         
     }
 
+    /* Load the specified level. NOTE: Save States only load the current level from the beginning, and not the state
+    the level was left in. This is because the levels are going to be short enough that it's unnecessary to record
+    every unit's position. Also, the game runs in real time so the player might get confused on what they were doing. */
     void LoadLevel(int level)
     {
         //get level from JSON
@@ -68,8 +79,10 @@ public class GameManager : MonoBehaviour
         //EnemyUnit enemyUnit = null;
         for (int i = 0; i < testPortal.enemyCount; i++)
         {
-            EnemyUnit enemyUnit = Instantiate(scoutPrefab, parent: testPortal.transform);
+            EnemyUnit enemyUnit = Instantiate(scoutPrefab as EnemyUnit_Scout, parent: testPortal.transform);
             enemyUnit.transform.position = testPortal.transform.position;
+            activeEnemyUnits.Add(enemyUnit);
+            enemyUnit.portal = testPortal;
             enemyUnit.gameObject.SetActive(false);
             testPortal.enemyUnits.Add(enemyUnit);
         }
@@ -94,7 +107,7 @@ public class GameManager : MonoBehaviour
         switch (unit)
         {
             case PlayerUnitType.StraightShooter:
-                newUnit = Instantiate(straightShooterPrefab);
+                newUnit = Instantiate(straightShooterPrefab, Camera.main.transform);
                 break;
             
             case PlayerUnitType.VerticalShooter:
@@ -104,12 +117,53 @@ public class GameManager : MonoBehaviour
         //must convert the point's location to world coordinates.
         Vector2 newPos = Camera.main.ScreenToWorldPoint(point.transform.position);
         newUnit.transform.position = newPos;
+        Logger.AddPlayerId(newUnit.name);
+        newUnit.UpdateHealthBar(newPos);        //TODO: Not quite sure why this fixes the healthbar positioning issue for player units.
         point.unit = newUnit;
 
         //add to list
-        playerUnits.Add(newUnit);
+        activePlayerUnits.Add(newUnit);
 
         //save unit's position
         Singleton.instance.saveState.WriteState(Singleton.instance.gameData);     
+    }
+
+    /// <summary>
+    /// Send player unit to graveyard and remove reference to unit on grid.
+    /// </summary>
+    /// <param name="unit">The unit to be removed.</param>
+    public void RemovePlayerUnit(PlayerUnit unit)
+    {
+        bool unitFound = false;
+        int i = 0;
+        while(!unitFound && i < points.Count)
+        {
+            if (points[i].unit == unit)
+            {
+                unitFound = true;
+                deadPlayerUnits.Add(unit);
+                activePlayerUnits.Remove(unit);
+                unit.gameObject.SetActive(false);
+                Logger.DebugLogFormat("Removing {0} from grid at point {1}", unit.name, points[i].point);
+                points[i].unit = null;
+            }
+            else
+            {
+                i++;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Remove enemy unit and send to graveyard. Reference to unit's portal is also removed.
+    /// </summary>
+    /// <param name="unit">The unit to remove.</param>
+    public void RemoveEnemyUnit(EnemyUnit unit)
+    {
+        deadEnemyUnits.Add(unit);
+        unit.portal.enemyUnits.Remove(unit);
+        unit.portal.ReduceEnemyCount();
+        unit.portal = null;
+        unit.gameObject.SetActive(false);
     }
 }
