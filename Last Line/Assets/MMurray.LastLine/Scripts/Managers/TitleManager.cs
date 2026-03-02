@@ -40,13 +40,13 @@ public class TitleManager : MonoBehaviour
                 Singleton.instance.ttsEnabled = state.data.tts_enabled;
                 Singleton.instance.musicEnabled = state.data.music_enabled;
                 continueButton.gameObject.SetActive(true);
-                Debug.LogWarning("Save state found and loaded.");
+                Logger.DebugLogWarning("Save state found and loaded.");
             }
             else
             {
                 //hide continue button
                 continueButton.gameObject.SetActive(false);
-                Debug.LogWarning("Save state not found");
+                Logger.DebugLogWarning("Save state not found");
             }
            
         });

@@ -24,6 +24,12 @@ public static class Logger
    }
 
    [Conditional("UNITY_EDITOR")]
+   public static void DebugLogWarning(string logStr)
+     {
+          UnityEngine.Debug.LogWarning(logStr);
+     }
+
+   [Conditional("UNITY_EDITOR")]
    public static void AddPlayerId(String unitName)
      {
           unitName += playerUnitId.ToString();

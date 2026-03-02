@@ -24,6 +24,7 @@ namespace MMurray.LastLine
         //public UI UI { get; set; }
         //public AudioManager AudioManager { get; private set; }
         public TitleManager TitleManager {get; private set;}
+        public Menu Menu {get; set;}
 
         //save state data
         public GameData gameData;
