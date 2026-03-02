@@ -3912,13 +3912,17 @@ MonoBehaviour:
   - {fileID: 3816640892292175375}
   - {fileID: 3949074483148197718}
   - {fileID: 9012147312254045164}
-  playerUnits: []
-  enemyUnits: []
+  activePlayerUnits: []
+  activeEnemyUnits: []
   testUnit: {fileID: 0}
   testPortal: {fileID: 0}
+  money: 1
+  playerUnitContainer: {fileID: 0}
   bulletPrefab: {fileID: 7979668393375552907, guid: 0a184f3ba029478a2aee70f44d461e33, type: 3}
   straightShooterPrefab: {fileID: 7029225858229661275, guid: 99a8fccb1f29cb296b6093084b53167e, type: 3}
   scoutPrefab: {fileID: 7833899101122541756, guid: f329d15e489fd288c8ba135b2e08af2c, type: 3}
+  deadEnemyUnits: []
+  deadPlayerUnits: []
 --- !u!1 &7491441577413860159
 GameObject:
   m_ObjectHideFlags: 0

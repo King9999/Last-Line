@@ -24,10 +24,14 @@ public class GameManager : MonoBehaviour
     public List<Point> points;                //the locations on the map where all units are placed.
 
     //unit setup
+    [Header("---Active Units---")]
     public List<PlayerUnit> activePlayerUnits;
     public List<EnemyUnit> activeEnemyUnits;
     public PlayerUnit testUnit;
     public Portal testPortal;
+
+    [Header("---Money---")]
+    public int money;                           //how much money player has to create units.
 
     [Header("---Containers---")]
     public GameObject playerUnitContainer;      //all instantiated units are placed here

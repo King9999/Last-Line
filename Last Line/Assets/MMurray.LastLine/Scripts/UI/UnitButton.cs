@@ -26,7 +26,6 @@ public class UnitButton : MonoBehaviour
 
         menu.selectedButton = this;     //pass information that game manager will use to create desired unit.
         menu.tooltip.DisplayUnitTooltip(true, GetText(key));
-        
     }
 
     /// <summary>

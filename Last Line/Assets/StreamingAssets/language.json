@@ -1,18 +1,28 @@
 {
   "_meta": {
     "maxChars": {
-      "welcome": 20,
-      "readyToPlay": 20,
-      "pressContinue": 50,
-      "greatJob": 20,
-      "onePlusOne": 30
+      "startButton": 20,
+      "continueButton": 20,
+      "creditsButton": 20,
+      "unitButton_straightShooter": 80,
+      "unitButton_verticalShooter": 30,
+      "unitButton_trackingBeam": 70,
+      "unitButton_bomb": 110,
+      "unitLabel": 20,
+      "moneyLabel": 10
     }
   },
   "en": {
     "startButton": "Start Game",
     "continueButton": "Continue",
     "creditsButton": "Credits",
-    "unitButton_straightShooter": "Shoots left or right. Input coordinates again to change direction."
+    "unitButton_straightShooter": "Shoots left or right. Input coordinates again to change direction.",
+    "unitButton_verticalShooter": "Shoots a laser up and down.",
+	"unitButton_trackingBeam": "Fires a laser at the nearest enemy, and deals high damage.",
+    "unitButton_bomb": "Destroys <color=#E1341E>all units</color> in its range. Input coordinates again to detonate.",
+    "unitLabel": "UNITS",
+    "moneyLabel": "MONEY"
+
   },
   "es": {
     
