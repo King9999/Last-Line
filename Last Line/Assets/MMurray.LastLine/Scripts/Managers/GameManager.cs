@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using LoLSDK;
 using MMurray.LastLine;
+using TMPro;
 
 
 public class GameManager : MonoBehaviour
@@ -22,6 +23,10 @@ public class GameManager : MonoBehaviour
     public Vector2 playerCoordinates;                 //the coordinates manually entered by player
     public bool enteringValueX, enteringValueY; //determines which axis value is being entered. X is always entered first.
     public List<Point> points;                //the locations on the map where all units are placed.
+
+    [Header("---UI---")]
+    public TextMeshProUGUI alertText;           //used to inform player of various things.
+    
 
     //unit setup
     [Header("---Active Units---")]
