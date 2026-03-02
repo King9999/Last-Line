@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MMurray.GenericCode;
 using MMurray.LastLine;
+using TMPro;
 
 public class Portal : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Portal : MonoBehaviour
     [Header("---Path---")]
     public LineRenderer enemyPath;
     public List<Vector2>pathPoints;
+    [SerializeField]private TextMeshProUGUI enemyCountText;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,9 @@ public class Portal : MonoBehaviour
         //icon setup
         SpriteRenderer renderer = unitIcon.GetComponent<SpriteRenderer>();
         renderer.sprite = enemyUnits[0].GetComponent<SpriteRenderer>().sprite;
+        enemyCountText.text = "x" + enemyCount;
+        enemyCountText.transform.position = Camera.main.WorldToScreenPoint(new Vector2(unitIcon.transform.position.x + 0.5f,
+            unitIcon.transform.position.y - 0.1f));
         
 
         //path setup TODO: Why can't I just get a reference to the line renderer's vertices directly?
@@ -47,6 +52,10 @@ public class Portal : MonoBehaviour
         //hide timer if time is up
         if (!timer.TimeUp())
             return;
+
+        //icon is disabled as it won't be needed
+        if (unitIcon.gameObject.activeSelf)
+            unitIcon.gameObject.SetActive(false);
 
         if (nextEnemy < enemyCount && Time.time > currentDeployTime + deployCooldown)
         {
