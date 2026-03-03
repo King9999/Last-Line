@@ -299,7 +299,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9210286359923874624}
-  - {fileID: 7127500134228643482}
   - {fileID: 4600458243312493349}
   - {fileID: 4565977258428026509}
   - {fileID: 5950142961540466037}
@@ -509,17 +508,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3555880971741649678}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1.9760137, y: 1.5698261, z: 1.682}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7974713575875008460}
-  m_Father: {fileID: 4722793014234110591}
+  m_Father: {fileID: 4878629133937536074}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12, y: 100.9}
+  m_AnchoredPosition: {x: 367.01624, y: 155.28725}
   m_SizeDelta: {x: 124, y: 119}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2064903610360777044
@@ -543,7 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.11745435, b: 0.5167991, a: 0.6901961}
+  m_Color: {r: 0, g: 0.11745435, b: 0.5167991, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1109,7 +1108,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4272746529520266217}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3105032179961826059}
+        m_TargetAssemblyTypeName: UnitButton, Assembly-CSharp
+        m_MethodName: OnMouseClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &9091136910456639765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1167,7 +1178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576749a18711090ceb64c3f9f73b4a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitType: 3
+  unitType: 4
   key: unitButton_bomb
 --- !u!1 &5541297990483119167
 GameObject:
@@ -1277,6 +1288,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4722793014234110591}
+  - {fileID: 7127500134228643482}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1491,7 +1503,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6688327414447995220}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9028601978221106248}
+        m_TargetAssemblyTypeName: UnitButton, Assembly-CSharp
+        m_MethodName: OnMouseClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5950602287652258362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1549,7 +1573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576749a18711090ceb64c3f9f73b4a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitType: 0
+  unitType: 1
   key: unitButton_straightShooter
 --- !u!1 &6411801751521964263
 GameObject:
@@ -1672,7 +1696,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1429315596693063544}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8565461780757417598}
+        m_TargetAssemblyTypeName: UnitButton, Assembly-CSharp
+        m_MethodName: OnMouseClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3540405019210936768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1730,7 +1766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576749a18711090ceb64c3f9f73b4a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitType: 1
+  unitType: 2
   key: unitButton_verticalShooter
 --- !u!1 &6710539231197509629
 GameObject:
@@ -2232,7 +2268,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2673430899712342337}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5223324677457422916}
+        m_TargetAssemblyTypeName: UnitButton, Assembly-CSharp
+        m_MethodName: OnMouseClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5260852701562226680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2290,7 +2338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576749a18711090ceb64c3f9f73b4a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitType: 2
+  unitType: 3
   key: unitButton_trackingBeam
 --- !u!1 &9171986492859830610
 GameObject:

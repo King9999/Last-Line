@@ -8,10 +8,10 @@ public class UnitButton : MonoBehaviour
 {
     public enum UnitType
     {
-        StraightShooter, VerticalShooter, TrackingBeam, Bomb
+        StraightShooter = 1, VerticalShooter, TrackingBeam, Bomb
     }
 
-    public UnitType unitType;
+    public GameManager.PlayerUnitType unitType;
     public string key;                 //the string to display from language json.
 
     /// <summary>
@@ -36,6 +36,14 @@ public class UnitButton : MonoBehaviour
         Logger.DebugLog("Leaving button");
         Menu menu = Singleton.instance.Menu;
         menu.tooltip.DisplayUnitTooltip(false);
+    }
+
+    public void OnMouseClick()
+    {
+        GameManager gm = Singleton.instance.GameManager;
+        gm.playerUnitType = unitType;
+        gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectX);
+        //gm.alertText.text = "Select X value";
     }
 
     string GetText(string key)

@@ -3868,6 +3868,7 @@ Transform:
   m_Children:
   - {fileID: 1199610344361376446}
   - {fileID: 7585593013560703158}
+  - {fileID: 3342699602618518374}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6140858354458987321
@@ -3884,6 +3885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerUnitType: 0
   gameState: 0
+  previousState: 0
   playerCoordinates: {x: 0, y: 0}
   enteringValueX: 0
   enteringValueY: 0
@@ -3915,17 +3917,50 @@ MonoBehaviour:
   - {fileID: 9012147312254045164}
   alertText: {fileID: 4451147207076619933}
   dialogueManager: {fileID: 0}
+  triggerIndex: 0
   activePlayerUnits: []
   activeEnemyUnits: []
   testUnit: {fileID: 0}
   testPortal: {fileID: 0}
   money: 0
-  playerUnitContainer: {fileID: 0}
+  playerUnitContainer: {fileID: 7311134994305783323}
   bulletPrefab: {fileID: 7979668393375552907, guid: 0a184f3ba029478a2aee70f44d461e33, type: 3}
+  basePrefab: {fileID: 8316493710989082871, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
   straightShooterPrefab: {fileID: 7029225858229661275, guid: 99a8fccb1f29cb296b6093084b53167e, type: 3}
   scoutPrefab: {fileID: 7833899101122541756, guid: f329d15e489fd288c8ba135b2e08af2c, type: 3}
   deadEnemyUnits: []
   deadPlayerUnits: []
+--- !u!1 &7311134994305783323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3342699602618518374}
+  m_Layer: 0
+  m_Name: Player Units Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3342699602618518374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7311134994305783323}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8531383243452956154}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7491441577413860159
 GameObject:
   m_ObjectHideFlags: 0

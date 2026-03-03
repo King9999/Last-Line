@@ -10,10 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca55a0dabc910273390b8232aea2b9ef, type: 3}
-  m_Name: UnitData_base
+  m_Name: UnitData_Base
   m_EditorClassIdentifier: 
-  unitName: player_base
+  unitName: Base
   unitCost: 0
+  unitMoneyReward: 0
   hitPoints: 10
   moveSpeed: 0
+  collisionDamage: 0
   weaponCooldown: 0
+  bulletSpeed: 0
+  bulletDistance: 0
+  weaponDamage: 0

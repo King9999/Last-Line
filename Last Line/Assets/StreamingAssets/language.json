@@ -10,7 +10,10 @@
       "unitButton_bomb": 110,
       "unitLabel": 20,
       "moneyLabel": 10,
-      "dialoguePrompt": 50
+      "dialoguePrompt": 50,
+      "dialogue_intro": 200,
+      "unitSelect_x": 50,
+      "unitSelect_y": 50
     }
   },
   "en": {
@@ -24,8 +27,9 @@
     "unitLabel": "UNITS",
     "moneyLabel": "MONEY",
     "dialoguePrompt": "[Left click] or [Enter] to continue",
-    "dialogue_intro": "This is a test"
-
+    "dialogue_intro": "This is a test",
+    "unitSelect_x": "Select X value",
+	"unitSelect_y": "Select Y value"
   },
   "es": {
     

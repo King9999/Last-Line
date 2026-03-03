@@ -14,13 +14,14 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         Normal,                 //when game state is normal the game is running. Otherwise the game is paused.
-        UnitSelect, CoordinatesSelect, ///player is entering coordinates
+        UnitSelectX, UnitSelectY, CoordinatesSelect, ///player is entering coordinates
         DialogueStartOfLevel, DialogEndOfLevel,
+        SelectingValueX, SelectingValueY,       //used when placing units on screen.
         BaseDestroyed, LevelComplete
 
     }
 
-    public enum PlayerUnitType {StraightShooter, VerticalShooter}
+    public enum PlayerUnitType {Base, StraightShooter, VerticalShooter, TrackingBeam, Bomb}
     public PlayerUnitType playerUnitType;
     public GameState gameState, previousState;  //previousState is used by menu window to revert to previous state after menu is closed.
     public Vector2 playerCoordinates;                 //the coordinates manually entered by player
@@ -47,9 +48,12 @@ public class GameManager : MonoBehaviour
 
     [Header("---Containers---")]
     public GameObject playerUnitContainer;      //all instantiated units are placed here
+    public GameObject axisContainerX;
+    public GameObject axisContainerY;
 
     [Header("---Prefabs---")]
     public Bullet bulletPrefab;
+    public PlayerUnit_Base basePrefab;
     public PlayerUnit_StraightShooter straightShooterPrefab;
     public EnemyUnit scoutPrefab;
 
@@ -89,7 +93,8 @@ public class GameManager : MonoBehaviour
 
     public bool GameRunning()
     {
-        return gameState == GameState.Normal || gameState == GameState.UnitSelect || gameState == GameState.CoordinatesSelect;
+        return gameState == GameState.Normal || gameState == GameState.UnitSelectX || gameState == GameState.UnitSelectY || 
+            gameState == GameState.CoordinatesSelect;
     }
 
     /* Load the specified level. NOTE: Save States only load the current level from the beginning, and not the state
@@ -98,6 +103,9 @@ public class GameManager : MonoBehaviour
     void LoadLevel(int level)
     {
         //get level from JSON
+        //generate base
+        PlaceUnit(PlayerUnitType.Base, new Vector2(2, 3));
+
         //generate portals
         //each portal instantiates number of units.
         //EnemyUnit enemyUnit = null;
@@ -130,8 +138,12 @@ public class GameManager : MonoBehaviour
         //check what player picked and instantiate
         switch (unit)
         {
+            case PlayerUnitType.Base:   //there can only be 1
+                newUnit = Instantiate(basePrefab, playerUnitContainer.transform);
+                break;
+
             case PlayerUnitType.StraightShooter:
-                newUnit = Instantiate(straightShooterPrefab, Camera.main.transform);
+                newUnit = Instantiate(straightShooterPrefab, playerUnitContainer.transform);
                 break;
             
             case PlayerUnitType.VerticalShooter:
@@ -150,6 +162,58 @@ public class GameManager : MonoBehaviour
 
         //save unit's position
         Singleton.instance.saveState.WriteState(Singleton.instance.gameData);     
+    }
+
+    /// <summary>
+    /// Places unit at the specified point. The difference with this method is that the point is located first, then the 
+    /// unit is generated. 
+    /// </summary>
+    /// <param name="unit"></param>
+    /// <param name="point"></param>
+    public void PlaceUnit(PlayerUnitType unit, Vector2 point)
+    {
+        bool pointFound = false;
+        int i = 0;
+        while(!pointFound && i < points.Count)
+        {
+            if (point == points[i].point)
+            {
+                pointFound = true;
+            }
+            else
+            {
+                i++;
+            }
+        }
+
+        if (!pointFound)
+            return;
+        
+        //if we got here, point was found. Generate unit.
+        PlayerUnit newUnit = null;
+        //check what player picked and instantiate
+        switch (unit)
+        {
+            case PlayerUnitType.Base:   //there can only be 1
+                newUnit = Instantiate(basePrefab, playerUnitContainer.transform);
+                break;
+
+            case PlayerUnitType.StraightShooter:
+                newUnit = Instantiate(straightShooterPrefab, playerUnitContainer.transform);
+                break;
+            
+            case PlayerUnitType.VerticalShooter:
+                break;
+        }
+
+        //must convert the point's location to world coordinates.
+        Vector2 newPos = Camera.main.ScreenToWorldPoint(points[i].transform.position);
+        newUnit.transform.position = newPos;
+        newUnit.UpdateHealthBar(newPos);        //TODO: Not quite sure why this fixes the healthbar positioning issue for player units.
+        points[i].unit = newUnit;
+
+        //add to list
+        activePlayerUnits.Add(newUnit);
     }
 
     /// <summary>
@@ -197,7 +261,25 @@ public class GameManager : MonoBehaviour
         Logger.DebugLogFormat("GameState changed to {0}", gameState);
         switch(state)
         {
-            case GameState.UnitSelect:
+            case GameState.Normal:
+                alertText.text = "";
+                axisContainerY.gameObject.SetActive(true);
+                axisContainerX.gameObject.SetActive(true);
+                break;
+
+            case GameState.UnitSelectX:
+                //disable Y values, then disable X values.
+                //TODO: Have dialogue during tutorial to explain how to set units
+                alertText.text = GetText("unitSelect_x");
+                axisContainerY.gameObject.SetActive(false);
+                break;
+            
+            case GameState.UnitSelectY:
+                //disable Y values, then disable X values.
+                //TODO: in tutorial, make mention of origin and how it might be used
+                alertText.text = GetText("unitSelect_y");
+                axisContainerY.gameObject.SetActive(true);
+                axisContainerX.gameObject.SetActive(false);
                 break;
             
             case GameState.CoordinatesSelect:
@@ -229,6 +311,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.LevelComplete:
+                //if all levels complete, show congrats
                 break;
         }
     }
@@ -236,6 +319,12 @@ public class GameManager : MonoBehaviour
     public void ScreenShake()
     {
         StartCoroutine(ShakeCamera());
+    }
+
+    string GetText(string key)
+    {
+        string value = SharedState.LanguageDefs?[key];
+        return value ?? "--missing--";
     }
 
     #region Coroutines
