@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     [Header("---UI---")]
     public TextMeshProUGUI alertText;           //used to inform player of various things.
+    //public Dialogue dialogueBox;
+    public DialogueManager dialogueManager;
     
 
     //unit setup
@@ -175,4 +177,31 @@ public class GameManager : MonoBehaviour
         unit.portal = null;
         unit.gameObject.SetActive(false);
     }
+
+    public void SetGameState(GameState state)
+    {
+        
+    }
+
+    public void ScreenShake()
+    {
+        StartCoroutine(ShakeCamera());
+    }
+
+    #region Coroutines
+
+    //set the camera position to a random value temporarily, then set back to normal
+    IEnumerator ShakeCamera()
+    {
+        float shakeValue = 0.3f;
+        float xValue = Random.Range(-shakeValue, shakeValue);
+        float yValue = Random.Range(-shakeValue, shakeValue);
+        Vector3 originalPos = Camera.main.transform.position;
+
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + xValue, Camera.main.transform.position.y + yValue, Camera.main.transform.position.z);
+        yield return new WaitForSeconds(0.04f);
+
+        Camera.main.transform.position = originalPos;
+    }
+    #endregion
 }

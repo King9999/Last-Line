@@ -8,9 +8,10 @@ using LoLSDK;
 /* Consists of a window and text. Dialogue appears at certain points. Uses keys to call dialogue. */
 public class Dialogue : MonoBehaviour
 {
+    public int dialogueId;            //a dialogue can have more than one ID that are tied to different triggers.
     public TextMeshProUGUI dialogueText;
     [SerializeField]private TextMeshProUGUI promptText;
-    [SerializeField]private const float textSpeed = 0.032f;
+    [SerializeField]private float textSpeed = 0.032f;
     bool canAdvanceDialogue;                //this must be true before player can press Space to advnace text.
     public int displayIndex;            //the index of the dialogue to display the image/video.
     public List<string> dialogueKeyList;    //each dialogue can have multiple batches of text to display.

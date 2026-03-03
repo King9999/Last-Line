@@ -18,7 +18,7 @@ namespace MMurray.LastLine
 
         public static Singleton instance {get; private set;}
         public GameManager GameManager {get; set;}
-        //public DialogueManager DialogueManager { get; set; }
+        public DialogueManager DialogueManager { get; set; }
         //public HintDialogueManager HintDialogueManager { get; set; }
         public ScreenFade ScreenFade {get; private set;}
         //public UI UI { get; set; }
