@@ -26,24 +26,31 @@ public class AxisButton : MonoBehaviour
             {
                 gm.enteringValueX = true;       //always start with X
                 gm.playerCoordinates.x = value;
-                Debug.LogFormat("player X: {0}", gm.playerCoordinates.x);
+
+                //change state
+                gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
+                Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
             }
             else
             {
                 gm.playerCoordinates.y = value;
                 gm.enteringValueY = true;
-                Debug.LogFormat("player Y: {0}", gm.playerCoordinates.y);
+                //change state
+                //gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
+                Logger.DebugLogFormat("player Y: {0}", gm.playerCoordinates.y);
             }
             
 
             //if both X and Y are selected, do the next action.
-            if (gm.enteringValueX && gm.enteringValueY)
+            /*if (gm.enteringValueX && gm.enteringValueY)
             {
                 //highlight the point selected.
-                Debug.Log("We're in the origin");
+                Logger.DebugLog("We're in the origin");
                 gm.enteringValueX = false;
                 gm.enteringValueY = false;
-            }
+                //change state
+                gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
+            }*/
             //return;
         }
 
@@ -51,19 +58,21 @@ public class AxisButton : MonoBehaviour
         {
             gm.playerCoordinates.x = value;
             gm.enteringValueX = true;
-            Debug.LogFormat("player X: {0}", gm.playerCoordinates.x);
+            gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
+            Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
         }
         else
         {
             //cannot proceed if player is trying to enter a Y value before X
             if (!gm.enteringValueX)
             {
-                Debug.LogWarning("Cannot enter Y value before X!");
+                Logger.DebugLogWarning("Cannot enter Y value before X!");
                 return;
             }
             gm.playerCoordinates.y = value;
             gm.enteringValueY = true;
-            Debug.LogFormat("player Y: {0}", gm.playerCoordinates.y);
+            //gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
+            Logger.DebugLogFormat("player Y: {0}", gm.playerCoordinates.y);
         }
         
         //if both X and Y are selected, do the next action.
@@ -78,6 +87,7 @@ public class AxisButton : MonoBehaviour
                 {
                     pointFound = true;
                     gm.PlaceUnit(gm.playerUnitType, gm.points[i]);
+                    gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
                     Logger.DebugLogFormat("Player entered {0}", gm.points[i].point);
                 }
                 else
@@ -88,7 +98,7 @@ public class AxisButton : MonoBehaviour
             gm.enteringValueX = false;
             gm.enteringValueY = false;
         }
-        //Debug.LogFormat("player Coordinates {0}", gm.playerCoordinates);
+        //Logger.DebugLogFormat("player Coordinates {0}", gm.playerCoordinates);
     }
 
 
