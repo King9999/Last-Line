@@ -49,6 +49,10 @@ public class Portal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameManager gm = Singleton.instance.GameManager;
+        if (!gm.GameRunning())
+            return;
+
         //hide timer if time is up
         if (!timer.TimeUp())
             return;

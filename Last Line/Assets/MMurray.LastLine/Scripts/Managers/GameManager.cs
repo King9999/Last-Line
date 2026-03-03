@@ -13,13 +13,16 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public enum GameState
     {
-        UNIT_SELECT,
-        COORDINATES_SELECT, ///player is entering coordinates
+        Normal,                 //when game state is normal the game is running. Otherwise the game is paused.
+        UnitSelect, CoordinatesSelect, ///player is entering coordinates
+        DialogueStartOfLevel, DialogEndOfLevel,
+        BaseDestroyed, LevelComplete
+
     }
 
     public enum PlayerUnitType {StraightShooter, VerticalShooter}
     public PlayerUnitType playerUnitType;
-    public GameState gameState;
+    public GameState gameState, previousState;  //previousState is used by menu window to revert to previous state after menu is closed.
     public Vector2 playerCoordinates;                 //the coordinates manually entered by player
     public bool enteringValueX, enteringValueY; //determines which axis value is being entered. X is always entered first.
     public List<Point> points;                //the locations on the map where all units are placed.
@@ -28,6 +31,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI alertText;           //used to inform player of various things.
     //public Dialogue dialogueBox;
     public DialogueManager dialogueManager;
+    public int triggerIndex;                //used to iterate through conditional triggers.
+
     
 
     //unit setup
@@ -71,12 +76,20 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
+        //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
+        SetGameState(gameState = GameState.DialogueStartOfLevel);
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public bool GameRunning()
+    {
+        return gameState == GameState.Normal || gameState == GameState.UnitSelect || gameState == GameState.CoordinatesSelect;
     }
 
     /* Load the specified level. NOTE: Save States only load the current level from the beginning, and not the state
@@ -180,7 +193,44 @@ public class GameManager : MonoBehaviour
 
     public void SetGameState(GameState state)
     {
-        
+        //gameState = state;
+        Logger.DebugLogFormat("GameState changed to {0}", gameState);
+        switch(state)
+        {
+            case GameState.UnitSelect:
+                break;
+            
+            case GameState.CoordinatesSelect:
+                break;
+
+            case GameState.DialogueStartOfLevel:
+                //find correct dialogue to display.
+                bool dialogueFound = false;
+                int j = 0;
+                while (!dialogueFound && j < dialogueManager.dialogueList.Count)
+                {
+                    if (dialogueManager.condTriggerList[triggerIndex].dialogueId == dialogueManager.dialogueList[j].dialogueId)
+                    {
+                        dialogueFound = true;
+                        string dKey = dialogueManager.dialogueList[j].dialogueKeyList[0];
+                        dialogueManager.dialogueList[j].ShowDialogue(dKey);
+                    }
+                    else
+                    {
+                        j++;
+                    }
+                }
+                break;
+            
+            case GameState.DialogEndOfLevel:
+                break;
+
+            case GameState.BaseDestroyed:
+                break;
+
+            case GameState.LevelComplete:
+                break;
+        }
     }
 
     public void ScreenShake()

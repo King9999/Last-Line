@@ -51,6 +51,10 @@ namespace MMurray.LastLine
 
         void Update()
         {
+            GameManager gm = Singleton.instance.GameManager;
+            if (!gm.GameRunning())
+                return;
+                
             //Units cannot immediately be damaged when deployed.
             if (isInvul)
             {
@@ -79,7 +83,7 @@ namespace MMurray.LastLine
                     GetNextPoint();
                 }
             }
-        }
+    }
 
         public void SetPath(List<Vector2> newPath)
         {

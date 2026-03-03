@@ -8,7 +8,7 @@ using LoLSDK;
 /* Consists of a window and text. Dialogue appears at certain points. Uses keys to call dialogue. */
 public class Dialogue : MonoBehaviour
 {
-    public int dialogueId;            //a dialogue can have more than one ID that are tied to different triggers.
+    public int dialogueId;            //matches the corresponding dialogue ID in a conditional trigger. See Dialogue Manager script.
     public TextMeshProUGUI dialogueText;
     [SerializeField]private TextMeshProUGUI promptText;
     [SerializeField]private float textSpeed = 0.032f;
@@ -22,6 +22,21 @@ public class Dialogue : MonoBehaviour
     {
         canAdvanceDialogue = false;
         currentKey = 0;
+    }
+
+    void Update()
+    {
+        //check for input
+        if (canAdvanceDialogue && InputPressed())
+        {
+            Logger.DebugLog("Advancing Dialogue");
+            AdvanceDialogue();
+        }
+    }
+
+    bool InputPressed()
+    {
+        return Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetMouseButtonDown(0);
     }
 
 
@@ -99,8 +114,6 @@ public class Dialogue : MonoBehaviour
     }
 
     //TODO: NEED TO ADD CODE TO ADVANCE DIALOGUE IF THERE'S MORE TO SHOW!
-
-
     IEnumerator ShowPrompt()
     {
         promptText.text = GetText("dialoguePrompt");
@@ -108,10 +121,28 @@ public class Dialogue : MonoBehaviour
         yield return null;
     }
 
-    void OnAdvance()
+    //check for mouse or keyboard input to advance or close dialogue.
+    void AdvanceDialogue()
     {
-        
-    }
+        canAdvanceDialogue = false;
+        currentKey++;
+        if (currentKey >= dialogueKeyList.Count)
+        {
+            //close dialogue
+            Singleton.instance.DialogueManager.dialogueOpen = false;
+            currentKey = 0;
+            gameObject.SetActive(false);
+            Logger.DebugLog("Closing Window");
 
+            //TODO: Check game state and proceed depending on what it is.
+            GameManager gm = Singleton.instance.GameManager;
+            gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
+        }
+        else
+        {
+            //go to next dialogue
+            ShowDialogue(dialogueKeyList[currentKey]);
+        }
+    }
 
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using MMurray.LastLine;
 
 /* This is a generic countdown timer */
 
@@ -38,6 +39,9 @@ namespace MMurray.GenericCode
         // Update is called once per frame
         void Update()
         {
+            GameManager gm = Singleton.instance.GameManager;
+            if (!gm.GameRunning())
+                return;
             //timer is displayed as a string so that extra zeroes can be added when necessary to display correct time
             if (timerRunning)
             {

@@ -20,6 +20,7 @@ namespace MMurray.LastLine
 
         public Slider healthBar;        //only visible when unit is damaged to reduce clutter.
 
+
         //gets data from scriptable object
         public virtual void GetUnitData(UnitData data)
         {

@@ -32,7 +32,7 @@ public class Menu : MonoBehaviour
         GameManager gm = Singleton.instance.GameManager;
         unitLabel.text = GetText("unitLabel");
         moneyLabel.text = GetText("moneyLabel");
-        moneyValue.text = string.Format("{0} CR", gm.money);
+        moneyValue.text = string.Format("{0} CR", gm.money.ToString());
     }
 
 

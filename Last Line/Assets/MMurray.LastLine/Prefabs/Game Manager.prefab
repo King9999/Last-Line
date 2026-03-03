@@ -2810,7 +2810,7 @@ GameObject:
   - component: {fileID: 4089652395177074243}
   - component: {fileID: 3398585777916018862}
   m_Layer: 5
-  m_Name: Grid UI
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3913,13 +3913,13 @@ MonoBehaviour:
   - {fileID: 3816640892292175375}
   - {fileID: 3949074483148197718}
   - {fileID: 9012147312254045164}
-  alertText: {fileID: 0}
+  alertText: {fileID: 4451147207076619933}
   dialogueManager: {fileID: 0}
   activePlayerUnits: []
   activeEnemyUnits: []
   testUnit: {fileID: 0}
   testPortal: {fileID: 0}
-  money: 1
+  money: 0
   playerUnitContainer: {fileID: 0}
   bulletPrefab: {fileID: 7979668393375552907, guid: 0a184f3ba029478a2aee70f44d461e33, type: 3}
   straightShooterPrefab: {fileID: 7029225858229661275, guid: 99a8fccb1f29cb296b6093084b53167e, type: 3}
