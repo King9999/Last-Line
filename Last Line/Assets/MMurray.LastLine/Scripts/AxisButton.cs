@@ -66,6 +66,7 @@ public class AxisButton : MonoBehaviour
             //cannot proceed if player is trying to enter a Y value before X
             if (!gm.enteringValueX)
             {
+                gm.DisplayAlertWithDuration(GetText("cannotEnterYBeforeX"));
                 Logger.DebugLogWarning("Cannot enter Y value before X!");
                 return;
             }
@@ -101,5 +102,9 @@ public class AxisButton : MonoBehaviour
         //Logger.DebugLogFormat("player Coordinates {0}", gm.playerCoordinates);
     }
 
-
+    string GetText(string key)
+    {
+        string value = SharedState.LanguageDefs?[key];
+        return value ?? "--missing--";
+    }
 }

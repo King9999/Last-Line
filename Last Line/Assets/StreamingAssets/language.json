@@ -13,7 +13,10 @@
       "dialoguePrompt": 50,
       "dialogue_intro": 200,
       "unitSelect_x": 50,
-      "unitSelect_y": 50
+      "unitSelect_y": 50,
+      "cannotEnterYBeforeX": 40,
+      "nothingAtPoint": 20,
+      "cancelAction": 30
     }
   },
   "en": {
@@ -29,7 +32,10 @@
     "dialoguePrompt": "[Left click] or [Enter] to continue",
     "dialogue_intro": "This is a test",
     "unitSelect_x": "Select X value",
-	"unitSelect_y": "Select Y value"
+	"unitSelect_y": "Select Y value",
+	"cannotEnterYBeforeX": "Choose an X value first!",
+	"nothingAtPoint": "Nothing here.",
+	"cancelAction": "Action cancelled."
   },
   "es": {
     

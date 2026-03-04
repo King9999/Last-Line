@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public enum PlayerUnitType {Base, StraightShooter, VerticalShooter, TrackingBeam, Bomb}
+    public enum PlayerUnitType {NoUnitSelected, Base, StraightShooter, VerticalShooter, TrackingBeam, Bomb}
     public PlayerUnitType playerUnitType;
     public GameState gameState, previousState;  //previousState is used by menu window to revert to previous state after menu is closed.
     public Vector2 playerCoordinates;                 //the coordinates manually entered by player
@@ -68,7 +68,10 @@ public class GameManager : MonoBehaviour
     {
         //must always make sure singleton grabs reference to the managers
         Singleton.instance.GameManager = this;
-        //enteringValueX = true;
+
+        //both values should be false
+        enteringValueX = false;
+        enteringValueY = false;
 
         Logger.DebugLogFormat("Testing {0}", activeEnemyUnits.Count);
         LoadLevel(0);
@@ -88,7 +91,21 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //check for right click or Escape key. They're used to cancel certain actions.
+        if (CancelButtonPressed())
+        {
+            if (gameState == GameState.UnitSelectX || gameState == GameState.UnitSelectY)
+            {
+                //cancel actions and return game state to normal.
+                DisplayAlertWithDuration(GetText("cancelAction"));
+                SetGameState(gameState = GameState.Normal);
+            }
+        }
+    }
+
+    bool CancelButtonPressed()
+    {
+        return Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape);
     }
 
     public bool GameRunning()
@@ -127,41 +144,53 @@ public class GameManager : MonoBehaviour
     /// <param name="point">The location where the unit will be deployed.</param>
     public void PlaceUnit(PlayerUnitType unit, Point point)
     {
-        //if space is occupied, activate context-sensitive ability. nothing happens if unit doesn't have one.
-        if (point.unit != null)
+        if (unit == PlayerUnitType.NoUnitSelected)
         {
-            point.unit.ActivateAbility();
-            return;
+            //TODO: Place a target to show that the player selected a point. 
+            //if space is occupied, activate context-sensitive ability. nothing happens if unit doesn't have one.
+            if (point.unit != null)
+            {
+                point.unit.ActivateAbility();
+                return;
+            }
+            else 
+            {
+                //TODO: Check for a crystal and give player money.
+                DisplayAlertWithDuration(GetText("nothingAtPoint"));
+            }
         }
-
-        PlayerUnit newUnit = null;
-        //check what player picked and instantiate
-        switch (unit)
+        else
         {
-            case PlayerUnitType.Base:   //there can only be 1
-                newUnit = Instantiate(basePrefab, playerUnitContainer.transform);
-                break;
+            PlayerUnit newUnit = null;
+            //check what player picked and instantiate
+            switch (unit)
+            {
+                case PlayerUnitType.Base:   //there can only be 1
+                    newUnit = Instantiate(basePrefab, playerUnitContainer.transform);
+                    break;
 
-            case PlayerUnitType.StraightShooter:
-                newUnit = Instantiate(straightShooterPrefab, playerUnitContainer.transform);
-                break;
-            
-            case PlayerUnitType.VerticalShooter:
-                break;
-        }
+                case PlayerUnitType.StraightShooter:
+                    newUnit = Instantiate(straightShooterPrefab, playerUnitContainer.transform);
+                    break;
+                
+                case PlayerUnitType.VerticalShooter:
+                    break;
+            }
 
-        //must convert the point's location to world coordinates.
-        Vector2 newPos = Camera.main.ScreenToWorldPoint(point.transform.position);
-        newUnit.transform.position = newPos;
-        Logger.AddPlayerId(newUnit.name);
-        newUnit.UpdateHealthBar(newPos);        //TODO: Not quite sure why this fixes the healthbar positioning issue for player units.
-        point.unit = newUnit;
+            //must convert the point's location to world coordinates.
+            Vector2 newPos = Camera.main.ScreenToWorldPoint(point.transform.position);
+            newUnit.transform.position = newPos;
+            Logger.AddPlayerId(newUnit.name);
+            newUnit.UpdateHealthBar(newPos);        //TODO: Not quite sure why this fixes the healthbar positioning issue for player units.
+            point.unit = newUnit;
 
-        //add to list
-        activePlayerUnits.Add(newUnit);
+            //add to list
+            activePlayerUnits.Add(newUnit);
 
-        //save unit's position
-        Singleton.instance.saveState.WriteState(Singleton.instance.gameData);     
+            //save unit's position
+            Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
+            playerUnitType = PlayerUnitType.NoUnitSelected;
+        }     
     }
 
     /// <summary>
@@ -262,9 +291,10 @@ public class GameManager : MonoBehaviour
         switch(state)
         {
             case GameState.Normal:
-                alertText.text = "";
+                //alertText.text = "";
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(true);
+                playerUnitType = PlayerUnitType.NoUnitSelected;
                 break;
 
             case GameState.UnitSelectX:
@@ -327,6 +357,16 @@ public class GameManager : MonoBehaviour
         return value ?? "--missing--";
     }
 
+    public void DisplayAlert(string msg)
+    {
+        alertText.text = msg;
+    }
+
+    public void DisplayAlertWithDuration(string msg, float duration = 4)
+    {
+        StartCoroutine(Alert(msg, duration));
+    }
+
     #region Coroutines
 
     //set the camera position to a random value temporarily, then set back to normal
@@ -341,6 +381,20 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.04f);
 
         Camera.main.transform.position = originalPos;
+    }
+
+    //shows alert for a duration. Used when an alert only needs to be displayed temporarily.
+    IEnumerator Alert(string msg, float duration)
+    {
+        alertText.text = msg;
+        float time = 0;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        alertText.text = "";
     }
     #endregion
 }
