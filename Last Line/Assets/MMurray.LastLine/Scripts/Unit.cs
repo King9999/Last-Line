@@ -50,7 +50,7 @@ namespace MMurray.LastLine
         }
 
         //fire unit's unique weapon if they have one.
-        public virtual void FireWeapon()
+        public virtual void FireWeapon(Bullet bullet, Vector2 direction)
         {
             
         }

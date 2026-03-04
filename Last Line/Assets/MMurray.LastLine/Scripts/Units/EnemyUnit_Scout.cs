@@ -7,16 +7,6 @@ using UnityEngine;
 The player will encounter this unit frequently, so they must take care to not get overwhelmed. */
 public class EnemyUnit_Scout : EnemyUnit
 {
-    // Start is called before the first frame update
-    /*void Start()
-    {
-        GetUnitData(unitData);
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        transform.Translate(direction * moveSpeed * Time.deltaTime);
-    }*/
+    //No code is here, which means the scout will use the Update loop and all other methods from the EnemyUnit script.
+    
 }

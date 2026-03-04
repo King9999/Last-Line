@@ -13,9 +13,9 @@ public class Menu : MonoBehaviour
     public TextMeshProUGUI unitLabel;
 
     [Header("---Money---")]
-    public GameObject moneyContainer;
-    public TextMeshProUGUI moneyLabel;
-    public TextMeshProUGUI moneyValue;
+    [SerializeField]private GameObject moneyContainer;
+    [SerializeField]private TextMeshProUGUI moneyLabel;
+    [SerializeField]private TextMeshProUGUI moneyValue;
 
     [Header("---Unit Buttons---")]
     [SerializeField]private List<UnitButton> unitButtons;
@@ -32,10 +32,15 @@ public class Menu : MonoBehaviour
         GameManager gm = Singleton.instance.GameManager;
         unitLabel.text = GetText("unitLabel");
         moneyLabel.text = GetText("moneyLabel");
-        moneyValue.text = string.Format("{0} CR", gm.money.ToString());
+        //moneyValue.text = gm.money + " CR";
+        UpdateMoneyText();
     }
 
-
+    public void UpdateMoneyText()
+    {
+        GameManager gm = Singleton.instance.GameManager;
+        moneyValue.text = gm.money + " CR";
+    }
     /// <summary>
     /// Opens a tooltip window displaying info about a button when mouse hovers over it.
     /// </summary>

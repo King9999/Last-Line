@@ -49,7 +49,7 @@ namespace MMurray.LastLine
             //SetHealth(maxHitPoints);
         }
 
-        void Update()
+        protected void Update()
         {
             GameManager gm = Singleton.instance.GameManager;
             if (!gm.GameRunning())

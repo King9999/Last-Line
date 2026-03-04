@@ -37,13 +37,23 @@ public class Bullet : MonoBehaviour
 
                 //destroy bullet
                 bulletStruckUnit = true;
-                Logger.DebugLog("Bullet struck enemy");
+                Logger.DebugLogFormat("Player bullet struck enemy {0}", unit.name);
                 //gameObject.SetActive(false);
             }
         }
         else  //enemy bullet has hit a player's unit.
         {
-            
+            if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
+            {
+                unit.hitPoints -= damage;
+                //unit.SetHealth(unit.hitPoints);
+                unit.UpdateHealthBar(unit.transform.position);
+
+                //destroy bullet
+                bulletStruckUnit = true;
+                Logger.DebugLogFormat("enemy's Bullet struck player unit {0}", unit.name);
+                //gameObject.SetActive(false);
+            }
         }
     }
 }
