@@ -109,8 +109,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7914276042371534788}
-  - {fileID: 8214814653960289738}
   - {fileID: 5012575768273971609}
+  - {fileID: 8214814653960289738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7074677146709980987
@@ -146,7 +146,8 @@ MonoBehaviour:
   bullet: {fileID: 0}
   bulletRange: {x: 0, y: 0}
   cooldownTimer: 0
-  attackRange: {fileID: 0}
+  attackRange: {fileID: 5347983674236575409}
+  target: {fileID: 0}
 --- !u!212 &4458747968777506096
 SpriteRenderer:
   m_ObjectHideFlags: 0

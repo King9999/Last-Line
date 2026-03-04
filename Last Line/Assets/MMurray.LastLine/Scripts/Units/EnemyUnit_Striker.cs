@@ -10,7 +10,9 @@ public class EnemyUnit_Striker : EnemyUnit
     public Bullet bullet;
     public Vector2 bulletRange;
     [SerializeField]private float cooldownTimer;            //tracks when weapon fires.
-    [SerializeField]private CircleCollider2D attackRange;
+    [SerializeField]private Collider2D attackRange, strikerCollider;
+    [SerializeField]private PlayerUnit target;          //bullets are fired at this unit
+    [SerializeField]private List<PlayerUnit> targets;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,7 @@ public class EnemyUnit_Striker : EnemyUnit
         bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
 
         cooldownTimer = 0;
+        strikerCollider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -40,13 +43,13 @@ public class EnemyUnit_Striker : EnemyUnit
         if (bullet == null)     //this is to prevent game from updating before bullet exists.
             return;
 
-        if (!bullet.gameObject.activeSelf && Time.time > cooldownTimer + weaponCooldown)
+        /*if (!bullet.gameObject.activeSelf && Time.time > cooldownTimer + weaponCooldown)
         {
             //cooldownTimer = Time.time;
             //FireWeapon(bullet, new Vector2())
             bullet.gameObject.SetActive(true);
-        }
-        else
+        }*/
+        if (bullet.gameObject.activeSelf)
         {
             float distance = Vector2.Distance(bulletRange, bullet.transform.position);
             Logger.DebugLog("Bullet distance to target: " + distance);
@@ -71,8 +74,40 @@ public class EnemyUnit_Striker : EnemyUnit
     public override void FireWeapon(Bullet bullet, Vector2 direction)
     {
         bullet.gameObject.SetActive(true);
-        
     }
 
+    //Checks for collision against player units.
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Attack range is ignored. Only want to check when the unit hits a player unit.
+        if (attackRange.IsTouching(collision) && !strikerCollider.IsTouching(collision))
+            return;
+
+        if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
+        {
+            Logger.DebugLog("Hit Unit " + unit.name);
+
+            //both player unit and enemy unit die.
+            GameManager gm = Singleton.instance.GameManager;
+            gm.RemovePlayerUnit(unit);
+            //gm.deadPlayerUnits.Add(unit);
+            gm.RemoveEnemyUnit(this);
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        //TODO: Need to get all units in range and fire at the closest one.
+        if (attackRange.IsTouching(collision) && collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
+        {
+            //fire weapon if able
+            if (!bullet.gameObject.activeSelf && Time.time > cooldownTimer + weaponCooldown)
+            {
+                bullet.direction = new Vector2(unit.transform.position.x - transform.position.x, 
+                    unit.transform.position.y - transform.position.y);
+                FireWeapon(bullet, bullet.direction);
+            }
+        }
+    }
 
 }
