@@ -63,6 +63,11 @@ public class GameManager : MonoBehaviour
     public List<EnemyUnit> deadEnemyUnits;
     public List<PlayerUnit> deadPlayerUnits;
 
+    /* coroutines. Having references to coroutines is ideal for performance and convenience, and StopCoroutine() actually works
+    when coroutines are executed this way. */
+    Coroutine alertCoroutine = null;
+    Coroutine screenShakeCoroutine = null;     
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,6 +102,7 @@ public class GameManager : MonoBehaviour
             if (gameState == GameState.UnitSelectX || gameState == GameState.UnitSelectY)
             {
                 //cancel actions and return game state to normal.
+                //StopCoroutine(Alert("", 0));
                 DisplayAlertWithDuration(GetText("cancelAction"));
                 SetGameState(gameState = GameState.Normal);
             }
@@ -300,14 +306,16 @@ public class GameManager : MonoBehaviour
             case GameState.UnitSelectX:
                 //disable Y values, then disable X values.
                 //TODO: Have dialogue during tutorial to explain how to set units
-                alertText.text = GetText("unitSelect_x");
+                DisplayAlert(GetText("unitSelect_x"));
+                //alertText.text = GetText("unitSelect_x");
                 axisContainerY.gameObject.SetActive(false);
                 break;
             
             case GameState.UnitSelectY:
                 //disable Y values, then disable X values.
                 //TODO: in tutorial, make mention of origin and how it might be used
-                alertText.text = GetText("unitSelect_y");
+                DisplayAlert(GetText("unitSelect_y"));
+                //alertText.text = GetText("unitSelect_y");
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(false);
                 break;
@@ -348,7 +356,7 @@ public class GameManager : MonoBehaviour
 
     public void ScreenShake()
     {
-        StartCoroutine(ShakeCamera());
+        screenShakeCoroutine = StartCoroutine(ShakeCamera());
     }
 
     string GetText(string key)
@@ -359,12 +367,17 @@ public class GameManager : MonoBehaviour
 
     public void DisplayAlert(string msg)
     {
+        if (alertCoroutine != null)
+            StopCoroutine(alertCoroutine);
+        //StopCoroutine(Alert(""));   //just in case coroutine was running. Otherwise msg will disappear.
         alertText.text = msg;
     }
 
     public void DisplayAlertWithDuration(string msg, float duration = 4)
     {
-        StartCoroutine(Alert(msg, duration));
+        if (alertCoroutine != null)
+            StopCoroutine(alertCoroutine);
+        alertCoroutine = StartCoroutine(Alert(msg, duration));
     }
 
     #region Coroutines
@@ -384,7 +397,7 @@ public class GameManager : MonoBehaviour
     }
 
     //shows alert for a duration. Used when an alert only needs to be displayed temporarily.
-    IEnumerator Alert(string msg, float duration)
+    IEnumerator Alert(string msg, float duration = 4)
     {
         alertText.text = msg;
         float time = 0;

@@ -8,7 +8,7 @@ public class UnitButton : MonoBehaviour
 {
     public enum UnitType
     {
-        StraightShooter = 1, VerticalShooter, TrackingBeam, Bomb
+        StraightShooter = 2, VerticalShooter, TrackingBeam, Bomb    //values must match values in Game Manager's enum
     }
 
     public GameManager.PlayerUnitType unitType;
@@ -41,6 +41,9 @@ public class UnitButton : MonoBehaviour
     public void OnMouseClick()
     {
         GameManager gm = Singleton.instance.GameManager;
+        if (gm.gameState != GameManager.GameState.Normal)   //prevent any other action while unit selected.
+            return;
+
         gm.playerUnitType = unitType;
         gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectX);
         //gm.alertText.text = "Select X value";
