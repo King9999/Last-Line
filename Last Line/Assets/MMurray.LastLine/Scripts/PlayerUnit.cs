@@ -11,6 +11,7 @@ namespace MMurray.LastLine
     public class PlayerUnit : Unit
     {
         public int unitCost;
+        [SerializeField]protected bool isEnhanced;        //becomes true when unit is placed in a power up space.
 
         public override void GetUnitData(UnitData data)
         {
@@ -28,6 +29,17 @@ namespace MMurray.LastLine
             healthBar.maxValue = maxHitPoints;
             //UpdateHealthBar(transform.position);
             //TODO: For some reason the player unit's health bar is not positioning correctly.
+        }
+
+        public void SetEnhancedState(bool toggle)
+        {
+            isEnhanced = toggle;
+        }
+
+        /* Power up unit. The enhancements depend on the unit. */
+        public virtual void EnhanceUnit()
+        {
+            
         }
 
         /*void Update()

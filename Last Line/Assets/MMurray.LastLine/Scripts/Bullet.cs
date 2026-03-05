@@ -8,7 +8,9 @@ towards their target. */
 public class Bullet : MonoBehaviour
 {
     public enum Owner {Player, Enemy}       //for collision checking.
+    public enum BulletType {Normal, Pierce, Chain}
     public Owner owner;
+    public BulletType bulletType;
     public float moveSpeed;
     public float distance;
     public Vector2 direction;
@@ -32,7 +34,8 @@ public class Bullet : MonoBehaviour
             if (collision.TryGetComponent<EnemyUnit>(out EnemyUnit unit))
             {
                 //destroy bullet
-                bulletStruckUnit = true;
+                if (bulletType != BulletType.Pierce)
+                    bulletStruckUnit = true;
 
                 //check for invul
                 if (unit.IsInvulnerable())

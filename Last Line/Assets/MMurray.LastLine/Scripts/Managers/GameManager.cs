@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     [Header("---Prefabs---")]
     public Bullet bulletPrefab;
+    public Laser laserPrefab;
     public PlayerUnit_Base basePrefab;
     public PlayerUnit_StraightShooter straightShooterPrefab;
     public PlayerUnit_VerticalShooter verticalShooterPrefab;

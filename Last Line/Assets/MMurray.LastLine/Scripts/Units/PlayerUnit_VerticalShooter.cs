@@ -8,9 +8,11 @@ Enhanced Unit: fires a continuous beam, acting as a wall. */
 public class PlayerUnit_VerticalShooter : PlayerUnit
 {
     public List<Bullet> bullets;        //fires 2 bullets.
+    public List<Laser> lasers;
     private int BulletCount {get;} = 2;
-    public List<Vector2> bulletRanges;
+    public List<Vector2> bulletRanges, laserRanges;
     private float cooldownTimer;            //tracks when weapon fires.
+    public List<Transform> maxRanges; //0 is for top laser, 1 is for bottom laser
 
     // Start is called before the first frame update
     void Start()
@@ -34,10 +36,39 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
             bulletRanges.Add(bulletRange);
             bullet.gameObject.SetActive(false);
             bullets.Add(bullet);
+        }
+
+        //laser setup
+        for (int i = 0; i < BulletCount; i++)
+        {
+            Laser laser = Instantiate(gm.laserPrefab, parent: this.transform);
+            SetupLaser(laser);
+
+            //range and direction setup. The laser is going to be rotated, which will alter its direction. So X is modified
+            //instead of the Y value. (It makes sense if you rotate the laser object in the Inspector and see how the movement changes.) 
+            if (i == 0)
+            {
+                laser.direction = Vector2.up; //new Vector2(1, 0); //Vector2.up;
+            }
+            else
+            {
+                laser.direction = Vector2.down; //new Vector2(-1, 0); //Vector2.down;
+            }
+
+            //Lasers aren't round so must adjust angle.
+            //Vector3 angle = laser.transform.eulerAngles;
+            //laser.transform.eulerAngles = new Vector3(angle.x, angle.y, -90);
+
+            //laser's range is altered on the X pos due to rotation..
+            //Vector2 laserRange = new Vector2(transform.position.x + (laser.distance * laser.direction.x), transform.position.y);
+            Vector2 laserRange = new Vector2(transform.position.x, transform.position.y + (laser.distance * laser.direction.y));
+            laserRanges.Add(laserRange);
+            laser.gameObject.SetActive(false);
+            lasers.Add(laser);
         }       
         
         cooldownTimer = 0;
-        
+        EnhanceUnit();
     }
 
     // Update is called once per frame
@@ -47,45 +78,90 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
         if (bullets == null)     //this is to prevent game from updating before bullet exists.
             return;
 
-        //both bullets fire at the same time, so both bullets must be inactive and ready to fire.
-        bool bulletsReady = BulletsReadyToFire();
-        //Bullet bullet = bullets[0];
-        if (bulletsReady && Time.time > cooldownTimer + weaponCooldown)
-        //if (!bullet.gameObject.activeSelf && Time.time > cooldownTimer + weaponCooldown)
+        if (!isEnhanced)
         {
-            //cooldownTimer = Time.time;
-            foreach(Bullet bullet in bullets)
-                bullet.gameObject.SetActive(true);
-        }
-        else
-        {
-            for (int i = 0; i < bullets.Count; i++)
+            //both bullets fire at the same time, so both bullets must be inactive and ready to fire.
+            bool bulletsReady = BulletsReadyToFire();
+            //Bullet bullet = bullets[0];
+            if (bulletsReady && Time.time > cooldownTimer + weaponCooldown)
+            //if (!bullet.gameObject.activeSelf && Time.time > cooldownTimer + weaponCooldown)
             {
-                Vector2 bulletRange = bulletRanges[i];
-                Bullet bullet = bullets[i];
-                if (!bullet.gameObject.activeSelf)  //nothing is done with this bullet.
-                    continue;
-
-                float distance = Vector2.Distance(bulletRange,  bullet.transform.position);
-                Logger.DebugLogFormat("Bullet {0} distance to target: {1}", i, distance);
-                //if (bullet.transform.position.x > bulletRange.x)
-                if (distance < 0.5f || bullet.bulletStruckUnit)
+                //cooldownTimer = Time.time;
+                foreach(Bullet bullet in bullets)
+                    bullet.gameObject.SetActive(true);
+            }
+            else
+            {
+                for (int i = 0; i < bullets.Count; i++)
                 {
-                    //cooldownTimer = Time.time;
-                    bullet.bulletStruckUnit = false;
+                    Vector2 bulletRange = bulletRanges[i];
+                    Bullet bullet = bullets[i];
+                    if (!bullet.gameObject.activeSelf)  //nothing is done with this bullet.
+                        continue;
 
-                    Logger.DebugLogFormat("Bullet {0} range: {1}", i, bulletRange);
-                    bullet.transform.position = transform.position;
-                    bullet.gameObject.SetActive(false);
+                    float distance = Vector2.Distance(bulletRange,  bullet.transform.position);
+                    Logger.DebugLogFormat("Bullet {0} distance to target: {1}", i, distance);
+                    //if (bullet.transform.position.x > bulletRange.x)
+                    if (distance < 0.5f || bullet.bulletStruckUnit)
+                    {
+                        //cooldownTimer = Time.time;
+                        bullet.bulletStruckUnit = false;
+
+                        Logger.DebugLogFormat("Bullet {0} range: {1}", i, bulletRange);
+                        bullet.transform.position = transform.position;
+                        bullet.gameObject.SetActive(false);
+                    }
+                }
+
+                //both bullets must be inactive for the cooldown to reset.
+                bulletsReady = BulletsReadyToFire();
+                if (bulletsReady && Time.time > cooldownTimer + weaponCooldown)
+                {
+                    cooldownTimer = Time.time;
+                    Logger.DebugLog("Bullets ready");
                 }
             }
-
-            //both bullets must be inactive for the cooldown to reset.
-            bulletsReady = BulletsReadyToFire();
-            if (bulletsReady && Time.time > cooldownTimer + weaponCooldown)
+        }
+        else 
+        {
+            //laser update
+            bool lasersReady = LasersReadyToFire();
+            if (lasersReady && Time.time > cooldownTimer + weaponCooldown)
             {
-                cooldownTimer = Time.time;
-                Logger.DebugLog("Bullets ready");
+                foreach(Laser laser in lasers)
+                    laser.gameObject.SetActive(true);
+            }
+            else
+            {
+                for (int i = 0; i < lasers.Count; i++)
+                {
+                    Vector2 laserRange = laserRanges[i];
+                    //Transform laserRange = maxRanges[i];
+                    Laser laser = lasers[i];
+                    if (!laser.gameObject.activeSelf)  //nothing is done with this bullet.
+                        continue;
+
+                    float distance = Vector2.Distance(laserRange, laser.transform.position);
+                    Logger.DebugLogFormat("Laser {0} distance to target: {1}", i, distance);
+
+                    if (distance < 0.5f /*|| laser.bulletStruckUnit*/)
+                    {
+                        //cooldownTimer = Time.time;
+                        //laser.bulletStruckUnit = false;
+
+                        Logger.DebugLogFormat("Laser {0} range: {1}", i, laserRange);
+                        laser.transform.position = transform.position;
+                        laser.gameObject.SetActive(false);
+                    }
+                }
+
+                //both bullets must be inactive for the cooldown to reset.
+                lasersReady = LasersReadyToFire();
+                if (lasersReady && Time.time > cooldownTimer + weaponCooldown)
+                {
+                    cooldownTimer = Time.time;
+                    Logger.DebugLog("Lasers ready");
+                }
             }
         }
     }
@@ -95,11 +171,37 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
         return !bullets[0].gameObject.activeSelf && !bullets[1].gameObject.activeSelf;
     }
 
+    bool LasersReadyToFire()
+    {
+        return !lasers[0].gameObject.activeSelf && !lasers[1].gameObject.activeSelf;
+    }
+
     public override void SetupBullet(Bullet bullet)
     {
         base.SetupBullet(bullet);
         //bullet.direction = Vector2.up;
         bullet.owner = Bullet.Owner.Player;
+    }
+
+    /* fires a continuous laser, acting as a wall. Enemy units take continuous damage. */
+    public override void EnhanceUnit()
+    {
+        if (isEnhanced)
+            return;
+
+        isEnhanced = true;
+        weaponCooldown = 0;
+        
+        //reduce damage to compensate for the increased attack speed.
+        foreach(Laser laser in lasers)
+        {
+            laser.damage = 1;
+        }
+        //replace bullets with laser
+        foreach (Bullet bullet in bullets)
+        {
+            bullet.gameObject.SetActive(false);
+        }
     }
 
 }

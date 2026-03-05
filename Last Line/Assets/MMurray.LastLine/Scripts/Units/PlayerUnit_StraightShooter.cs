@@ -27,6 +27,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
 
         cooldownTimer = 0;
+        //EnhanceUnit();
         
     }
 
@@ -82,5 +83,20 @@ public class PlayerUnit_StraightShooter : PlayerUnit
     {
         Logger.DebugLog("Reversing Unit firing direction!");
         reverseDirection = true;
+    }
+
+    //Extend bullet range and grant piercing effect.
+    public override void EnhanceUnit()
+    {
+        if (isEnhanced)
+            return;
+
+        isEnhanced = true;
+
+        weaponCooldown = 0;         //to compensate for the extended range and only 1 bullet fired at a time.
+        bullet.bulletType = Bullet.BulletType.Pierce;
+        bullet.distance = 10;       //should be large enough to go off screen.
+        bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
+        Logger.DebugLog("Unit is enhanced");
     }
 }

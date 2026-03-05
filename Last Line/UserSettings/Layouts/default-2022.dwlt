@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1341
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 8}
   m_MinSize: {x: 875, y: 421}
   m_MaxSize: {x: 10000, y: 10000}
@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 553
     height: 450
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 106
+  controlID: 52
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 38
+  controlID: 15
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -121,8 +121,8 @@ MonoBehaviour:
     y: 0
     width: 588
     height: 1291
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 39
+  controlID: 16
   draggingID: 0
 --- !u!114 &12
 MonoBehaviour:
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 40
+  controlID: 17
   draggingID: 0
 --- !u!114 &13
 MonoBehaviour:
@@ -410,7 +410,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/MMurray.LastLine/ScriptableObjects/Enemy Units
+    - Assets/MMurray.LastLine/Prefabs
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -418,16 +418,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/MMurray.LastLine/ScriptableObjects/Enemy Units
+  - Assets/MMurray.LastLine/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /home/michael/_GameProjects/Last-Line/Last Line
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: f4720000
-    m_LastClickedID: 29428
-    m_ExpandedIDs: 0000000056630000586300005a6300005c6300005e6300006063000062630000646300006663000068630000866300008c63000000ca9a3bffffff7f
+    m_SelectedIDs: 8c630000
+    m_LastClickedID: 25484
+    m_ExpandedIDs: 000000005c6300005e63000060630000626300006463000066630000686300006a6300006c6300006e6300008c63000092630000d26300005c6700005e67000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -455,7 +455,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000056630000586300005a6300005c6300005e6300006063000062630000646300006663000068630000
+    m_ExpandedIDs: 000000005c6300005e63000060630000626300006463000066630000686300006a6300006c6300006e630000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -499,7 +499,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 7}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -597,18 +597,18 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: daa6feff0aa7feff66a9feff1435ffff7a3effffa842ffffaa42ffff5e4affff1e4bffff9c4dffffa84dffff864effffa051ffffb85dffff785effff1e5fffff545fffff7861ffff3862ffffba94ffffaeb5ffffb6b5ffffc2b5ffffc4b5ffff1afbffff
+      m_ExpandedIDs: 4ee8feff3ee9feff6ee9feff2e45ffff8a47ffffc24affff3a4bffffc44dffff844effff525fffffb05fffff3c62ffff3e62ffff8865ffffac67fffffa68fffffc68ffff706dffff2c70fffff47affff3c7bffff907cffffb47effffb67effff1e80ffff4482ffff0085ffff5c87ffff1089ffff9a8bffff8a96ffffea99ffff4c9affff88a2ffffa6a4ffffaca4ffff0ea5ffff10a5ffff78a6ffff94b1ffffb0b2ffff0ab5fffff8b5ffff80bcffff8cbcffffdabcfffffebeffff1cc0ffff1afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: PlayerUnit_StraightShooter
-        m_OriginalName: PlayerUnit_StraightShooter
+        m_Name: PlayerUnit_VerticalShooter
+        m_OriginalName: PlayerUnit_VerticalShooter
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 38742
+        m_UserData: 32852
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -1068,9 +1068,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.5113475, y: -1.573721, z: -0.050031826}
+    m_Target: {x: 1.0223911, y: 3.249015, z: 8.62517}
     speed: 2
-    m_Value: {x: -1.5113475, y: -1.573721, z: -0.050031826}
+    m_Value: {x: -0.035684012, y: -0.0054772655, z: 142.14178}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1120,9 +1120,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 9.245813
+    m_Target: 8.6379175
     speed: 2
-    m_Value: 9.245813
+    m_Value: 0.5179345
   m_Ortho:
     m_Target: 1
     speed: 2

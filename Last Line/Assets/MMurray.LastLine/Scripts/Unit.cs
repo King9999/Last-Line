@@ -63,6 +63,14 @@ namespace MMurray.LastLine
             bullet.distance = bulletDistance;
         }
 
+        public virtual void SetupLaser(Laser laser)
+        {
+            laser.moveSpeed = bulletSpeed;
+            laser.direction = Vector2.right;
+            laser.damage = weaponDamage;
+            laser.distance = bulletDistance;
+        }
+
         public void SetHealth(int hitPoints)
         {
             if (hitPoints <= 0)
