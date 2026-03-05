@@ -112,12 +112,20 @@ namespace MMurray.LastLine
         //Checks for collision against player units.
         void OnTriggerEnter2D(Collider2D collision)
         {
+            GameManager gm = Singleton.instance.GameManager;
+            if (collision.TryGetComponent<PlayerUnit_Base>(out PlayerUnit_Base unitBase))
+            {
+                //base takes damage.
+                unitBase.hitPoints -= collisionDamage;
+                unitBase.UpdateHealthBar(unitBase.transform.position);
+                Logger.DebugLog("Hit Base " + unitBase.name);
+            }
             if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
             {
                 Logger.DebugLog("Hit Unit " + unit.name);
 
                 //both player unit and enemy unit die.
-                GameManager gm = Singleton.instance.GameManager;
+                
                 gm.RemovePlayerUnit(unit);
                 //gm.deadPlayerUnits.Add(unit);
                 gm.RemoveEnemyUnit(this);

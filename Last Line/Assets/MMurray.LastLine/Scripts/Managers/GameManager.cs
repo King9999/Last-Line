@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public List<EnemyUnit> activeEnemyUnits;
     public PlayerUnit testUnit;
     public Portal testPortal;
+    public PlayerUnit_Base testBase;
 
     [Header("---Money---")]
     public int money;                           //how much money player has to create units.
@@ -128,7 +129,7 @@ public class GameManager : MonoBehaviour
     {
         //get level from JSON
         //generate base
-        PlaceUnit(PlayerUnitType.Base, new Vector2(2, 3));
+        //PlaceUnit(PlayerUnitType.Base, new Vector2(1, 3));
 
         //generate portals
         //each portal instantiates number of units.
@@ -188,7 +189,7 @@ public class GameManager : MonoBehaviour
             //must convert the point's location to world coordinates.
             Vector2 newPos = Camera.main.ScreenToWorldPoint(point.transform.position);
             newUnit.transform.position = newPos;
-            Logger.AddPlayerId(newUnit.name);
+            //Logger.AddPlayerId(newUnit.name);
             newUnit.UpdateHealthBar(newPos);        //TODO: Not quite sure why this fixes the healthbar positioning issue for player units.
             point.unit = newUnit;
 
