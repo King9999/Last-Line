@@ -131,5 +131,10 @@ namespace MMurray.LastLine
                 gm.RemoveEnemyUnit(this);
             }
         }
+
+        public bool IsInvulnerable()
+        {
+            return isInvul;
+        }
     }
 }

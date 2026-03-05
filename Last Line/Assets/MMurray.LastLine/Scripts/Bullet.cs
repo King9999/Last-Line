@@ -31,12 +31,18 @@ public class Bullet : MonoBehaviour
         {
             if (collision.TryGetComponent<EnemyUnit>(out EnemyUnit unit))
             {
+                //destroy bullet
+                bulletStruckUnit = true;
+
+                //check for invul
+                if (unit.IsInvulnerable())
+                    return;
+                    
                 unit.hitPoints -= damage;
                 //unit.SetHealth(unit.hitPoints);
                 unit.UpdateHealthBar(unit.transform.position);
 
-                //destroy bullet
-                bulletStruckUnit = true;
+                
                 Logger.DebugLogFormat("Player bullet struck enemy {0}", unit.name);
                 //gameObject.SetActive(false);
             }

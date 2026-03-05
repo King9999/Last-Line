@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     public Bullet bulletPrefab;
     public PlayerUnit_Base basePrefab;
     public PlayerUnit_StraightShooter straightShooterPrefab;
+    public PlayerUnit_VerticalShooter verticalShooterPrefab;
     public EnemyUnit scoutPrefab;
     public EnemyUnit strikerPrefab;
 
@@ -183,6 +184,7 @@ public class GameManager : MonoBehaviour
                     break;
                 
                 case PlayerUnitType.VerticalShooter:
+                    newUnit = Instantiate(verticalShooterPrefab, playerUnitContainer.transform);
                     break;
             }
 
@@ -241,6 +243,7 @@ public class GameManager : MonoBehaviour
                 break;
             
             case PlayerUnitType.VerticalShooter:
+                newUnit = Instantiate(verticalShooterPrefab, playerUnitContainer.transform);
                 break;
         }
 
