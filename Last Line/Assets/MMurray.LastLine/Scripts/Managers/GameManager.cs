@@ -139,8 +139,8 @@ public class GameManager : MonoBehaviour
         //EnemyUnit enemyUnit = null;
         for (int i = 0; i < testPortal.enemyCount; i++)
         {
-            EnemyUnit enemyUnit = Instantiate(strikerPrefab as EnemyUnit_Striker, parent: testPortal.transform);
-            //EnemyUnit enemyUnit = Instantiate(scoutPrefab as EnemyUnit_Scout, parent: testPortal.transform);
+            //EnemyUnit enemyUnit = Instantiate(strikerPrefab as EnemyUnit_Striker, parent: testPortal.transform);
+            EnemyUnit enemyUnit = Instantiate(scoutPrefab /*as EnemyUnit_Scout*/, parent: testPortal.transform);
             enemyUnit.transform.position = testPortal.transform.position;
             activeEnemyUnits.Add(enemyUnit);
             enemyUnit.portal = testPortal;

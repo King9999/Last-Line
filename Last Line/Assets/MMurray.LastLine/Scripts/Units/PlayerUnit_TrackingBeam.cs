@@ -14,13 +14,16 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
     [SerializeField]private Collider2D attackRange, strikerCollider;
     [SerializeField]private List<Vector2> linePositions;    //the points that will be used to draw the beam lines.
     private Coroutine animateBeam = null;
+    private bool beamFired;
 
     // Start is called before the first frame update
     void Start()
     {
         //there will always be at least 1 point that won't change.
         linePositions.Add(transform.position);
+        beam.widthMultiplier = 0.3f;
         beam.gameObject.SetActive(false);
+        //EnhanceUnit();
     }
 
     // Update is called once per frame
@@ -33,9 +36,9 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
     //firing of the weapon happens in AttackTarget using the data acquired here.
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (attackRange.IsTouching(collision) && collision.TryGetComponent<EnemyUnit>(out EnemyUnit unit))
+        if (/*attackRange.IsTouching(collision) &&*/ collision.TryGetComponent<EnemyUnit>(out EnemyUnit unit))
         {
-            Logger.DebugLogFormat("Target is {0}", unit.name);
+            //Logger.DebugLogFormat("Target is {0}", unit.name);
             //add target to list
             if (!targets.Contains(unit))
                 targets.Add(unit);
@@ -97,8 +100,18 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
 
             //draw line at enemy's location.
             beam.positionCount = linePositions.Length;
+            
             beam.SetPositions(linePositions);
             beam.gameObject.SetActive(true);
+
+            //deal damage. Bool is used to prevent beam hitting every frame.
+            if (!beamFired)
+            {
+                beamFired = true;
+                target.hitPoints -= weaponDamage;
+                target.UpdateHealthBar(target.transform.position);
+                //Logger.DebugLog("enemy hit");
+            }
 
             //coroutine to animate laser
             animateBeam = StartCoroutine(AnimateBeam(1));
@@ -106,21 +119,78 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
         else
         {
             //if enhanced, target remaining units.
-            Vector3[] linePositions = new Vector3[targets.Count + 1];//1 is added because we have to include the player unit's position.
+            //Vector3[] linePositions = new Vector3[targets.Count + 1];//1 is added because we have to include the player unit's position.
+            List<Vector3> pos = new List<Vector3>();
+            List<Unit> units = new List<Unit>();
+            //pos.Add(transform.position);
+            units.Add(this);
+            //pos.Add(target.transform.position);
+            units.Add(target);
+
+            int targetCount = 2;
+            int i = 0; int j = 0;
+            while(i < targetCount && j < targets.Count)
+            {
+                if (targets[j] != target)
+                {
+                    //pos.Add(targets[j].transform.position);
+                    units.Add(targets[j]);
+                    i++;
+                }
+                
+                j++;
+                
+            }
+
+            Vector3[] linePositions = new Vector3[units.Count];
+            //linePositions[0] = transform.position;
+            //linePositions[1] = target.transform.position;
+           
+            for (i = 0; i < linePositions.Length; i++)
+            {
+                linePositions[i] = units[i].transform.position;
+            }
+        
+            //only 2 more targets are added.
+            beam.positionCount = linePositions.Length;             //player unit + 3 targets' positions.
+            beam.SetPositions(linePositions);
+            beam.gameObject.SetActive(true);
+
+            //damage each enemy. Start at index 1 because the first unit is the player
+            if (!beamFired)
+            {
+                beamFired = true;
+                for (i = 1; i < units.Count; i++)
+                {
+                    units[i].hitPoints -= 1; //weaponDamage;
+                    units[i].UpdateHealthBar(units[i].transform.position);
+                    Logger.DebugLogFormat("hit enemy {0} with beam", units[i].name);
+                }
+            }
+
+            animateBeam = StartCoroutine(AnimateBeam(1));
         }
+    }
+
+    public override void EnhanceUnit()
+    {
+        isEnhanced = true;
     }
 
     //beam shrinks over time. When it's finished, cooldown starts.
     IEnumerator AnimateBeam(float duration)
     {
-        /*float i = 0;
+        float i = 0;
         while (i < duration)
         {
             i += Time.deltaTime;
+            beam.widthMultiplier -= 0.01f * Time.deltaTime;
             yield return null;
-        }*/
-        yield return new WaitForSeconds(duration);
+        }
+        //yield return new WaitForSeconds(duration);
         cooldownTimer = Time.time;
+        beam.widthMultiplier = 0.3f;
+        beamFired = false;
         beam.gameObject.SetActive(false);
     }
 }

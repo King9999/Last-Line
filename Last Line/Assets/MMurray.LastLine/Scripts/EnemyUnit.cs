@@ -64,6 +64,11 @@ namespace MMurray.LastLine
                     Logger.DebugLog("Invul removed on " + unitName);
                 }
             }
+            //is enemy dead?
+            /*else if (hitPoints <= 0)
+            {
+                gm.RemoveEnemyUnit(this);
+            }*/
 
             //update movement
             if (currentPoint != nextPoint)
