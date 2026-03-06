@@ -445,6 +445,7 @@ MonoBehaviour:
   weaponDamage: 0
   healthBar: {fileID: 5986740357745238205}
   unitCost: 0
+  isEnhanced: 0
   bullet: {fileID: 0}
   bulletRange: {x: 0, y: 0}
   reverseDirection: 0
@@ -569,7 +570,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 6
 --- !u!1 &8828430089856315765

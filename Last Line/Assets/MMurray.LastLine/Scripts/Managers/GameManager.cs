@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
     public PlayerUnit_Base basePrefab;
     public PlayerUnit_StraightShooter straightShooterPrefab;
     public PlayerUnit_VerticalShooter verticalShooterPrefab;
+    public PlayerUnit_TrackingBeam trackingBeamPrefab;
     public EnemyUnit scoutPrefab;
     public EnemyUnit strikerPrefab;
 
@@ -186,6 +187,10 @@ public class GameManager : MonoBehaviour
                 
                 case PlayerUnitType.VerticalShooter:
                     newUnit = Instantiate(verticalShooterPrefab, playerUnitContainer.transform);
+                    break;
+
+                case PlayerUnitType.TrackingBeam:
+                    newUnit = Instantiate(trackingBeamPrefab, playerUnitContainer.transform);
                     break;
             }
 

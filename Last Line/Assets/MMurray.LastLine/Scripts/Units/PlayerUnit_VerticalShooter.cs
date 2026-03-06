@@ -21,7 +21,7 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
         GameManager gm = Singleton.instance.GameManager;
         //GetUnitData(unitData);
         
-        for (int i = 0; i < BulletCount; i++)
+        /*for (int i = 0; i < BulletCount; i++)
         {
             Bullet bullet = Instantiate(gm.bulletPrefab, parent: this.transform);
             SetupBullet(bullet);
@@ -36,7 +36,7 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
             bulletRanges.Add(bulletRange);
             bullet.gameObject.SetActive(false);
             bullets.Add(bullet);
-        }
+        }*/
 
         //laser setup
         for (int i = 0; i < BulletCount; i++)
@@ -68,7 +68,7 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
         }       
         
         cooldownTimer = 0;
-        EnhanceUnit();
+        //EnhanceUnit();
     }
 
     // Update is called once per frame
@@ -78,7 +78,7 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
         if (bullets == null)     //this is to prevent game from updating before bullet exists.
             return;
 
-        if (!isEnhanced)
+        /*if (!isEnhanced)
         {
             //both bullets fire at the same time, so both bullets must be inactive and ready to fire.
             bool bulletsReady = BulletsReadyToFire();
@@ -123,7 +123,7 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
             }
         }
         else 
-        {
+        {*/
             //laser update
             bool lasersReady = LasersReadyToFire();
             if (lasersReady && Time.time > cooldownTimer + weaponCooldown)
@@ -163,7 +163,7 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
                     Logger.DebugLog("Lasers ready");
                 }
             }
-        }
+        //}
     }
 
     bool BulletsReadyToFire()
