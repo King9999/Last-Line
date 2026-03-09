@@ -16,7 +16,10 @@
       "unitSelect_y": 50,
       "cannotEnterYBeforeX": 40,
       "nothingAtPoint": 20,
-      "cancelAction": 30
+      "cancelAction": 30,
+      "buildQueueFull": 50,
+      "spaceOccupied": 50,
+      "buildingUnit": 30
     }
   },
   "en": {
@@ -35,7 +38,10 @@
 	"unitSelect_y": "Select Y value",
 	"cannotEnterYBeforeX": "Choose an X value first!",
 	"nothingAtPoint": "Nothing here.",
-	"cancelAction": "Action cancelled."
+	"cancelAction": "Action cancelled.",
+	"buildQueueFull": "Can only build 3 units at a time!",
+	"spaceOccupied": "A unit is already on this space!",
+	"buildingUnit": "Building unit."
   },
   "es": {
     

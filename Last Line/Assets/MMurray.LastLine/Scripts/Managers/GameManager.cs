@@ -4,6 +4,7 @@ using UnityEngine;
 using LoLSDK;
 using MMurray.LastLine;
 using TMPro;
+using Unity.VisualScripting;
 
 
 public class GameManager : MonoBehaviour
@@ -40,6 +41,9 @@ public class GameManager : MonoBehaviour
     [Header("---Active Units---")]
     public List<PlayerUnit> activePlayerUnits;
     public List<EnemyUnit> activeEnemyUnits;
+    public Queue<PlayerUnit> buildQueue;        //the list of units to build after build time.
+    private float buildTimer;
+    private int buildLimit { get; } = 3;          //player can only build 3 units at a time.
     public PlayerUnit testUnit;
     public Portal testPortal;
     public PlayerUnit_Base testBase;
@@ -79,6 +83,8 @@ public class GameManager : MonoBehaviour
     {
         //must always make sure singleton grabs reference to the managers
         Singleton.instance.GameManager = this;
+        buildQueue = new Queue<PlayerUnit>();
+        buildTimer = 0;
 
         //both values should be false
         enteringValueX = false;
@@ -111,6 +117,38 @@ public class GameManager : MonoBehaviour
                 //StopCoroutine(Alert("", 0));
                 DisplayAlertWithDuration(GetText("cancelAction"));
                 SetGameState(gameState = GameState.Normal);
+            }
+        }
+
+        //update build time for units
+        if (buildQueue.Count > 0)
+        {
+            PlayerUnit unit = buildQueue.Peek();
+            if (Time.time > buildTimer + unit.buildTime)
+            {
+                //deploy unit.
+                activePlayerUnits.Add(unit);
+                unit.gameObject.SetActive(true);
+                buildQueue.Dequeue();
+
+                //update build queue in menu by shifting all images to the left.
+                Menu menu = Singleton.instance.Menu;
+                menu.queueIndex = buildQueue.Count;     //this ensures that index points to correct spot
+                if (menu.queueIndex > 0)
+                {
+                    for (int i = menu.queueIndex; i > 0; i--)
+                    {
+                        //copy image and replace image in front 
+                        menu.unitsInQueue[menu.queueIndex - 1].sprite = menu.unitsInQueue[menu.queueIndex].sprite;
+                        menu.unitsInQueue[menu.queueIndex].enabled = false;
+                    }
+                }
+                else
+                {
+                    menu.unitsInQueue[menu.queueIndex].enabled = false;
+                }
+                
+                buildTimer = Time.time;     //build next unit if applicable.
             }
         }
     }
@@ -174,6 +212,22 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            if (buildQueue.Count >= buildLimit)
+            {
+                //Logger.DebugLog("Build queue full!");
+                DisplayAlertWithDuration(GetText("buildQueueFull"));
+                SetGameState(gameState = GameState.Normal);
+                return;
+            }
+
+            if (point.unit != null)
+            {
+                //unit is occupying this space or is being built.
+                DisplayAlertWithDuration(GetText("spaceOccupied"));
+                SetGameState(gameState = GameState.Normal);
+                return;
+            }
+
             PlayerUnit newUnit = null;
             //check what player picked and instantiate
             switch (unit)
@@ -199,19 +253,31 @@ public class GameManager : MonoBehaviour
                     break;
             }
 
+
             //must convert the point's location to world coordinates.
             Vector2 newPos = Camera.main.ScreenToWorldPoint(point.transform.position);
             newUnit.transform.position = newPos;
             //Logger.AddPlayerId(newUnit.name);
             newUnit.UpdateHealthBar(newPos);        //TODO: Not quite sure why this fixes the healthbar positioning issue for player units.
             point.unit = newUnit;
+            newUnit.gameObject.SetActive(false);    //stay hidden until finished building.
 
             //add to list
-            activePlayerUnits.Add(newUnit);
+            DisplayAlertWithDuration(GetText("buildingUnit"));
+            buildQueue.Enqueue(newUnit);
+            buildTimer = Time.time;
+
+            //add the unit's image in menu's build queue
+            Menu menu = Singleton.instance.Menu;
+            menu.queueIndex = buildQueue.Count - 1;     //this ensures that index points to correct spot
+            menu.unitsInQueue[menu.queueIndex].enabled = true;
+            menu.unitsInQueue[menu.queueIndex].sprite = newUnit.unitSprite;
+            //activePlayerUnits.Add(newUnit);
 
             //save unit's position
             Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
-            playerUnitType = PlayerUnitType.NoUnitSelected;
+            //playerUnitType = PlayerUnitType.NoUnitSelected;
+            SetGameState(gameState = GameState.Normal);
         }     
     }
 

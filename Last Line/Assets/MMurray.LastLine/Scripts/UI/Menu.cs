@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     public Tooltip tooltip;
-    public TextMeshProUGUI unitLabel;
+    [SerializeField]private TextMeshProUGUI unitLabel, systemLabel, buildQueueLabel;
 
     [Header("---Money---")]
     [SerializeField]private GameObject moneyContainer;
@@ -20,6 +20,10 @@ public class Menu : MonoBehaviour
     [Header("---Unit Buttons---")]
     [SerializeField]private List<UnitButton> unitButtons;
     public UnitButton selectedButton;       //the button the mouse is hovering on.
+
+    [Header("---Build Queue Images---")]
+    public List<Image> unitsInQueue;
+    public int queueIndex;                  //used to point to correct image in list.
 
     [Header("---System Buttons---")]
     [SerializeField]private Button ttsButton;

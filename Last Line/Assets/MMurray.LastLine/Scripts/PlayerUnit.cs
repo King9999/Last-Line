@@ -12,6 +12,7 @@ namespace MMurray.LastLine
     {
         public int unitCost;
         public float buildTime;                         //the time it takes to deploy unit.
+        public Sprite unitSprite;                       //used by the menu's build queue.
         [SerializeField]protected bool isEnhanced;        //becomes true when unit is placed in a power up space.
 
         public override void GetUnitData(UnitData data)
