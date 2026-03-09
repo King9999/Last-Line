@@ -304,6 +304,7 @@ public class GameManager : MonoBehaviour
         unit.portal.enemyUnits.Remove(unit);
         unit.portal.ReduceEnemyCount();
         unit.portal = null;
+        Logger.DebugLogFormat("Removing {0}", unit.name);
         unit.gameObject.SetActive(false);
     }
 

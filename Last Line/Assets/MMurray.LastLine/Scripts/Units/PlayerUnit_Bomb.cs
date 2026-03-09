@@ -28,12 +28,12 @@ public class PlayerUnit_Bomb : PlayerUnit
     // Update is called once per frame
     void Update()
     {
-        if (bombRange.gameObject.activeSelf && timer <= 0)
+        /*if (bombRange.gameObject.activeSelf && timer <= 0)
         {
             timer = Time.time;
             //TODO: Start coroutine to have bomb flash
             flashCoroutine = StartCoroutine(Flash());
-        }
+        }*/
 
         if (bombRange.gameObject.activeSelf && Time.time > timer + startupTimer)
         {
@@ -45,9 +45,9 @@ public class PlayerUnit_Bomb : PlayerUnit
     void OnTriggerStay2D(Collider2D collision)
     {
         //NOTE: This method should only be called when bombRange is active.
-        if (collision.TryGetComponent<EnemyUnit>(out EnemyUnit unit))
+        if (/*bombRange.IsTouching(collision) &&*/ collision.TryGetComponent<Unit>(out Unit unit))
         {
-            Logger.DebugLogFormat("Target is {0}", unit.name);
+            //Logger.DebugLogFormat("Target is {0}", unit.name);
             //add target to list
             if (!targets.Contains(unit))
                 targets.Add(unit);
@@ -77,11 +77,30 @@ public class PlayerUnit_Bomb : PlayerUnit
     public void ActivateBomb()
     {
         bombRange.gameObject.SetActive(true);
+        timer = Time.time;
+        flashCoroutine = StartCoroutine(Flash());
     }
 
     void Explode()
     {
+        //destroy all units in the target list. if the target is the base, damage it.
         GameManager gm = Singleton.instance.GameManager;
+        for (int i = 0; i < targets.Count; i++)
+        {
+            if (targets[i] is PlayerUnit_Base)
+            {
+                targets[i].hitPoints -= weaponDamage;
+            }
+            else if (targets[i] is PlayerUnit)
+            {
+                gm.RemovePlayerUnit(targets[i] as PlayerUnit);
+            }
+            else
+            {
+                gm.RemoveEnemyUnit(targets[i] as EnemyUnit);
+            }
+        }
+
         gm.RemovePlayerUnit(this);
     }
 
