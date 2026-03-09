@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
     public PlayerUnit_StraightShooter straightShooterPrefab;
     public PlayerUnit_VerticalShooter verticalShooterPrefab;
     public PlayerUnit_TrackingBeam trackingBeamPrefab;
+    public PlayerUnit_Bomb bombPrefab;
     public EnemyUnit scoutPrefab;
     public EnemyUnit strikerPrefab;
 
@@ -94,7 +95,7 @@ public class GameManager : MonoBehaviour
         }
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
-        SetGameState(gameState = GameState.DialogueStartOfLevel);
+        //SetGameState(gameState = GameState.DialogueStartOfLevel);
 
     }
 
@@ -191,6 +192,10 @@ public class GameManager : MonoBehaviour
 
                 case PlayerUnitType.TrackingBeam:
                     newUnit = Instantiate(trackingBeamPrefab, playerUnitContainer.transform);
+                    break;
+
+                case PlayerUnitType.Bomb:
+                    newUnit = Instantiate(bombPrefab, playerUnitContainer.transform);
                     break;
             }
 
@@ -383,6 +388,7 @@ public class GameManager : MonoBehaviour
             StopCoroutine(alertCoroutine);
         //StopCoroutine(Alert(""));   //just in case coroutine was running. Otherwise msg will disappear.
         alertText.text = msg;
+        SpeakText(msg);
     }
 
     public void DisplayAlertWithDuration(string msg, float duration = 4)
@@ -390,6 +396,16 @@ public class GameManager : MonoBehaviour
         if (alertCoroutine != null)
             StopCoroutine(alertCoroutine);
         alertCoroutine = StartCoroutine(Alert(msg, duration));
+        SpeakText(msg);
+    }
+
+    void SpeakText(string key)
+    {
+        if (Singleton.instance.ttsEnabled)
+        {
+            LOLSDK.Instance.SpeakText(key);
+            Logger.DebugLog("TTS is playing");
+        }
     }
 
     #region Coroutines
@@ -412,6 +428,7 @@ public class GameManager : MonoBehaviour
     IEnumerator Alert(string msg, float duration = 4)
     {
         alertText.text = msg;
+
         float time = 0;
         while (time < duration)
         {

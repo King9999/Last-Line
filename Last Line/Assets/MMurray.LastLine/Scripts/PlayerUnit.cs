@@ -11,12 +11,14 @@ namespace MMurray.LastLine
     public class PlayerUnit : Unit
     {
         public int unitCost;
+        public float buildTime;                         //the time it takes to deploy unit.
         [SerializeField]protected bool isEnhanced;        //becomes true when unit is placed in a power up space.
 
         public override void GetUnitData(UnitData data)
         {
             base.GetUnitData(data);
             unitCost = data.unitCost;
+            buildTime = data.unitBuildTime;
         }
 
         void OnEnable()

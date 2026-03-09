@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Straight Shooter
   unitCost: 10
+  unitBuildTime: 2
+  unitMoneyReward: 0
   hitPoints: 3
   moveSpeed: 0
+  collisionDamage: 0
   weaponCooldown: 0.5
   bulletSpeed: 6
   bulletDistance: 4

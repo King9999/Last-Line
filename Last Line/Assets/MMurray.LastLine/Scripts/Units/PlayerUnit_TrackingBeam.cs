@@ -120,7 +120,7 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
         {
             //if enhanced, target remaining units.
             //Vector3[] linePositions = new Vector3[targets.Count + 1];//1 is added because we have to include the player unit's position.
-            List<Vector3> pos = new List<Vector3>();
+            //List<Vector3> pos = new List<Vector3>();
             List<Unit> units = new List<Unit>();
             //pos.Add(transform.position);
             units.Add(this);

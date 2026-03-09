@@ -1,0 +1,99 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using MMurray.LastLine;
+
+/* Bombs do nothing until either an enemy touches it or the player detonates it. Bombs can be detonated by re-entering the coordinates
+of where they were placed. Bombs have a high build time to prevent players from just using bombs to win. 
+Enhanced: Increased range, and does not hurt player units. */
+public class PlayerUnit_Bomb : PlayerUnit
+{
+
+    [SerializeField]private CircleCollider2D bombRange;
+    [SerializeField]private float startupTimer;         //the delay before bomb blows up.
+    private float timer;
+    [SerializeField]private GameObject outline;         //flash effect when bomb's going to detonate.
+    [SerializeField]private List<Unit> targets;         //includes friendly units. Base takes 3 damage.
+    Coroutine flashCoroutine = null;
+    // Start is called before the first frame update
+    void Start()
+    {
+        //bomb range starts deactivated.
+        bombRange.gameObject.SetActive(false);
+        outline.gameObject.SetActive(false);
+        startupTimer = 1;
+        timer = -1;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (bombRange.gameObject.activeSelf && timer <= 0)
+        {
+            timer = Time.time;
+            //TODO: Start coroutine to have bomb flash
+            flashCoroutine = StartCoroutine(Flash());
+        }
+
+        if (bombRange.gameObject.activeSelf && Time.time > timer + startupTimer)
+        {
+            //bomb blows up
+            Explode();
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        //NOTE: This method should only be called when bombRange is active.
+        if (collision.TryGetComponent<EnemyUnit>(out EnemyUnit unit))
+        {
+            Logger.DebugLogFormat("Target is {0}", unit.name);
+            //add target to list
+            if (!targets.Contains(unit))
+                targets.Add(unit);
+        }
+    }
+
+    //this collision is for the bomb itself.
+    /*void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<EnemyUnit>(out EnemyUnit unit))
+        {
+            //detonate
+            ActivateBomb();
+        }
+    }*/
+
+    /* increased range, and no longer destroys friendly units. */
+    public override void EnhanceUnit()
+    {
+        if (isEnhanced)
+            return;
+
+        isEnhanced = true;
+        bombRange.radius = 6;
+    }
+
+    public void ActivateBomb()
+    {
+        bombRange.gameObject.SetActive(true);
+    }
+
+    void Explode()
+    {
+        GameManager gm = Singleton.instance.GameManager;
+        gm.RemovePlayerUnit(this);
+    }
+
+    IEnumerator Flash()
+    {
+        bool toggle = true;
+        while(bombRange.gameObject.activeSelf)
+        {
+            outline.gameObject.SetActive(toggle);
+            yield return new WaitForSeconds(0.1f);
+            toggle = !toggle;
+        }
+    }
+    
+}

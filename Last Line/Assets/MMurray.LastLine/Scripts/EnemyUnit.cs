@@ -125,7 +125,13 @@ namespace MMurray.LastLine
                 unitBase.UpdateHealthBar(unitBase.transform.position);
                 Logger.DebugLog("Hit Base " + unitBase.name);
             }
-            if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
+            else if(collision.TryGetComponent<PlayerUnit_Bomb>(out PlayerUnit_Bomb bomb))
+            {
+                //enemy unit dies, but bomb is activated.
+                gm.RemoveEnemyUnit(this);
+                bomb.ActivateBomb();
+            }
+            else if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
             {
                 Logger.DebugLog("Hit Unit " + unit.name);
 
