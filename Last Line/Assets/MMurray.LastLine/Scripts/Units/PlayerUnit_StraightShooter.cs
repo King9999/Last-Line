@@ -46,7 +46,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         else
         {
             float distance = Vector2.Distance(bulletRange,  bullet.transform.position);
-            Logger.DebugLog("Bullet distance to target: " + distance);
+            //Logger.DebugLog("Bullet distance to target: " + distance);
             //if (bullet.transform.position.x > bulletRange.x)
             if (distance < 0.5f || bullet.bulletStruckUnit)
             {
@@ -60,7 +60,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
                     bullet.direction *= -1;
                     bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
                 }
-                Logger.DebugLog("Bullet range: " + bulletRange);
+                //Logger.DebugLog("Bullet range: " + bulletRange);
                 bullet.transform.position = transform.position;
                 bullet.gameObject.SetActive(false);
 

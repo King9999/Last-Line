@@ -117,6 +117,9 @@ namespace MMurray.LastLine
         //Checks for collision against player units.
         void OnTriggerEnter2D(Collider2D collision)
         {
+            if (isInvul)
+                return;
+
             GameManager gm = Singleton.instance.GameManager;
             if (collision.TryGetComponent<PlayerUnit_Base>(out PlayerUnit_Base unitBase))
             {
@@ -146,6 +149,11 @@ namespace MMurray.LastLine
         public bool IsInvulnerable()
         {
             return isInvul;
+        }
+
+        public void SetInvul(bool toggle)
+        {
+            isInvul = toggle;
         }
     }
 }

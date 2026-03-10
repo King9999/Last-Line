@@ -9,13 +9,28 @@ but the dozer keeps moving at a faster speed. */
 public class EnemyUnit_Dozer : EnemyUnit
 {
     [SerializeField]private BoxCollider2D barrierCollider;
+    bool speedUp = false;
 
-    /*void Update()
+    void Update()
     {
-        
-    }*/
+        base.Update();
 
-    /*void OnTriggerEnter2D(Collider2D collision)
+        //speed increases whenever barrier is gone.
+        if (!speedUp && !barrierCollider.gameObject.activeSelf)
+        {
+            currentInvulTime = Time.time;
+            speedUp = true;
+            moveSpeed *= 2;
+        }
+
+        //Dozer goes invul for a moment when barrier is gone to prevent dying immediately.
+        if (isInvul && Time.time > currentInvulTime + 0.1f)
+        {
+            isInvul = false;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (barrierCollider.IsTouching(collision))
         {
@@ -23,6 +38,6 @@ public class EnemyUnit_Dozer : EnemyUnit
             return;
         }
             
-    }*/
+    }
 
 }
