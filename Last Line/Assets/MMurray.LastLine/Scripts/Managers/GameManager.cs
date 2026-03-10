@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
     public DialogueManager dialogueManager;
     public int triggerIndex;                //used to iterate through conditional triggers.
     [SerializeField]private ProgressBar[] progressBars;  //used to show build times for units.
+    private int progressIndex;              //keeps track of which progress bar is active and filling up.
+    private int availableProgressIndex;     //always points to an inactive progress bar.
 
     
 
@@ -44,7 +46,7 @@ public class GameManager : MonoBehaviour
     public List<PlayerUnit> activePlayerUnits;
     public List<EnemyUnit> activeEnemyUnits;
     public Queue<PlayerUnit> buildQueue;        //the list of units to build after build time.
-    private float buildTimer;
+    private float[] buildTimer;
     private int buildLimit { get; } = 3;          //player can only build 3 units at a time.
     public PlayerUnit testUnit;
     public Portal testPortal;
@@ -86,7 +88,9 @@ public class GameManager : MonoBehaviour
         //must always make sure singleton grabs reference to the managers
         Singleton.instance.GameManager = this;
         buildQueue = new Queue<PlayerUnit>();
-        buildTimer = 0;
+        buildTimer = new float[buildLimit];
+        progressIndex = 0;
+        availableProgressIndex = 0;
 
         //both values should be false
         enteringValueX = false;
@@ -129,9 +133,9 @@ public class GameManager : MonoBehaviour
 
             //update progress bar
             Menu menu = Singleton.instance.Menu;
-            progressBars[menu.queueIndex].radialBar.fillAmount = (Time.time - buildTimer) / unit.buildTime;
+            progressBars[progressIndex].radialBar.fillAmount = (Time.time - buildTimer[progressIndex]) / unit.buildTime;
 
-            if (Time.time > buildTimer + unit.buildTime)
+            if (Time.time > buildTimer[progressIndex] + unit.buildTime)
             {
                 //deploy unit.
                 activePlayerUnits.Add(unit);
@@ -147,16 +151,17 @@ public class GameManager : MonoBehaviour
                         //copy image and replace image in front 
                         menu.unitsInQueue[menu.queueIndex - 1].sprite = menu.unitsInQueue[menu.queueIndex].sprite;
                         menu.unitsInQueue[menu.queueIndex].enabled = false;
-                        progressBars[menu.queueIndex].DisplayProgressBar(false);
+                        progressBars[progressIndex].DisplayProgressBar(false);
                     }
                 }
                 else
                 {
                     menu.unitsInQueue[menu.queueIndex].enabled = false;
-                    progressBars[menu.queueIndex].DisplayProgressBar(false);
+                    progressBars[progressIndex].DisplayProgressBar(false);
                 }
                 
-                buildTimer = Time.time;     //build next unit if applicable.
+                progressIndex = (progressIndex + 1 < buildLimit) ? progressIndex + 1 : 0;
+                buildTimer[progressIndex] = Time.time;     //build next unit if applicable.
             }
         }
     }
@@ -272,15 +277,36 @@ public class GameManager : MonoBehaviour
 
             //add to list
             DisplayAlertWithDuration(GetText("buildingUnit"));
+
+            if (buildQueue.Count <= 0)  //make sure progressIndex is reset when build queue is empty
+                progressIndex = 0;
+
             buildQueue.Enqueue(newUnit);
-            buildTimer = Time.time;
+            
 
             //add the unit's image in menu's build queue
             Menu menu = Singleton.instance.Menu;
             menu.queueIndex = buildQueue.Count - 1;     //this ensures that index points to correct spot
+            buildTimer[menu.queueIndex] = Time.time;
             menu.unitsInQueue[menu.queueIndex].enabled = true;
             menu.unitsInQueue[menu.queueIndex].sprite = newUnit.unitSprite;
-            progressBars[menu.queueIndex].DisplayProgressBar(true, point);
+
+            //find an available progress bar and activate it.
+            bool barFound = false;
+            int i = 0;
+            while (!barFound && i < progressBars.Length)
+            {
+                if (!progressBars[i].ProgressBarActive())
+                {
+                    availableProgressIndex = i;
+                    barFound = true;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+            progressBars[availableProgressIndex].DisplayProgressBar(true, point);
             //activePlayerUnits.Add(newUnit);
 
             //save unit's position

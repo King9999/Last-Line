@@ -35,4 +35,9 @@ public class ProgressBar : MonoBehaviour
         }
     }
 
+    public bool ProgressBarActive()
+    {
+        return gameObject.activeSelf;
+    }
+
 }
