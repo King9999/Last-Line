@@ -196,12 +196,13 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
         foreach(Laser laser in lasers)
         {
             laser.damage = 1;
+            laser.hitCooldown = 0.2f;
         }
         //replace bullets with laser
-        foreach (Bullet bullet in bullets)
+        /*foreach (Bullet bullet in bullets)
         {
             bullet.gameObject.SetActive(false);
-        }
+        }*/
     }
 
 }

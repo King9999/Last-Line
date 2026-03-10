@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/* This is a script used by the Dozer enemy unit. Barrier is unaffected by all weapons, and can only be destroyed by collision with a
+player unit. */
+public class Barrier : MonoBehaviour
+{
+    
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<Bullet>(out Bullet bullet))
+        {
+            if (bullet.owner == Bullet.Owner.Player)
+            {
+                bullet.bulletStruckUnit = true; //this should be true even if the bullet pierces
+                Logger.DebugLog("Bullet hit barrier");
+            }
+        }
+    }
+}

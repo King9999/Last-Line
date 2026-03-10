@@ -16,7 +16,7 @@ public class Laser : MonoBehaviour
     public int damage;
     public bool bulletStruckUnit;
     private Collider2D laserCollider;
-    private float hitCooldown {get; } = 0.2f;      //prevents laser from hitting every frame.
+    public float hitCooldown = 0.5f;      //prevents laser from hitting every frame.
     private float hitCooldownTime;
 
     // Start is called before the first frame update

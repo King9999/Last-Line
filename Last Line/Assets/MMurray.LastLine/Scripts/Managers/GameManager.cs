@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
     public PlayerUnit_Bomb bombPrefab;
     public EnemyUnit scoutPrefab;
     public EnemyUnit strikerPrefab;
+    public EnemyUnit dozerPrefab;
 
     /***Units that are destroyed are sent to an array, and recycled whenever a new unit needs to be generated. 
     This is to reduce the amount of calls to the garbage collector. */
@@ -189,10 +190,11 @@ public class GameManager : MonoBehaviour
         //generate portals
         //each portal instantiates number of units.
         //EnemyUnit enemyUnit = null;
+        testPortal.enemyCount = 1;
         for (int i = 0; i < testPortal.enemyCount; i++)
         {
             //EnemyUnit enemyUnit = Instantiate(strikerPrefab as EnemyUnit_Striker, parent: testPortal.transform);
-            EnemyUnit enemyUnit = Instantiate(scoutPrefab /*as EnemyUnit_Scout*/, parent: testPortal.transform);
+            EnemyUnit enemyUnit = Instantiate(dozerPrefab /*as EnemyUnit_Scout*/, parent: testPortal.transform);
             enemyUnit.transform.position = testPortal.transform.position;
             activeEnemyUnits.Add(enemyUnit);
             enemyUnit.portal = testPortal;
