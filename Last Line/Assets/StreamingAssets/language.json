@@ -19,7 +19,9 @@
       "cancelAction": 30,
       "buildQueueFull": 50,
       "spaceOccupied": 50,
-      "buildingUnit": 30
+      "buildingUnit": 30,
+      "systemLabel": 15,
+      "buildQueueLabel": 20
     }
   },
   "en": {
@@ -41,7 +43,9 @@
 	"cancelAction": "Action cancelled.",
 	"buildQueueFull": "Can only build 3 units at a time!",
 	"spaceOccupied": "A unit is already on this space!",
-	"buildingUnit": "Building unit."
+	"buildingUnit": "Building unit.",
+	"systemLabel": "SYSTEM",
+	"buildQueueLabel": "BUILD QUEUE"
   },
   "es": {
     

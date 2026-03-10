@@ -22,7 +22,7 @@ public class Menu : MonoBehaviour
     public UnitButton selectedButton;       //the button the mouse is hovering on.
 
     [Header("---Build Queue Images---")]
-    public List<Image> unitsInQueue;
+    public Image[] unitsInQueue;
     public int queueIndex;                  //used to point to correct image in list.
 
     [Header("---System Buttons---")]
@@ -36,6 +36,8 @@ public class Menu : MonoBehaviour
         GameManager gm = Singleton.instance.GameManager;
         unitLabel.text = GetText("unitLabel");
         moneyLabel.text = GetText("moneyLabel");
+        systemLabel.text = GetText("systemLabel");
+        buildQueueLabel.text = GetText("buildQueueLabel");
         //moneyValue.text = gm.money + " CR";
         UpdateMoneyText();
     }

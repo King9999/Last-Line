@@ -5,6 +5,7 @@ using LoLSDK;
 using MMurray.LastLine;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     //public Dialogue dialogueBox;
     public DialogueManager dialogueManager;
     public int triggerIndex;                //used to iterate through conditional triggers.
+    [SerializeField]private ProgressBar[] progressBars;  //used to show build times for units.
 
     
 
@@ -124,6 +126,11 @@ public class GameManager : MonoBehaviour
         if (buildQueue.Count > 0)
         {
             PlayerUnit unit = buildQueue.Peek();
+
+            //update progress bar
+            Menu menu = Singleton.instance.Menu;
+            progressBars[menu.queueIndex].radialBar.fillAmount = (Time.time - buildTimer) / unit.buildTime;
+
             if (Time.time > buildTimer + unit.buildTime)
             {
                 //deploy unit.
@@ -132,7 +139,6 @@ public class GameManager : MonoBehaviour
                 buildQueue.Dequeue();
 
                 //update build queue in menu by shifting all images to the left.
-                Menu menu = Singleton.instance.Menu;
                 menu.queueIndex = buildQueue.Count;     //this ensures that index points to correct spot
                 if (menu.queueIndex > 0)
                 {
@@ -141,11 +147,13 @@ public class GameManager : MonoBehaviour
                         //copy image and replace image in front 
                         menu.unitsInQueue[menu.queueIndex - 1].sprite = menu.unitsInQueue[menu.queueIndex].sprite;
                         menu.unitsInQueue[menu.queueIndex].enabled = false;
+                        progressBars[menu.queueIndex].DisplayProgressBar(false);
                     }
                 }
                 else
                 {
                     menu.unitsInQueue[menu.queueIndex].enabled = false;
+                    progressBars[menu.queueIndex].DisplayProgressBar(false);
                 }
                 
                 buildTimer = Time.time;     //build next unit if applicable.
@@ -272,6 +280,7 @@ public class GameManager : MonoBehaviour
             menu.queueIndex = buildQueue.Count - 1;     //this ensures that index points to correct spot
             menu.unitsInQueue[menu.queueIndex].enabled = true;
             menu.unitsInQueue[menu.queueIndex].sprite = newUnit.unitSprite;
+            progressBars[menu.queueIndex].DisplayProgressBar(true, point);
             //activePlayerUnits.Add(newUnit);
 
             //save unit's position
@@ -433,6 +442,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.LevelComplete:
+                //load next level
                 //if all levels complete, show congrats
                 break;
         }

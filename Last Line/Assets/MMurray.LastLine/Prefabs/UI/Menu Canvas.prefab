@@ -1600,8 +1600,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltip: {fileID: 4066878364968441603}
   unitLabel: {fileID: 1743259681206741118}
-  systemLabel: {fileID: 0}
-  buildQueueLabel: {fileID: 0}
+  systemLabel: {fileID: 5847742095102739457}
+  buildQueueLabel: {fileID: 4718811960530440517}
   moneyContainer: {fileID: 4789147737755724273}
   moneyLabel: {fileID: 5340704285489438333}
   moneyValue: {fileID: 5890271231329757886}
@@ -1612,6 +1612,7 @@ MonoBehaviour:
   - {fileID: 6622557524047228502}
   - {fileID: 7821725853093815654}
   - {fileID: 4977098437221191196}
+  queueIndex: 0
   ttsButton: {fileID: 5525307659009639053}
   musicButton: {fileID: 2845696062953702927}
   exitGameButton: {fileID: 8820387428954410462}
