@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Scout
   unitCost: 0
+  unitBuildTime: 0
   unitMoneyReward: 5
   hitPoints: 2
-  moveSpeed: 0.5
+  moveSpeed: 5
   collisionDamage: 1
   weaponCooldown: 0
   bulletSpeed: 0

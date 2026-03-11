@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Striker
   unitCost: 0
+  unitBuildTime: 0
   unitMoneyReward: 20
   hitPoints: 3
-  moveSpeed: 0.5
+  moveSpeed: 5
   collisionDamage: 1
   weaponCooldown: 4
   bulletSpeed: 2

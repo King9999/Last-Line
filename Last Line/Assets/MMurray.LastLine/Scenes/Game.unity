@@ -626,7 +626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3198141876806987049, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3198141876806987049, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1530,6 +1530,10 @@ PrefabInstance:
       propertyPath: alertText
       value: 
       objectReference: {fileID: 6859608517825341614}
+    - target: {fileID: 6140858354458987321, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
+      propertyPath: testLaser
+      value: 
+      objectReference: {fileID: 5525869867139203397, guid: a952ea825ef49914e89f8dc1ea4a0420, type: 3}
     - target: {fileID: 6140858354458987321, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
       propertyPath: basePrefab
       value: 

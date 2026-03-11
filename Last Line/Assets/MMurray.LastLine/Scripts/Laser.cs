@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MMurray.LastLine;
+using MMurray.GenericCode;
 
 /*Laser is similar to bullet except it inherently pierces. It's also larger than a standard bullet. */
 public class Laser : MonoBehaviour
@@ -12,7 +13,7 @@ public class Laser : MonoBehaviour
     public BulletType bulletType;
     public float moveSpeed;
     public float distance;
-    public Vector2 direction, angle;        
+    public Vector2 direction, forwardDirection, angle;   //forwardDirection is for adjusting the laser's orientation.     
     public int damage;
     public bool bulletStruckUnit;
     private Collider2D laserCollider;
@@ -24,13 +25,14 @@ public class Laser : MonoBehaviour
     {
         laserCollider = GetComponent<Collider2D>();
         hitCooldownTime = 0;
+        forwardDirection = transform.rotation * Vector2.up;     //meaning the laser travels up on the Y axis by default.
     }
 
     // Update is called once per frame
     void Update()
     {
         //this should only occur when the bullet is active and onscreen.
-        transform.Translate(direction * moveSpeed * Time.deltaTime);
+        transform.Translate(direction * forwardDirection * moveSpeed * Time.deltaTime);
 
         /*if (Time.time > hitCooldownTime + hitCooldown)
         {
@@ -41,6 +43,39 @@ public class Laser : MonoBehaviour
         {
             laserCollider.gameObject.SetActive(true);
         }*/
+    }
+
+    /// <summary>
+    /// Returns the angle between the initial vector (a) and the destination vector (b). The result will be applied
+    /// to the Z rotation.
+    /// </summary>
+    /// <param name="a">The starting vector, which must match the orientation of the laser's sprite.</param>
+    /// <param name="b">The destination vector.</param>
+    /// <returns>The Z angle of rotation in degrees.</returns>
+    public float GetAngle(Vector2 a, Vector2 b)
+    {
+        /*first we get the dot product of a and b. Refresher:
+        Dot product of a . b = (a1 * b1) + (a2 * b2) */
+        //float dotProduct = (a.x * b.x) + (a.y * b.y);
+        float dotProduct = Vector2.Dot(a, b);
+
+        //next we get the magnitude of both vectors
+        float magnitudeA = a.magnitude; //Vector2.SqrMagnitude(a);
+        float magnitudeB = b.magnitude; //Vector2.SqrMagnitude(b);
+
+        //next we calculate the inverse cosine to get the angle. The value returned from Mathf.Acos is in radians so we
+        //must convert to degrees.
+        float z = Mathf.Rad2Deg * Mathf.Acos(dotProduct / (magnitudeA * magnitudeB));
+        //float z = Mathf.Rad2Deg * Mathf.Acos(0.9733f);
+        Logger.DebugLogFormat("Inv. Cos: {0}", z);
+        return z;
+    }
+
+    public void FireWeapon(Vector2 direction, float angle)
+    {
+        gameObject.SetActive(true);
+        this.direction = direction;     //TODO: Direction must factor in the angle somehow so it moves correctly after rotation.
+        transform.Rotate(0, 0, angle);
     }
 
     //Check if laser collides with an enemy

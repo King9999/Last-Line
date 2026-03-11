@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private ProgressBar[] progressBars;  //used to show build times for units.
     private int progressIndex;              //keeps track of which progress bar is active and filling up.
     private int availableProgressIndex;     //always points to an inactive progress bar.
+    public Laser testLaser;
 
     
 
@@ -110,6 +111,19 @@ public class GameManager : MonoBehaviour
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
         //SetGameState(gameState = GameState.DialogueStartOfLevel);
 
+        //TODO: ATTEMPTED TO ROTATE LASER AND HAVE IT TRAVEL IN THAT DIRECTION. ALMOST WORKING!
+        /*testLaser = Instantiate(laserPrefab);
+        //testLaser.gameObject.SetActive(false);
+        testLaser.transform.position = new Vector2(-3, -3);
+        testLaser.moveSpeed = 0.1f;
+
+        //testLaser.forwardDirection = testLaser.transform.rotation * Vector2.up;
+        //testLaser.transform.Rotate(new Vector3(0, 0, 90));
+        
+        Vector2 fireDir = new Vector2(testPortal.transform.position.x - testLaser.transform.position.x, 
+             testPortal.transform.position.y - testLaser.transform.position.y);
+        float z = testLaser.GetAngle(testLaser.transform.position, fireDir);
+        testLaser.FireWeapon(fireDir, z);*/
     }
 
     // Update is called once per frame
