@@ -73,7 +73,7 @@ namespace MMurray.LastLine
             //update movement
             if (currentPoint != nextPoint)
             {
-                transform.Translate(direction * moveSpeed * Time.deltaTime);
+                transform.Translate(direction * 0.1f * moveSpeed * Time.deltaTime);
 
                 //update healthbar position if necessary
                 if (healthBar.gameObject.activeSelf)
