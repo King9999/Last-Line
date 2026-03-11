@@ -289,7 +289,12 @@ public class GameManager : MonoBehaviour
             //add the unit's image in menu's build queue
             Menu menu = Singleton.instance.Menu;
             menu.queueIndex = buildQueue.Count - 1;     //this ensures that index points to correct spot
-            buildTimer[menu.queueIndex] = Time.time;
+
+            //we do this check to prevent a build in progress from getting its time reset whenever additional units
+            //beyond the 1st enter the queue. The build timer will get updated in the update loop.
+            if (buildQueue.Count == 1)
+                buildTimer[menu.queueIndex] = Time.time;
+
             menu.unitsInQueue[menu.queueIndex].enabled = true;
             menu.unitsInQueue[menu.queueIndex].sprite = newUnit.unitSprite;
 
@@ -300,7 +305,7 @@ public class GameManager : MonoBehaviour
             {
                 if (!progressBars[i].ProgressBarActive())
                 {
-                    availableProgressIndex = i;
+                    //availableProgressIndex = i;
                     barFound = true;
                 }
                 else
@@ -308,7 +313,9 @@ public class GameManager : MonoBehaviour
                     i++;
                 }
             }
-            progressBars[availableProgressIndex].DisplayProgressBar(true, point);
+
+            if (i < progressBars.Length)
+                progressBars[i].DisplayProgressBar(true, point);
             //activePlayerUnits.Add(newUnit);
 
             //save unit's position
