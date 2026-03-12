@@ -15,7 +15,8 @@ namespace MMurray.LastLine
         public float weaponCooldown;   //time in seconds that must pass before unit can fire weapon, if applicable
         //public float moveSpeed; 
         public float bulletSpeed;
-        public float bulletDistance;
+        public float bulletDistance;   
+        public Vector2 bulletRange;         //if a bullet reaches this vector, it's destroyed.
         public int weaponDamage;
 
         public Slider healthBar;        //only visible when unit is damaged to reduce clutter.
@@ -61,6 +62,16 @@ namespace MMurray.LastLine
             bullet.direction = Vector2.right;
             bullet.damage = weaponDamage;
             bullet.distance = bulletDistance;
+        }
+
+        public Vector2 SetBulletRange(Bullet bullet)
+        {
+            Vector2 range = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y + 
+                (bullet.distance * bullet.direction.y));
+            
+            Logger.DebugLogFormat("Bullet range: {0}", range);
+            return range;
+            //Debug.DrawRay(transform.position + new Vector3(bullet.direction.x, bullet.direction.y, 0), bulletRange, Color.red);
         }
 
         public virtual void SetupLaser(Laser laser)

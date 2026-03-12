@@ -52,21 +52,23 @@ public class Bullet : MonoBehaviour
         }
         else  //enemy bullet has hit a player's unit.
         {
-            if (collision.TryGetComponent<PlayerUnit_Base>(out PlayerUnit_Base unitBase))
+            PlayerUnit unit = collision.GetComponent<PlayerUnit>();
+            if (unit is PlayerUnit_Base || unit is PlayerUnit_Bomb)//collision.TryGetComponent<PlayerUnit_Base>(out PlayerUnit_Base unitBase))
             {
                 //nothing happens. Base is unaffected by bullets.
                 //TODO: Maybe show some kind of effect?
                 bulletStruckUnit = true;
-                Logger.DebugLog("enemy's Bullet struck player's base! No damage");
+                Logger.DebugLog("enemy's Bullet struck player's base/bomb! No damage");
             }
-            else if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
+            else //if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
             {
                 unit.hitPoints -= damage;
                 //unit.SetHealth(unit.hitPoints);
                 unit.UpdateHealthBar(unit.transform.position);
 
                 //destroy bullet
-                bulletStruckUnit = true;
+                if (bulletType != BulletType.Pierce)
+                    bulletStruckUnit = true;
                 Logger.DebugLogFormat("enemy's Bullet struck player unit {0}", unit.name);
                 //gameObject.SetActive(false);
             }

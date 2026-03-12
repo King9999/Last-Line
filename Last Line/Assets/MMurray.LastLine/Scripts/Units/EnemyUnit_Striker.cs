@@ -8,7 +8,7 @@ public class EnemyUnit_Striker : EnemyUnit
 {
     [Header("---Bullet---")]
     public Bullet bullet;
-    public Vector2 bulletRange;
+    //public Vector2 bulletRange;
     [SerializeField]private float cooldownTimer;            //tracks when weapon fires.
     [SerializeField]private Collider2D attackRange, strikerCollider;
     [SerializeField]private PlayerUnit target;          //bullets are fired at this unit
@@ -26,7 +26,7 @@ public class EnemyUnit_Striker : EnemyUnit
         bullet.gameObject.SetActive(false);
 
         //range of bullet is the unit's position + 2 units
-        bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
+        //bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
 
         cooldownTimer = 0;
         strikerCollider = GetComponent<Collider2D>();
@@ -52,8 +52,9 @@ public class EnemyUnit_Striker : EnemyUnit
         }*/
         if (bullet.gameObject.activeSelf)
         {
+            bulletRange = SetBulletRange(bullet);
             float distance = Vector2.Distance(bulletRange, bullet.transform.position);
-            Logger.DebugLog("Bullet distance to target: " + distance);
+            //Logger.DebugLog("Striker Bullet distance to target: " + distance);
             //if (bullet.transform.position.x > bulletRange.x)
             if (distance < 0.5f || bullet.bulletStruckUnit)
             {
@@ -75,6 +76,7 @@ public class EnemyUnit_Striker : EnemyUnit
     public override void FireWeapon(Bullet bullet, Vector2 direction)
     {
         bullet.gameObject.SetActive(true);
+        bullet.direction = direction;
     }
 
     //Checks for collision against player units.
@@ -104,7 +106,7 @@ public class EnemyUnit_Striker : EnemyUnit
         if (attackRange.IsTouching(collision) && collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
         {
             //add target to list
-            if (!targets.Contains(unit) && !collision.TryGetComponent<PlayerUnit_Base>(out PlayerUnit_Base unitBase))
+            if (!targets.Contains(unit) && unit is not PlayerUnit_Base)//!collision.TryGetComponent<PlayerUnit_Base>(out PlayerUnit_Base unitBase))
                 targets.Add(unit);
             
             //get closest target and fire
@@ -153,9 +155,10 @@ public class EnemyUnit_Striker : EnemyUnit
         //fire weapon at target if able
         if (target != null && !bullet.gameObject.activeSelf && Time.time > cooldownTimer + weaponCooldown)
         {
-            bullet.direction = new Vector2(target.transform.position.x - transform.position.x, 
+            Vector2 direction = new Vector2(target.transform.position.x - transform.position.x, 
                 target.transform.position.y - transform.position.y);
-            FireWeapon(bullet, bullet.direction);
+            //SetBulletRange(bullet);
+            FireWeapon(bullet, direction);
         }
 
         //clear targets. Targets may not always be valid on the next frame.

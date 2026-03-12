@@ -5108,6 +5108,7 @@ MonoBehaviour:
   - {fileID: 2658146812044245449}
   - {fileID: 887975488166501457}
   - {fileID: 2018355829001330573}
+  testLaser: {fileID: 0}
   activePlayerUnits: []
   activeEnemyUnits: []
   testUnit: {fileID: 0}
@@ -5127,6 +5128,7 @@ MonoBehaviour:
   scoutPrefab: {fileID: 7833899101122541756, guid: f329d15e489fd288c8ba135b2e08af2c, type: 3}
   strikerPrefab: {fileID: 7074677146709980987, guid: 9d254142ecd15bd3099a746c0b476bab, type: 3}
   dozerPrefab: {fileID: 8087227832348738245, guid: 633977cee2f1a96e9a75c771c0593067, type: 3}
+  juggPrefab: {fileID: 1863969916383870542, guid: 2bd388ae65e758a12819078f3db29ecd, type: 3}
   deadEnemyUnits: []
   deadPlayerUnits: []
 --- !u!1 &7311134994305783323
