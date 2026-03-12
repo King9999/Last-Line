@@ -26,6 +26,7 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
         //EnhanceUnit();
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -108,8 +109,9 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
             if (!beamFired)
             {
                 beamFired = true;
-                target.hitPoints -= weaponDamage;
-                target.UpdateHealthBar(target.transform.position);
+                //target.hitPoints -= weaponDamage;
+                target.ReduceHitPoints(weaponDamage);
+                //target.UpdateHealthBar(target.transform.position);
                 //Logger.DebugLog("enemy hit");
             }
 
@@ -162,8 +164,9 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
                 beamFired = true;
                 for (i = 1; i < units.Count; i++)
                 {
-                    units[i].hitPoints -= 1; //weaponDamage;
-                    units[i].UpdateHealthBar(units[i].transform.position);
+                    //units[i].hitPoints -= weaponDamage;
+                    units[i].ReduceHitPoints(weaponDamage);
+                    //units[i].UpdateHealthBar(units[i].transform.position);
                     Logger.DebugLogFormat("hit enemy {0} with beam", units[i].name);
                 }
             }

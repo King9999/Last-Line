@@ -82,23 +82,34 @@ namespace MMurray.LastLine
             laser.distance = bulletDistance;
         }
 
-        public void SetHealth(int hitPoints)
+        public void ReduceHitPoints(int amount)
         {
-            if (hitPoints <= 0)
+            if (amount <= 0 || hitPoints <= 0)
                 return;
 
-            healthBar.value = hitPoints;
+            hitPoints -= amount;
+            UpdateHealthBar(transform.position);
 
-            //health bar is only visible when unit is damaged.
-            /*if (healthBar.value >= healthBar.maxValue)
-                healthBar.gameObject.SetActive(false);
-            else
-                healthBar.gameObject.SetActive(true);*/
+            //check if unit is dead
+            if (hitPoints <= 0)
+            {
+                GameManager gm = Singleton.instance.GameManager;
+                if (this is PlayerUnit)
+                {
+                    gm.RemovePlayerUnit(this as PlayerUnit);
+                }
+                else
+                {
+                    gm.RemoveEnemyUnit(this as EnemyUnit);
+                }
+            }
         }
 
         //updates health bar's slider value, position, and visibility.
-        public void UpdateHealthBar(Vector2 unitPos)
+        protected void UpdateHealthBar(Vector2 unitPos)
         {
+            if (hitPoints <= 0)
+                return;
 
             healthBar.value = hitPoints;
 

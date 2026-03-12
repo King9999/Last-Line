@@ -95,9 +95,10 @@ public class Laser : MonoBehaviour
                 if (unit.IsInvulnerable())
                     return;
                     
-                unit.hitPoints -= damage;
+                //unit.hitPoints -= damage;
+                unit.ReduceHitPoints(damage);
                 //unit.SetHealth(unit.hitPoints);
-                unit.UpdateHealthBar(unit.transform.position);
+                //unit.UpdateHealthBar(unit.transform.position);
                 hitCooldownTime = Time.time;
                 
                 Logger.DebugLogFormat("Laser struck enemy {0}", unit.name);

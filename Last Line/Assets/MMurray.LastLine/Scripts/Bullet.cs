@@ -41,9 +41,10 @@ public class Bullet : MonoBehaviour
                 if (unit.IsInvulnerable())
                     return;
                     
-                unit.hitPoints -= damage;
+                //unit.hitPoints -= damage;
+                unit.ReduceHitPoints(damage);
                 //unit.SetHealth(unit.hitPoints);
-                unit.UpdateHealthBar(unit.transform.position);
+                //unit.UpdateHealthBar(unit.transform.position);
 
                 
                 Logger.DebugLogFormat("Player bullet struck enemy {0}", unit.name);
@@ -52,6 +53,10 @@ public class Bullet : MonoBehaviour
         }
         else  //enemy bullet has hit a player's unit.
         {
+            //ignore any enemy attack range colliders
+            if (collision.TryGetComponent<CircleCollider2D>(out CircleCollider2D range))
+                return; 
+
             PlayerUnit unit = collision.GetComponent<PlayerUnit>();
             if (unit is PlayerUnit_Base || unit is PlayerUnit_Bomb)//collision.TryGetComponent<PlayerUnit_Base>(out PlayerUnit_Base unitBase))
             {
@@ -62,9 +67,10 @@ public class Bullet : MonoBehaviour
             }
             else //if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
             {
-                unit.hitPoints -= damage;
+                //unit.hitPoints -= damage;
+                unit.ReduceHitPoints(damage);
                 //unit.SetHealth(unit.hitPoints);
-                unit.UpdateHealthBar(unit.transform.position);
+                //unit.UpdateHealthBar(unit.transform.position);
 
                 //destroy bullet
                 if (bulletType != BulletType.Pierce)

@@ -68,6 +68,7 @@ namespace MMurray.LastLine
             /*else if (hitPoints <= 0)
             {
                 gm.RemoveEnemyUnit(this);
+                return;
             }*/
 
             //update movement
@@ -88,7 +89,7 @@ namespace MMurray.LastLine
                     GetNextPoint();
                 }
             }
-    }
+        }
 
         public void SetPath(List<Vector2> newPath)
         {
@@ -121,22 +122,29 @@ namespace MMurray.LastLine
                 return;
 
             GameManager gm = Singleton.instance.GameManager;
-            if (collision.TryGetComponent<PlayerUnit_Base>(out PlayerUnit_Base unitBase))
+            PlayerUnit unit = collision.GetComponent<PlayerUnit>();
+            if (unit is PlayerUnit_Base)//collision.TryGetComponent<PlayerUnit_Base>(out PlayerUnit_Base unitBase))
             {
                 //base takes damage.
-                unitBase.hitPoints -= collisionDamage;
-                unitBase.UpdateHealthBar(unitBase.transform.position);
-                Logger.DebugLog("Hit Base " + unitBase.name);
+                //unitBase.hitPoints -= collisionDamage;
+                //unitBase.UpdateHealthBar(unitBase.transform.position);
+                //Logger.DebugLog("Hit Base " + unitBase.name);
+
+                //unit.hitPoints -= collisionDamage;
+                unit.ReduceHitPoints(collisionDamage);
+                //unit.UpdateHealthBar(unit.transform.position);
+                Logger.DebugLog("Hit " + unit.name);
             }
-            else if(collision.TryGetComponent<PlayerUnit_Bomb>(out PlayerUnit_Bomb bomb))
+            else if(unit is PlayerUnit_Bomb)//collision.TryGetComponent<PlayerUnit_Bomb>(out PlayerUnit_Bomb bomb))
             {
                 //enemy unit dies, but bomb is activated.
                 gm.RemoveEnemyUnit(this);
+                PlayerUnit_Bomb bomb = unit as PlayerUnit_Bomb;
                 bomb.ActivateBomb();
             }
-            else if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
+            else //if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
             {
-                Logger.DebugLog("Hit Unit " + unit.name);
+                Logger.DebugLog("Destroyed Unit " + unit.name);
 
                 //both player unit and enemy unit die.
                 

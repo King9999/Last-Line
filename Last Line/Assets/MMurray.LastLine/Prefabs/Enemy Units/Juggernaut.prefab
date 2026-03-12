@@ -131,6 +131,7 @@ MonoBehaviour:
   weaponCooldown: 0
   bulletSpeed: 0
   bulletDistance: 0
+  bulletRange: {x: 0, y: 0}
   weaponDamage: 0
   healthBar: {fileID: 8423144159187339115}
   direction: {x: 0, y: 0}
@@ -143,7 +144,6 @@ MonoBehaviour:
   currentPoint: {x: 0, y: 0}
   nextPoint: {x: 0, y: 0}
   bullet: {fileID: 0}
-  bulletRange: {x: 0, y: 0}
   cooldownTimer: 0
   attackRange: {fileID: 5347983674236575409}
   juggCollider: {fileID: 0}

@@ -288,7 +288,7 @@ public class GameManager : MonoBehaviour
             Vector2 newPos = Camera.main.ScreenToWorldPoint(point.transform.position);
             newUnit.transform.position = newPos;
             //Logger.AddPlayerId(newUnit.name);
-            newUnit.UpdateHealthBar(newPos);        //TODO: Not quite sure why this fixes the healthbar positioning issue for player units.
+            //newUnit.UpdateHealthBar(newPos);        //TODO: Not quite sure why this fixes the healthbar positioning issue for player units.
             point.unit = newUnit;
             newUnit.gameObject.SetActive(false);    //stay hidden until finished building.
 
@@ -386,7 +386,7 @@ public class GameManager : MonoBehaviour
         //must convert the point's location to world coordinates.
         Vector2 newPos = Camera.main.ScreenToWorldPoint(points[i].transform.position);
         newUnit.transform.position = newPos;
-        newUnit.UpdateHealthBar(newPos);        //TODO: Not quite sure why this fixes the healthbar positioning issue for player units.
+        //newUnit.UpdateHealthBar(newPos);        //TODO: Not quite sure why this fixes the healthbar positioning issue for player units.
         points[i].unit = newUnit;
 
         //add to list

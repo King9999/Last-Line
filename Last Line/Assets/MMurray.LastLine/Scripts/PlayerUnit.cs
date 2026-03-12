@@ -47,8 +47,11 @@ namespace MMurray.LastLine
 
         /*void Update()
         {
-            if (healthBar.gameObject.activeSelf)
-                UpdateHealthBar(transform.position);
+            if (hitPoints <= 0)
+            {
+                GameManager gm = Singleton.instance.GameManager;
+                gm.RemovePlayerUnit(this);
+            }
         }*/
 
     }
