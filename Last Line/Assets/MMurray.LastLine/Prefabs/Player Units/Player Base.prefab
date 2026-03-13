@@ -441,9 +441,12 @@ MonoBehaviour:
   weaponCooldown: 0
   bulletSpeed: 0
   bulletDistance: 0
+  bulletRange: {x: 0, y: 0}
   weaponDamage: 0
   healthBar: {fileID: 5986740357745238205}
   unitCost: 0
+  buildTime: 0
+  unitSprite: {fileID: 0}
   isEnhanced: 0
 --- !u!61 &6783415214433305499
 BoxCollider2D:

@@ -5044,6 +5044,7 @@ Transform:
   - {fileID: 1199610344361376446}
   - {fileID: 3342699602618518374}
   - {fileID: 9102339480077419342}
+  - {fileID: 5756509619331197651}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6140858354458987321
@@ -5109,6 +5110,7 @@ MonoBehaviour:
   - {fileID: 887975488166501457}
   - {fileID: 2018355829001330573}
   testLaser: {fileID: 0}
+  moneyTexts: []
   activePlayerUnits: []
   activeEnemyUnits: []
   testUnit: {fileID: 0}
@@ -5118,6 +5120,7 @@ MonoBehaviour:
   playerUnitContainer: {fileID: 7311134994305783323}
   axisContainerX: {fileID: 5706481934295259498}
   axisContainerY: {fileID: 1141380316103181501}
+  moneyTextContainer: {fileID: 7480241271118240791}
   bulletPrefab: {fileID: 7979668393375552907, guid: 0a184f3ba029478a2aee70f44d461e33, type: 3}
   laserPrefab: {fileID: 5525869867139203397, guid: a952ea825ef49914e89f8dc1ea4a0420, type: 3}
   basePrefab: {fileID: 8316493710989082871, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
@@ -5129,6 +5132,8 @@ MonoBehaviour:
   strikerPrefab: {fileID: 7074677146709980987, guid: 9d254142ecd15bd3099a746c0b476bab, type: 3}
   dozerPrefab: {fileID: 8087227832348738245, guid: 633977cee2f1a96e9a75c771c0593067, type: 3}
   juggPrefab: {fileID: 1863969916383870542, guid: 2bd388ae65e758a12819078f3db29ecd, type: 3}
+  powerUpPrefab: {fileID: 5641031147405347804, guid: ce1da418e7f5b6632b21ecea441b01b5, type: 3}
+  moneyTextPrefab: {fileID: 3649616176234642464, guid: 679a2fe663e39a261b3d39c909e03f84, type: 3}
   deadEnemyUnits: []
   deadPlayerUnits: []
 --- !u!1 &7311134994305783323
@@ -5237,6 +5242,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7480241271118240791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5756509619331197651}
+  m_Layer: 0
+  m_Name: Money Text Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5756509619331197651
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480241271118240791}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8531383243452956154}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7491441577413860159
 GameObject:
   m_ObjectHideFlags: 0

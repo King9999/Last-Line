@@ -39,14 +39,15 @@ public class GameManager : MonoBehaviour
     private int progressIndex;              //keeps track of which progress bar is active and filling up.
     private int availableProgressIndex;     //always points to an inactive progress bar.
     public Laser testLaser;
+    [SerializeField]private List<MoneyText> moneyTexts;    //is displayed when an enemy unit is destroyed.
 
     
 
     //unit setup
     [Header("---Active Units---")]
-    public List<PlayerUnit> activePlayerUnits;
-    public List<EnemyUnit> activeEnemyUnits;
-    public Queue<PlayerUnit> buildQueue;        //the list of units to build after build time.
+    [SerializeField]private List<PlayerUnit> activePlayerUnits;
+    [SerializeField]private List<EnemyUnit> activeEnemyUnits;
+    private Queue<PlayerUnit> buildQueue;        //the list of units to build after build time.
     private float[] buildTimer;
     private int buildLimit { get; } = 3;          //player can only build 3 units at a time.
     public PlayerUnit testUnit;
@@ -57,22 +58,26 @@ public class GameManager : MonoBehaviour
     public int money;                           //how much money player has to create units.
 
     [Header("---Containers---")]
-    public GameObject playerUnitContainer;      //all instantiated units are placed here
-    public GameObject axisContainerX;
-    public GameObject axisContainerY;
+    [SerializeField]private GameObject playerUnitContainer;      //all instantiated units are placed here
+    [SerializeField]private GameObject axisContainerX;
+    [SerializeField]private GameObject axisContainerY;
+    [SerializeField]private GameObject moneyTextContainer;
 
     [Header("---Prefabs---")]
     public Bullet bulletPrefab;
     public Laser laserPrefab;
-    public PlayerUnit_Base basePrefab;
-    public PlayerUnit_StraightShooter straightShooterPrefab;
-    public PlayerUnit_VerticalShooter verticalShooterPrefab;
-    public PlayerUnit_TrackingBeam trackingBeamPrefab;
-    public PlayerUnit_Bomb bombPrefab;
-    public EnemyUnit scoutPrefab;
-    public EnemyUnit strikerPrefab;
-    public EnemyUnit dozerPrefab;
-    public EnemyUnit juggPrefab;
+    [SerializeField]private PlayerUnit_Base basePrefab;
+    [SerializeField]private PlayerUnit_StraightShooter straightShooterPrefab;
+    [SerializeField]private PlayerUnit_VerticalShooter verticalShooterPrefab;
+    [SerializeField]private PlayerUnit_TrackingBeam trackingBeamPrefab;
+    [SerializeField]private PlayerUnit_Bomb bombPrefab;
+    [SerializeField]private EnemyUnit scoutPrefab;
+    [SerializeField]private EnemyUnit strikerPrefab;
+    [SerializeField]private EnemyUnit dozerPrefab;
+    [SerializeField]private EnemyUnit juggPrefab;
+    [SerializeField]private PowerUpSpace powerUpPrefab;
+    [SerializeField]private MoneyText moneyTextPrefab;
+
 
     /***Units that are destroyed are sent to an array, and recycled whenever a new unit needs to be generated. 
     This is to reduce the amount of calls to the garbage collector. */
@@ -182,6 +187,51 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //gives money to player and at at the same time calls a coroutine to display amount on screen.
+    public void AddMoney(int amount, Vector2 position)
+    {
+        if (amount < 0)
+            return;
+
+        money += amount;
+
+        /* find an inactive money text object and activate it. If there are none available, then instantiate a new one */
+        if (moneyTexts.Count <= 0)
+        {
+            MoneyText text = Instantiate(moneyTextPrefab, moneyTextContainer.transform);
+            text.ShowMoneyRewardText(amount, position);
+            moneyTexts.Add(text);
+            //moneyTexts[moneyTexts.Count - 1].ShowMoneyRewardText(amount, position);
+        }
+        else
+        {
+            //search the list
+            bool found = false;
+            int i = 0;
+            while(!found && i < moneyTexts.Count)
+            {
+                if(!moneyTexts[i].gameObject.activeSelf)
+                {
+                    //moneyTexts[i].gameObject.SetActive(true);
+                    moneyTexts[i].ShowMoneyRewardText(amount, position);
+                    found = true;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            if (!found)
+            {
+                MoneyText text = Instantiate(moneyTextPrefab, moneyTextContainer.transform);
+                text.ShowMoneyRewardText(amount, position);
+                moneyTexts.Add(text);
+            }
+        }
+
+    }
+
     bool CancelButtonPressed()
     {
         return Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape);
@@ -209,7 +259,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < testPortal.enemyCount; i++)
         {
             //EnemyUnit enemyUnit = Instantiate(strikerPrefab /*as EnemyUnit_Striker*/, parent: testPortal.transform);
-            EnemyUnit enemyUnit = Instantiate(juggPrefab /*as EnemyUnit_Scout*/, parent: testPortal.transform);
+            EnemyUnit enemyUnit = Instantiate(scoutPrefab /*as EnemyUnit_Scout*/, parent: testPortal.transform);
             enemyUnit.transform.position = testPortal.transform.position;
             activeEnemyUnits.Add(enemyUnit);
             enemyUnit.portal = testPortal;

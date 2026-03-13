@@ -123,6 +123,9 @@ namespace MMurray.LastLine
 
             GameManager gm = Singleton.instance.GameManager;
             PlayerUnit unit = collision.GetComponent<PlayerUnit>();
+            if (unit == null)
+                return;
+                
             if (unit is PlayerUnit_Base)//collision.TryGetComponent<PlayerUnit_Base>(out PlayerUnit_Base unitBase))
             {
                 //base takes damage.

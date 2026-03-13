@@ -100,7 +100,11 @@ namespace MMurray.LastLine
                 }
                 else
                 {
-                    gm.RemoveEnemyUnit(this as EnemyUnit);
+                    //remove enemy unit. player gets money for this kill
+                    EnemyUnit enemy = this as EnemyUnit;
+                    gm.AddMoney(enemy.moneyAmount, enemy.transform.position);
+                    //gm.money += enemy.moneyAmount;
+                    gm.RemoveEnemyUnit(enemy);
                 }
             }
         }
