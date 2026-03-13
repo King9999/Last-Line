@@ -74,8 +74,16 @@ public class PlayerUnit_Bomb : PlayerUnit
         bombRange.radius = 6;
     }
 
+    public override void ActivateAbility()
+    {
+        ActivateBomb();
+    }
+
     public void ActivateBomb()
     {
+        if (bombRange.gameObject.activeSelf)
+            return;
+
         bombRange.gameObject.SetActive(true);
         timer = Time.time;
         flashCoroutine = StartCoroutine(Flash());
@@ -89,7 +97,8 @@ public class PlayerUnit_Bomb : PlayerUnit
         {
             if (targets[i] is PlayerUnit_Base)
             {
-                targets[i].hitPoints -= weaponDamage;
+                //targets[i].hitPoints -= weaponDamage;
+                targets[i].ReduceHitPoints(weaponDamage);
             }
             else if (targets[i] is PlayerUnit)
             {

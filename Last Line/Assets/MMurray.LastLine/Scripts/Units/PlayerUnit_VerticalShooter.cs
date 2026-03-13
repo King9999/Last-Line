@@ -189,6 +189,7 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
         if (isEnhanced)
             return;
 
+        base.EnhanceUnit();
         isEnhanced = true;
         weaponCooldown = 0;
         

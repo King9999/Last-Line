@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca55a0dabc910273390b8232aea2b9ef, type: 3}
   m_Name: UnitData_Juggernaut
   m_EditorClassIdentifier: 
-  unitName: 
+  unitName: Juggernaut
   unitCost: 0
   unitBuildTime: 0
-  unitMoneyReward: 0
-  hitPoints: 0
-  moveSpeed: 0
-  collisionDamage: 0
-  weaponCooldown: 0
-  bulletSpeed: 0
-  bulletDistance: 0
-  weaponDamage: 0
+  unitMoneyReward: 100
+  hitPoints: 20
+  moveSpeed: 2
+  collisionDamage: 10
+  weaponCooldown: 2
+  bulletSpeed: 2
+  bulletDistance: 10
+  weaponDamage: 2

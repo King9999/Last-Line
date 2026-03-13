@@ -94,6 +94,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         if (isEnhanced)
             return;
 
+        base.EnhanceUnit();
         isEnhanced = true;
 
         weaponCooldown = 0;         //to compensate for the extended range and only 1 bullet fired at a time.

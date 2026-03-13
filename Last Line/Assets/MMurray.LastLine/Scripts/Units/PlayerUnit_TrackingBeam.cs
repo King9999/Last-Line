@@ -177,6 +177,10 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
 
     public override void EnhanceUnit()
     {
+        if (isEnhanced)
+            return;
+            
+        base.EnhanceUnit();
         isEnhanced = true;
     }
 

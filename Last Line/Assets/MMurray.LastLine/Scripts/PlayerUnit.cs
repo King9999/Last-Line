@@ -42,7 +42,9 @@ namespace MMurray.LastLine
         /* Power up unit. The enhancements depend on the unit. */
         public virtual void EnhanceUnit()
         {
-            
+            //standard buff for all units.
+            maxHitPoints += 1;
+            hitPoints = maxHitPoints;
         }
 
         /*void Update()
