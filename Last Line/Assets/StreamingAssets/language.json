@@ -21,7 +21,10 @@
       "spaceOccupied": 50,
       "buildingUnit": 30,
       "systemLabel": 15,
-      "buildQueueLabel": 20
+      "buildQueueLabel": 20,
+      "reverseFireDirection": 40,
+      "bombActivated": 35,
+      "crystalCollected": 25
     }
   },
   "en": {
@@ -45,7 +48,10 @@
 	"spaceOccupied": "A unit is already on this space!",
 	"buildingUnit": "Building unit.",
 	"systemLabel": "SYSTEM",
-	"buildQueueLabel": "BUILD QUEUE"
+	"buildQueueLabel": "BUILD QUEUE",
+	"reverseFireDirection": "Reversing attack direction!",
+	"bombActivated": "Warning! Bomb activated.",
+	"crystalCollected": "Crystal collected."
   },
   "es": {
     

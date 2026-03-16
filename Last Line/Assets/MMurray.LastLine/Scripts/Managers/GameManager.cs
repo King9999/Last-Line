@@ -55,7 +55,10 @@ public class GameManager : MonoBehaviour
     public PlayerUnit_Base testBase;
 
     [Header("---Money---")]
-    public int money;                           //how much money player has to create units.
+    public int money;                               //how much money player has to create units.
+    [SerializeField]private int crystalThreshold;   //the amount of money needed for a crystal to appear. Resets once threshold is hit.
+    private int accumulatedMoney;
+    public Crystal crystal;
 
     [Header("---Containers---")]
     [SerializeField]private GameObject playerUnitContainer;      //all instantiated units are placed here
@@ -103,6 +106,9 @@ public class GameManager : MonoBehaviour
         //both values should be false
         enteringValueX = false;
         enteringValueY = false;
+
+        //crystal setup
+        crystal.gameObject.SetActive(false);
 
         Logger.DebugLogFormat("Testing {0}", activeEnemyUnits.Count);
         LoadLevel(0);
@@ -187,13 +193,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //gives money to player and at at the same time calls a coroutine to display amount on screen.
-    public void AddMoney(int amount, Vector2 position)
+    /*gives money to player and at at the same time calls a coroutine to display amount on screen. Also handles generating
+    a crystal if threshold is met. If isCrystal = true, player collected money from a crystal and doesn't contribute to
+    threshold. */
+    public void AddMoney(int amount, Vector2 position, bool isCrystal = false)
     {
         if (amount < 0)
             return;
 
         money += amount;
+
+        if (!isCrystal)
+            accumulatedMoney += amount;
 
         /* find an inactive money text object and activate it. If there are none available, then instantiate a new one */
         if (moneyTexts.Count <= 0)
@@ -230,6 +241,28 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        /******Crystal Generation******/
+        if (accumulatedMoney >= crystalThreshold)
+        {
+            accumulatedMoney = 0;
+
+            //generate a crystal and it to random point
+
+            int i = 0;
+            do
+            {
+                i = Random.Range(0, points.Count);
+                crystal.transform.position = Camera.main.ScreenToWorldPoint(points[i].transform.position);
+            }
+            while (points[i].unit != null);
+
+            points[i].crystal = crystal;
+
+            if (!crystal.gameObject.activeSelf)
+                crystal.gameObject.SetActive(true);
+               
+        }
+
     }
 
     bool CancelButtonPressed()
@@ -255,7 +288,7 @@ public class GameManager : MonoBehaviour
         //generate portals
         //each portal instantiates number of units.
         //EnemyUnit enemyUnit = null;
-        testPortal.enemyCount = 1;
+        testPortal.enemyCount = 3;
         for (int i = 0; i < testPortal.enemyCount; i++)
         {
             //EnemyUnit enemyUnit = Instantiate(strikerPrefab /*as EnemyUnit_Striker*/, parent: testPortal.transform);
@@ -266,6 +299,10 @@ public class GameManager : MonoBehaviour
             enemyUnit.gameObject.SetActive(false);
             testPortal.enemyUnits.Add(enemyUnit);
         }
+
+        //TODO: Set up crystal threshold and crystal value from JSON
+        crystalThreshold = 10;
+        crystal.SetMoneyValue(100);
     }
 
     /// <summary>
@@ -282,11 +319,18 @@ public class GameManager : MonoBehaviour
             if (point.unit != null)
             {
                 point.unit.ActivateAbility();
-                return;
+                //return;
             }
-            else 
+            else if (point.crystal != null)
             {
-                //TODO: Check for a crystal and give player money.
+                //give player money.
+                DisplayAlertWithDuration(GetText("crystalCollected"));
+                AddMoney(crystal.GetMoneyValue(), crystal.transform.position, isCrystal: true);
+                point.crystal = null;
+                crystal.gameObject.SetActive(false);
+            }
+            else
+            {
                 DisplayAlertWithDuration(GetText("nothingAtPoint"));
             }
         }
@@ -300,9 +344,9 @@ public class GameManager : MonoBehaviour
                 return;
             }
 
-            if (point.unit != null)
+            if (point.unit != null || point.crystal != null)
             {
-                //unit is occupying this space or is being built.
+                //unit is occupying this space or is being built, or a crystal is there.
                 DisplayAlertWithDuration(GetText("spaceOccupied"));
                 SetGameState(gameState = GameState.Normal);
                 return;

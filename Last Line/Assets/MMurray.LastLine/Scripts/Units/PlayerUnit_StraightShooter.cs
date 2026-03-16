@@ -84,6 +84,8 @@ public class PlayerUnit_StraightShooter : PlayerUnit
     //change firing direction.
     public override void ActivateAbility()
     {
+        GameManager gm = Singleton.instance.GameManager;
+        gm.DisplayAlertWithDuration(GetText("reverseFireDirection"));
         Logger.DebugLog("Reversing Unit firing direction!");
         reverseDirection = true;
     }
@@ -103,5 +105,11 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         SetBulletRange(bullet);
         //bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
         Logger.DebugLog("Unit is enhanced");
+    }
+
+    string GetText(string key)
+    {
+        string value = SharedState.LanguageDefs?[key];
+        return value ?? "--missing--";
     }
 }

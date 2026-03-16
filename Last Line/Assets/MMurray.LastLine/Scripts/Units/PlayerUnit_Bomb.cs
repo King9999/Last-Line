@@ -76,6 +76,8 @@ public class PlayerUnit_Bomb : PlayerUnit
 
     public override void ActivateAbility()
     {
+        GameManager gm = Singleton.instance.GameManager;
+        gm.DisplayAlertWithDuration(GetText("bombActivated"));
         ActivateBomb();
     }
 
@@ -106,11 +108,19 @@ public class PlayerUnit_Bomb : PlayerUnit
             }
             else
             {
-                gm.RemoveEnemyUnit(targets[i] as EnemyUnit);
+                EnemyUnit unit = targets[i] as EnemyUnit;
+                gm.AddMoney(unit.moneyAmount, unit.transform.position);
+                gm.RemoveEnemyUnit(unit);
             }
         }
 
         gm.RemovePlayerUnit(this);
+    }
+
+    string GetText(string key)
+    {
+        string value = SharedState.LanguageDefs?[key];
+        return value ?? "--missing--";
     }
 
     IEnumerator Flash()
