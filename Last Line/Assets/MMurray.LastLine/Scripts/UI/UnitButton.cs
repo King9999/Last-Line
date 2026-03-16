@@ -45,7 +45,35 @@ public class UnitButton : MonoBehaviour
             return;
 
         gm.playerUnitType = unitType;
-        gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectX);
+
+        //check if player has enough money
+        int cost = 0;
+        switch(unitType)
+        {
+            case GameManager.PlayerUnitType.StraightShooter:
+                cost = gm.unitCosts[0];
+                break;
+            case GameManager.PlayerUnitType.VerticalShooter:
+                cost = gm.unitCosts[1];
+                break;
+            case GameManager.PlayerUnitType.TrackingBeam:
+                cost = gm.unitCosts[2];
+                break;
+            case GameManager.PlayerUnitType.Bomb:
+                cost = gm.unitCosts[3];
+                break;
+        }
+
+        Logger.DebugLogFormat("Unit cost: {0}", cost);
+
+        if (cost > gm.money)
+        {
+            gm.DisplayAlertWithDuration(GetText("notEnoughMoney"));
+        }
+        else
+        {
+            gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectX);
+        }
         //gm.alertText.text = "Select X value";
     }
 

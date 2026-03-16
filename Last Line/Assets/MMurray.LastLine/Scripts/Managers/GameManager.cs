@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private int crystalThreshold;   //the amount of money needed for a crystal to appear. Resets once threshold is hit.
     private int accumulatedMoney;
     public Crystal crystal;
+    public int[] unitCosts;
 
     [Header("---Containers---")]
     [SerializeField]private GameObject playerUnitContainer;      //all instantiated units are placed here
@@ -110,6 +111,11 @@ public class GameManager : MonoBehaviour
 
         //crystal setup
         crystal.gameObject.SetActive(false);
+        unitCosts = new int[4];
+        unitCosts[0] = straightShooterPrefab.unitData.unitCost;
+        unitCosts[1] = verticalShooterPrefab.unitData.unitCost;
+        unitCosts[2] = trackingBeamPrefab.unitData.unitCost;
+        unitCosts[3] = bombPrefab.unitData.unitCost;
 
         //UI setup
         alertText.text = "";
@@ -201,13 +207,15 @@ public class GameManager : MonoBehaviour
     threshold. */
     public void AddMoney(int amount, Vector2 position, bool isCrystal = false)
     {
-        if (amount < 0)
+        if (amount < 0 || money >= 999)
             return;
 
         //int oldAmount = money;
         //int newAmount = money + amount;
         //animateMoneyCoroutine = StartCoroutine(AnimateMoney(newAmount));
         money += amount;
+        if (money > 999)
+            money = 999;
 
         Menu menu = Singleton.instance.Menu;
         menu.UpdateMoneyText();
@@ -398,6 +406,11 @@ public class GameManager : MonoBehaviour
             //add to list
             DisplayAlertWithDuration(GetText("buildingUnit"));
 
+            //spend money
+            Menu menu = Singleton.instance.Menu;
+            money -= newUnit.unitCost;
+            menu.UpdateMoneyText();
+
             if (buildQueue.Count <= 0)  //make sure progressIndex is reset when build queue is empty
                 progressIndex = 0;
 
@@ -405,7 +418,6 @@ public class GameManager : MonoBehaviour
             
 
             //add the unit's image in menu's build queue
-            Menu menu = Singleton.instance.Menu;
             menu.queueIndex = buildQueue.Count - 1;     //this ensures that index points to correct spot
 
             //we do this check to prevent a build in progress from getting its time reset whenever additional units

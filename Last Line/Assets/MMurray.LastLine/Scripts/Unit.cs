@@ -9,7 +9,7 @@ namespace MMurray.LastLine
 {
     public abstract class Unit : MonoBehaviour
     {
-        [SerializeField]protected UnitData unitData;
+        [SerializeField]public UnitData unitData;
         [SerializeField]protected string unitName;
         public int hitPoints, maxHitPoints;    
         public float weaponCooldown;   //time in seconds that must pass before unit can fire weapon, if applicable

@@ -9,7 +9,7 @@ public class MoneyText : MonoBehaviour
 {
     [SerializeField]private TextMeshProUGUI moneyText;
     Coroutine animateMoneyCoroutine = null;
-    float animateTime = 1;
+    float animateTime = 1.5f;
     float textAlpha;
     /*void OnEnable()
     {
