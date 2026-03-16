@@ -12,7 +12,9 @@ public class UnitButton : MonoBehaviour
     }
 
     public GameManager.PlayerUnitType unitType;
-    public string key;                 //the string to display from language json.
+    [SerializeField]private string key;                 //the string to display from language json.
+    [SerializeField]private UnitData data;
+
 
     /// <summary>
     /// Opens a tooltip window displaying info about a button when mouse hovers over it.
@@ -25,7 +27,12 @@ public class UnitButton : MonoBehaviour
             return;
 
         menu.selectedButton = this;     //pass information that game manager will use to create desired unit.
-        menu.tooltip.DisplayUnitTooltip(true, GetText(key));
+
+        //display unit details. An exception is made for the bomb since it can't be destroyed.
+        string health = (data.hitPoints < 100) ? data.hitPoints.ToString() : "\u221e"; //\u221e is ascii code for infinity
+            
+        menu.tooltip.DisplayUnitTooltip(true, GetText(key), data.unitCost.ToString(), data.unitBuildTime.ToString(),
+            data.weaponDamage.ToString(), health);
     }
 
     /// <summary>
@@ -47,7 +54,7 @@ public class UnitButton : MonoBehaviour
         gm.playerUnitType = unitType;
 
         //check if player has enough money
-        int cost = 0;
+        /*int cost = 0;
         switch(unitType)
         {
             case GameManager.PlayerUnitType.StraightShooter:
@@ -62,11 +69,11 @@ public class UnitButton : MonoBehaviour
             case GameManager.PlayerUnitType.Bomb:
                 cost = gm.unitCosts[3];
                 break;
-        }
+        }*/
 
-        Logger.DebugLogFormat("Unit cost: {0}", cost);
+        Logger.DebugLogFormat("Unit cost: {0}", data.unitCost);
 
-        if (cost > gm.money)
+        if (data.unitCost > gm.money)
         {
             gm.DisplayAlertWithDuration(GetText("notEnoughMoney"));
         }

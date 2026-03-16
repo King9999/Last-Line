@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private int crystalThreshold;   //the amount of money needed for a crystal to appear. Resets once threshold is hit.
     private int accumulatedMoney;
     public Crystal crystal;
-    public int[] unitCosts;
+    //public int[] unitCosts;
 
     [Header("---Containers---")]
     [SerializeField]private GameObject playerUnitContainer;      //all instantiated units are placed here
@@ -111,11 +111,11 @@ public class GameManager : MonoBehaviour
 
         //crystal setup
         crystal.gameObject.SetActive(false);
-        unitCosts = new int[4];
+        /*unitCosts = new int[4];
         unitCosts[0] = straightShooterPrefab.unitData.unitCost;
         unitCosts[1] = verticalShooterPrefab.unitData.unitCost;
         unitCosts[2] = trackingBeamPrefab.unitData.unitCost;
-        unitCosts[3] = bombPrefab.unitData.unitCost;
+        unitCosts[3] = bombPrefab.unitData.unitCost;*/
 
         //UI setup
         alertText.text = "";

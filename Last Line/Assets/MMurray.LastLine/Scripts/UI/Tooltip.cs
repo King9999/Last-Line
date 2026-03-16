@@ -8,8 +8,9 @@ using UnityEngine;
 public class Tooltip : MonoBehaviour
 {
     [SerializeField]private TextMeshProUGUI unitDetails;    //describes what unit does.
-    [SerializeField]private TextMeshProUGUI unitCost, unitDamage, unitHealth;
+    [SerializeField]private TextMeshProUGUI unitCost, unitBuildTime, unitDamage, unitHealth;
     private const float tooltipYOffset = -120;
+    private const float tooltipXOffset = -50;
 
     // Start is called before the first frame update
     void Start()
@@ -17,13 +18,10 @@ public class Tooltip : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    public void DisplayUnitTooltip(bool toggle, string details = "")
+
+    public void DisplayUnitTooltip(bool toggle, string details = "", string cost = "", string buildTime = "", 
+        string damage = "", string health = "")
     {
         if (toggle == false)
             gameObject.SetActive(false);
@@ -32,8 +30,12 @@ public class Tooltip : MonoBehaviour
             gameObject.SetActive(true);
 
             //place the tooltip around the mouse's position
-            gameObject.transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y + tooltipYOffset);
+            gameObject.transform.position = new Vector2(Input.mousePosition.x + tooltipXOffset, Input.mousePosition.y + tooltipYOffset);
             unitDetails.text = details;
+            unitCost.text = cost;
+            unitBuildTime.text = buildTime;
+            unitDamage.text = damage;
+            unitHealth.text = health;
         }
     }
 }
