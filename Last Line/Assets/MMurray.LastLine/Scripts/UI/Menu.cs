@@ -33,7 +33,7 @@ public class Menu : MonoBehaviour
     void Start()
     {
         Singleton.instance.Menu = this;
-        GameManager gm = Singleton.instance.GameManager;
+        //GameManager gm = Singleton.instance.GameManager;
         unitLabel.text = GetText("unitLabel");
         moneyLabel.text = GetText("moneyLabel");
         systemLabel.text = GetText("systemLabel");
@@ -45,7 +45,7 @@ public class Menu : MonoBehaviour
     public void UpdateMoneyText()
     {
         GameManager gm = Singleton.instance.GameManager;
-        moneyValue.text = gm.money + " CR";
+        moneyValue.text = string.Format("{0:000} CR", gm.money); //gm.money + " CR";
     }
     /// <summary>
     /// Opens a tooltip window displaying info about a button when mouse hovers over it.

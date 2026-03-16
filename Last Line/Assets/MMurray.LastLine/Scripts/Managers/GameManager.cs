@@ -91,7 +91,8 @@ public class GameManager : MonoBehaviour
     /* coroutines. Having references to coroutines is ideal for performance and convenience, and StopCoroutine() actually works
     when coroutines are executed this way. */
     Coroutine alertCoroutine = null;
-    Coroutine screenShakeCoroutine = null;     
+    Coroutine screenShakeCoroutine = null;
+    Coroutine animateMoneyCoroutine = null;     
 
     // Start is called before the first frame update
     void Start()
@@ -110,7 +111,9 @@ public class GameManager : MonoBehaviour
         //crystal setup
         crystal.gameObject.SetActive(false);
 
-        Logger.DebugLogFormat("Testing {0}", activeEnemyUnits.Count);
+        //UI setup
+        alertText.text = "";
+
         LoadLevel(0);
         //load save state
         Singleton s = Singleton.instance;
@@ -201,7 +204,13 @@ public class GameManager : MonoBehaviour
         if (amount < 0)
             return;
 
+        //int oldAmount = money;
+        //int newAmount = money + amount;
+        //animateMoneyCoroutine = StartCoroutine(AnimateMoney(newAmount));
         money += amount;
+
+        Menu menu = Singleton.instance.Menu;
+        menu.UpdateMoneyText();
 
         if (!isCrystal)
             accumulatedMoney += amount;
@@ -659,5 +668,17 @@ public class GameManager : MonoBehaviour
 
         alertText.text = "";
     }
+
+    /*IEnumerator AnimateMoney(int newAmount)
+    {
+        //int currentMoney = oldAmount;
+        Menu menu = Singleton.instance.Menu;
+        while (money < newAmount)
+        {
+            money++;
+            menu.UpdateMoneyText();
+            yield return new WaitForSeconds(0.05f);
+        }
+    }*/
     #endregion
 }
