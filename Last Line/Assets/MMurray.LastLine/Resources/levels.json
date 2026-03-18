@@ -1,1 +1,38 @@
-
+{
+    "level": 0,
+    "starting_money": 0,
+    "portals": [
+        {
+            "location": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "enemy_type": 0,
+            "deploy_cooldown": 1.2000000476837159,
+            "deploy_time": 10.0,
+            "enemy_count": 10.0,
+            "enemy_path_points": [
+                {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                {
+                    "x": -1.0,
+                    "y": 0.0
+                },
+                {
+                    "x": -3.0,
+                    "y": 2.0
+                },
+                {
+                    "x": -4.0,
+                    "y": 0.0
+                }
+            ]
+        }
+    ],
+    "player_base_location": {
+        "x": 0.0,
+        "y": 0.0
+    }
+}

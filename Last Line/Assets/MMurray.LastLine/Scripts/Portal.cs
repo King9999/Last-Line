@@ -7,6 +7,8 @@ using TMPro;
 
 public class Portal : MonoBehaviour
 {
+    public enum EnemyType { Scout, Striker, Dozer, Juggernaut }
+    public EnemyType enemyType;         //used to determine which units to instantiate.
     public Timer timer;                 //time in seconds before portal starts sending units.
     public List<EnemyUnit> enemyUnits;      //the unit that's deployed.
     public float deployCooldown;        //the time that must pass before another unit is generated.
@@ -18,6 +20,14 @@ public class Portal : MonoBehaviour
     public LineRenderer enemyPath;
     public List<Vector2>pathPoints;
     [SerializeField]private TextMeshProUGUI enemyCountText;
+
+    void Awake()
+    {
+        for (int i = 0; i < enemyPath.positionCount; i++)
+        {
+            pathPoints.Add(enemyPath.GetPosition(i));
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -34,10 +44,10 @@ public class Portal : MonoBehaviour
         
 
         //path setup TODO: Why can't I just get a reference to the line renderer's vertices directly?
-        for (int i = 0; i < enemyPath.positionCount; i++)
+        /*for (int i = 0; i < enemyPath.positionCount; i++)
         {
             pathPoints.Add(enemyPath.GetPosition(i));
-        }
+        }*/
         Logger.DebugLogFormat("Vertex count in portal {0}: {1}", gameObject.name, pathPoints.Count);
 
         //timer setup
