@@ -11,6 +11,26 @@ namespace MMurray.LastLine
         public Vector2 point;
         public Unit unit;           //reference to a unit that's at this point.
         public Crystal crystal;
+        public Portal portal;
+
+        public void ClearPoint()
+        {
+            unit = null;
+            crystal = null;
+            portal = null;
+        }
+
+        public bool IsEmpty()
+        {
+            return unit == null && crystal == null && portal == null;
+        }
+
+
+        //returns the world coordinates of the point. Used to place objects.
+        public Vector2 WorldPoint()
+        {
+            return Camera.main.ScreenToWorldPoint(transform.position);
+        }
 
     }
 }

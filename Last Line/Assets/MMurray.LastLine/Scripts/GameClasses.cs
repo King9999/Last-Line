@@ -8,7 +8,7 @@ namespace MMurray.LastLine
     [Serializable]
     public class LevelData          //to be written to JSON
     {
-        public int level, starting_money;
+        public int level, starting_money, crystal_threshold, crystal_value;
         public List<PortalData> portals;
         public Vector2 player_base_location;
     }
@@ -22,7 +22,7 @@ namespace MMurray.LastLine
     [Serializable]
     public class PortalData
     {
-        public Vector2 location;
+        public Vector2 point_location;
         public Portal.EnemyType enemy_type;
         public float deploy_cooldown;
         public float deploy_time;

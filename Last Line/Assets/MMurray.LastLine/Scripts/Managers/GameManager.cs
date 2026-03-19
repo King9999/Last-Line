@@ -6,6 +6,7 @@ using MMurray.LastLine;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 
 public class GameManager : MonoBehaviour
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     [Header("---Level File---")]
     [SerializeField]private TextAsset levelFile;
-    LevelData levelData;
+    Levels levelData;
 
     [Header("---UI---")]
     public TextMeshProUGUI alertText;           //used to inform player of various things.
@@ -48,15 +49,16 @@ public class GameManager : MonoBehaviour
     
 
     //unit setup
-    [Header("---Active Units---")]
+    [Header("---Active Units & Portals---")]
     [SerializeField]private List<PlayerUnit> activePlayerUnits;
     [SerializeField]private List<EnemyUnit> activeEnemyUnits;
+    [SerializeField]private List<Portal> activePortals;
     private Queue<PlayerUnit> buildQueue;        //the list of units to build after build time.
     private float[] buildTimer;
     private int buildLimit { get; } = 3;          //player can only build 3 units at a time.
     public PlayerUnit testUnit;
     public Portal testPortal;
-    public PlayerUnit_Base testBase;
+    public PlayerUnit_Base playerBase;              //there's only 1 of these
 
     [Header("---Money---")]
     public int money;                               //how much money player has to create units.
@@ -74,6 +76,7 @@ public class GameManager : MonoBehaviour
     [Header("---Prefabs---")]
     public Bullet bulletPrefab;
     public Laser laserPrefab;
+    [SerializeField]private Portal portalPrefab;
     [SerializeField]private PlayerUnit_Base basePrefab;
     [SerializeField]private PlayerUnit_StraightShooter straightShooterPrefab;
     [SerializeField]private PlayerUnit_VerticalShooter verticalShooterPrefab;
@@ -263,7 +266,7 @@ public class GameManager : MonoBehaviour
         }
 
         /******Crystal Generation******/
-        if (accumulatedMoney >= crystalThreshold)
+        if (crystalThreshold > 0 && accumulatedMoney >= crystalThreshold)
         {
             accumulatedMoney = 0;
 
@@ -302,30 +305,53 @@ public class GameManager : MonoBehaviour
     every unit's position. Also, the game runs in real time so the player might get confused on what they were doing. */
     void LoadLevel(int level)
     {
-        //get level from JSON
-        levelData = JsonUtility.FromJson<LevelData>(levelFile.text);
-        Logger.DebugLog("Levels: " + levelData.portals.Count);
+
+        /************get level from JSON***********/
+        levelData = JsonUtility.FromJson<Levels>(levelFile.text);
+
+        //which level?
+        if (level < 0 || level >= levelData.levels.Length)
+        {
+            Logger.DebugLogWarning("Invalid level!");
+            return;
+        }
+
+        Logger.DebugLogFormat("Level Count: {0}", levelData.levels.Length);
+        //Logger.DebugLog("Levels: " + levelData.levels[1].starting_money);
         //generate base
         //PlaceUnit(PlayerUnitType.Base, new Vector2(1, 3));
 
         //generate portals
         //each portal instantiates number of units.
         //EnemyUnit enemyUnit = null;
-        testPortal.enemyCount = 3;
-        for (int i = 0; i < testPortal.enemyCount; i++)
+        //testPortal.enemyCount = 3;
+        /*for (int i = 0; i < testPortal.enemyCount; i++)
         {
-            //EnemyUnit enemyUnit = Instantiate(strikerPrefab /*as EnemyUnit_Striker*/, parent: testPortal.transform);
-            EnemyUnit enemyUnit = Instantiate(scoutPrefab /*as EnemyUnit_Scout*/, parent: testPortal.transform);
+            EnemyUnit enemyUnit = Instantiate(scoutPrefab, parent: testPortal.transform);
             enemyUnit.transform.position = testPortal.transform.position;
             activeEnemyUnits.Add(enemyUnit);
             enemyUnit.portal = testPortal;
             enemyUnit.gameObject.SetActive(false);
             testPortal.enemyUnits.Add(enemyUnit);
+        }*/
+
+        for (int i = 0; i < levelData.levels[level].portals.Count; i++)
+        {
+            //set portal's point location
+            PortalData portalData = levelData.levels[level].portals[i];
+
+            Portal portal = Instantiate(portalPrefab);
+            portal.pointLocation = portalData.point_location;
+            PlacePortal(portal, portal.pointLocation);
+            activePortals.Add(portal);
+            //set enemy type and count
+
+            //set enemy path
         }
 
         //TODO: Set up crystal threshold and crystal value from JSON
-        crystalThreshold = 10;
-        crystal.SetMoneyValue(100);
+        //crystalThreshold = 10;
+        //crystal.SetMoneyValue(100);
     }
 
     /// <summary>
@@ -367,7 +393,7 @@ public class GameManager : MonoBehaviour
                 return;
             }
 
-            if (point.unit != null || point.crystal != null)
+            if (!point.IsEmpty() /*point.unit != null || point.crystal != null || point.portal != null*/)
             {
                 //unit is occupying this space or is being built, or a crystal is there.
                 DisplayAlertWithDuration(GetText("spaceOccupied"));
@@ -512,6 +538,29 @@ public class GameManager : MonoBehaviour
 
         //add to list
         activePlayerUnits.Add(newUnit);
+    }
+
+    void PlacePortal(Portal portal, Vector2 pointLocation)
+    {
+        bool pointFound = false;
+        int i = 0;
+        while(!pointFound && i < points.Count)
+        {
+            if (pointLocation == points[i].point)
+            {
+                pointFound = true;
+            }
+            else
+            {
+                i++;
+            }
+        }
+
+        if (!pointFound)
+            return;
+
+        points[i].portal = portal;
+        portal.transform.position = points[i].WorldPoint();
     }
 
     /// <summary>

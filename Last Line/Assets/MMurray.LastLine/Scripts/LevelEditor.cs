@@ -16,7 +16,7 @@ namespace MMurray.LastLine
         [Serializable]
         public class Level
         {
-            public int level, startingMoney;
+            public int level, startingMoney, crystalThreshold, crystalValue;
             public List<Portal> portals;
             public PlayerUnit_Base playerBase;
         }
@@ -24,7 +24,7 @@ namespace MMurray.LastLine
         [Serializable]
         public class LevelData          //to be written to JSON
         {
-            public int level, starting_money;
+            public int level, starting_money, crystal_threshold, crystal_value;
             public List<PortalData> portals;
             //public List<EnemyPath> enemy_path;  //for each portal, one of these must be added.
             public Vector2 player_base_location;
@@ -45,7 +45,7 @@ namespace MMurray.LastLine
         [Serializable]
         public class PortalData
         {
-            public Vector2 location;
+            public Vector2 point_location;        //the location on the Point where the portal will be placed
             public Portal.EnemyType enemy_type;
             public float deploy_cooldown;
             public float deploy_time;
@@ -93,6 +93,8 @@ namespace MMurray.LastLine
                     LevelData data = new LevelData();
                     data.level = newLevel.level;
                     data.starting_money = newLevel.startingMoney;
+                    data.crystal_threshold = newLevel.crystalThreshold;
+                    data.crystal_value = newLevel.crystalValue;
 
                     //player base data
                     if (newLevel.playerBase != null)
@@ -104,7 +106,7 @@ namespace MMurray.LastLine
                     {
                         PortalData newPortal = new PortalData()
                         {
-                            location = portal.transform.position,
+                            point_location = portal.point.point,
                             enemy_type = portal.enemyType,
                             deploy_cooldown = portal.deployCooldown,
                             enemy_count = portal.enemyCount,

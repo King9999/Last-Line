@@ -3,11 +3,13 @@
         {
             "level": 0,
             "starting_money": 0,
+            "crystal_threshold": 0,
+            "crystal_value": 0,
             "portals": [
                 {
-                    "location": {
-                        "x": 1.5,
-                        "y": -0.41999998688697817
+                    "point_location": {
+                        "x": 5.0,
+                        "y": 2.0
                     },
                     "enemy_type": 0,
                     "deploy_cooldown": 1.2000000476837159,
@@ -49,11 +51,13 @@
         {
             "level": 1,
             "starting_money": 50,
+            "crystal_threshold": 0,
+            "crystal_value": 0,
             "portals": [
                 {
-                    "location": {
-                        "x": -5.5,
-                        "y": -2.049999952316284
+                    "point_location": {
+                        "x": 1.0,
+                        "y": 1.0
                     },
                     "enemy_type": 0,
                     "deploy_cooldown": 1.2000000476837159,

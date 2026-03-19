@@ -7,6 +7,8 @@ using TMPro;
 
 public class Portal : MonoBehaviour
 {
+    public Vector2 pointLocation;       //the vector from the Point script where the portal is located.
+    public Point point;                 //used by editor to obtain point vector.
     public enum EnemyType { Scout, Striker, Dozer, Juggernaut }
     public EnemyType enemyType;         //used to determine which units to instantiate.
     public Timer timer;                 //time in seconds before portal starts sending units.
@@ -23,6 +25,33 @@ public class Portal : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
+    {
+        /*nextEnemy = 0;
+        currentDeployTime = 0;
+
+        //icon setup
+        SpriteRenderer renderer = unitIcon.GetComponentInChildren<SpriteRenderer>();
+        renderer.sprite = enemyUnits[0].GetComponentInChildren<SpriteRenderer>().sprite;
+        enemyCountText.text = "x" + enemyCount;
+        enemyCountText.transform.position = Camera.main.WorldToScreenPoint(new Vector2(unitIcon.transform.position.x + 0.5f,
+            unitIcon.transform.position.y - 0.1f));
+        
+
+        //path setup TODO: Why can't I just get a reference to the line renderer's vertices directly?
+        for (int i = 0; i < enemyPath.positionCount; i++)
+        {
+            pathPoints.Add(enemyPath.GetPosition(i));
+        }
+        Logger.DebugLogFormat("Vertex count in portal {0}: {1}", gameObject.name, pathPoints.Count);
+
+        //timer setup
+        timer.timerUI.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        timer.timeFormat = Timer.TimeFormat.Seconds;
+        timer.StartTimer();*/
+    }
+
+    /*****USE THIS TO SETUP PORTAL UPON INSTANTIATION INSTEAD OF THE START METHOD******/
+    public void SetupPortal()
     {
         nextEnemy = 0;
         currentDeployTime = 0;
@@ -83,6 +112,15 @@ public class Portal : MonoBehaviour
         nextEnemy--;
         enemyCount--;
         Logger.DebugLog("nextEnemy index: " + nextEnemy);
+    }
+
+    public void SetEnemyPath()
+    {
+        pathPoints = new List<Vector2>();
+        for (int i = 0; i < enemyPath.positionCount; i++)
+        {
+            pathPoints.Add(enemyPath.GetPosition(i));
+        }
     }
 
 }

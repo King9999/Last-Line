@@ -91,6 +91,7 @@ MonoBehaviour:
   point: {x: 1, y: 4}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &373741909603274598
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +477,7 @@ MonoBehaviour:
   point: {x: 5, y: 0}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &818215286290740505
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,6 +812,7 @@ MonoBehaviour:
   point: {x: 0, y: 5}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &1136984279628769956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,6 +1046,7 @@ MonoBehaviour:
   point: {x: 1, y: 0}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &1526563689939499015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,6 +1285,7 @@ MonoBehaviour:
   point: {x: 2, y: 1}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &1990472491784865211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,6 +1675,7 @@ MonoBehaviour:
   point: {x: 0, y: 0}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &2365137175386679259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1908,6 +1914,7 @@ MonoBehaviour:
   point: {x: 2, y: 5}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &2476190795078663753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2075,6 +2082,7 @@ MonoBehaviour:
   point: {x: 2, y: 0}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &2638305875038400532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2313,6 +2321,7 @@ MonoBehaviour:
   point: {x: 0, y: 1}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &2989469069623183624
 GameObject:
   m_ObjectHideFlags: 0
@@ -2404,6 +2413,7 @@ MonoBehaviour:
   point: {x: 3, y: 4}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &3054624962276408926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2495,6 +2505,7 @@ MonoBehaviour:
   point: {x: 5, y: 2}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &3190186263068346396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2586,6 +2597,7 @@ MonoBehaviour:
   point: {x: 3, y: 5}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &3230034360602733945
 GameObject:
   m_ObjectHideFlags: 0
@@ -2677,6 +2689,7 @@ MonoBehaviour:
   point: {x: 2, y: 4}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &3451267259336123431
 GameObject:
   m_ObjectHideFlags: 0
@@ -2768,6 +2781,7 @@ MonoBehaviour:
   point: {x: 3, y: 3}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &3535989747172338830
 GameObject:
   m_ObjectHideFlags: 0
@@ -2859,6 +2873,7 @@ MonoBehaviour:
   point: {x: 4, y: 2}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &3639446063221422621
 GameObject:
   m_ObjectHideFlags: 0
@@ -2950,6 +2965,7 @@ MonoBehaviour:
   point: {x: 4, y: 3}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &3805001825798046469
 GameObject:
   m_ObjectHideFlags: 0
@@ -3041,6 +3057,7 @@ MonoBehaviour:
   point: {x: 1, y: 3}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &3890177206963203004
 GameObject:
   m_ObjectHideFlags: 0
@@ -3279,6 +3296,7 @@ MonoBehaviour:
   point: {x: 0, y: 2}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &4024601710731388525
 GameObject:
   m_ObjectHideFlags: 0
@@ -3422,6 +3440,7 @@ MonoBehaviour:
   point: {x: 4, y: 0}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &4512449482212394077
 GameObject:
   m_ObjectHideFlags: 0
@@ -3513,6 +3532,7 @@ MonoBehaviour:
   point: {x: 4, y: 1}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &4716168940124574762
 GameObject:
   m_ObjectHideFlags: 0
@@ -3985,6 +4005,7 @@ MonoBehaviour:
   point: {x: 5, y: 1}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &5426370714198415205
 GameObject:
   m_ObjectHideFlags: 0
@@ -4151,6 +4172,7 @@ MonoBehaviour:
   point: {x: 0, y: 4}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &5485584449798441622
 GameObject:
   m_ObjectHideFlags: 0
@@ -4280,6 +4302,7 @@ MonoBehaviour:
   point: {x: 1, y: 5}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &5706481934295259498
 GameObject:
   m_ObjectHideFlags: 0
@@ -4438,6 +4461,7 @@ MonoBehaviour:
   point: {x: 5, y: 4}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &6210547958216022506
 GameObject:
   m_ObjectHideFlags: 0
@@ -4529,6 +4553,7 @@ MonoBehaviour:
   point: {x: 3, y: 1}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &6257605657235996532
 GameObject:
   m_ObjectHideFlags: 0
@@ -4620,6 +4645,7 @@ MonoBehaviour:
   point: {x: 4, y: 5}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &6471353360563199905
 GameObject:
   m_ObjectHideFlags: 0
@@ -4711,6 +4737,7 @@ MonoBehaviour:
   point: {x: 0, y: 3}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &6751808343690436609
 GameObject:
   m_ObjectHideFlags: 0
@@ -4802,6 +4829,7 @@ MonoBehaviour:
   point: {x: 5, y: 3}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &6770540321436941507
 GameObject:
   m_ObjectHideFlags: 0
@@ -5040,6 +5068,7 @@ MonoBehaviour:
   point: {x: 3, y: 2}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &7087676103645831090
 GameObject:
   m_ObjectHideFlags: 0
@@ -5144,9 +5173,10 @@ MonoBehaviour:
   moneyTexts: []
   activePlayerUnits: []
   activeEnemyUnits: []
+  activePortals: []
   testUnit: {fileID: 0}
   testPortal: {fileID: 0}
-  testBase: {fileID: 0}
+  playerBase: {fileID: 8316493710989082871, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
   money: 0
   crystalThreshold: 0
   crystal: {fileID: 7531569580150843476}
@@ -5156,6 +5186,7 @@ MonoBehaviour:
   moneyTextContainer: {fileID: 7480241271118240791}
   bulletPrefab: {fileID: 7979668393375552907, guid: 0a184f3ba029478a2aee70f44d461e33, type: 3}
   laserPrefab: {fileID: 5525869867139203397, guid: a952ea825ef49914e89f8dc1ea4a0420, type: 3}
+  portalPrefab: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
   basePrefab: {fileID: 8316493710989082871, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
   straightShooterPrefab: {fileID: 7029225858229661275, guid: 99a8fccb1f29cb296b6093084b53167e, type: 3}
   verticalShooterPrefab: {fileID: 6401239087106368711, guid: cab3ac4ff1c7ebcc8bcc1a361b4e0bbd, type: 3}
@@ -5397,6 +5428,7 @@ MonoBehaviour:
   point: {x: 5, y: 5}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &7746479688791429882
 GameObject:
   m_ObjectHideFlags: 0
@@ -5635,6 +5667,7 @@ MonoBehaviour:
   point: {x: 4, y: 4}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &7884985057676573808
 GameObject:
   m_ObjectHideFlags: 0
@@ -5726,6 +5759,7 @@ MonoBehaviour:
   point: {x: 1, y: 1}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &8142868480245241765
 GameObject:
   m_ObjectHideFlags: 0
@@ -5944,6 +5978,7 @@ MonoBehaviour:
   point: {x: 3, y: 0}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &8788111390881674175
 GameObject:
   m_ObjectHideFlags: 0
@@ -6035,6 +6070,7 @@ MonoBehaviour:
   point: {x: 1, y: 2}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &9051130949144905313
 GameObject:
   m_ObjectHideFlags: 0
@@ -6260,6 +6296,7 @@ MonoBehaviour:
   point: {x: 2, y: 2}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1 &9219047659410746457
 GameObject:
   m_ObjectHideFlags: 0
@@ -6351,6 +6388,7 @@ MonoBehaviour:
   point: {x: 2, y: 3}
   unit: {fileID: 0}
   crystal: {fileID: 0}
+  portal: {fileID: 0}
 --- !u!1001 &5373375728325880796
 PrefabInstance:
   m_ObjectHideFlags: 0
