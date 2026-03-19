@@ -21,14 +21,6 @@ public class Portal : MonoBehaviour
     public List<Vector2>pathPoints;
     [SerializeField]private TextMeshProUGUI enemyCountText;
 
-    void Awake()
-    {
-        for (int i = 0; i < enemyPath.positionCount; i++)
-        {
-            pathPoints.Add(enemyPath.GetPosition(i));
-        }
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -44,10 +36,10 @@ public class Portal : MonoBehaviour
         
 
         //path setup TODO: Why can't I just get a reference to the line renderer's vertices directly?
-        /*for (int i = 0; i < enemyPath.positionCount; i++)
+        for (int i = 0; i < enemyPath.positionCount; i++)
         {
             pathPoints.Add(enemyPath.GetPosition(i));
-        }*/
+        }
         Logger.DebugLogFormat("Vertex count in portal {0}: {1}", gameObject.name, pathPoints.Count);
 
         //timer setup
@@ -92,4 +84,5 @@ public class Portal : MonoBehaviour
         enemyCount--;
         Logger.DebugLog("nextEnemy index: " + nextEnemy);
     }
+
 }
