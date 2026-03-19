@@ -83,12 +83,17 @@ public class LevelEditor : MonoBehaviour
             data.level = newLevel.level;
             data.starting_money = newLevel.startingMoney;
 
+            //player base data
+            if (newLevel.playerBase != null)
+                data.player_base_location = newLevel.playerBase.transform.position;
+
             //get portal data.
             data.portals = new List<PortalData>();
             foreach (Portal portal in newLevel.portals)
             {
                 PortalData newPortal = new PortalData()
                 {
+                    location = portal.transform.position,
                     enemy_type = portal.enemyType,
                     deploy_cooldown = portal.deployCooldown,
                     enemy_count = portal.enemyCount,
