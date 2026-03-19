@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour
     public bool enteringValueX, enteringValueY; //determines which axis value is being entered. X is always entered first.
     public List<Point> points;                //the locations on the map where all units are placed.
 
+    [Header("---Level File---")]
+    [SerializeField]private TextAsset levelFile;
+    LevelData levelData;
+
     [Header("---UI---")]
     public TextMeshProUGUI alertText;           //used to inform player of various things.
     //public Dialogue dialogueBox;
@@ -299,6 +303,8 @@ public class GameManager : MonoBehaviour
     void LoadLevel(int level)
     {
         //get level from JSON
+        levelData = JsonUtility.FromJson<LevelData>(levelFile.text);
+        Logger.DebugLog("Levels: " + levelData.portals.Count);
         //generate base
         //PlaceUnit(PlayerUnitType.Base, new Vector2(1, 3));
 
