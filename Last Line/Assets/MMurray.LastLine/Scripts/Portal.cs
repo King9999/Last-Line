@@ -20,7 +20,7 @@ public class Portal : MonoBehaviour
     [SerializeField]private GameObject unitIcon;    //appears above portal to show player which enemy is deployed.
     [Header("---Path---")]
     public LineRenderer enemyPath;
-    public List<Vector2>pathPoints;
+    public List<Vector3>pathPoints;
     [SerializeField]private TextMeshProUGUI enemyCountText;
 
     // Start is called before the first frame update
@@ -116,7 +116,7 @@ public class Portal : MonoBehaviour
 
     public void SetEnemyPath()
     {
-        pathPoints = new List<Vector2>();
+        pathPoints = new List<Vector3>();
         for (int i = 0; i < enemyPath.positionCount; i++)
         {
             pathPoints.Add(enemyPath.GetPosition(i));

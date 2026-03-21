@@ -51,7 +51,7 @@ namespace MMurray.LastLine
             public float deploy_cooldown;
             public float deploy_time;
             public float enemy_count;
-            public Vector2[] enemy_path_points;
+            public Vector3[] enemy_path_points;
         }
         
         public List<Level> levels;
@@ -120,7 +120,7 @@ namespace MMurray.LastLine
                         };
 
                         //get enemy path points
-                        newPortal.enemy_path_points = new Vector2[portal.enemyPath.positionCount];
+                        newPortal.enemy_path_points = new Vector3[portal.enemyPath.positionCount];
                         for (int i = 0; i < portal.enemyPath.positionCount; i++)
                         {
                             //portal.pathPoints.Add(portal.enemyPath.GetPosition(i));

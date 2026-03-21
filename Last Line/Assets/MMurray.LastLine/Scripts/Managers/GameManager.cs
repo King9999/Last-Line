@@ -348,10 +348,17 @@ public class GameManager : MonoBehaviour
             portal.transform.position = new Vector3(portal.transform.position.x, portal.transform.position.y, 0);
 
             SetPointRef(portal, portal.pointAxes);
-            activePortals.Add(portal);
             //set enemy type and count
+            portal.enemyType = portalData.enemy_type;
 
             //set enemy path
+            portal.enemyPath.positionCount = portalData.enemy_path_points.Length;
+            portal.enemyPath.SetPositions(portalData.enemy_path_points);
+            portal.SetEnemyPath();
+            //portal.enemyPath.SetPosition(0, portalData.enemy_path_points[0]);
+
+            activePortals.Add(portal);
+
         }
 
         //TODO: Set up crystal threshold and crystal value from JSON

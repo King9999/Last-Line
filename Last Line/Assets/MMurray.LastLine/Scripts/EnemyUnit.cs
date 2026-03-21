@@ -16,7 +16,7 @@ namespace MMurray.LastLine
         protected bool isInvul;
         public Portal portal;               //reference to the portal the enemy belongs to.
         [Header("---Pathing---")]
-        public List<Vector2> path;          //the path the enemy follows towards the player's base.
+        public List<Vector3> path;          //the path the enemy follows towards the player's base.
         [SerializeField]private int pathIndex;
         public Vector2 currentPoint, nextPoint;
 
@@ -91,7 +91,7 @@ namespace MMurray.LastLine
             }
         }
 
-        public void SetPath(List<Vector2> newPath)
+        public void SetPath(List<Vector3> newPath)
         {
             path = newPath;
 

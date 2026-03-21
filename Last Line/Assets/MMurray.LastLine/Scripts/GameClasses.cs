@@ -28,6 +28,6 @@ namespace MMurray.LastLine
         public float deploy_cooldown;
         public float deploy_time;
         public float enemy_count;
-        public List<Vector2> enemy_path_points;
+        public Vector3[] enemy_path_points;
     }
 }
