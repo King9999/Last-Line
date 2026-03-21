@@ -10,7 +10,7 @@ namespace MMurray.LastLine
     {
         public int level, starting_money, crystal_threshold, crystal_value;
         public List<PortalData> portals;
-        public Vector2 player_base_location;
+        public Vector2 player_base_position, base_point_axes;
     }
 
     [Serializable]

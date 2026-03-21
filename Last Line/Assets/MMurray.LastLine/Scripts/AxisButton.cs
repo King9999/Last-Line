@@ -84,12 +84,12 @@ public class AxisButton : MonoBehaviour
             int i = 0;
             while (!pointFound && i < gm.points.Count)
             {
-                if (gm.points[i].point == gm.playerCoordinates)
+                if (gm.points[i].pointAxes == gm.playerCoordinates)
                 {
                     pointFound = true;
                     gm.PlaceUnit(gm.playerUnitType, gm.points[i]);
                     gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
-                    Logger.DebugLogFormat("Player entered {0}", gm.points[i].point);
+                    Logger.DebugLogFormat("Player entered {0}", gm.points[i].pointAxes);
                 }
                 else
                 {

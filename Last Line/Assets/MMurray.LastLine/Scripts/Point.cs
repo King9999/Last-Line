@@ -8,7 +8,7 @@ namespace MMurray.LastLine
 {
     public class Point : MonoBehaviour
     {
-        public Vector2 point;
+        public Vector2 pointAxes;
         public Unit unit;           //reference to a unit that's at this point.
         public Crystal crystal;
         public Portal portal;

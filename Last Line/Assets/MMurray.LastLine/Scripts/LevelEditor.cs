@@ -27,7 +27,7 @@ namespace MMurray.LastLine
             public int level, starting_money, crystal_threshold, crystal_value;
             public List<PortalData> portals;
             //public List<EnemyPath> enemy_path;  //for each portal, one of these must be added.
-            public Vector2 player_base_location;
+            public Vector2 player_base_position, base_point_axes;
         }
 
         [Serializable]
@@ -51,7 +51,7 @@ namespace MMurray.LastLine
             public float deploy_cooldown;
             public float deploy_time;
             public float enemy_count;
-            public List<Vector2> enemy_path_points;
+            public Vector2[] enemy_path_points;
         }
         
         public List<Level> levels;
@@ -99,7 +99,10 @@ namespace MMurray.LastLine
 
                     //player base data
                     if (newLevel.playerBase != null)
-                        data.player_base_location = newLevel.playerBase.transform.position;
+                    {
+                        data.player_base_position = newLevel.playerBase.point.transform.position;
+                        data.base_point_axes = newLevel.playerBase.point.pointAxes;
+                    }
 
                     //get portal data.
                     data.portals = new List<PortalData>();
@@ -108,7 +111,7 @@ namespace MMurray.LastLine
                         PortalData newPortal = new PortalData()
                         {
                             //save the point's actual position
-                            point_axes = portal.point.point,
+                            point_axes = portal.point.pointAxes,
                             point_position = portal.point.transform.position,
                             enemy_type = portal.enemyType,
                             deploy_cooldown = portal.deployCooldown,
@@ -117,11 +120,12 @@ namespace MMurray.LastLine
                         };
 
                         //get enemy path points
-                        newPortal.enemy_path_points = new List<Vector2>();
+                        newPortal.enemy_path_points = new Vector2[portal.enemyPath.positionCount];
                         for (int i = 0; i < portal.enemyPath.positionCount; i++)
                         {
                             //portal.pathPoints.Add(portal.enemyPath.GetPosition(i));
-                            newPortal.enemy_path_points.Add(portal.enemyPath.GetPosition(i));
+                            //newPortal.enemy_path_points.Add(portal.enemyPath.GetPosition(i));
+                            newPortal.enemy_path_points[i] = portal.enemyPath.GetPosition(i);
                         }
                         data.portals.Add(newPortal);
                     }

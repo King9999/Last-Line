@@ -347,7 +347,7 @@ public class GameManager : MonoBehaviour
             //have to set portal's Z to 0 since it takes the camera's Z value as its own, which is -10
             portal.transform.position = new Vector3(portal.transform.position.x, portal.transform.position.y, 0);
 
-            PlacePortal(portal, portal.pointAxes);
+            SetPointRef(portal, portal.pointAxes);
             activePortals.Add(portal);
             //set enemy type and count
 
@@ -504,7 +504,7 @@ public class GameManager : MonoBehaviour
         int i = 0;
         while(!pointFound && i < points.Count)
         {
-            if (point == points[i].point)
+            if (point == points[i].pointAxes)
             {
                 pointFound = true;
             }
@@ -545,13 +545,18 @@ public class GameManager : MonoBehaviour
         activePlayerUnits.Add(newUnit);
     }
 
-    void PlacePortal(Portal portal, Vector2 pointAxes)
+    /// <summary>
+    /// Sets portal's reference to a point using the given axes
+    /// </summary>
+    /// <param name="portal"></param>
+    /// <param name="pointAxes"></param>
+    void SetPointRef(Portal portal, Vector2 pointAxes)
     {
         bool pointFound = false;
         int i = 0;
         while(!pointFound && i < points.Count)
         {
-            if (pointAxes == points[i].point)
+            if (pointAxes == points[i].pointAxes)
             {
                 pointFound = true;
             }
@@ -567,6 +572,12 @@ public class GameManager : MonoBehaviour
         points[i].portal = portal;
         portal.point = points[i];
         //portal.transform.position = points[i].WorldPoint();
+
+        //portal.pointAxes = portalData.point_axes;
+        //portal.transform.position = Camera.main.ScreenToWorldPoint(portalData.point_position);
+
+        //have to set portal's Z to 0 since it takes the camera's Z value as its own, which is -10
+        //portal.transform.position = new Vector3(portal.transform.position.x, portal.transform.position.y, 0);
     }
 
     /// <summary>
@@ -585,7 +596,7 @@ public class GameManager : MonoBehaviour
                 deadPlayerUnits.Add(unit);
                 activePlayerUnits.Remove(unit);
                 unit.gameObject.SetActive(false);
-                Logger.DebugLogFormat("Removing {0} from grid at point {1}", unit.name, points[i].point);
+                Logger.DebugLogFormat("Removing {0} from grid at point {1}", unit.name, points[i].pointAxes);
                 points[i].unit = null;
             }
             else
