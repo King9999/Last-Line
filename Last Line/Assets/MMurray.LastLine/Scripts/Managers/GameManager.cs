@@ -341,8 +341,13 @@ public class GameManager : MonoBehaviour
             PortalData portalData = levelData.levels[level].portals[i];
 
             Portal portal = Instantiate(portalPrefab);
-            portal.pointLocation = portalData.point_location;
-            PlacePortal(portal, portal.pointLocation);
+            portal.pointAxes = portalData.point_axes;
+            portal.transform.position = Camera.main.ScreenToWorldPoint(portalData.point_position);
+
+            //have to set portal's Z to 0 since it takes the camera's Z value as its own, which is -10
+            portal.transform.position = new Vector3(portal.transform.position.x, portal.transform.position.y, 0);
+
+            PlacePortal(portal, portal.pointAxes);
             activePortals.Add(portal);
             //set enemy type and count
 
@@ -540,13 +545,13 @@ public class GameManager : MonoBehaviour
         activePlayerUnits.Add(newUnit);
     }
 
-    void PlacePortal(Portal portal, Vector2 pointLocation)
+    void PlacePortal(Portal portal, Vector2 pointAxes)
     {
         bool pointFound = false;
         int i = 0;
         while(!pointFound && i < points.Count)
         {
-            if (pointLocation == points[i].point)
+            if (pointAxes == points[i].point)
             {
                 pointFound = true;
             }
@@ -560,7 +565,8 @@ public class GameManager : MonoBehaviour
             return;
 
         points[i].portal = portal;
-        portal.transform.position = points[i].WorldPoint();
+        portal.point = points[i];
+        //portal.transform.position = points[i].WorldPoint();
     }
 
     /// <summary>

@@ -45,7 +45,8 @@ namespace MMurray.LastLine
         [Serializable]
         public class PortalData
         {
-            public Vector2 point_location;        //the location on the Point where the portal will be placed
+            public Vector2 point_axes;        //the location on the Point where the portal will be placed
+            public Vector2 point_position;    //the point's actual transform position.
             public Portal.EnemyType enemy_type;
             public float deploy_cooldown;
             public float deploy_time;
@@ -106,7 +107,9 @@ namespace MMurray.LastLine
                     {
                         PortalData newPortal = new PortalData()
                         {
-                            point_location = portal.point.point,
+                            //save the point's actual position
+                            point_axes = portal.point.point,
+                            point_position = portal.point.transform.position,
                             enemy_type = portal.enemyType,
                             deploy_cooldown = portal.deployCooldown,
                             enemy_count = portal.enemyCount,

@@ -1,0 +1,7 @@
+WHAT TO DO FOR FIXING PORTAL POSITIONING
+
+-Save the actual Point's position to the portal data.
+-When instantiating the portal, assign saved position to the new object.
+-Search the points for the Point object to reference using the Point's coordinates.
+
+Basically, I'm doing the reverse of what I was doing before. Doing this should hopefully solve the problem.

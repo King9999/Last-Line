@@ -22,7 +22,8 @@ namespace MMurray.LastLine
     [Serializable]
     public class PortalData
     {
-        public Vector2 point_location;
+        public Vector2 point_axes;
+        public Vector2 point_position;
         public Portal.EnemyType enemy_type;
         public float deploy_cooldown;
         public float deploy_time;

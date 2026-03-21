@@ -1214,7 +1214,8 @@ MonoBehaviour:
     crystal_threshold: 0
     crystal_value: 0
     portals:
-    - point_location: {x: 0, y: 0}
+    - point_axes: {x: 5, y: 2}
+      point_position: {x: 586.3, y: 265.9}
       enemy_type: 0
       deploy_cooldown: 1.2
       deploy_time: 10
@@ -1232,7 +1233,8 @@ MonoBehaviour:
     crystal_threshold: 0
     crystal_value: 0
     portals:
-    - point_location: {x: 0, y: 0}
+    - point_axes: {x: 1, y: 1}
+      point_position: {x: 195.26001, y: 179.9}
       enemy_type: 0
       deploy_cooldown: 1.2
       deploy_time: 10

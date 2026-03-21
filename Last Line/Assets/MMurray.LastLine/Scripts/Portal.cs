@@ -7,7 +7,7 @@ using TMPro;
 
 public class Portal : MonoBehaviour
 {
-    public Vector2 pointLocation;       //the vector from the Point script where the portal is located.
+    public Vector2 pointAxes;       //the vector from the Point script where the portal is located.
     public Point point;                 //used by editor to obtain point vector.
     public enum EnemyType { Scout, Striker, Dozer, Juggernaut }
     public EnemyType enemyType;         //used to determine which units to instantiate.
