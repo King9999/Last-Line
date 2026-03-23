@@ -50,7 +50,7 @@ namespace MMurray.LastLine
             public Portal.EnemyType enemy_type;
             public float deploy_cooldown;
             public float deploy_time;
-            public float enemy_count;
+            public int enemy_count;
             public Vector3[] enemy_path_points;
         }
         

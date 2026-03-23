@@ -4,6 +4,7 @@ using UnityEngine;
 using MMurray.GenericCode;
 using MMurray.LastLine;
 using TMPro;
+using System;
 
 public class Portal : MonoBehaviour
 {
@@ -50,11 +51,15 @@ public class Portal : MonoBehaviour
         timer.StartTimer();*/
     }
 
-    /*****USE THIS TO SETUP PORTAL UPON INSTANTIATION INSTEAD OF THE START METHOD******/
+    /*****USE THIS TO SETUP PORTAL UPON INSTANTIATION INSTEAD OF THE START METHOD*****
+    Sets the timer's position and sets up enemy path points, as well as the enemy icon */
     public void SetupPortal()
     {
         nextEnemy = 0;
         currentDeployTime = 0;
+
+        //enemy setup
+
 
         //icon setup
         SpriteRenderer renderer = unitIcon.GetComponentInChildren<SpriteRenderer>();
@@ -122,5 +127,6 @@ public class Portal : MonoBehaviour
             pathPoints.Add(enemyPath.GetPosition(i));
         }
     }
+
 
 }

@@ -7,6 +7,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using UnityEditor;
 
 
 public class GameManager : MonoBehaviour
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     [Header("---Containers---")]
     [SerializeField]private GameObject playerUnitContainer;      //all instantiated units are placed here
+    //[SerializeField]private GameObject enemyUnitContainer;      //all instantiated units are placed here
     [SerializeField]private GameObject axisContainerX;
     [SerializeField]private GameObject axisContainerY;
     [SerializeField]private GameObject moneyTextContainer;
@@ -346,17 +348,48 @@ public class GameManager : MonoBehaviour
 
             //have to set portal's Z to 0 since it takes the camera's Z value as its own, which is -10
             portal.transform.position = new Vector3(portal.transform.position.x, portal.transform.position.y, 0);
-
             SetPointRef(portal, portal.pointAxes);
+
             //set enemy type and count
             portal.enemyType = portalData.enemy_type;
+            portal.enemyCount = portalData.enemy_count;
+
+            /******Enemy setup*****/
+            EnemyUnit unit = null;
+            switch(portal.enemyType)
+            {
+                case Portal.EnemyType.Scout:
+                    //rename portal
+                    portal.name = "Portal - Scout";
+                    EnemyUnit_Scout scout = unit as EnemyUnit_Scout;
+                    InstantiateEnemyUnit(scout, portal);
+                    break;
+
+                case Portal.EnemyType.Striker:
+                    portal.name = "Portal - Striker";
+                    break;
+                
+                case Portal.EnemyType.Dozer:
+                    portal.name = "Portal - Dozer";
+                    break;
+
+                case Portal.EnemyType.Juggernaut:
+                    portal.name = "Portal - Juggernaut";
+                    break;
+            }
+           
 
             //set enemy path
             portal.enemyPath.positionCount = portalData.enemy_path_points.Length;
             portal.enemyPath.SetPositions(portalData.enemy_path_points);
-            portal.SetEnemyPath();
+            //portal.SetEnemyPath();
             //portal.enemyPath.SetPosition(0, portalData.enemy_path_points[0]);
 
+            //set timer and cooldown
+            portal.timer.SetTimer(portalData.deploy_time);
+            portal.deployCooldown = portalData.deploy_cooldown;
+
+            portal.SetupPortal();       //important to call this
             activePortals.Add(portal);
 
         }
@@ -365,6 +398,8 @@ public class GameManager : MonoBehaviour
         //crystalThreshold = 10;
         //crystal.SetMoneyValue(100);
     }
+
+    #region Unit/Portal Management
 
     /// <summary>
     /// Instantiates and places a player unit at the specified location.
@@ -588,6 +623,92 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Instantiates enemy unit to a given portal. Instantiate is skipped if an enemy unit
+    /// exists in the graveyard.
+    /// </summary>
+    /// <param name="enemyType">The type of enemy to instantiate.</param>
+    /// <param name="portal">The portal to where the enemy will be assigned.</param>
+    void InstantiateEnemyUnit(EnemyUnit enemy, Portal portal)
+    {
+        if (portal == null)
+        {
+            Logger.DebugLogWarning("null portal!");
+            return;
+        }
+
+        EnemyUnit unit = null;
+        for (int i = 0; i < portal.enemyCount; i++)
+        {
+            if (deadEnemyUnits.Contains(enemy))
+            {
+                //remove unit from graveyard
+                enemy.GetUnitData(enemy.unitData);
+                enemy.portal = portal;
+                portal.enemyUnits.Add(enemy);
+                deadEnemyUnits.Remove(enemy);
+            }
+            else
+            {
+                //get the enemy type and instantiate correct enemy
+                switch(portal.enemyType)
+                {
+                    case Portal.EnemyType.Scout:
+                        unit = Instantiate(scoutPrefab, portal.transform);
+                        break;
+
+                    case Portal.EnemyType.Striker:
+                        unit = Instantiate(strikerPrefab, portal.transform);
+                        break;
+                    
+                    case Portal.EnemyType.Dozer:
+                        unit = Instantiate(dozerPrefab, portal.transform);
+                        break;
+
+                    case Portal.EnemyType.Juggernaut:
+                        unit = Instantiate(juggPrefab, portal.transform);
+                        break; 
+                }
+                
+                unit.portal = portal;
+                unit.gameObject.SetActive(false);
+                portal.enemyUnits.Add(unit);
+            }
+        }
+        /*switch(enemyType)
+        {
+            case Portal.EnemyType.Scout:
+                //rename portal
+                portal.name = "Portal - Scout";
+                EnemyUnit_Scout scout = unit as EnemyUnit_Scout;
+                if (deadEnemyUnits.Contains(scout))
+                {
+                    //remove unit from graveyard
+                    scout.GetUnitData(scout.unitData);
+                    scout.portal = portal;
+                    activeEnemyUnits.Add(scout);
+                    deadEnemyUnits.Remove(scout);
+                }
+                else
+                {
+                    unit = Instantiate(scoutPrefab, portal.transform);
+                    unit.portal = portal;
+                    unit.gameObject.SetActive(false);
+                    activeEnemyUnits.Add(unit);
+                }
+                break;
+
+            case Portal.EnemyType.Striker:
+                break;
+            
+            case Portal.EnemyType.Dozer:
+                break;
+
+            case Portal.EnemyType.Juggernaut:
+                break;
+        }*/
+    }
+
+    /// <summary>
     /// Send player unit to graveyard and remove reference to unit on grid.
     /// </summary>
     /// <param name="unit">The unit to be removed.</param>
@@ -691,6 +812,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+    #endregion
 
     public void ScreenShake()
     {

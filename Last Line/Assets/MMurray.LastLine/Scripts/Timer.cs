@@ -23,7 +23,7 @@ namespace MMurray.GenericCode
             Seconds                 ///Displays only seconds.
         }
 
-        public TimeFormat timeFormat;
+        public TimeFormat timeFormat = TimeFormat.Seconds;
 
         [Header("---Timer UI---")]
         public TextMeshProUGUI timerUI;
