@@ -32,6 +32,7 @@ namespace MMurray.LastLine
             //healthBar.transform.position = Camera.main.WorldToScreenPoint(new Vector2(transform.position.x + 0.2f, 
                         //transform.position.y + 0.4f));
             healthBar.maxValue = maxHitPoints;
+            healthBar.gameObject.SetActive(false);
             //UpdateHealthBar(transform.position);
             //TODO: For some reason the player unit's health bar is not positioning correctly.
         }

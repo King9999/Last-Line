@@ -96,7 +96,17 @@ namespace MMurray.LastLine
                 GameManager gm = Singleton.instance.GameManager;
                 if (this is PlayerUnit)
                 {
-                    gm.RemovePlayerUnit(this as PlayerUnit);
+                    if (this is PlayerUnit_Base)
+                    {
+                         Logger.DebugLog("Base destroyed");
+                         gm.playerBase.gameObject.SetActive(false);
+                         //TODO: Freeze game and show base exploding
+                    }
+                    else
+                    {
+                        gm.RemovePlayerUnit(this as PlayerUnit);
+                    }
+
                 }
                 else
                 {

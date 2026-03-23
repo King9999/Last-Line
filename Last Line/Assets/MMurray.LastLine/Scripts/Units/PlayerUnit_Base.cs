@@ -16,7 +16,7 @@ public class PlayerUnit_Base : PlayerUnit
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         //don't want to check every frame if base is destroyed to help with performance.
         if (Time.time > timer + checkTime)
@@ -28,7 +28,7 @@ public class PlayerUnit_Base : PlayerUnit
                 Logger.DebugLog("Base destroyed");
             }
         }
-    }
+    }*/
 
     bool BaseDestroyed()
     {

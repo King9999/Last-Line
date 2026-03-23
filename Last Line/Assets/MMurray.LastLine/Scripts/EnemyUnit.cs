@@ -46,6 +46,7 @@ namespace MMurray.LastLine
 
             //health bar setup. Only visible when damaged.
             healthBar.maxValue = maxHitPoints;
+            healthBar.gameObject.SetActive(false);
             //SetHealth(maxHitPoints);
         }
 
@@ -135,24 +136,22 @@ namespace MMurray.LastLine
 
                 //unit.hitPoints -= collisionDamage;
                 unit.ReduceHitPoints(collisionDamage);
-                //unit.UpdateHealthBar(unit.transform.position);
                 Logger.DebugLog("Hit " + unit.name);
+                gm.RemoveEnemyUnit(this);
             }
             else if(unit is PlayerUnit_Bomb)//collision.TryGetComponent<PlayerUnit_Bomb>(out PlayerUnit_Bomb bomb))
             {
                 //enemy unit dies, but bomb is activated.
-                gm.RemoveEnemyUnit(this);
                 PlayerUnit_Bomb bomb = unit as PlayerUnit_Bomb;
                 bomb.ActivateBomb();
+                gm.RemoveEnemyUnit(this);
             }
             else //if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
             {
                 Logger.DebugLog("Destroyed Unit " + unit.name);
 
                 //both player unit and enemy unit die.
-                
                 gm.RemovePlayerUnit(unit);
-                //gm.deadPlayerUnits.Add(unit);
                 gm.RemoveEnemyUnit(this);
             }
         }

@@ -1264,18 +1264,42 @@ MonoBehaviour:
     - point_axes: {x: 5, y: 2}
       point_position: {x: 586.3, y: 265.9}
       enemy_type: 0
-      deploy_cooldown: 1.2
+      deploy_cooldown: 1.5
       deploy_time: 10
       enemy_count: 10
       enemy_path_points:
-      - {x: 0, y: 0}
-      - {x: -1, y: 0}
-      - {x: -3, y: 1}
-      - {x: -4, y: 1.3}
-      - {x: -5, y: 1.3}
-      - {x: -7, y: 1.3}
-    player_base_position: {x: 0, y: 0}
-    base_point_axes: {x: 0, y: 0}
+      - {x: 0, y: 0, z: 0}
+      - {x: -1, y: 0, z: 1}
+      - {x: -3, y: 1, z: 1}
+      - {x: -4, y: 1.3, z: 1}
+      - {x: -5, y: 1.3, z: 1}
+      - {x: -7, y: 1.3, z: 1}
+    player_base_position: {x: 195.26001, y: 351.9}
+    base_point_axes: {x: 1, y: 3}
+  - level: 1
+    starting_money: 50
+    crystal_threshold: 0
+    crystal_value: 0
+    portals:
+    - point_axes: {x: 1, y: 1}
+      point_position: {x: 195.26001, y: 179.9}
+      enemy_type: 0
+      deploy_cooldown: 1.2
+      deploy_time: 10
+      enemy_count: 15
+      enemy_path_points:
+      - {x: 0, y: 0, z: 0}
+      - {x: 2, y: 0, z: 1}
+      - {x: 2.5, y: 1, z: 1}
+      - {x: 2.5, y: 3, z: 1}
+      - {x: 3, y: 3, z: 1}
+      - {x: 4, y: 3, z: 1}
+      - {x: 4, y: 1, z: 1}
+      - {x: 7, y: 1, z: 1}
+      - {x: 7, y: 4.5, z: 1}
+      - {x: 5.5, y: 4.5, z: 1}
+    player_base_position: {x: 488.54, y: 437.9}
+    base_point_axes: {x: 4, y: 4}
   levelFile: {fileID: 4900000, guid: 0f65ce2e85a53a2e78ecc74fee2c465e, type: 3}
 --- !u!4 &327248651
 Transform:
@@ -4079,7 +4103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: pathPoints.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8356405512469431045, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: m_Enabled
@@ -4515,11 +4539,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: deployCooldown
-      value: 1.2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: pathPoints.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8356405512469431045, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: m_Enabled

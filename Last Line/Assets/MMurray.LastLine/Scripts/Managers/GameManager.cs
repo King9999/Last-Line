@@ -339,6 +339,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < levelData.levels[level].portals.Count; i++)
         {
+            /******PORTAL SETUP*******/
             //set portal's point location
             PortalData portalData = levelData.levels[level].portals[i];
 
@@ -393,6 +394,14 @@ public class GameManager : MonoBehaviour
             activePortals.Add(portal);
 
         }
+
+        /******BASE SETUP******/
+        playerBase.transform.position = Camera.main.ScreenToWorldPoint(levelData.levels[level].player_base_position);
+        playerBase.transform.position = new Vector3(playerBase.transform.position.x, playerBase.transform.position.y, 0);
+        SetPointRef(playerBase, levelData.levels[level].base_point_axes);
+
+
+        /*******CRYSTAL & STARTING MONEY SETUP******/
 
         //TODO: Set up crystal threshold and crystal value from JSON
         //crystalThreshold = 10;
@@ -622,6 +631,28 @@ public class GameManager : MonoBehaviour
         //portal.transform.position = new Vector3(portal.transform.position.x, portal.transform.position.y, 0);
     }
 
+    void SetPointRef(PlayerUnit_Base playerBase, Vector2 pointAxes)
+    {
+        bool pointFound = false;
+        int i = 0;
+        while(!pointFound && i < points.Count)
+        {
+            if (pointAxes == points[i].pointAxes)
+            {
+                pointFound = true;
+            }
+            else
+            {
+                i++;
+            }
+        }
+
+        if (!pointFound)
+            return;
+
+        playerBase.point = points[i];
+    }
+
     /// <summary>
     /// Instantiates enemy unit to a given portal. Instantiate is skipped if an enemy unit
     /// exists in the graveyard.
@@ -670,6 +701,7 @@ public class GameManager : MonoBehaviour
                 }
                 
                 unit.portal = portal;
+                unit.transform.position = portal.transform.position;
                 unit.gameObject.SetActive(false);
                 portal.enemyUnits.Add(unit);
             }
