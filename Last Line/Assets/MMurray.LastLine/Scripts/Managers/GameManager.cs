@@ -142,6 +142,8 @@ public class GameManager : MonoBehaviour
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
         SetGameState(gameState = GameState.DialogueStartOfLevel);
+        ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
+        am.arrowGuides[0].arrowList[0].PointArrow(am.arrowGuides[0].arrowList[0].targetedObject, Vector2.right);
 
         //TODO: ATTEMPTED TO ROTATE LASER AND HAVE IT TRAVEL IN THAT DIRECTION. ALMOST WORKING!
         /*testLaser = Instantiate(laserPrefab);
