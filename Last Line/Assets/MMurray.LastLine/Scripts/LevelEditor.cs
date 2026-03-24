@@ -19,16 +19,23 @@ namespace MMurray.LastLine
             public int level, startingMoney, crystalThreshold, crystalValue;
             public List<Portal> portals;
             public PlayerUnit_Base playerBase;
+
+            //bools
+            public bool[] toggleUnit = new bool[4];
+            //public bool toggleStraightShooter, toggleVerticalShooter, toggleTrackingBeam, toggleBomb;
         }
 
-        [Serializable]
+        /*[Serializable]
         public class LevelData          //to be written to JSON
         {
             public int level, starting_money, crystal_threshold, crystal_value;
             public List<PortalData> portals;
             //public List<EnemyPath> enemy_path;  //for each portal, one of these must be added.
             public Vector2 player_base_position, base_point_axes;
-        }
+
+            //bools for selectable units
+
+        }*/
 
         [Serializable]
         public class LevelDataArray
@@ -36,7 +43,7 @@ namespace MMurray.LastLine
             public LevelData[] levels;
         }
 
-        [Serializable]
+        /*[Serializable]
         public class EnemyPath
         {
             public List<Vector2> path_points;
@@ -52,7 +59,7 @@ namespace MMurray.LastLine
             public float deploy_time;
             public int enemy_count;
             public Vector3[] enemy_path_points;
-        }
+        }*/
         
         public List<Level> levels;
         public List<LevelData> levelDataList;
@@ -96,6 +103,16 @@ namespace MMurray.LastLine
                     data.starting_money = newLevel.startingMoney;
                     data.crystal_threshold = newLevel.crystalThreshold;
                     data.crystal_value = newLevel.crystalValue;
+                    data.toggle_unit = new bool[newLevel.toggleUnit.Length];
+                    for (int i = 0; i < data.toggle_unit.Length; i++)
+                    {
+                        data.toggle_unit[i] = newLevel.toggleUnit[i];
+                    }
+
+                    /*data.toggle_straight_shooter = newLevel.toggleStraightShooter;
+                    data.toggle_vertical_shooter = newLevel.toggleVerticalShooter;
+                    data.toggle_tracking_beam = newLevel.toggleTrackingBeam;
+                    data.toggle_bomb = newLevel.toggleBomb;*/
 
                     //player base data
                     if (newLevel.playerBase != null)

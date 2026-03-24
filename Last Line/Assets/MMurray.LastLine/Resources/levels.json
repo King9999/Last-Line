@@ -60,7 +60,13 @@
             "base_point_axes": {
                 "x": 1.0,
                 "y": 3.0
-            }
+            },
+            "toggle_unit": [
+                true,
+                false,
+                false,
+                false
+            ]
         },
         {
             "level": 1,
@@ -142,7 +148,13 @@
             "base_point_axes": {
                 "x": 4.0,
                 "y": 4.0
-            }
+            },
+            "toggle_unit": [
+                true,
+                false,
+                false,
+                false
+            ]
         }
     ]
 }

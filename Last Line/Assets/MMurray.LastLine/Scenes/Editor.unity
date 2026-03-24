@@ -1248,6 +1248,7 @@ MonoBehaviour:
     portals:
     - {fileID: 1391062258}
     playerBase: {fileID: 1540791473}
+    toggleUnit: 01000000
   - level: 1
     startingMoney: 50
     crystalThreshold: 0
@@ -1255,6 +1256,7 @@ MonoBehaviour:
     portals:
     - {fileID: 1209439659}
     playerBase: {fileID: 569344232}
+    toggleUnit: 01000000
   levelDataList:
   - level: 0
     starting_money: 0
@@ -1276,6 +1278,7 @@ MonoBehaviour:
       - {x: -7, y: 1.3, z: 1}
     player_base_position: {x: 195.26001, y: 351.9}
     base_point_axes: {x: 1, y: 3}
+    toggle_unit: 01000000
   - level: 1
     starting_money: 50
     crystal_threshold: 0
@@ -1300,6 +1303,7 @@ MonoBehaviour:
       - {x: 5.5, y: 4.5, z: 1}
     player_base_position: {x: 488.54, y: 437.9}
     base_point_axes: {x: 4, y: 4}
+    toggle_unit: 01000000
   levelFile: {fileID: 4900000, guid: 0f65ce2e85a53a2e78ecc74fee2c465e, type: 3}
 --- !u!4 &327248651
 Transform:

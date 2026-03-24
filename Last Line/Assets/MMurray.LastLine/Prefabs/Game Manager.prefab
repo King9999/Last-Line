@@ -5161,6 +5161,7 @@ MonoBehaviour:
   - {fileID: 7681389007135955413}
   - {fileID: 290702801226473670}
   - {fileID: 6290176182684312933}
+  currentLevel: 0
   levelFile: {fileID: 4900000, guid: 0f65ce2e85a53a2e78ecc74fee2c465e, type: 3}
   alertText: {fileID: 4451147207076619933}
   dialogueManager: {fileID: 8455551735379712664}
@@ -6440,6 +6441,18 @@ PrefabInstance:
     - target: {fileID: 3801057080204765330, guid: 1c6f59d1fa24b4b8b9e0ef92f4479892, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675415738705811112, guid: 1c6f59d1fa24b4b8b9e0ef92f4479892, type: 3}
+      propertyPath: textSpeed
+      value: 0.064
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675415738705811112, guid: 1c6f59d1fa24b4b8b9e0ef92f4479892, type: 3}
+      propertyPath: dialogueKeyList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675415738705811112, guid: 1c6f59d1fa24b4b8b9e0ef92f4479892, type: 3}
+      propertyPath: dialogueKeyList.Array.data[1]
+      value: system_intro1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

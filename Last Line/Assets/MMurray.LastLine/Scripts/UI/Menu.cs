@@ -18,7 +18,7 @@ public class Menu : MonoBehaviour
     [SerializeField]private TextMeshProUGUI moneyValue;
 
     [Header("---Unit Buttons---")]
-    [SerializeField]private List<UnitButton> unitButtons;
+    public List<UnitButton> unitButtons;
     public UnitButton selectedButton;       //the button the mouse is hovering on.
 
     [Header("---Build Queue Images---")]
@@ -30,15 +30,24 @@ public class Menu : MonoBehaviour
     [SerializeField]private Button musicButton;
     [SerializeField]private Button exitGameButton;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Singleton.instance.Menu = this;
         //GameManager gm = Singleton.instance.GameManager;
+        /*unitLabel.text = GetText("unitLabel");
+        moneyLabel.text = GetText("moneyLabel");
+        systemLabel.text = GetText("systemLabel");
+        buildQueueLabel.text = GetText("buildQueueLabel");*/
+        //moneyValue.text = gm.money + " CR";
+       
+    }
+
+    void Start()
+    {
         unitLabel.text = GetText("unitLabel");
         moneyLabel.text = GetText("moneyLabel");
         systemLabel.text = GetText("systemLabel");
         buildQueueLabel.text = GetText("buildQueueLabel");
-        //moneyValue.text = gm.money + " CR";
         UpdateMoneyText();
     }
 

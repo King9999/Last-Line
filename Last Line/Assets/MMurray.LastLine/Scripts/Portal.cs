@@ -51,6 +51,13 @@ public class Portal : MonoBehaviour
         timer.StartTimer();*/
     }
 
+    void OnEnable()
+    {
+        enemyUnits.Clear();
+        pathPoints.Clear();
+        point = null;
+    }
+
     /*****USE THIS TO SETUP PORTAL UPON INSTANTIATION INSTEAD OF THE START METHOD*****
     Sets the timer's position and sets up enemy path points, as well as the enemy icon */
     public void SetupPortal()

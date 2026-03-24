@@ -15,6 +15,7 @@ namespace MMurray.LastLine
         {
             GameManager gm = Singleton.instance.GameManager;
             //data.test_unit_pos = gm.testUnit.transform.position;
+            data.level = gm.currentLevel;
 
             LOLSDK.Instance.SaveState(data);
         }
@@ -23,6 +24,7 @@ namespace MMurray.LastLine
         {
             GameManager gm = Singleton.instance.GameManager;
             gm.testUnit.transform.position = data.test_unit_pos;
+            gm.currentLevel = data.level;
         }
 
         //This LoL code is used to check for an existing save state when the game runs.

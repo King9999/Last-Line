@@ -11,6 +11,14 @@ namespace MMurray.LastLine
         public int level, starting_money, crystal_threshold, crystal_value;
         public List<PortalData> portals;
         public Vector2 player_base_position, base_point_axes;
+
+        //bools for selectable units
+        public bool[] toggle_unit;
+        public const int STRAIGHT_SHOOTER = 0;
+        public const int VERTICAL_SHOOTER = 1;
+        public const int TRACKING_BEAM = 2;
+        public const int BOMB = 3;
+        //public bool toggle_straight_shooter, toggle_vertical_shooter, toggle_tracking_beam, toggle_bomb;
     }
 
     [Serializable]

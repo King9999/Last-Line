@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public Vector2 playerCoordinates;                 //the coordinates manually entered by player
     public bool enteringValueX, enteringValueY; //determines which axis value is being entered. X is always entered first.
     public List<Point> points;                //the locations on the map where all units are placed.
+    public int currentLevel;
 
     [Header("---Level File---")]
     [SerializeField]private TextAsset levelFile;
@@ -129,7 +130,6 @@ public class GameManager : MonoBehaviour
         //UI setup
         alertText.text = "";
 
-        LoadLevel(0);
         //load save state
         Singleton s = Singleton.instance;
         if (s.saveStateFound)
@@ -137,9 +137,11 @@ public class GameManager : MonoBehaviour
             s.saveState.LoadState(s.saveState.ReadState);
             //s.saveState.ReadState(s.gameData);
         }
+        LoadLevel(currentLevel);
+
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
-        //SetGameState(gameState = GameState.DialogueStartOfLevel);
+        SetGameState(gameState = GameState.DialogueStartOfLevel);
 
         //TODO: ATTEMPTED TO ROTATE LASER AND HAVE IT TRAVEL IN THAT DIRECTION. ALMOST WORKING!
         /*testLaser = Instantiate(laserPrefab);
@@ -336,14 +338,25 @@ public class GameManager : MonoBehaviour
             enemyUnit.gameObject.SetActive(false);
             testPortal.enemyUnits.Add(enemyUnit);
         }*/
-
         for (int i = 0; i < levelData.levels[level].portals.Count; i++)
         {
             /******PORTAL SETUP*******/
             //set portal's point location
             PortalData portalData = levelData.levels[level].portals[i];
-
-            Portal portal = Instantiate(portalPrefab);
+            Portal portal = null;
+            //reuse existing portals if able
+            if (i < activePortals.Count)
+            {
+                //search for an inactive portal and activate it
+                portal = activePortals[i];
+                portal.gameObject.SetActive(true);
+            }
+            else
+            {
+                portal = Instantiate(portalPrefab);
+                //portal.SetupPortal();       //important to call this
+                activePortals.Add(portal);
+            }
             portal.pointAxes = portalData.point_axes;
             portal.transform.position = Camera.main.ScreenToWorldPoint(portalData.point_position);
 
@@ -354,6 +367,7 @@ public class GameManager : MonoBehaviour
             //set enemy type and count
             portal.enemyType = portalData.enemy_type;
             portal.enemyCount = portalData.enemy_count;
+            
 
             /******Enemy setup*****/
             EnemyUnit unit = null;
@@ -391,21 +405,29 @@ public class GameManager : MonoBehaviour
             portal.deployCooldown = portalData.deploy_cooldown;
 
             portal.SetupPortal();       //important to call this
-            activePortals.Add(portal);
+            //activePortals.Add(portal);
 
         }
 
         /******BASE SETUP******/
-        playerBase.transform.position = Camera.main.ScreenToWorldPoint(levelData.levels[level].player_base_position);
+        LevelData newLevel = levelData.levels[level];
+        playerBase.transform.position = Camera.main.ScreenToWorldPoint(newLevel.player_base_position);
         playerBase.transform.position = new Vector3(playerBase.transform.position.x, playerBase.transform.position.y, 0);
-        SetPointRef(playerBase, levelData.levels[level].base_point_axes);
+        SetPointRef(playerBase, newLevel.base_point_axes);
 
 
         /*******CRYSTAL & STARTING MONEY SETUP******/
+        crystalThreshold = newLevel.crystal_threshold;
+        crystal.SetMoneyValue(newLevel.crystal_value);
 
-        //TODO: Set up crystal threshold and crystal value from JSON
-        //crystalThreshold = 10;
-        //crystal.SetMoneyValue(100);
+        /******AVAILABLE PLAYER UNITS******/
+        //by default, all unit buttons are visible.
+        Menu menu = Singleton.instance.Menu;
+        for (int i = 0; i < newLevel.toggle_unit.Length; i++)
+        {
+            menu.unitButtons[i].gameObject.SetActive(newLevel.toggle_unit[i]);
+        }
+
     }
 
     #region Unit/Portal Management
@@ -839,6 +861,11 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.LevelComplete:
+                //deactivate current portals for use in the next level.
+                foreach (Portal portal in activePortals)
+                {
+                    portal.gameObject.SetActive(false);
+                }
                 //load next level
                 //if all levels complete, show congrats
                 break;
