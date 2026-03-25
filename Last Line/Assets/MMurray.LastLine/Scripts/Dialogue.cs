@@ -173,7 +173,15 @@ public class Dialogue : MonoBehaviour
 
             //TODO: Check game state and proceed depending on what it is.
             GameManager gm = Singleton.instance.GameManager;
-            gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
+            if (gm.inTutorial)
+            {
+                //gm.SetGameState(gm.tutorialState = GameManager.TutorialState.Normal);
+                //switch(gm)
+                gm.SetGameState(gm.tutorialState = gm.previousTutorialState);
+            }
+            else
+                gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
+            
         }
         else
         {

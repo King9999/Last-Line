@@ -83,10 +83,18 @@ public class Portal : MonoBehaviour
         }
         Logger.DebugLogFormat("Vertex count in portal {0}: {1}", gameObject.name, pathPoints.Count);
 
-        //timer setup
-        timer.timerUI.transform.position = Camera.main.WorldToScreenPoint(transform.position);
-        timer.timeFormat = Timer.TimeFormat.Seconds;
-        timer.StartTimer();
+        //timer setup. If we're in the tutorial stage, no timer is shown.
+        GameManager gm = Singleton.instance.GameManager;
+        if (!gm.inTutorial)
+        {
+            timer.timerUI.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+            timer.timeFormat = Timer.TimeFormat.Seconds;
+            timer.StartTimer();
+        }
+        else
+        {
+            timer.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame

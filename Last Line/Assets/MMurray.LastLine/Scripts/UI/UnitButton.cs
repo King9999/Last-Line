@@ -73,13 +73,21 @@ public class UnitButton : MonoBehaviour
 
         Logger.DebugLogFormat("Unit cost: {0}", data.unitCost);
 
-        if (data.unitCost > gm.money)
+        if (gm.inTutorial)
         {
-            gm.DisplayAlertWithDuration(GetText("notEnoughMoney"));
+            gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectX);
+            //gm.previousTutorialState = gm.tutorialState;    //save this state so we don't lose the unit that was selected after dialogue closes.
         }
         else
         {
-            gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectX);
+            if (data.unitCost > gm.money)
+            {
+                gm.DisplayAlertWithDuration(GetText("notEnoughMoney"));
+            }
+            else
+            {
+                gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectX);
+            }
         }
         //gm.alertText.text = "Select X value";
     }

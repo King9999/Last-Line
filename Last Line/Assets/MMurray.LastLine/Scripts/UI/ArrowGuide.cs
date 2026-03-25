@@ -18,14 +18,10 @@ public class ArrowGuide : MonoBehaviour
     void Start()
     {
         arrowSprite = GetComponent<Image>().sprite;
+        gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+  
     /// <summary>
     /// Places an arrow near the desired game object.
     /// </summary>
@@ -33,6 +29,7 @@ public class ArrowGuide : MonoBehaviour
     /// <param name="direction">The direction the arrow is facing. Alters the sprite. </param>
     public void PointArrow(GameObject obj, Vector2 direction)
     {
+        gameObject.SetActive(true);
         /*the offset value will change depending on whether the arrow is pointing to a UI object or a game object.
         also, depending on the arrow's direction, its position will always be adjusted to be a short distance away 
         from the pointed object.*/

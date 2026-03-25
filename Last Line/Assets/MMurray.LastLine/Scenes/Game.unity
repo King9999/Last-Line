@@ -825,6 +825,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6928356048390880331, guid: b47e43f9c5fcc7b499f41588af999de1, type: 3}
+      propertyPath: direction.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928356048390880331, guid: b47e43f9c5fcc7b499f41588af999de1, type: 3}
+      propertyPath: direction.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928356048390880331, guid: b47e43f9c5fcc7b499f41588af999de1, type: 3}
+      propertyPath: targetedObject
+      value: 
+      objectReference: {fileID: 6859608517825341615}
     - target: {fileID: 8766073145330905627, guid: b47e43f9c5fcc7b499f41588af999de1, type: 3}
       propertyPath: m_Name
       value: Arrow Guide Manager
@@ -2158,6 +2170,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6859608517825341615 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2365137175386679259, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
+  m_PrefabInstance: {fileID: 6859608517825341613}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

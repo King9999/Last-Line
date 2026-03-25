@@ -21,17 +21,24 @@ public class GameManager : MonoBehaviour
         UnitSelectX, UnitSelectY, CoordinatesSelect, ///player is entering coordinates
         DialogueStartOfLevel, DialogEndOfLevel,
         SelectingValueX, SelectingValueY,       //used when placing units on screen.
-        BaseDestroyed, LevelComplete
+        BaseDestroyed, LevelComplete,
+    }
 
+    public enum TutorialState
+    {
+        Normal, UnitSelectX, UnitSelectY, DialogueStartOfLevel, DialogEndOfLevel,
+        BaseDestroyed, LevelComplete,
     }
 
     public enum PlayerUnitType {NoUnitSelected, Base, StraightShooter, VerticalShooter, TrackingBeam, Bomb}
     public PlayerUnitType playerUnitType;
     public GameState gameState, previousState;  //previousState is used by menu window to revert to previous state after menu is closed.
+    public TutorialState tutorialState, previousTutorialState;
     public Vector2 playerCoordinates;                 //the coordinates manually entered by player
     public bool enteringValueX, enteringValueY; //determines which axis value is being entered. X is always entered first.
     public List<Point> points;                //the locations on the map where all units are placed.
     public int currentLevel;
+    public bool inTutorial;                 //when true, units can be created for free and the game doesn't run normally.
 
     [Header("---Level File---")]
     [SerializeField]private TextAsset levelFile;
@@ -138,7 +145,6 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
         LoadLevel(currentLevel);
-
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
         SetGameState(gameState = GameState.DialogueStartOfLevel);
@@ -297,6 +303,10 @@ public class GameManager : MonoBehaviour
 
     bool CancelButtonPressed()
     {
+        //cancel button is disabled in tutorial
+        if (inTutorial)
+            return false;
+
         return Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape);
     }
 
@@ -321,6 +331,10 @@ public class GameManager : MonoBehaviour
             Logger.DebugLogWarning("Invalid level!");
             return;
         }
+
+        //tutorial check
+        if (level == 0)
+           inTutorial = true;
 
         Logger.DebugLogFormat("Level Count: {0}", levelData.levels.Length);
         //Logger.DebugLog("Levels: " + levelData.levels[1].starting_money);
@@ -803,7 +817,9 @@ public class GameManager : MonoBehaviour
         Logger.DebugLogFormat("Removing {0}", unit.name);
         unit.gameObject.SetActive(false);
     }
+    #endregion
 
+    #region Game States
     public void SetGameState(GameState state)
     {
         //gameState = state;
@@ -823,6 +839,15 @@ public class GameManager : MonoBehaviour
                 DisplayAlert(GetText("unitSelect_x"));
                 //alertText.text = GetText("unitSelect_x");
                 axisContainerY.gameObject.SetActive(false);
+
+                //if we're in the tutorial, do some extra steps
+                if (inTutorial)
+                {
+                    //display dialogue
+                    previousState = state;  //need this so the unit selection isn't lost.
+                    string dKey = dialogueManager.dialogueList[1].dialogueKeyList[0];
+                    dialogueManager.dialogueList[1].ShowDialogue(dKey);
+                }
                 break;
             
             case GameState.UnitSelectY:
@@ -870,6 +895,78 @@ public class GameManager : MonoBehaviour
                 }
                 //load next level
                 //if all levels complete, show congrats
+                break;
+        }
+    }
+
+    public void SetGameState(TutorialState state)
+    {
+        Logger.DebugLogFormat("Tutorial State changed to {0}", tutorialState);
+        switch(state)
+        {
+            case TutorialState.Normal:
+                //alertText.text = "";
+                axisContainerY.gameObject.SetActive(true);
+                axisContainerX.gameObject.SetActive(true);
+                playerUnitType = PlayerUnitType.NoUnitSelected;
+                break;
+
+            case TutorialState.UnitSelectX:
+                //disable Y values, then disable X values.
+                DisplayAlert(GetText("unitSelect_x"));
+                axisContainerY.gameObject.SetActive(false);
+
+                //if we're in the tutorial, do some extra steps
+                if (inTutorial)
+                {
+                    //display dialogue
+                    previousTutorialState = state;  //need this so the unit selection isn't lost.
+                    string dKey = dialogueManager.dialogueList[1].dialogueKeyList[0];
+                    dialogueManager.dialogueList[1].ShowDialogue(dKey);
+                }
+                break;
+            
+            case TutorialState.UnitSelectY:
+                //disable Y values, then disable X values.
+                //TODO: in tutorial, make mention of origin and how it might be used
+                DisplayAlert(GetText("unitSelect_y"));
+                axisContainerY.gameObject.SetActive(true);
+                axisContainerX.gameObject.SetActive(false);
+                break;
+            
+
+            case TutorialState.DialogueStartOfLevel:
+                //find correct dialogue to display.
+                bool dialogueFound = false;
+                int j = 0;
+                while (!dialogueFound && j < dialogueManager.dialogueList.Count)
+                {
+                    if (dialogueManager.condTriggerList[triggerIndex].dialogueId == dialogueManager.dialogueList[j].dialogueId)
+                    {
+                        dialogueFound = true;
+                        string dKey = dialogueManager.dialogueList[j].dialogueKeyList[0];
+                        dialogueManager.dialogueList[j].ShowDialogue(dKey);
+                    }
+                    else
+                    {
+                        j++;
+                    }
+                }
+                break;
+            
+            case TutorialState.DialogEndOfLevel:
+                break;
+
+            case TutorialState.BaseDestroyed:
+                break;
+
+            case TutorialState.LevelComplete:
+                //deactivate current portals for use in the next level.
+                foreach (Portal portal in activePortals)
+                {
+                    portal.gameObject.SetActive(false);
+                }
+                //load next level
                 break;
         }
     }
