@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class ArrowGuide : MonoBehaviour
 {
     public GameObject targetedObject; //the object the arrow will point to.
+    public Vector2 direction;
     private Sprite arrowSprite;
     private Coroutine animateCoroutine = null;
 

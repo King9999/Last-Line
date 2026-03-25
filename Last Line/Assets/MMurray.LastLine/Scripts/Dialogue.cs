@@ -17,11 +17,15 @@ public class Dialogue : MonoBehaviour
     public List<string> dialogueKeyList;    //each dialogue can have multiple batches of text to display.
     int currentKey;                     //iterator for dialogueKeyList
     [SerializeField]private float promptTimer;           //how much time must pass before player is prompted to go to next dialogue.
+    private List<ArrowGuide> arrows;        //reference to any active arrow guides on screen. Used to disable them when advancing dialogue.
+
+    private Coroutine animateTextCoroutine = null;
     // Start is called before the first frame update
     void Start()
     {
         canAdvanceDialogue = false;
         currentKey = 0;
+        arrows = new List<ArrowGuide>();
     }
 
     void Update()
@@ -62,7 +66,29 @@ public class Dialogue : MonoBehaviour
             Logger.DebugLog("TTS is playing");
         }
 
-        StartCoroutine(AnimateText(textSpeed, dialogueText.text));
+        //check if arrow guides need to be displayed.
+        ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
+        int i = 0;
+        bool keyFound = false;
+        while (!keyFound && i < am.arrowGuides.Count)
+        {
+            if (am.arrowGuides[i].key.Equals(key))
+            {
+                keyFound = true;
+                arrows = new List<ArrowGuide>();    //keep reference to these arrows.
+                foreach (ArrowGuide arrow in am.arrowGuides[i].arrowList)
+                {
+                    arrow.PointArrow(arrow.targetedObject, arrow.direction);
+                    arrows.Add(arrow);
+                }
+            }
+            else
+            {
+                i++;
+            }
+        }
+
+        animateTextCoroutine = StartCoroutine(AnimateText(textSpeed, dialogueText.text));
     }
 
     //Displays text one letter at a time. Should not run again once the text is fully displayed.
@@ -126,6 +152,17 @@ public class Dialogue : MonoBehaviour
     {
         canAdvanceDialogue = false;
         currentKey++;
+
+        //hide any arrow guides that were shown
+        if (arrows.Count > 0)
+        {
+            foreach(ArrowGuide arrow in arrows)
+            {
+                arrow.gameObject.SetActive(false);
+            }
+            arrows.Clear();
+        }
+
         if (currentKey >= dialogueKeyList.Count)
         {
             //close dialogue

@@ -117,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowGuides:
   - level: 0
+    key: system_intro1
     arrowList:
     - {fileID: 9140537992454601704}
 --- !u!1001 &4864072758413811037
@@ -130,6 +131,10 @@ PrefabInstance:
     - target: {fileID: 896846856222294103, guid: 58c7b5d1b581b48f6bcc5538bb8e0042, type: 3}
       propertyPath: m_Name
       value: Arrow - Straight Shooter
+      objectReference: {fileID: 0}
+    - target: {fileID: 4420598075465082549, guid: 58c7b5d1b581b48f6bcc5538bb8e0042, type: 3}
+      propertyPath: direction.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6218915980239000023, guid: 58c7b5d1b581b48f6bcc5538bb8e0042, type: 3}
       propertyPath: m_Pivot.x

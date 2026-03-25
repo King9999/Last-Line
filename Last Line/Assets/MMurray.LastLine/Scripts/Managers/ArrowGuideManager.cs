@@ -9,7 +9,8 @@ public class ArrowGuideManager : MonoBehaviour
     [Serializable]
     public struct ArrowGuides
     {
-        public int level;
+        //public int level;
+        public string key;              //matches the key of any active dialogue. if found, the arrows are shown.
         public List<ArrowGuide> arrowList;
     }
 
