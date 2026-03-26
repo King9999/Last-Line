@@ -25,6 +25,11 @@ public class DialogueManager : MonoBehaviour
 
     public List<ConditionalTrigger> condTriggerList;
 
+    /*****constants for various tutorial dialogue ******
+    Used to find dialogue in the dialogue list*/
+    public const int SELECTING_X_VALUE = 1;
+    public const int SELECTING_Y_VALUE = 2;
+
     // Start is called before the first frame update
     void Awake()
     {

@@ -21,6 +21,10 @@ public class UnitButton : MonoBehaviour
     /// </summary>
     public void OnMouseHoverEnter()
     {
+        GameManager gm = Singleton.instance.GameManager;
+        if (gm.gameState != GameManager.GameState.Normal || gm.tutorialState != GameManager.TutorialState.Normal)   //prevent any other action while unit selected.
+            return;
+
         Logger.DebugLog("Hovering over button");
         Menu menu = Singleton.instance.Menu;
         if (menu.tooltip.gameObject.activeSelf)
@@ -48,7 +52,7 @@ public class UnitButton : MonoBehaviour
     public void OnMouseClick()
     {
         GameManager gm = Singleton.instance.GameManager;
-        if (gm.gameState != GameManager.GameState.Normal)   //prevent any other action while unit selected.
+        if (gm.gameState != GameManager.GameState.Normal || gm.tutorialState != GameManager.TutorialState.Normal)   //prevent any other action while unit selected.
             return;
 
         gm.playerUnitType = unitType;

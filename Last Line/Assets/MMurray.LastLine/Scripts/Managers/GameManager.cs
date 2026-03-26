@@ -147,7 +147,10 @@ public class GameManager : MonoBehaviour
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
-        SetGameState(gameState = GameState.DialogueStartOfLevel);
+        if (inTutorial)
+            SetGameState(tutorialState = TutorialState.DialogueStartOfLevel);
+        else
+            SetGameState(gameState = GameState.DialogueStartOfLevel);
         //ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
         //am.arrowGuides[0].arrowList[0].PointArrow(am.arrowGuides[0].arrowList[0].targetedObject, Vector2.right);
 
@@ -841,13 +844,13 @@ public class GameManager : MonoBehaviour
                 axisContainerY.gameObject.SetActive(false);
 
                 //if we're in the tutorial, do some extra steps
-                if (inTutorial)
+                /*if (inTutorial)
                 {
                     //display dialogue
                     previousState = state;  //need this so the unit selection isn't lost.
                     string dKey = dialogueManager.dialogueList[1].dialogueKeyList[0];
                     dialogueManager.dialogueList[1].ShowDialogue(dKey);
-                }
+                }*/
                 break;
             
             case GameState.UnitSelectY:
@@ -868,17 +871,22 @@ public class GameManager : MonoBehaviour
                 int j = 0;
                 while (!dialogueFound && j < dialogueManager.dialogueList.Count)
                 {
-                    if (dialogueManager.condTriggerList[triggerIndex].dialogueId == dialogueManager.dialogueList[j].dialogueId)
+                    if (dialogueManager.condTriggerList[currentLevel].dialogueId == dialogueManager.dialogueList[j].dialogueId)
                     {
                         dialogueFound = true;
-                        string dKey = dialogueManager.dialogueList[j].dialogueKeyList[0];
-                        dialogueManager.dialogueList[j].ShowDialogue(dKey);
+                        Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[j].dialogueKeyList[0];
+                        //string dKey = dialogueManager.dialogueList[j].dialogueKeyList[0].key;
+                        dialogueManager.dialogueList[j].ShowDialogue(keyList);
                     }
                     else
                     {
                         j++;
                     }
                 }
+
+                //if no dialogue is found, then just start the game
+                if (!dialogueFound)
+                    SetGameState(gameState = GameState.Normal);
                 break;
             
             case GameState.DialogEndOfLevel:
@@ -920,9 +928,9 @@ public class GameManager : MonoBehaviour
                 if (inTutorial)
                 {
                     //display dialogue
-                    previousTutorialState = state;  //need this so the unit selection isn't lost.
-                    string dKey = dialogueManager.dialogueList[1].dialogueKeyList[0];
-                    dialogueManager.dialogueList[1].ShowDialogue(dKey);
+                    Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].dialogueKeyList[0];
+                    //string dKey = dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].dialogueKeyList[0].key;
+                    dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].ShowDialogue(keyList);
                 }
                 break;
             
@@ -932,6 +940,13 @@ public class GameManager : MonoBehaviour
                 DisplayAlert(GetText("unitSelect_y"));
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(false);
+                if (inTutorial)
+                {
+                    //display dialogue
+                    Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[DialogueManager.SELECTING_Y_VALUE].dialogueKeyList[0];
+                    //string dKey = dialogueManager.dialogueList[DialogueManager.SELECTING_Y_VALUE].dialogueKeyList[0].key;
+                    dialogueManager.dialogueList[DialogueManager.SELECTING_Y_VALUE].ShowDialogue(keyList);
+                }
                 break;
             
 
@@ -941,11 +956,12 @@ public class GameManager : MonoBehaviour
                 int j = 0;
                 while (!dialogueFound && j < dialogueManager.dialogueList.Count)
                 {
-                    if (dialogueManager.condTriggerList[triggerIndex].dialogueId == dialogueManager.dialogueList[j].dialogueId)
+                    if (dialogueManager.condTriggerList[currentLevel].dialogueId == dialogueManager.dialogueList[j].dialogueId)
                     {
                         dialogueFound = true;
-                        string dKey = dialogueManager.dialogueList[j].dialogueKeyList[0];
-                        dialogueManager.dialogueList[j].ShowDialogue(dKey);
+                        Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[j].dialogueKeyList[0];
+                        //string dKey = dialogueManager.dialogueList[j].dialogueKeyList[0].key;
+                        dialogueManager.dialogueList[j].ShowDialogue(keyList);
                     }
                     else
                     {

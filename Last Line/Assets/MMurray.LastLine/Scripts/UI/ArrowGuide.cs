@@ -64,12 +64,14 @@ public class ArrowGuide : MonoBehaviour
             targetYPos = (targetedObject.layer == 5) ? 10 : 1;
         }
 
+        Vector2 targetPos = new Vector2(transform.position.x + targetXPos, transform.position.y + targetYPos);
+
         while (gameObject.activeSelf)
         {
-            while(transform.position.x < oldPos.x + targetXPos)
+            while(Vector2.Distance(transform.position, targetPos) > 0.1f /*, transform.position.x < oldPos.x + targetXPos*/)
             {
                 Vector2 newPos = transform.position;
-                transform.position = new Vector2(newPos.x + 20 * Time.deltaTime, newPos.y);
+                transform.position = new Vector2(newPos.x + (targetXPos * Time.deltaTime), newPos.y + (targetYPos * Time.deltaTime));
                 yield return null;
             }
             transform.position = oldPos;

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using MMurray.LastLine;
 using LoLSDK;
+using System;
 
 /* Consists of a window and text. Dialogue appears at certain points. Uses keys to call dialogue. */
 public class Dialogue : MonoBehaviour
@@ -14,18 +15,26 @@ public class Dialogue : MonoBehaviour
     [SerializeField]private float textSpeed = 0.032f;
     bool canAdvanceDialogue;                //this must be true before player can press Space to advnace text.
     public int displayIndex;            //the index of the dialogue to display the image/video.
-    public List<string> dialogueKeyList;    //each dialogue can have multiple batches of text to display.
+    public List<DialogueKeyList> dialogueKeyList;    //each dialogue can have multiple batches of text to display.
     int currentKey;                     //iterator for dialogueKeyList
     [SerializeField]private float promptTimer;           //how much time must pass before player is prompted to go to next dialogue.
     private List<ArrowGuide> arrows;        //reference to any active arrow guides on screen. Used to disable them when advancing dialogue.
 
     private Coroutine animateTextCoroutine = null;
+
+    [Serializable]
+    public struct DialogueKeyList
+    {
+        public string key;          //the key linked to the text in language JSON
+        public bool showArrowGuides;    //if true, arrow guides are shown.
+    }
     // Start is called before the first frame update
     void Start()
     {
         canAdvanceDialogue = false;
         currentKey = 0;
         arrows = new List<ArrowGuide>();
+        promptTimer = 1;
     }
 
     void Update()
@@ -50,41 +59,44 @@ public class Dialogue : MonoBehaviour
         return value ?? "--missing--";
     }
 
-    public void ShowDialogue(string key)
+    public void ShowDialogue(DialogueKeyList keyList)
     {
         gameObject.SetActive(true);
 
-        dialogueText.text = GetText(key);
+        dialogueText.text = GetText(keyList.key);
 
 
-        Logger.DebugLogFormat("Dialogue text key is {0}", key);
+        Logger.DebugLogFormat("Dialogue text key is {0}", keyList.key);
         Logger.DebugLogFormat("TTS State: {0}", Singleton.instance.ttsEnabled);
 
         if (Singleton.instance.ttsEnabled)
         {
-            LOLSDK.Instance.SpeakText(key);
+            LOLSDK.Instance.SpeakText(keyList.key);
             Logger.DebugLog("TTS is playing");
         }
 
         //check if arrow guides need to be displayed.
-        ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
-        int i = 0;
-        bool keyFound = false;
-        while (!keyFound && i < am.arrowGuides.Count)
+        if (keyList.showArrowGuides == true)
         {
-            if (am.arrowGuides[i].key.Equals(key))
+            ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
+            int i = 0;
+            bool keyFound = false;
+            while (!keyFound && i < am.arrowGuides.Count)
             {
-                keyFound = true;
-                arrows = new List<ArrowGuide>();    //keep reference to these arrows.
-                foreach (ArrowGuide arrow in am.arrowGuides[i].arrowList)
+                if (am.arrowGuides[i].key.Equals(keyList.key))
                 {
-                    arrow.PointArrow(arrow.targetedObject, arrow.direction);
-                    arrows.Add(arrow);
+                    keyFound = true;
+                    arrows = new List<ArrowGuide>();    //keep reference to these arrows.
+                    foreach (ArrowGuide arrow in am.arrowGuides[i].arrowList)
+                    {
+                        arrow.PointArrow(arrow.targetedObject, arrow.direction);
+                        arrows.Add(arrow);
+                    }
                 }
-            }
-            else
-            {
-                i++;
+                else
+                {
+                    i++;
+                }
             }
         }
 
@@ -176,8 +188,20 @@ public class Dialogue : MonoBehaviour
             if (gm.inTutorial)
             {
                 //gm.SetGameState(gm.tutorialState = GameManager.TutorialState.Normal);
-                //switch(gm)
-                gm.SetGameState(gm.tutorialState = gm.previousTutorialState);
+                switch(gm.tutorialState)
+                {
+                    case GameManager.TutorialState.DialogueStartOfLevel:
+                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.Normal);
+                        break;
+
+                    case GameManager.TutorialState.UnitSelectX:
+                    case GameManager.TutorialState.UnitSelectY:
+                        //the dialogue box should close but we remain on this state so the player can
+                        //choose the X and Y value.
+                        break;
+                    
+                }
+                //gm.SetGameState(gm.tutorialState = gm.previousTutorialState);
             }
             else
                 gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
