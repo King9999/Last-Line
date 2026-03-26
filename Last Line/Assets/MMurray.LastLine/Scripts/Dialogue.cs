@@ -33,7 +33,7 @@ public class Dialogue : MonoBehaviour
     {
         canAdvanceDialogue = false;
         currentKey = 0;
-        arrows = new List<ArrowGuide>();
+        //arrows = new List<ArrowGuide>();
         promptTimer = 1;
     }
 
@@ -86,11 +86,12 @@ public class Dialogue : MonoBehaviour
                 if (am.arrowGuides[i].key.Equals(keyList.key))
                 {
                     keyFound = true;
-                    arrows = new List<ArrowGuide>();    //keep reference to these arrows.
+                    //arrows = new List<ArrowGuide>();    //keep reference to these arrows.
                     foreach (ArrowGuide arrow in am.arrowGuides[i].arrowList)
                     {
                         arrow.PointArrow(arrow.targetedObject, arrow.direction);
-                        arrows.Add(arrow);
+                        //arrows.Add(arrow);
+                        am.activeArrows.Add(arrow);
                     }
                 }
                 else
@@ -166,6 +167,16 @@ public class Dialogue : MonoBehaviour
         currentKey++;
 
         //hide any arrow guides that were shown
+        /*ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
+        if (am.activeArrows.Count > 0)
+        {
+            for (int i = 0; i < am.activeArrows.Count; i++)
+            {
+                am.activeArrows[i].gameObject.SetActive(false);
+                am.activeArrows.Remove(am.activeArrows[i]);
+                i--;
+            }
+        }
         if (arrows.Count > 0)
         {
             foreach(ArrowGuide arrow in arrows)
@@ -173,7 +184,7 @@ public class Dialogue : MonoBehaviour
                 arrow.gameObject.SetActive(false);
             }
             arrows.Clear();
-        }
+        }*/
 
         if (currentKey >= dialogueKeyList.Count)
         {

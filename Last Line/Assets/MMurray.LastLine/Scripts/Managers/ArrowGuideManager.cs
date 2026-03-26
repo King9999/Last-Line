@@ -15,10 +15,26 @@ public class ArrowGuideManager : MonoBehaviour
     }
 
     public List<ArrowGuides> arrowGuides;
+    public List<ArrowGuide> activeArrows;       //tracks which arrows are active so they can be deactivated later.
     
     void Awake()
     {
         Singleton.instance.ArrowGuideManager = this;
+    }
+
+    public void HideGuideArrows()
+    {
+        //hide any arrow guides that were shown
+        if (activeArrows.Count <= 0)
+            return;
+        
+        for (int i = 0; i < activeArrows.Count; i++)
+        {
+            activeArrows[i].gameObject.SetActive(false);
+            activeArrows.Remove(activeArrows[i]);
+            i--;
+        }
+        
     }
    
 }

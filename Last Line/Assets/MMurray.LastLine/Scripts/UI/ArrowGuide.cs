@@ -11,13 +11,13 @@ public class ArrowGuide : MonoBehaviour
 {
     public GameObject targetedObject; //the object the arrow will point to.
     public Vector2 direction;
-    private Sprite arrowSprite;
+    private Image arrow;
     private Coroutine animateCoroutine = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        arrowSprite = GetComponent<Image>().sprite;
+        arrow = GetComponent<Image>();
         gameObject.SetActive(false);
     }
 
@@ -36,6 +36,13 @@ public class ArrowGuide : MonoBehaviour
         //if (obj.layer == 5)     //UI layer
         float offset = (obj.layer == 5) ? 50 : 1;       //5 is the UI layer in the inspector.
         transform.position = new Vector2(obj.transform.position.x + (direction.x * -offset), obj.transform.position.y + (direction.y * -offset));
+
+        //change sprite orientation if needed
+        if (direction.x < 0)
+            arrow.transform.localScale = new Vector3(-1, 1, 1);
+        else if (direction.x > 0)
+            arrow.transform.localScale = new Vector3(1, 1, 1);
+
         animateCoroutine = StartCoroutine(AnimateArrow(direction));
     }
 

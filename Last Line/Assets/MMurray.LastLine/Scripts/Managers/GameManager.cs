@@ -910,10 +910,14 @@ public class GameManager : MonoBehaviour
     public void SetGameState(TutorialState state)
     {
         Logger.DebugLogFormat("Tutorial State changed to {0}", tutorialState);
+        ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
+
         switch(state)
         {
             case TutorialState.Normal:
-                //alertText.text = "";
+                //hide any arrow guides that were shown
+                am.HideGuideArrows();
+
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(true);
                 playerUnitType = PlayerUnitType.NoUnitSelected;
@@ -927,6 +931,10 @@ public class GameManager : MonoBehaviour
                 //if we're in the tutorial, do some extra steps
                 if (inTutorial)
                 {
+                    //hide any arrow guides that were shown
+                    //ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
+                    //am.HideGuideArrows();
+
                     //display dialogue
                     Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].dialogueKeyList[0];
                     //string dKey = dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].dialogueKeyList[0].key;
@@ -942,6 +950,10 @@ public class GameManager : MonoBehaviour
                 axisContainerX.gameObject.SetActive(false);
                 if (inTutorial)
                 {
+                    //hide any arrow guides that were shown
+                    //ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
+                    am.HideGuideArrows();
+
                     //display dialogue
                     Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[DialogueManager.SELECTING_Y_VALUE].dialogueKeyList[0];
                     //string dKey = dialogueManager.dialogueList[DialogueManager.SELECTING_Y_VALUE].dialogueKeyList[0].key;

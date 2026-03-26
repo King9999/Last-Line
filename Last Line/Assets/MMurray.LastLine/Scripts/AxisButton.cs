@@ -58,7 +58,12 @@ public class AxisButton : MonoBehaviour
         {
             gm.playerCoordinates.x = value;
             gm.enteringValueX = true;
-            gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
+
+            //tutorial check
+            if (gm.inTutorial)
+                gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectY);
+            else
+                gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
             Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
         }
         else
@@ -88,7 +93,12 @@ public class AxisButton : MonoBehaviour
                 {
                     pointFound = true;
                     gm.PlaceUnit(gm.playerUnitType, gm.points[i]);
-                    gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
+
+                    //tutorial check
+                    if (gm.inTutorial)
+                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.Normal);
+                    else
+                        gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
                     Logger.DebugLogFormat("Player entered {0}", gm.points[i].pointAxes);
                 }
                 else
