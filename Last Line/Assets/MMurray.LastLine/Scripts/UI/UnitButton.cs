@@ -52,7 +52,8 @@ public class UnitButton : MonoBehaviour
     public void OnMouseClick()
     {
         GameManager gm = Singleton.instance.GameManager;
-        if (gm.gameState != GameManager.GameState.Normal || gm.tutorialState != GameManager.TutorialState.Normal)   //prevent any other action while unit selected.
+        if (gm.gameState != GameManager.GameState.Normal || (gm.tutorialState != GameManager.TutorialState.Normal &&
+            gm.tutorialState != GameManager.TutorialState.UnitSelectSecondUnit))   //prevent any other action while unit selected.
             return;
 
         gm.playerUnitType = unitType;
@@ -79,7 +80,16 @@ public class UnitButton : MonoBehaviour
 
         if (gm.inTutorial)
         {
-            gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectX);
+            switch(gm.tutorialState)
+            {
+                case GameManager.TutorialState.Normal:
+                    gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectX);
+                    break;
+                
+                case GameManager.TutorialState.UnitSelectSecondUnit:
+                    gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectSecondUnitX);
+                    break;
+            }
             //gm.previousTutorialState = gm.tutorialState;    //save this state so we don't lose the unit that was selected after dialogue closes.
         }
         else

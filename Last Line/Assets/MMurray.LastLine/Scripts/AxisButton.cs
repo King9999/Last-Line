@@ -61,9 +61,34 @@ public class AxisButton : MonoBehaviour
 
             //tutorial check
             if (gm.inTutorial)
-                gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectY);
+            {
+                //check which value player picked. 
+                switch(gm.tutorialState)
+                {
+                    case GameManager.TutorialState.UnitSelectX:
+                        //if player picked incorrect value, we don't continue.
+                        if (value != 2)
+                            return;
+
+                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectY);
+                        break;
+                    
+                    case GameManager.TutorialState.UnitSelectSecondUnitX:
+                        //if player picked incorrect value, we don't continue.
+                        if (value != 4)
+                            return;
+                            
+                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectSecondUnitY);
+                        break;
+
+                }
+            }
             else
+            {
+                gm.playerCoordinates.x = value;
+                gm.enteringValueX = true;
                 gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
+            }
             Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
         }
         else
@@ -101,6 +126,10 @@ public class AxisButton : MonoBehaviour
                         {
                             case GameManager.TutorialState.UnitSelectY:
                                 gm.SetGameState(gm.tutorialState = GameManager.TutorialState.Normal);
+                                break;
+                            
+                            case GameManager.TutorialState.UnitSelectSecondUnitY:
+                                gm.SetGameState(gm.tutorialState = GameManager.TutorialState.BuildingSecondUnit);
                                 break;
 
                         }

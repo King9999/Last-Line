@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public enum TutorialState
     {
         Normal, UnitSelectX, UnitSelectY, DialogueStartOfLevel, DialogEndOfLevel,
-        UnitSelectSecondUnit, UnitSelectSecondUnitX, UnitSelectSecondUnitY,
+        UnitSelectSecondUnit, UnitSelectSecondUnitX, UnitSelectSecondUnitY, BuildingSecondUnit,
         BaseDestroyed, LevelComplete,
     }
 
@@ -943,8 +943,8 @@ public class GameManager : MonoBehaviour
                 axisContainerY.gameObject.SetActive(false);
 
                 //if we're in the tutorial, do some extra steps
-                if (inTutorial)
-                {
+                //if (inTutorial)
+                //{
                     //hide any arrow guides that were shown
                     //ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
                     //am.HideGuideArrows();
@@ -953,7 +953,7 @@ public class GameManager : MonoBehaviour
                     keyList = dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].dialogueKeyList[0];
                     //string dKey = dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].dialogueKeyList[0].key;
                     dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].ShowDialogue(keyList);
-                }
+                //}
                 break;
             
             case TutorialState.UnitSelectY:
@@ -980,6 +980,17 @@ public class GameManager : MonoBehaviour
                 //am.HideGuideArrows();
                 keyList = dialogueManager.dialogueList[DialogueManager.SELECTING_SECOND_UNIT].dialogueKeyList[0];
                 dialogueManager.dialogueList[DialogueManager.SELECTING_SECOND_UNIT].ShowDialogue(keyList);
+                break;
+
+            case TutorialState.UnitSelectSecondUnitX:
+                //show arrow pointing to value. Player cannot pick other values.
+                break;
+            
+            case TutorialState.UnitSelectSecondUnitY:
+                break;
+            
+            case TutorialState.BuildingSecondUnit:
+                //show dialogue informing player to redirect unit to fire in opposite direction.
                 break;
             
 
