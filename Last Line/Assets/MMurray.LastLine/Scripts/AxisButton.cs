@@ -96,7 +96,15 @@ public class AxisButton : MonoBehaviour
 
                     //tutorial check
                     if (gm.inTutorial)
-                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.Normal);
+                    {
+                        switch(gm.tutorialState)
+                        {
+                            case GameManager.TutorialState.UnitSelectY:
+                                gm.SetGameState(gm.tutorialState = GameManager.TutorialState.Normal);
+                                break;
+
+                        }
+                    }
                     else
                         gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
                     Logger.DebugLogFormat("Player entered {0}", gm.points[i].pointAxes);

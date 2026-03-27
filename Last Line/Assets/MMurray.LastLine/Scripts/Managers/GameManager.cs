@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public enum TutorialState
     {
         Normal, UnitSelectX, UnitSelectY, DialogueStartOfLevel, DialogEndOfLevel,
+        UnitSelectSecondUnit, UnitSelectSecondUnitX, UnitSelectSecondUnitY,
         BaseDestroyed, LevelComplete,
     }
 
@@ -199,6 +200,18 @@ public class GameManager : MonoBehaviour
                 activePlayerUnits.Add(unit);
                 unit.gameObject.SetActive(true);
                 buildQueue.Dequeue();
+
+                /****TUTORIAL CHECK*****/
+                //after the first unit is built, open dialogue to start building second unit.
+                if (inTutorial)
+                {
+                    switch(tutorialState)
+                    {
+                        case TutorialState.Normal:
+                            SetGameState(tutorialState = TutorialState.UnitSelectSecondUnit);
+                            break;
+                    }
+                }
 
                 //update build queue in menu by shifting all images to the left.
                 menu.queueIndex = buildQueue.Count;     //this ensures that index points to correct spot
@@ -911,6 +924,7 @@ public class GameManager : MonoBehaviour
     {
         Logger.DebugLogFormat("Tutorial State changed to {0}", tutorialState);
         ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
+        Dialogue.DialogueKeyList keyList;       //going to call this a lot
 
         switch(state)
         {
@@ -936,7 +950,7 @@ public class GameManager : MonoBehaviour
                     //am.HideGuideArrows();
 
                     //display dialogue
-                    Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].dialogueKeyList[0];
+                    keyList = dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].dialogueKeyList[0];
                     //string dKey = dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].dialogueKeyList[0].key;
                     dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].ShowDialogue(keyList);
                 }
@@ -955,10 +969,17 @@ public class GameManager : MonoBehaviour
                     am.HideGuideArrows();
 
                     //display dialogue
-                    Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[DialogueManager.SELECTING_Y_VALUE].dialogueKeyList[0];
+                    keyList = dialogueManager.dialogueList[DialogueManager.SELECTING_Y_VALUE].dialogueKeyList[0];
                     //string dKey = dialogueManager.dialogueList[DialogueManager.SELECTING_Y_VALUE].dialogueKeyList[0].key;
                     dialogueManager.dialogueList[DialogueManager.SELECTING_Y_VALUE].ShowDialogue(keyList);
                 }
+                break;
+            
+            case TutorialState.UnitSelectSecondUnit:
+                //player must now select second unit. Show dialogue from mother base
+                //am.HideGuideArrows();
+                keyList = dialogueManager.dialogueList[DialogueManager.SELECTING_SECOND_UNIT].dialogueKeyList[0];
+                dialogueManager.dialogueList[DialogueManager.SELECTING_SECOND_UNIT].ShowDialogue(keyList);
                 break;
             
 
@@ -971,7 +992,7 @@ public class GameManager : MonoBehaviour
                     if (dialogueManager.condTriggerList[currentLevel].dialogueId == dialogueManager.dialogueList[j].dialogueId)
                     {
                         dialogueFound = true;
-                        Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[j].dialogueKeyList[0];
+                        keyList = dialogueManager.dialogueList[j].dialogueKeyList[0];
                         //string dKey = dialogueManager.dialogueList[j].dialogueKeyList[0].key;
                         dialogueManager.dialogueList[j].ShowDialogue(keyList);
                     }
