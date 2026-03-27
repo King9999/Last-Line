@@ -22,6 +22,10 @@ public class AxisButton : MonoBehaviour
         //check which axis we're on and record the value. A special case is made for the origin.
         if (axisValue == AxisValue.ORIGIN)
         {
+            //tutorial check. Origin is not used, and is ignored completely.
+            if (gm.inTutorial)
+                return;
+
             if (!gm.enteringValueX && !gm.enteringValueY)
             {
                 gm.enteringValueX = true;       //always start with X
@@ -77,7 +81,7 @@ public class AxisButton : MonoBehaviour
                         //if player picked incorrect value, we don't continue.
                         if (value != 4)
                             return;
-                            
+
                         gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectSecondUnitY);
                         break;
 
@@ -85,8 +89,8 @@ public class AxisButton : MonoBehaviour
             }
             else
             {
-                gm.playerCoordinates.x = value;
-                gm.enteringValueX = true;
+                //gm.playerCoordinates.x = value;
+                //gm.enteringValueX = true;
                 gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
             }
             Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
@@ -101,7 +105,35 @@ public class AxisButton : MonoBehaviour
                 return;
             }
             gm.playerCoordinates.y = value;
-            gm.enteringValueY = true;
+
+             //tutorial check
+            if (gm.inTutorial)
+            {
+                //check which value player picked. 
+                switch(gm.tutorialState)
+                {
+                    case GameManager.TutorialState.UnitSelectY:
+                        //if player picked incorrect value, we don't continue.
+                        if (value != 2)
+                            return;
+
+                        gm.enteringValueY = true;
+                        break;
+                    
+                    case GameManager.TutorialState.UnitSelectSecondUnitY:
+                        //if player picked incorrect value, we don't continue.
+                        if (value != 3)
+                            return;
+
+                        gm.enteringValueY = true;
+                        break;
+
+                }
+            }
+            else
+            {
+                gm.enteringValueY = true;
+            }
             //gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
             Logger.DebugLogFormat("player Y: {0}", gm.playerCoordinates.y);
         }
