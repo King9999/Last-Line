@@ -99,8 +99,9 @@ namespace MMurray.LastLine
                     if (this is PlayerUnit_Base)
                     {
                          Logger.DebugLog("Base destroyed");
-                         gm.playerBase.gameObject.SetActive(false);
+                         //gm.playerBase.gameObject.SetActive(false);
                          //TODO: Freeze game and show base exploding
+                         gm.SetGameState(gm.gameState = GameManager.GameState.BaseDestroyed);
                     }
                     else
                     {

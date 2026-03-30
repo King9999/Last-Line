@@ -25,7 +25,8 @@
       "reverseFireDirection": 40,
       "bombActivated": 35,
       "crystalCollected": 25,
-      "notEnoughMoney": 25
+      "notEnoughMoney": 25,
+      "levelCompleted": 50
     }
   },
   "en": {
@@ -57,11 +58,13 @@
 	"bombActivated": "Warning! Bomb activated.",
 	"crystalCollected": "Crystal collected.",
 	"notEnoughMoney": "Not enough money!",
+	"levelCompleted": "YOU SURVIVED",
 	"dialogue_build_second_unit": "Good job, commander. Build one more unit to back up the first one!",
 	"dialogue_activate_ability": "Commander, order the new unit to fire in the other direction.",
 	"system_activate_ability": "<color=#0CCF5A>To activate a unit's special ability, re-enter the coordinates where the unit is located.</color>",
 	"system_ordered_pair_reinforcement": "<color=#0CCF5A>Nice work. Remember, an ordered pair always starts with a value on the X axis, and then a value on the Y axis.</color>",
-	"dialogue_enemy_incoming": "Commander, the enemy is about to attack! Get ready!"
+	"dialogue_enemy_incoming": "Commander, the enemy is about to attack! Get ready!",
+	"dialogue_end_of_tutorial": "All enemies defeated. Good job commander, but we can't rest yet. We've detected more enemies coming our way!"
   },
   "es": {
     

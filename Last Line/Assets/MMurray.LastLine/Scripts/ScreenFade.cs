@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using MMurray.LastLine;
 
 //used to hide the screen before loading the next scene.
 namespace MMurray.GenericCode
@@ -13,6 +14,7 @@ namespace MMurray.GenericCode
         public float fadeSpeed;
         public bool coroutineOn;        //can be used to prevent any user input while the screen is fading.
         public static ScreenFade instance;
+        private Coroutine fadeCoroutine = null;
 
         void Awake()
         {
@@ -36,14 +38,20 @@ namespace MMurray.GenericCode
         //fade to black
         public void ChangeSceneFadeOut(string sceneName)
         {
-            StartCoroutine(FadeScreenToScene(sceneName));
+            fadeCoroutine = StartCoroutine(FadeScreenToScene(sceneName));
         }
 
         //fade back to normal
         public void FadeIn()
         {
-            StartCoroutine(FadeFromBlack());
+            fadeCoroutine = StartCoroutine(FadeFromBlack());
         }
+
+        public void LoadLevelFadeOut(int level)
+        {
+            fadeCoroutine = StartCoroutine(FadeToBlackLoadLevel(level));
+        }
+        
         ///<summary>
         ///Fade to black, then change scene. Once scene is changed, screen fades back to normal.
         ///</summary>
@@ -84,6 +92,48 @@ namespace MMurray.GenericCode
                 yield return null;
             }
 
+            coroutineOn = false;
+        }
+
+        /// <summary>
+        /// Fade screen to black, then load the next level.
+        /// </summary>
+        /// <param name="level">The new level that will be loaded.</param>
+        /// <returns></returns>
+        IEnumerator FadeToBlackLoadLevel(int level)
+        {
+            coroutineOn = true;
+            float alpha = 0;
+
+            while (fadeImage.color.a < 1)
+            {
+                alpha += fadeSpeed * Time.deltaTime;
+                fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, alpha);
+                yield return null;
+            }
+
+            //coroutineOn = false;
+
+            //load level
+            Singleton.instance.GameManager.LoadLevel(level);
+            yield return LoadLevelFadeFromBlack();
+        }
+
+        //this is only to be used if we're on the game scene.
+        IEnumerator LoadLevelFadeFromBlack(float delayDuration = 0)
+        {
+            coroutineOn = true;
+            float alpha = 1;
+            yield return new WaitForSeconds(delayDuration);
+            while (fadeImage.color.a > 0)
+            {
+                alpha -= fadeSpeed * Time.deltaTime;
+                fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, alpha);
+                yield return null;
+            }
+
+
+            Singleton.instance.GameManager.gameState = GameManager.GameState.Normal;
             coroutineOn = false;
         }
     }

@@ -19,14 +19,14 @@ public class GameManager : MonoBehaviour
     {
         Normal,                 //when game state is normal the game is running. Otherwise the game is paused.
         UnitSelectX, UnitSelectY, CoordinatesSelect, ///player is entering coordinates
-        DialogueStartOfLevel, DialogEndOfLevel,
+        DialogueStartOfLevel, DialogueEndOfLevel,
         SelectingValueX, SelectingValueY,       //used when placing units on screen.
-        BaseDestroyed, LevelComplete,
+        BaseDestroyed, LevelComplete, GoToNextLevel, GameCompleted
     }
 
     public enum TutorialState
     {
-        Normal, UnitSelectX, UnitSelectY, DialogueStartOfLevel, DialogEndOfLevel,
+        Normal, UnitSelectX, UnitSelectY, DialogueStartOfLevel, DialogueEndOfLevel,
         UnitSelectSecondUnit, UnitSelectSecondUnitX, UnitSelectSecondUnitY, BuildingFirstUnit, BuildingSecondUnit, 
         ActivateAbility, ActivateAbilitySelectX, ActivateAbilitySelectY,
         DialogueEnemyIncoming, DeployEnemyUnits, BaseDestroyed, LevelComplete,
@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     public bool enteringValueX, enteringValueY; //determines which axis value is being entered. X is always entered first.
     public List<Point> points;                //the locations on the map where all units are placed.
     public int currentLevel;
+    public int maxLevels {get;} = 8;
     public bool inTutorial;                 //when true, units can be created for free and the game doesn't run normally.
     public int totalEnemies;                //when this value is 0, the level is over.
 
@@ -175,11 +176,24 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameState == GameState.BaseDestroyed || gameState == GameState.LevelComplete)
+            return;
+
         if (totalEnemies <= 0)
         {
             //level is over.
-            SetGameState(gameState = GameState.LevelComplete);
+            //if base is destroyed, then it's game over.
+            if (playerBase.hitPoints <= 0 && gameState != GameState.BaseDestroyed)
+            {
+                SetGameState(gameState = GameState.BaseDestroyed);
+            }
+            else
+                SetGameState(gameState = GameState.LevelComplete);
+
+            return;
         }
+
+
         //check for right click or Escape key. They're used to cancel certain actions.
         if (CancelButtonPressed())
         {
@@ -346,7 +360,7 @@ public class GameManager : MonoBehaviour
     /* Load the specified level. NOTE: Save States only load the current level from the beginning, and not the state
     the level was left in. This is because the levels are going to be short enough that it's unnecessary to record
     every unit's position. Also, the game runs in real time so the player might get confused on what they were doing. */
-    void LoadLevel(int level)
+    public void LoadLevel(int level)
     {
 
         /************get level from JSON***********/
@@ -898,7 +912,8 @@ public class GameManager : MonoBehaviour
                 int j = 0;
                 while (!dialogueFound && j < dialogueManager.dialogueList.Count)
                 {
-                    if (dialogueManager.condTriggerList[currentLevel].dialogueId == dialogueManager.dialogueList[j].dialogueId)
+                    int dialogueId = dialogueManager.dialogueList[j].dialogueId;
+                    if (dialogueId > 0 && dialogueId == dialogueManager.condTriggerList[triggerIndex].dialogueId /*== dialogueManager.dialogueList[j].dialogueId*/)
                     {
                         dialogueFound = true;
                         Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[j].dialogueKeyList[0];
@@ -916,10 +931,30 @@ public class GameManager : MonoBehaviour
                     SetGameState(gameState = GameState.Normal);
                 break;
             
-            case GameState.DialogEndOfLevel:
+            case GameState.DialogueEndOfLevel:
+                //find correct dialogue to display.
+                dialogueFound = false;
+                j = 0;
+                while (!dialogueFound && j < dialogueManager.dialogueList.Count)
+                {
+                    int dialogueId = dialogueManager.dialogueList[j].dialogueId;
+                    if (dialogueId > 0 && dialogueId == dialogueManager.condTriggerList[triggerIndex].dialogueId)
+                    {
+                        dialogueFound = true;
+                        Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[j].dialogueKeyList[0];
+                        //string dKey = dialogueManager.dialogueList[j].dialogueKeyList[0].key;
+                        dialogueManager.dialogueList[j].ShowDialogue(keyList);
+                    }
+                    else
+                    {
+                        j++;
+                    }
+                }
                 break;
 
             case GameState.BaseDestroyed:
+                //have hitstop then blow up base
+                playerBase.gameObject.SetActive(false);
                 break;
 
             case GameState.LevelComplete:
@@ -930,8 +965,51 @@ public class GameManager : MonoBehaviour
                 }
                 //display dialogue if any
                 Logger.DebugLogFormat("Level {0} complete", currentLevel);
+                //check for conditional trigger to activate dialogue
+                bool triggerFound = false;
+                int i = 0;
+                while (!triggerFound && i < dialogueManager.condTriggerList.Count)
+                {
+                    if (dialogueManager.condTriggerList[i].level == currentLevel &&
+                        dialogueManager.condTriggerList[i].condition == DialogueManager.ConditionalTrigger.Condition.LevelEnd)
+                    {
+                        triggerFound = true;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+
+                }
+
+
+                if (triggerFound)
+                {
+                    triggerIndex = i;
+                    SetGameState(gameState = GameState.DialogueEndOfLevel);
+                    //goto case GameState.DisplayEndOfLevelDialogue;
+                }
+                else
+                {
+                    SetGameState(gameState = GameState.GoToNextLevel);
+                    //ui.endOfLevelWindow.gameObject.SetActive(true);
+                    //ui.endOfLevelWindow.OpenWindow();
+                    //goto case GameState.GoToNextLevel;
+                }
                 //load next level
                 //if all levels complete, show congrats
+                break;
+
+            case GameState.GoToNextLevel:
+                if (currentLevel + 1 < maxLevels)
+                {
+                    Singleton.instance.ScreenFade.LoadLevelFadeOut(++currentLevel);
+                }
+                else
+                {
+                    //game complete
+                    SetGameState(gameState = GameState.GameCompleted);
+                }
                 break;
         }
     }
@@ -1048,7 +1126,7 @@ public class GameManager : MonoBehaviour
                 int j = 0;
                 while (!dialogueFound && j < dialogueManager.dialogueList.Count)
                 {
-                    if (dialogueManager.condTriggerList[currentLevel].dialogueId == dialogueManager.dialogueList[j].dialogueId)
+                    if (dialogueManager.condTriggerList[triggerIndex].dialogueId == dialogueManager.dialogueList[j].dialogueId)
                     {
                         dialogueFound = true;
                         keyList = dialogueManager.dialogueList[j].dialogueKeyList[0];
@@ -1062,7 +1140,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             
-            case TutorialState.DialogEndOfLevel:
+            case TutorialState.DialogueEndOfLevel:
                 break;
 
             case TutorialState.BaseDestroyed:
