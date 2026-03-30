@@ -30,6 +30,7 @@ public class DialogueManager : MonoBehaviour
     public const int SELECTING_X_VALUE = 1;
     public const int SELECTING_Y_VALUE = 2;
     public const int SELECTING_SECOND_UNIT = 3;
+    public const int ACTIVATING_UNIT_ABILITY = 4;
 
     // Start is called before the first frame update
     void Awake()

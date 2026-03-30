@@ -211,10 +211,10 @@ public class Dialogue : MonoBehaviour
                         //choose the X and Y value.
                         break;
                     
-                    /*case GameManager.TutorialState.UnitSelectY:
-                        //proceed to create second unit.
-                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectSecondUnit);
-                        break;*/
+                    case GameManager.TutorialState.BuildingSecondUnit:
+                        //activating second unit's ability
+                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.ActivateAbilitySelectX);
+                        break;
                     
                 }
                 //gm.SetGameState(gm.tutorialState = gm.previousTutorialState);

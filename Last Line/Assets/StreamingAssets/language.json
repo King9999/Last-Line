@@ -49,7 +49,7 @@
 	"nothingAtPoint": "Nothing here.",
 	"cancelAction": "Action cancelled.",
 	"buildQueueFull": "Can only build 3 units at a time!",
-	"spaceOccupied": "A unit is already on this space!",
+	"spaceOccupied": "Cannot build on this space!",
 	"buildingUnit": "Building unit.",
 	"systemLabel": "SYSTEM",
 	"buildQueueLabel": "BUILD QUEUE",
@@ -58,6 +58,8 @@
 	"crystalCollected": "Crystal collected.",
 	"notEnoughMoney": "Not enough money!",
 	"dialogue_build_second_unit": "Good job, commander. Build one more unit to back up the first one!",
+	"dialogue_activate_ability": "Commander, order the new unit to fire in the other direction.",
+	"system_activate_ability": "<color=#0CCF5A>To activate a unit's special ability, re-enter the coordinates where the unit is located.</color>"
   },
   "es": {
     

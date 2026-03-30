@@ -16,6 +16,9 @@ public class ArrowGuideManager : MonoBehaviour
 
     public List<ArrowGuides> arrowGuides;
     public List<ArrowGuide> activeArrows;       //tracks which arrows are active so they can be deactivated later.
+
+    //specific arrows
+    public ArrowGuide arrowUnitSelectX, arrowUnitSelectY;
     
     void Awake()
     {

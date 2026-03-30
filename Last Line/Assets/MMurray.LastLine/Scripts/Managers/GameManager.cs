@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour
     public enum TutorialState
     {
         Normal, UnitSelectX, UnitSelectY, DialogueStartOfLevel, DialogEndOfLevel,
-        UnitSelectSecondUnit, UnitSelectSecondUnitX, UnitSelectSecondUnitY, BuildingSecondUnit,
+        UnitSelectSecondUnit, UnitSelectSecondUnitX, UnitSelectSecondUnitY, BuildingSecondUnit, 
+        ActivateAbilitySelectX, ActivateAbilitySelectY,
         BaseDestroyed, LevelComplete,
     }
 
@@ -984,13 +985,30 @@ public class GameManager : MonoBehaviour
 
             case TutorialState.UnitSelectSecondUnitX:
                 //show arrow pointing to value. Player cannot pick other values.
+                am.HideGuideArrows();
+                am.arrowUnitSelectX.PointArrow(am.arrowUnitSelectX.targetedObject, am.arrowUnitSelectX.direction);
                 break;
             
             case TutorialState.UnitSelectSecondUnitY:
+                //show arrow pointing to value. Player cannot pick other values.
+                am.arrowUnitSelectX.gameObject.SetActive(false);
+                am.arrowUnitSelectY.PointArrow(am.arrowUnitSelectY.targetedObject, am.arrowUnitSelectY.direction);
                 break;
             
             case TutorialState.BuildingSecondUnit:
                 //show dialogue informing player to redirect unit to fire in opposite direction.
+                am.arrowUnitSelectY.gameObject.SetActive(false);
+                keyList = dialogueManager.dialogueList[DialogueManager.ACTIVATING_UNIT_ABILITY].dialogueKeyList[0];
+                dialogueManager.dialogueList[DialogueManager.ACTIVATING_UNIT_ABILITY].ShowDialogue(keyList);
+                break;
+            
+            case TutorialState.ActivateAbilitySelectX:
+                am.arrowUnitSelectX.PointArrow(am.arrowUnitSelectX.targetedObject, am.arrowUnitSelectX.direction);
+                break;
+            
+            case TutorialState.ActivateAbilitySelectY:
+                am.arrowUnitSelectX.gameObject.SetActive(false);
+                am.arrowUnitSelectY.PointArrow(am.arrowUnitSelectY.targetedObject, am.arrowUnitSelectY.direction);
                 break;
             
 
