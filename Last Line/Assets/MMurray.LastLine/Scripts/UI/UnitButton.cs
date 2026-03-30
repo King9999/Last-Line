@@ -80,6 +80,9 @@ public class UnitButton : MonoBehaviour
 
         if (gm.inTutorial)
         {
+            //if (gm.tutorialState == GameManager.TutorialState.BuildingFirstUnit || gm.tutorialState == GameManager.TutorialState.BuildingSecondUnit)
+                //return;
+
             switch(gm.tutorialState)
             {
                 case GameManager.TutorialState.Normal:
@@ -88,6 +91,9 @@ public class UnitButton : MonoBehaviour
                 
                 case GameManager.TutorialState.UnitSelectSecondUnit:
                     gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectSecondUnitX);
+                    break;
+
+                default:
                     break;
             }
             //gm.previousTutorialState = gm.tutorialState;    //save this state so we don't lose the unit that was selected after dialogue closes.

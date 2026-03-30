@@ -7,7 +7,7 @@ using System;
 public class DialogueManager : MonoBehaviour
 {
     public List<Dialogue> dialogueList;
-    public List<Dialogue> commonDialogueList;     //dialogue for common scenarios, such as resetting a level or only one block remaining.
+    public List<Dialogue> commonDialogueList;     //dialogue for common scenarios
     //public List<DialogueTrigger> dialogueTrigger;
     public bool dialogueOpen;                       //prevents player actions while dialogue window is open.
 
@@ -31,6 +31,7 @@ public class DialogueManager : MonoBehaviour
     public const int SELECTING_Y_VALUE = 2;
     public const int SELECTING_SECOND_UNIT = 3;
     public const int ACTIVATING_UNIT_ABILITY = 4;
+    public const int ENEMY_INCOMING = 5;
 
     // Start is called before the first frame update
     void Awake()

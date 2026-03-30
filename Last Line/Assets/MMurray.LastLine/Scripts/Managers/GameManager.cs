@@ -27,9 +27,9 @@ public class GameManager : MonoBehaviour
     public enum TutorialState
     {
         Normal, UnitSelectX, UnitSelectY, DialogueStartOfLevel, DialogEndOfLevel,
-        UnitSelectSecondUnit, UnitSelectSecondUnitX, UnitSelectSecondUnitY, BuildingSecondUnit, 
-        ActivateAbilitySelectX, ActivateAbilitySelectY,
-        BaseDestroyed, LevelComplete,
+        UnitSelectSecondUnit, UnitSelectSecondUnitX, UnitSelectSecondUnitY, BuildingFirstUnit, BuildingSecondUnit, 
+        ActivateAbility, ActivateAbilitySelectX, ActivateAbilitySelectY,
+        DialogueEnemyIncoming, DeployEnemyUnits, BaseDestroyed, LevelComplete,
     }
 
     public enum PlayerUnitType {NoUnitSelected, Base, StraightShooter, VerticalShooter, TrackingBeam, Bomb}
@@ -208,8 +208,12 @@ public class GameManager : MonoBehaviour
                 {
                     switch(tutorialState)
                     {
-                        case TutorialState.Normal:
+                        case TutorialState.BuildingFirstUnit:
                             SetGameState(tutorialState = TutorialState.UnitSelectSecondUnit);
+                            break;
+
+                        case TutorialState.BuildingSecondUnit:
+                            SetGameState(tutorialState = TutorialState.ActivateAbility);
                             break;
                     }
                 }
@@ -930,6 +934,8 @@ public class GameManager : MonoBehaviour
         switch(state)
         {
             case TutorialState.Normal:
+            case TutorialState.BuildingFirstUnit:
+            case TutorialState.BuildingSecondUnit:
                 //hide any arrow guides that were shown
                 am.HideGuideArrows();
 
@@ -995,7 +1001,7 @@ public class GameManager : MonoBehaviour
                 am.arrowUnitSelectY.PointArrow(am.arrowUnitSelectY.targetedObject, am.arrowUnitSelectY.direction);
                 break;
             
-            case TutorialState.BuildingSecondUnit:
+            case TutorialState.ActivateAbility:
                 //show dialogue informing player to redirect unit to fire in opposite direction.
                 am.arrowUnitSelectY.gameObject.SetActive(false);
                 keyList = dialogueManager.dialogueList[DialogueManager.ACTIVATING_UNIT_ABILITY].dialogueKeyList[0];
@@ -1009,6 +1015,19 @@ public class GameManager : MonoBehaviour
             case TutorialState.ActivateAbilitySelectY:
                 am.arrowUnitSelectX.gameObject.SetActive(false);
                 am.arrowUnitSelectY.PointArrow(am.arrowUnitSelectY.targetedObject, am.arrowUnitSelectY.direction);
+                break;
+
+            case TutorialState.DialogueEnemyIncoming:
+                //inform player what they did and to reinforce how ordered pairs are made. Also have dialogue from mother base warning
+                //player that enemy is about to attack.
+                am.arrowUnitSelectY.gameObject.SetActive(false);
+                keyList = dialogueManager.dialogueList[DialogueManager.ENEMY_INCOMING].dialogueKeyList[0];
+                dialogueManager.dialogueList[DialogueManager.ENEMY_INCOMING].ShowDialogue(keyList);
+                break;
+            
+            case TutorialState.DeployEnemyUnits:
+                //there's only 1 portal in the tutorial
+                activePortals[0].timer.SetTimer(0);
                 break;
             
 

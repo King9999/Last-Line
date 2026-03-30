@@ -110,7 +110,10 @@ public class Portal : MonoBehaviour
 
         //icon is disabled as it won't be needed
         if (unitIcon.gameObject.activeSelf)
+        {
             unitIcon.gameObject.SetActive(false);
+            enemyCountText.gameObject.SetActive(false);
+        }
 
         if (nextEnemy < enemyCount && Time.time > currentDeployTime + deployCooldown)
         {

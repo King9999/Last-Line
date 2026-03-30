@@ -84,6 +84,14 @@ public class AxisButton : MonoBehaviour
 
                         gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectSecondUnitY);
                         break;
+                    
+                    case GameManager.TutorialState.ActivateAbilitySelectX:
+                        //if player picked incorrect value, we don't continue.
+                        if (value != 4)
+                            return;
+
+                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.ActivateAbilitySelectY);
+                        break;
 
                 }
             }
@@ -121,12 +129,22 @@ public class AxisButton : MonoBehaviour
                         break;
                     
                     case GameManager.TutorialState.UnitSelectSecondUnitY:
+                    case GameManager.TutorialState.ActivateAbilitySelectY:
                         //if player picked incorrect value, we don't continue.
                         if (value != 3)
                             return;
 
                         gm.enteringValueY = true;
                         break;
+                    
+                    /*case GameManager.TutorialState.ActivateAbilitySelectY:
+                        //if player picked incorrect value, we don't continue.
+                        if (value != 3)
+                            return;
+
+                        gm.enteringValueY = true;
+                        //gm.SetGameState(gm.tutorialState = GameManager.TutorialState.DialogueEnemyIncoming);
+                        break;*/
 
                 }
             }
@@ -157,11 +175,15 @@ public class AxisButton : MonoBehaviour
                         switch(gm.tutorialState)
                         {
                             case GameManager.TutorialState.UnitSelectY:
-                                gm.SetGameState(gm.tutorialState = GameManager.TutorialState.Normal);
+                                gm.SetGameState(gm.tutorialState = GameManager.TutorialState.BuildingFirstUnit);
                                 break;
                             
                             case GameManager.TutorialState.UnitSelectSecondUnitY:
                                 gm.SetGameState(gm.tutorialState = GameManager.TutorialState.BuildingSecondUnit);
+                                break;
+                            
+                            case GameManager.TutorialState.ActivateAbilitySelectY:
+                                gm.SetGameState(gm.tutorialState = GameManager.TutorialState.DialogueEnemyIncoming);
                                 break;
 
                         }
