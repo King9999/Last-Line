@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     public List<Point> points;                //the locations on the map where all units are placed.
     public int currentLevel;
     public bool inTutorial;                 //when true, units can be created for free and the game doesn't run normally.
+    public int totalEnemies;                //when this value is 0, the level is over.
 
     [Header("---Level File---")]
     [SerializeField]private TextAsset levelFile;
@@ -174,6 +175,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (totalEnemies <= 0)
+        {
+            //level is over.
+            SetGameState(gameState = GameState.LevelComplete);
+        }
         //check for right click or Escape key. They're used to cancel certain actions.
         if (CancelButtonPressed())
         {
@@ -404,6 +410,7 @@ public class GameManager : MonoBehaviour
             //set enemy type and count
             portal.enemyType = portalData.enemy_type;
             portal.enemyCount = portalData.enemy_count;
+            totalEnemies += portal.enemyCount;
             
 
             /******Enemy setup*****/
@@ -837,6 +844,8 @@ public class GameManager : MonoBehaviour
         unit.portal = null;
         Logger.DebugLogFormat("Removing {0}", unit.name);
         unit.gameObject.SetActive(false);
+        totalEnemies--;
+        Logger.DebugLogFormat("Enemies remaining: {0}", totalEnemies);
     }
     #endregion
 
@@ -919,6 +928,8 @@ public class GameManager : MonoBehaviour
                 {
                     portal.gameObject.SetActive(false);
                 }
+                //display dialogue if any
+                Logger.DebugLogFormat("Level {0} complete", currentLevel);
                 //load next level
                 //if all levels complete, show congrats
                 break;
