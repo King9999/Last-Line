@@ -5,6 +5,7 @@ using MMurray.GenericCode;
 using MMurray.LastLine;
 using TMPro;
 using System;
+using UnityEngine.UIElements;
 
 public class Portal : MonoBehaviour
 {
@@ -79,7 +80,11 @@ public class Portal : MonoBehaviour
         //path setup TODO: Why can't I just get a reference to the line renderer's vertices directly?
         for (int i = 0; i < enemyPath.positionCount; i++)
         {
-            pathPoints.Add(enemyPath.GetPosition(i));
+            //add the portal's position to each point so that the enemy moves accurately along the path.
+            Vector3 newPoint = enemyPath.GetPosition(i);
+            Vector3 newPathPoint = new Vector3(newPoint.x + transform.position.x, newPoint.y + transform.position.y);
+            pathPoints.Add(newPathPoint /*enemyPath.GetPosition(i)*/);
+
         }
         Logger.DebugLogFormat("Vertex count in portal {0}: {1}", gameObject.name, pathPoints.Count);
 
