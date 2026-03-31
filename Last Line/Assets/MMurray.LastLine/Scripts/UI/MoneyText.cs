@@ -20,7 +20,7 @@ public class MoneyText : MonoBehaviour
     public void ShowMoneyRewardText(int amount, Vector2 position)
     {
         gameObject.SetActive(true);
-        moneyText.text = string.Format("+{0} CR", amount);
+        moneyText.text = string.Format("+{0}", amount);
         moneyText.transform.position = Camera.main.WorldToScreenPoint(position);
         //moneyText.alpha = 1;
         animateMoneyCoroutine = StartCoroutine(AnimateMoneyText(animateTime));

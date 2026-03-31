@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     {
         Normal,                 //when game state is normal the game is running. Otherwise the game is paused.
         UnitSelectX, UnitSelectY, CoordinatesSelect, ///player is entering coordinates
-        DialogueStartOfLevel, DialogueEndOfLevel,
+        StartLevel, DialogueStartOfLevel, DialogueEndOfLevel,
         SelectingValueX, SelectingValueY,       //used when placing units on screen.
         BaseDestroyed, LevelComplete, GoToNextLevel, GameCompleted
     }
@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     public PlayerUnit testUnit;
     public Portal testPortal;
     public PlayerUnit_Base playerBase;              //there's only 1 of these
+    public PowerUpSpace powerUpSpace;               //1 per level.
 
     [Header("---Money---")]
     public int money;                               //how much money player has to create units.
@@ -154,7 +155,7 @@ public class GameManager : MonoBehaviour
         if (inTutorial)
             SetGameState(tutorialState = TutorialState.DialogueStartOfLevel);
         else
-            SetGameState(gameState = GameState.DialogueStartOfLevel);
+            SetGameState(gameState = GameState.StartLevel);
         //ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
         //am.arrowGuides[0].arrowList[0].PointArrow(am.arrowGuides[0].arrowList[0].targetedObject, Vector2.right);
 
@@ -173,22 +174,49 @@ public class GameManager : MonoBehaviour
         testLaser.FireWeapon(fireDir, z);*/
     }
 
+    /// <summary>
+    /// Used to check when the Update loop should stop running when the game enters a state where the player
+    /// should no longer play.
+    /// </summary>
+    /// <returns></returns>
+    bool UnplayableState()
+    {
+        bool cannotPlay = false;
+        if (gameState == GameState.BaseDestroyed || gameState == GameState.LevelComplete || gameState == GameState.DialogueEndOfLevel)
+            cannotPlay = true;
+        
+        if (inTutorial && (tutorialState == TutorialState.LevelComplete || tutorialState == TutorialState.DialogueEndOfLevel))
+            cannotPlay = true;
+        
+        return cannotPlay;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (gameState == GameState.BaseDestroyed || gameState == GameState.LevelComplete)
+        if (UnplayableState())
             return;
+
+        //if (gameState == GameState.BaseDestroyed || gameState == GameState.LevelComplete)
+            //return;
 
         if (totalEnemies <= 0)
         {
             //level is over.
             //if base is destroyed, then it's game over.
-            if (playerBase.hitPoints <= 0 && gameState != GameState.BaseDestroyed)
+            if (!inTutorial)
             {
-                SetGameState(gameState = GameState.BaseDestroyed);
+                if (playerBase.hitPoints <= 0 && gameState != GameState.BaseDestroyed)
+                {
+                    SetGameState(gameState = GameState.BaseDestroyed);
+                }
+                else
+                    SetGameState(gameState = GameState.LevelComplete);
             }
             else
-                SetGameState(gameState = GameState.LevelComplete);
+            {
+                SetGameState(tutorialState = TutorialState.LevelComplete);
+            }
 
             return;
         }
@@ -342,6 +370,35 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// removes all player units and other visible objects in preparation for the next level.
+    /// </summary>
+    public void Cleanup()
+    {
+        //deactivate current portals for use in the next level.
+        foreach (Portal portal in activePortals)
+        {
+            portal.gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < activePlayerUnits.Count; i++)
+        {
+            activePlayerUnits[i].gameObject.SetActive(false);
+            deadPlayerUnits.Add(activePlayerUnits[i]);
+            activePlayerUnits.Remove(activePlayerUnits[i]);
+            i--;
+        }
+
+        foreach(Point point in points)
+        {
+            point.ClearPoint();
+        }
+        
+
+        crystal.gameObject.SetActive(false);
+        powerUpSpace.gameObject.SetActive(false);
+    }
+
     bool CancelButtonPressed()
     {
         //cancel button is disabled in tutorial
@@ -376,6 +433,8 @@ public class GameManager : MonoBehaviour
         //tutorial check
         if (level == 0)
            inTutorial = true;
+        else
+           inTutorial = false;
 
         Logger.DebugLogFormat("Level Count: {0}", levelData.levels.Length);
         //Logger.DebugLog("Levels: " + levelData.levels[1].starting_money);
@@ -576,8 +635,11 @@ public class GameManager : MonoBehaviour
 
             //spend money
             Menu menu = Singleton.instance.Menu;
-            money -= newUnit.unitCost;
-            menu.UpdateMoneyText();
+            if (!inTutorial)    //units are free in tutorial.
+            {
+                money -= newUnit.unitCost;
+                menu.UpdateMoneyText();
+            }
 
             if (buildQueue.Count <= 0)  //make sure progressIndex is reset when build queue is empty
                 progressIndex = 0;
@@ -906,6 +968,36 @@ public class GameManager : MonoBehaviour
             case GameState.CoordinatesSelect:
                 break;
 
+            case GameState.StartLevel:
+                //look for any opening dialogue. If there's none, game resumes.
+                bool triggerFound = false;
+                int i = 0;
+                while (!triggerFound && i < dialogueManager.condTriggerList.Count)
+                {
+                    if (dialogueManager.condTriggerList[i].level == currentLevel &&
+                        dialogueManager.condTriggerList[i].condition == DialogueManager.ConditionalTrigger.Condition.LevelStart)
+                    {
+                        triggerFound = true;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+
+                }
+
+
+                if (triggerFound)
+                {
+                    triggerIndex = i;
+                    SetGameState(gameState = GameState.DialogueStartOfLevel);
+                }
+                else
+                {
+                    SetGameState(gameState = GameState.Normal);
+                }
+                break;
+
             case GameState.DialogueStartOfLevel:
                 //find correct dialogue to display.
                 bool dialogueFound = false;
@@ -959,15 +1051,15 @@ public class GameManager : MonoBehaviour
 
             case GameState.LevelComplete:
                 //deactivate current portals for use in the next level.
-                foreach (Portal portal in activePortals)
+                /*foreach (Portal portal in activePortals)
                 {
                     portal.gameObject.SetActive(false);
-                }
+                }*/
                 //display dialogue if any
                 Logger.DebugLogFormat("Level {0} complete", currentLevel);
                 //check for conditional trigger to activate dialogue
-                bool triggerFound = false;
-                int i = 0;
+                triggerFound = false;
+                i = 0;
                 while (!triggerFound && i < dialogueManager.condTriggerList.Count)
                 {
                     if (dialogueManager.condTriggerList[i].level == currentLevel &&
@@ -1141,6 +1233,23 @@ public class GameManager : MonoBehaviour
                 break;
             
             case TutorialState.DialogueEndOfLevel:
+                //find correct dialogue to display.
+                dialogueFound = false;
+                j = 0;
+                while (!dialogueFound && j < dialogueManager.dialogueList.Count)
+                {
+                    int dialogueId = dialogueManager.dialogueList[j].dialogueId;
+                    if (dialogueId > 0 && dialogueId == dialogueManager.condTriggerList[triggerIndex].dialogueId)
+                    {
+                        dialogueFound = true;
+                        keyList = dialogueManager.dialogueList[j].dialogueKeyList[0];
+                        dialogueManager.dialogueList[j].ShowDialogue(keyList);
+                    }
+                    else
+                    {
+                        j++;
+                    }
+                }
                 break;
 
             case TutorialState.BaseDestroyed:
@@ -1152,7 +1261,37 @@ public class GameManager : MonoBehaviour
                 {
                     portal.gameObject.SetActive(false);
                 }
+                //display dialogue if any
+                Logger.DebugLogFormat("Level {0} complete", currentLevel);
+                //check for conditional trigger to activate dialogue
+                bool triggerFound = false;
+                int i = 0;
+                while (!triggerFound && i < dialogueManager.condTriggerList.Count)
+                {
+                    if (dialogueManager.condTriggerList[i].level == currentLevel &&
+                        dialogueManager.condTriggerList[i].condition == DialogueManager.ConditionalTrigger.Condition.LevelEnd)
+                    {
+                        triggerFound = true;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+
+                }
+
+
+                if (triggerFound)
+                {
+                    triggerIndex = i;
+                    SetGameState(tutorialState = TutorialState.DialogueEndOfLevel);
+                }
+                else
+                {
+                    SetGameState(gameState = GameState.GoToNextLevel);
+                }
                 //load next level
+                //if all levels complete, show congrats
                 break;
         }
     }

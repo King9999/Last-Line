@@ -219,6 +219,11 @@ public class Dialogue : MonoBehaviour
                     case GameManager.TutorialState.DialogueEnemyIncoming:
                         gm.SetGameState(gm.tutorialState = GameManager.TutorialState.DeployEnemyUnits);
                         break;
+
+                    case GameManager.TutorialState.DialogueEndOfLevel:
+                        //move to next level
+                        gm.SetGameState(gm.gameState = GameManager.GameState.GoToNextLevel);
+                        break;
                     
                 }
                 //gm.SetGameState(gm.tutorialState = gm.previousTutorialState);

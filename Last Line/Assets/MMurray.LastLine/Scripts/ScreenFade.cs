@@ -112,10 +112,14 @@ namespace MMurray.GenericCode
                 yield return null;
             }
 
-            //coroutineOn = false;
+            GameManager gm = Singleton.instance.GameManager;
+
+            //cleanup any units or other objects.
+            gm.Cleanup();
+
 
             //load level
-            Singleton.instance.GameManager.LoadLevel(level);
+            gm.LoadLevel(level);
             yield return LoadLevelFadeFromBlack();
         }
 
@@ -133,7 +137,7 @@ namespace MMurray.GenericCode
             }
 
 
-            Singleton.instance.GameManager.gameState = GameManager.GameState.Normal;
+            Singleton.instance.GameManager.gameState = GameManager.GameState.StartLevel;
             coroutineOn = false;
         }
     }

@@ -12,12 +12,14 @@ namespace MMurray.LastLine
         public Unit unit;           //reference to a unit that's at this point.
         public Crystal crystal;
         public Portal portal;
+        public PowerUpSpace powerUpSpace;
 
         public void ClearPoint()
         {
             unit = null;
             crystal = null;
             portal = null;
+            powerUpSpace = null;
         }
 
         public bool IsEmpty()
