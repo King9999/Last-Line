@@ -932,10 +932,12 @@ public class GameManager : MonoBehaviour
     {
         //gameState = state;
         Logger.DebugLogFormat("GameState changed to {0}", gameState);
+        ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
         switch(state)
         {
             case GameState.Normal:
                 //alertText.text = "";
+                am.HideGuideArrows();
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(true);
                 playerUnitType = PlayerUnitType.NoUnitSelected;

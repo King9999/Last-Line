@@ -79,7 +79,7 @@ public class AxisButton : MonoBehaviour
                     
                     case GameManager.TutorialState.UnitSelectSecondUnitX:
                         //if player picked incorrect value, we don't continue.
-                        if (value != 4)
+                        if (value != 5)
                             return;
 
                         gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectSecondUnitY);
@@ -87,7 +87,7 @@ public class AxisButton : MonoBehaviour
                     
                     case GameManager.TutorialState.ActivateAbilitySelectX:
                         //if player picked incorrect value, we don't continue.
-                        if (value != 4)
+                        if (value != 5)
                             return;
 
                         gm.SetGameState(gm.tutorialState = GameManager.TutorialState.ActivateAbilitySelectY);

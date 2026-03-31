@@ -16,6 +16,7 @@ public class ArrowGuideManager : MonoBehaviour
 
     public List<ArrowGuides> arrowGuides;
     public List<ArrowGuide> activeArrows;       //tracks which arrows are active so they can be deactivated later.
+    public List<Transform> arrowLocations;      //must be separate from the arrow guides. These are always static.
 
     //specific arrows
     public ArrowGuide arrowUnitSelectX, arrowUnitSelectY;
