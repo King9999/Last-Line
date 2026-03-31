@@ -62,6 +62,9 @@ public class Dialogue : MonoBehaviour
     public void ShowDialogue(DialogueKeyList keyList)
     {
         gameObject.SetActive(true);
+        DialogueManager dm = Singleton.instance.DialogueManager;
+        dm.dialogueOpen = true;
+       
 
         dialogueText.text = GetText(keyList.key);
 

@@ -121,7 +121,7 @@ namespace MMurray.LastLine
         }
 
         //updates health bar's slider value, position, and visibility.
-        protected void UpdateHealthBar(Vector2 unitPos)
+        public void UpdateHealthBar(Vector2 unitPos)
         {
             if (hitPoints <= 0)
                 return;

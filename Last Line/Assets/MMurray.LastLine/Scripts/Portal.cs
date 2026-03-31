@@ -92,9 +92,11 @@ public class Portal : MonoBehaviour
         GameManager gm = Singleton.instance.GameManager;
         if (!gm.inTutorial)
         {
+            timer.gameObject.SetActive(true);
             timer.timerUI.transform.position = Camera.main.WorldToScreenPoint(transform.position);
             timer.timeFormat = Timer.TimeFormat.Seconds;
-            timer.StartTimer();
+            timer.timerUI.text = timer.DisplayTimer();
+            //timer.StartTimer();
         }
         else
         {

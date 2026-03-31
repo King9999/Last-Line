@@ -456,6 +456,7 @@ public class GameManager : MonoBehaviour
             enemyUnit.gameObject.SetActive(false);
             testPortal.enemyUnits.Add(enemyUnit);
         }*/
+
         for (int i = 0; i < levelData.levels[level].portals.Count; i++)
         {
             /******PORTAL SETUP*******/
@@ -533,15 +534,19 @@ public class GameManager : MonoBehaviour
         playerBase.transform.position = Camera.main.ScreenToWorldPoint(newLevel.player_base_position);
         playerBase.transform.position = new Vector3(playerBase.transform.position.x, playerBase.transform.position.y, 0);
         SetPointRef(playerBase, newLevel.base_point_axes);
+        playerBase.hitPoints = playerBase.maxHitPoints;
+        playerBase.UpdateHealthBar(playerBase.transform.position);
 
 
         /*******CRYSTAL & STARTING MONEY SETUP******/
+        Menu menu = Singleton.instance.Menu;
         crystalThreshold = newLevel.crystal_threshold;
         crystal.SetMoneyValue(newLevel.crystal_value);
+        money = newLevel.starting_money;
+        menu.UpdateMoneyText();
 
         /******AVAILABLE PLAYER UNITS******/
         //by default, all unit buttons are visible.
-        Menu menu = Singleton.instance.Menu;
         for (int i = 0; i < newLevel.toggle_unit.Length; i++)
         {
             menu.unitButtons[i].gameObject.SetActive(newLevel.toggle_unit[i]);
@@ -941,6 +946,12 @@ public class GameManager : MonoBehaviour
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(true);
                 playerUnitType = PlayerUnitType.NoUnitSelected;
+
+                //start portal timers
+                foreach(Portal portal in activePortals)
+                {
+                    portal.timer.StartTimer();
+                }
                 break;
 
             case GameState.UnitSelectX:

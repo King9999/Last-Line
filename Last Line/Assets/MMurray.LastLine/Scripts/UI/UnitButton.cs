@@ -22,7 +22,7 @@ public class UnitButton : MonoBehaviour
     public void OnMouseHoverEnter()
     {
         GameManager gm = Singleton.instance.GameManager;
-        if (gm.gameState != GameManager.GameState.Normal || gm.tutorialState != GameManager.TutorialState.Normal)   //prevent any other action while unit selected.
+        if (gm.gameState != GameManager.GameState.Normal || (gm.inTutorial && gm.tutorialState != GameManager.TutorialState.Normal))   //prevent any other action while unit selected.
             return;
 
         Logger.DebugLog("Hovering over button");
@@ -52,8 +52,10 @@ public class UnitButton : MonoBehaviour
     public void OnMouseClick()
     {
         GameManager gm = Singleton.instance.GameManager;
-        if (gm.gameState != GameManager.GameState.Normal || (gm.tutorialState != GameManager.TutorialState.Normal &&
-            gm.tutorialState != GameManager.TutorialState.UnitSelectSecondUnit))   //prevent any other action while unit selected.
+        DialogueManager dm = Singleton.instance.DialogueManager;
+
+        if (gm.gameState != GameManager.GameState.Normal || dm.dialogueOpen) /*|| (gm.tutorialState != GameManager.TutorialState.Normal &&
+            gm.tutorialState != GameManager.TutorialState.UnitSelectSecondUnit))*/   //prevent any other action while unit selected.
             return;
 
         gm.playerUnitType = unitType;

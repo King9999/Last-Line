@@ -48,7 +48,7 @@ public class Menu : MonoBehaviour
         moneyLabel.text = GetText("moneyLabel");
         systemLabel.text = GetText("systemLabel");
         buildQueueLabel.text = GetText("buildQueueLabel");
-        UpdateMoneyText();
+        //UpdateMoneyText();
     }
 
     public void UpdateMoneyText()

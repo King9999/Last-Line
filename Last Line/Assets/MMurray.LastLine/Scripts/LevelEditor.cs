@@ -162,16 +162,6 @@ namespace MMurray.LastLine
                 //Logger.DebugLogFormat("Level: {0}", level);
 
                 writer.Write(levelString);
-                //writer.Write(startingMoney);
-
-                //record portal data
-                /*for (int j = 0; j < levels[i].portalList.Count; j++)
-                {
-                    string test = JsonUtility.ToJson(levels[i].portalList[j].enemyPath, true);
-                }*/
-            
-            //string newPath = Application.dataPath + "/MMurray.LastLine/Resources/levels";
-            //Logger.DebugLog("Path: " + levelsPath);
             
             
             writer.Close();

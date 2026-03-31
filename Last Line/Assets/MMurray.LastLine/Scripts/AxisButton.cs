@@ -18,6 +18,10 @@ public class AxisButton : MonoBehaviour
     public void GetValue()
     {
         GameManager gm = Singleton.instance.GameManager;
+        DialogueManager dm = Singleton.instance.DialogueManager;
+
+        if (dm.dialogueOpen)
+            return;
 
         //check which axis we're on and record the value. A special case is made for the origin.
         if (axisValue == AxisValue.ORIGIN)
@@ -71,7 +75,7 @@ public class AxisButton : MonoBehaviour
                 {
                     case GameManager.TutorialState.UnitSelectX:
                         //if player picked incorrect value, we don't continue.
-                        if (value != 2)
+                        if (value != 3)
                             return;
 
                         gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectY);
@@ -91,6 +95,9 @@ public class AxisButton : MonoBehaviour
                             return;
 
                         gm.SetGameState(gm.tutorialState = GameManager.TutorialState.ActivateAbilitySelectY);
+                        break;
+                    
+                    default:
                         break;
 
                 }
@@ -135,6 +142,9 @@ public class AxisButton : MonoBehaviour
                             return;
 
                         gm.enteringValueY = true;
+                        break;
+
+                    default:
                         break;
                     
                     /*case GameManager.TutorialState.ActivateAbilitySelectY:
@@ -184,6 +194,9 @@ public class AxisButton : MonoBehaviour
                             
                             case GameManager.TutorialState.ActivateAbilitySelectY:
                                 gm.SetGameState(gm.tutorialState = GameManager.TutorialState.DialogueEnemyIncoming);
+                                break;
+                            
+                            default:
                                 break;
 
                         }
