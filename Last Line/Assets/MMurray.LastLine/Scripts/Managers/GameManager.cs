@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     public PowerUpSpace powerUpSpace;               //1 per level.
 
     [Header("---Money---")]
-    public int money;                               //how much money player has to create units.
+    public int money;                               //how much money player has to create units. In game, it's called scrap.
     [SerializeField]private int crystalThreshold;   //the amount of money needed for a crystal to appear. Resets once threshold is hit.
     private int accumulatedMoney;
     public Crystal crystal;
@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
         enteringValueY = false;
 
         //crystal setup
+        money = 0;
         crystal.gameObject.SetActive(false);
         /*unitCosts = new int[4];
         unitCosts[0] = straightShooterPrefab.unitData.unitCost;
@@ -149,6 +150,7 @@ public class GameManager : MonoBehaviour
             s.saveState.LoadState(s.saveState.ReadState);
             //s.saveState.ReadState(s.gameData);
         }
+        currentLevel = 1;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);

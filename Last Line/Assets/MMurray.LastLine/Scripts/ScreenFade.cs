@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using MMurray.LastLine;
+using Unity.VisualScripting;
 
 //used to hide the screen before loading the next scene.
 namespace MMurray.GenericCode
@@ -136,8 +137,8 @@ namespace MMurray.GenericCode
                 yield return null;
             }
 
-
-            Singleton.instance.GameManager.gameState = GameManager.GameState.StartLevel;
+            GameManager gm = Singleton.instance.GameManager;
+            gm.SetGameState(gm.gameState = GameManager.GameState.StartLevel);
             coroutineOn = false;
         }
     }
