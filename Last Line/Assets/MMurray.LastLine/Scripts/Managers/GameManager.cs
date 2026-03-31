@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
             s.saveState.LoadState(s.saveState.ReadState);
             //s.saveState.ReadState(s.gameData);
         }
-        currentLevel = 1;
+        //currentLevel = 1;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -1175,13 +1175,13 @@ public class GameManager : MonoBehaviour
             case TutorialState.UnitSelectSecondUnitX:
                 //show arrow pointing to value. Player cannot pick other values.
                 am.HideGuideArrows();
-                am.arrowUnitSelectX.PointArrow(am.arrowUnitSelectX.targetedObject, am.arrowUnitSelectX.direction);
+                am.arrowUnitSelectX.PointArrow(am.arrowUnitSelectX.arrowLocation, am.arrowUnitSelectX.direction);
                 break;
             
             case TutorialState.UnitSelectSecondUnitY:
                 //show arrow pointing to value. Player cannot pick other values.
                 am.arrowUnitSelectX.gameObject.SetActive(false);
-                am.arrowUnitSelectY.PointArrow(am.arrowUnitSelectY.targetedObject, am.arrowUnitSelectY.direction);
+                am.arrowUnitSelectY.PointArrow(am.arrowUnitSelectY.arrowLocation, am.arrowUnitSelectY.direction);
                 break;
             
             case TutorialState.ActivateAbility:
@@ -1192,12 +1192,12 @@ public class GameManager : MonoBehaviour
                 break;
             
             case TutorialState.ActivateAbilitySelectX:
-                am.arrowUnitSelectX.PointArrow(am.arrowUnitSelectX.targetedObject, am.arrowUnitSelectX.direction);
+                am.arrowUnitSelectX.PointArrow(am.arrowUnitSelectX.arrowLocation, am.arrowUnitSelectX.direction);
                 break;
             
             case TutorialState.ActivateAbilitySelectY:
                 am.arrowUnitSelectX.gameObject.SetActive(false);
-                am.arrowUnitSelectY.PointArrow(am.arrowUnitSelectY.targetedObject, am.arrowUnitSelectY.direction);
+                am.arrowUnitSelectY.PointArrow(am.arrowUnitSelectY.arrowLocation, am.arrowUnitSelectY.direction);
                 break;
 
             case TutorialState.DialogueEnemyIncoming:
