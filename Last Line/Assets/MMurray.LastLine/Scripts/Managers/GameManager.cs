@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
             s.saveState.LoadState(s.saveState.ReadState);
             //s.saveState.ReadState(s.gameData);
         }
-        currentLevel = 1;
+        //currentLevel = 1;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -222,15 +222,18 @@ public class GameManager : MonoBehaviour
         if (UnplayableState())
             return;
 
-        if (!gameStarted && PortalReady())
+        if (!inTutorial && !gameStarted)
         {
-            //game has started, enemies start attacking.
-            gameStarted = true;
-            readyButton.gameObject.SetActive(false);
-        }
+            if (PortalReady())
+            {
+                //game has started, enemies start attacking.
+                gameStarted = true;
+                readyButton.gameObject.SetActive(false);
+            }
 
-        if (!gameStarted)
-            return;
+            //if (!gameStarted)
+                //return;
+        }
 
         if (totalEnemies <= 0)
         {
@@ -467,6 +470,11 @@ public class GameManager : MonoBehaviour
            inTutorial = true;
         else
            inTutorial = false;
+
+        /*******SAVE DATA********/
+        //This is done here because only the current level is saved and nothing else.
+        //The player resumes from the beginning of the level.
+        Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
 
 
         //ready button check
@@ -713,7 +721,7 @@ public class GameManager : MonoBehaviour
             //activePlayerUnits.Add(newUnit);
 
             //save unit's position
-            Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
+            //Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
             //playerUnitType = PlayerUnitType.NoUnitSelected;
             SetGameState(gameState = GameState.Normal);
         }     

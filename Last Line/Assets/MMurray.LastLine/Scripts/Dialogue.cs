@@ -67,7 +67,7 @@ public class Dialogue : MonoBehaviour
         
         //hide ready button
         GameManager gm = Singleton.instance.GameManager;
-        if (!gm.gameStarted && gm.readyButton.gameObject.activeSelf)
+        if (!gm.inTutorial && !gm.gameStarted /*&& gm.readyButton.gameObject.activeSelf*/)
             gm.readyButton.gameObject.SetActive(false);
 
         dialogueText.text = GetText(keyList.key);
@@ -203,7 +203,7 @@ public class Dialogue : MonoBehaviour
 
             //show ready button
             GameManager gm = Singleton.instance.GameManager;
-            if (!gm.gameStarted && !gm.readyButton.gameObject.activeSelf)
+            if (!gm.inTutorial && !gm.gameStarted /*&& !gm.readyButton.gameObject.activeSelf*/)
                 gm.readyButton.gameObject.SetActive(true);
 
             //TODO: Check game state and proceed depending on what it is.

@@ -17,13 +17,16 @@ namespace MMurray.LastLine
             //data.test_unit_pos = gm.testUnit.transform.position;
             data.level = gm.currentLevel;
 
+            //submit progress
+            LOLSDK.Instance.SubmitProgress(0, data.level + 1, gm.maxLevels); //add 1 to level because level starts at 0.
+
             LOLSDK.Instance.SaveState(data);
         }
 
         public void ReadState(GameData data)
         {
             GameManager gm = Singleton.instance.GameManager;
-            gm.testUnit.transform.position = data.test_unit_pos;
+            //gm.testUnit.transform.position = data.test_unit_pos;
             gm.currentLevel = data.level;
         }
 
