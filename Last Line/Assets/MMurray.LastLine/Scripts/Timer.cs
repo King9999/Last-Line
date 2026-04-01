@@ -58,10 +58,10 @@ namespace MMurray.GenericCode
 
             //update timer display. Colour changes if less than 30% time left. I use rounding to prevent decimal 
             //values from delaying the colour change.
-            UpdateTime();
+            //UpdateTime();
             timerUI.color = (time <= Mathf.Round(initTime * 0.3f)) ? Color.red : Color.white;
             //timerUI.text = DisplayTimer();
-            timerUI.text = timeText;
+            timerUI.text = Mathf.FloorToInt(time).ToString();//timeText;
         }
 
         public void SetTimer(float seconds)
@@ -134,6 +134,17 @@ namespace MMurray.GenericCode
         public void StartTimer()
         {
             timerRunning = true;
+        }
+
+        //Used to advance portal timers, allowing player to start the game early.
+        public void ReduceTime(float amount)
+        {
+            if (amount < 0)
+                return;
+                
+            time -= amount;
+            if (time < 0)
+                time = 0;
         }
 
     }

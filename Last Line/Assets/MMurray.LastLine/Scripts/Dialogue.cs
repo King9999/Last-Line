@@ -64,7 +64,11 @@ public class Dialogue : MonoBehaviour
         gameObject.SetActive(true);
         DialogueManager dm = Singleton.instance.DialogueManager;
         dm.dialogueOpen = true;
-       
+        
+        //hide ready button
+        GameManager gm = Singleton.instance.GameManager;
+        if (!gm.gameStarted && gm.readyButton.gameObject.activeSelf)
+            gm.readyButton.gameObject.SetActive(false);
 
         dialogueText.text = GetText(keyList.key);
 
@@ -197,8 +201,13 @@ public class Dialogue : MonoBehaviour
             gameObject.SetActive(false);
             Logger.DebugLog("Closing Window");
 
-            //TODO: Check game state and proceed depending on what it is.
+            //show ready button
             GameManager gm = Singleton.instance.GameManager;
+            if (!gm.gameStarted && !gm.readyButton.gameObject.activeSelf)
+                gm.readyButton.gameObject.SetActive(true);
+
+            //TODO: Check game state and proceed depending on what it is.
+            //GameManager gm = Singleton.instance.GameManager;
             if (gm.inTutorial)
             {
                 //gm.SetGameState(gm.tutorialState = GameManager.TutorialState.Normal);

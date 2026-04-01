@@ -6,7 +6,6 @@ using MMurray.LastLine;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 using UnityEditor;
 
 
@@ -42,6 +41,7 @@ public class GameManager : MonoBehaviour
     public int currentLevel;
     public int maxLevels {get;} = 8;
     public bool inTutorial;                 //when true, units can be created for free and the game doesn't run normally.
+    public bool gameStarted;                //while false, the "ready to play" button appears
     public int totalEnemies;                //when this value is 0, the level is over.
 
     [Header("---Level File---")]
@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour
     private int availableProgressIndex;     //always points to an inactive progress bar.
     public Laser testLaser;
     [SerializeField]private List<MoneyText> moneyTexts;    //is displayed when an enemy unit is destroyed.
+    public Button readyButton;     //used to advance game by 60 seconds to start early.
+    [SerializeField]private TextMeshProUGUI readyLabel;
 
     
 
@@ -134,14 +136,10 @@ public class GameManager : MonoBehaviour
         //crystal setup
         money = 0;
         crystal.gameObject.SetActive(false);
-        /*unitCosts = new int[4];
-        unitCosts[0] = straightShooterPrefab.unitData.unitCost;
-        unitCosts[1] = verticalShooterPrefab.unitData.unitCost;
-        unitCosts[2] = trackingBeamPrefab.unitData.unitCost;
-        unitCosts[3] = bombPrefab.unitData.unitCost;*/
 
         //UI setup
         alertText.text = "";
+        readyLabel.text = GetText("readyButtonText");
 
         //load save state
         Singleton s = Singleton.instance;
@@ -155,9 +153,14 @@ public class GameManager : MonoBehaviour
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
         if (inTutorial)
+        {
             SetGameState(tutorialState = TutorialState.DialogueStartOfLevel);
+
+        }
         else
+        {
             SetGameState(gameState = GameState.StartLevel);
+        }
         //ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
         //am.arrowGuides[0].arrowList[0].PointArrow(am.arrowGuides[0].arrowList[0].targetedObject, Vector2.right);
 
@@ -193,14 +196,41 @@ public class GameManager : MonoBehaviour
         return cannotPlay;
     }
 
+    //if at least 1 portal is ready to send enemies, return true.
+    bool PortalReady()
+    {
+        bool portalReady = false;
+        int i = 0;
+        while(!portalReady && i < activePortals.Count)
+        {
+            if (activePortals[i].timer.TimeUp())
+            {
+                portalReady = true;
+            }
+            else
+            {
+                i++;
+            }
+        }
+
+        return portalReady;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (UnplayableState())
             return;
 
-        //if (gameState == GameState.BaseDestroyed || gameState == GameState.LevelComplete)
-            //return;
+        if (!gameStarted && PortalReady())
+        {
+            //game has started, enemies start attacking.
+            gameStarted = true;
+            readyButton.gameObject.SetActive(false);
+        }
+
+        if (!gameStarted)
+            return;
 
         if (totalEnemies <= 0)
         {
@@ -438,24 +468,21 @@ public class GameManager : MonoBehaviour
         else
            inTutorial = false;
 
-        Logger.DebugLogFormat("Level Count: {0}", levelData.levels.Length);
-        //Logger.DebugLog("Levels: " + levelData.levels[1].starting_money);
-        //generate base
-        //PlaceUnit(PlayerUnitType.Base, new Vector2(1, 3));
 
-        //generate portals
-        //each portal instantiates number of units.
-        //EnemyUnit enemyUnit = null;
-        //testPortal.enemyCount = 3;
-        /*for (int i = 0; i < testPortal.enemyCount; i++)
+        //ready button check
+        gameStarted = false;
+
+        if (!inTutorial)
         {
-            EnemyUnit enemyUnit = Instantiate(scoutPrefab, parent: testPortal.transform);
-            enemyUnit.transform.position = testPortal.transform.position;
-            activeEnemyUnits.Add(enemyUnit);
-            enemyUnit.portal = testPortal;
-            enemyUnit.gameObject.SetActive(false);
-            testPortal.enemyUnits.Add(enemyUnit);
-        }*/
+            readyButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            //disable ready button
+            readyButton.gameObject.SetActive(false);
+        }
+
+        Logger.DebugLogFormat("Level Count: {0}", levelData.levels.Length);
 
         for (int i = 0; i < levelData.levels[level].portals.Count; i++)
         {
@@ -1349,7 +1376,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    #region Coroutines
+    /// <summary>
+    /// Starts game early. Used by ready button.
+    /// </summary>
+    public void AdvancePortalTimers()
+    {
+        foreach(Portal portal in activePortals)
+        {
+            portal.timer.ReduceTime(60);
+        }
+
+        readyButton.gameObject.SetActive(false);
+    }
+
+#region Coroutines
 
     //set the camera position to a random value temporarily, then set back to normal
     IEnumerator ShakeCamera()
