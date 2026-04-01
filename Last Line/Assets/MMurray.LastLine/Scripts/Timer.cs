@@ -103,9 +103,9 @@ namespace MMurray.GenericCode
         }
 
         void UpdateTime()
-        {
+        {               
             minutes = Mathf.FloorToInt(time / 60);
-            seconds = Mathf.FloorToInt(time % 60);
+            seconds = (timeFormat == TimeFormat.Seconds) ? Mathf.FloorToInt(time) : Mathf.FloorToInt(time % 60);
             milliseconds = time % 1 * 99;    //I only want the first two digits displayed so I'm not using 1000. Format wouldn't remove the extra digits.
             timeText = CurrentTimeFormat(timeFormat);
         }
