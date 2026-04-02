@@ -27,7 +27,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70436616057686057}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -92,6 +92,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &373741909603274598
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +414,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 639065667356426007}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -478,6 +479,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &818215286290740505
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,7 +750,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 938072231522853841}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -813,6 +815,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &1136984279628769956
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,7 +985,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363181243496566372}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1047,6 +1050,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &1526563689939499015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,7 +1225,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892881101433001129}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1286,6 +1290,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &1990472491784865211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,7 +1616,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2314377512934526916}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1676,6 +1681,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &2365137175386679259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1850,7 +1856,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2409975594322876408}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1915,6 +1921,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &2476190795078663753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2018,7 +2025,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2608794862616446807}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2083,6 +2090,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &2638305875038400532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2257,7 +2265,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2685612715985091870}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2322,6 +2330,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &2989469069623183624
 GameObject:
   m_ObjectHideFlags: 0
@@ -2349,7 +2358,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2989469069623183624}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2414,6 +2423,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &3054624962276408926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2441,7 +2451,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3054624962276408926}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2506,6 +2516,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &3190186263068346396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,7 +2544,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3190186263068346396}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2598,6 +2609,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &3230034360602733945
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,7 +2637,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3230034360602733945}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2690,6 +2702,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &3451267259336123431
 GameObject:
   m_ObjectHideFlags: 0
@@ -2717,7 +2730,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3451267259336123431}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2782,6 +2795,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &3535989747172338830
 GameObject:
   m_ObjectHideFlags: 0
@@ -2809,7 +2823,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3535989747172338830}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2874,6 +2888,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &3639446063221422621
 GameObject:
   m_ObjectHideFlags: 0
@@ -2901,7 +2916,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3639446063221422621}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2966,6 +2981,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &3805001825798046469
 GameObject:
   m_ObjectHideFlags: 0
@@ -2993,7 +3009,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3805001825798046469}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3058,6 +3074,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &3890177206963203004
 GameObject:
   m_ObjectHideFlags: 0
@@ -3232,7 +3249,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4005807773094095839}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3297,6 +3314,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &4024601710731388525
 GameObject:
   m_ObjectHideFlags: 0
@@ -3376,7 +3394,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4152679905291256427}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3441,6 +3459,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &4512449482212394077
 GameObject:
   m_ObjectHideFlags: 0
@@ -3468,7 +3487,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4512449482212394077}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3533,6 +3552,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &4716168940124574762
 GameObject:
   m_ObjectHideFlags: 0
@@ -3941,7 +3961,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5415993042780034816}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4006,6 +4026,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &5426370714198415205
 GameObject:
   m_ObjectHideFlags: 0
@@ -4108,7 +4129,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5440735587740669087}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4173,6 +4194,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &5485584449798441622
 GameObject:
   m_ObjectHideFlags: 0
@@ -4238,7 +4260,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5679301276667394571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4303,6 +4325,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &5706481934295259498
 GameObject:
   m_ObjectHideFlags: 0
@@ -4397,7 +4420,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6091578933391155411}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4462,6 +4485,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &6210547958216022506
 GameObject:
   m_ObjectHideFlags: 0
@@ -4489,7 +4513,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6210547958216022506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4554,6 +4578,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &6257605657235996532
 GameObject:
   m_ObjectHideFlags: 0
@@ -4581,7 +4606,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6257605657235996532}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4646,6 +4671,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &6471353360563199905
 GameObject:
   m_ObjectHideFlags: 0
@@ -4673,7 +4699,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6471353360563199905}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4738,6 +4764,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &6751808343690436609
 GameObject:
   m_ObjectHideFlags: 0
@@ -4765,7 +4792,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6751808343690436609}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4830,6 +4857,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &6770540321436941507
 GameObject:
   m_ObjectHideFlags: 0
@@ -5004,7 +5032,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6969099490512410352}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5069,6 +5097,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &7087676103645831090
 GameObject:
   m_ObjectHideFlags: 0
@@ -5166,6 +5195,7 @@ MonoBehaviour:
   - {fileID: 6290176182684312933}
   currentLevel: 0
   inTutorial: 0
+  gameStarted: 0
   totalEnemies: 0
   levelFile: {fileID: 4900000, guid: 0f65ce2e85a53a2e78ecc74fee2c465e, type: 3}
   alertText: {fileID: 4451147207076619933}
@@ -5177,6 +5207,8 @@ MonoBehaviour:
   - {fileID: 2018355829001330573}
   testLaser: {fileID: 0}
   moneyTexts: []
+  readyButton: {fileID: 0}
+  readyLabel: {fileID: 0}
   activePlayerUnits: []
   activeEnemyUnits: []
   activePortals: []
@@ -5371,7 +5403,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7491441577413860159}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5436,6 +5468,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &7746479688791429882
 GameObject:
   m_ObjectHideFlags: 0
@@ -5610,7 +5643,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7838370296401413714}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5675,6 +5708,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &7884985057676573808
 GameObject:
   m_ObjectHideFlags: 0
@@ -5702,7 +5736,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7884985057676573808}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5767,6 +5801,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &8142868480245241765
 GameObject:
   m_ObjectHideFlags: 0
@@ -5921,7 +5956,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8699196523991151001}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5986,6 +6021,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &8788111390881674175
 GameObject:
   m_ObjectHideFlags: 0
@@ -6013,7 +6049,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8788111390881674175}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6078,6 +6114,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &9051130949144905313
 GameObject:
   m_ObjectHideFlags: 0
@@ -6239,7 +6276,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9193080314674446539}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6304,6 +6341,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1 &9219047659410746457
 GameObject:
   m_ObjectHideFlags: 0
@@ -6331,7 +6369,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9219047659410746457}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6396,6 +6434,7 @@ MonoBehaviour:
   unit: {fileID: 0}
   crystal: {fileID: 0}
   portal: {fileID: 0}
+  powerUpSpace: {fileID: 0}
 --- !u!1001 &5373375728325880796
 PrefabInstance:
   m_ObjectHideFlags: 0

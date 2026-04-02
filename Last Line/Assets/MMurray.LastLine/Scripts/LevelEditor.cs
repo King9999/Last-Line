@@ -78,10 +78,20 @@ namespace MMurray.LastLine
         // Update is called once per frame
         void Update()
         {
-            Logger.DebugLog("Updating");
+            //Logger.DebugLog("Updating");
             //foreach(Level level in levels)
-                WriteToFile(levels);
+                //WriteToFile(levels);
             //ReadFile();
+            
+        }
+
+        void OnGUI()
+        {
+            if (GUI.Button(new Rect(0, 0, 100, 50), "Save"))
+            {
+                Logger.DebugLog("Save Button pressed");
+                WriteToFile(levels);
+            }
         }
 
         void WriteToFile(List<Level> levelList)

@@ -115,6 +115,90 @@
                 false,
                 false
             ]
+        },
+        {
+            "level": 2,
+            "starting_money": 20,
+            "crystal_threshold": 50,
+            "crystal_value": 50,
+            "portals": [
+                {
+                    "point_axes": {
+                        "x": 5.0,
+                        "y": 4.0
+                    },
+                    "point_position": {
+                        "x": 586.2999877929688,
+                        "y": 437.8999938964844
+                    },
+                    "enemy_type": 0,
+                    "deploy_cooldown": 1.2000000476837159,
+                    "deploy_time": 60.0,
+                    "enemy_count": 20,
+                    "enemy_path_points": [
+                        {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        {
+                            "x": -6.884970664978027,
+                            "y": -0.0011806488037109376,
+                            "z": 1.0
+                        },
+                        {
+                            "x": -6.897436618804932,
+                            "y": -1.3152761459350587,
+                            "z": 1.0
+                        }
+                    ]
+                },
+                {
+                    "point_axes": {
+                        "x": 5.0,
+                        "y": 2.0
+                    },
+                    "point_position": {
+                        "x": 586.2999877929688,
+                        "y": 265.8999938964844
+                    },
+                    "enemy_type": 0,
+                    "deploy_cooldown": 1.2000000476837159,
+                    "deploy_time": 60.0,
+                    "enemy_count": 20,
+                    "enemy_path_points": [
+                        {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        {
+                            "x": -6.878521919250488,
+                            "y": -0.0055733323097229,
+                            "z": 1.0
+                        },
+                        {
+                            "x": -6.88018798828125,
+                            "y": 1.0105254650115967,
+                            "z": 1.0
+                        }
+                    ]
+                }
+            ],
+            "player_base_position": {
+                "x": 195.260009765625,
+                "y": 351.8999938964844
+            },
+            "base_point_axes": {
+                "x": 1.0,
+                "y": 3.0
+            },
+            "toggle_unit": [
+                true,
+                true,
+                false,
+                false
+            ]
         }
     ]
 }
