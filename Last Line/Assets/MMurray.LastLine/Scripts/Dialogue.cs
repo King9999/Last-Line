@@ -66,9 +66,9 @@ public class Dialogue : MonoBehaviour
         dm.dialogueOpen = true;
         
         //hide ready button
-        GameManager gm = Singleton.instance.GameManager;
-        if (!gm.inTutorial && !gm.gameStarted /*&& gm.readyButton.gameObject.activeSelf*/)
-            gm.readyButton.gameObject.SetActive(false);
+        //GameManager gm = Singleton.instance.GameManager;
+        //if (!gm.inTutorial && !gm.gameStarted /*&& gm.readyButton.gameObject.activeSelf*/)
+            //gm.readyButton.gameObject.SetActive(false);
 
         dialogueText.text = GetText(keyList.key);
 
@@ -203,8 +203,8 @@ public class Dialogue : MonoBehaviour
 
             //show ready button
             GameManager gm = Singleton.instance.GameManager;
-            if (!gm.inTutorial && !gm.gameStarted /*&& !gm.readyButton.gameObject.activeSelf*/)
-                gm.readyButton.gameObject.SetActive(true);
+            //if (!gm.inTutorial && !gm.gameStarted /*&& !gm.readyButton.gameObject.activeSelf*/)
+                //gm.readyButton.gameObject.SetActive(true);
 
             //TODO: Check game state and proceed depending on what it is.
             //GameManager gm = Singleton.instance.GameManager;
@@ -241,7 +241,24 @@ public class Dialogue : MonoBehaviour
                 //gm.SetGameState(gm.tutorialState = gm.previousTutorialState);
             }
             else
-                gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
+            {
+                switch(gm.gameState)
+                {
+                    case GameManager.GameState.DialogueStartOfLevel:
+                        gm.DisplayAlertWithDuration(GetText("enemyPreparing"), 10);
+                        gm.SetGameState(gm.gameState = GameManager.GameState.EnemyPreparing);
+                        break;
+                    
+                    case GameManager.GameState.DialogueEndOfLevel:
+                        //move to next level
+                        gm.SetGameState(gm.gameState = GameManager.GameState.GoToNextLevel);
+                        break;
+                    
+                    default:
+                        gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
+                        break;
+                }
+            }
             
         }
         else

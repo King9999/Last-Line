@@ -202,7 +202,10 @@ public class AxisButton : MonoBehaviour
                         }
                     }
                     else
-                        gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
+                    {
+                        //if enemy is preparing, game hasn't begun yet.
+                        gm.SetGameState(gm.gameState = gm.gameStarted ? GameManager.GameState.Normal : GameManager.GameState.EnemyPreparing);
+                    }
                     Logger.DebugLogFormat("Player entered {0}", gm.points[i].pointAxes);
                 }
                 else

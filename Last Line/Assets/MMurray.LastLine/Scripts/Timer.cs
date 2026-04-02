@@ -133,6 +133,9 @@ namespace MMurray.GenericCode
 
         public void StartTimer()
         {
+            if (timerRunning)
+                return;
+                
             timerRunning = true;
         }
 

@@ -26,8 +26,9 @@
       "bombActivated": 35,
       "crystalCollected": 25,
       "notEnoughMoney": 25,
-      "levelCompleted": 50,
-      "readyButtonText": 20
+      "levelCompleted": 20,
+      "readyButtonText": 20,
+      "enemyPreparing": 35
     }
   },
   "en": {
@@ -59,8 +60,9 @@
 	"bombActivated": "Warning! Bomb activated.",
 	"crystalCollected": "Crystal collected.",
 	"notEnoughMoney": "Not enough money!",
-	"levelCompleted": "YOU SURVIVED",
+	"levelCompleted": "BASE DEFENDED",
 	"readyButtonText": "Ready to Play",
+	"enemyPreparing": "Start building your units.",
 	"dialogue_build_second_unit": "Good job, commander. Build one more unit to back up the first one!",
 	"dialogue_activate_ability": "Commander, order the new unit to fire in the other direction.",
 	"system_activate_ability": "<color=#0CCF5A>To activate a unit's special ability, re-enter the coordinates where the unit is located.</color>",

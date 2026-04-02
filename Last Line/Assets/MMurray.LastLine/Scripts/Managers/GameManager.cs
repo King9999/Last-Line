@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public enum GameState
     {
-        Normal,                 //when game state is normal the game is running. Otherwise the game is paused.
-        UnitSelectX, UnitSelectY, CoordinatesSelect, ///player is entering coordinates
+        Normal, EnemyPreparing,                //when game state is normal the game is running. Otherwise the game is paused.
+        UnitSelectX, UnitSelectY, ///player is entering coordinates
         StartLevel, DialogueStartOfLevel, DialogueEndOfLevel,
         SelectingValueX, SelectingValueY,       //used when placing units on screen.
         BaseDestroyed, LevelComplete, GoToNextLevel, GameCompleted
@@ -228,7 +228,8 @@ public class GameManager : MonoBehaviour
             {
                 //game has started, enemies start attacking.
                 gameStarted = true;
-                readyButton.gameObject.SetActive(false);
+                //readyButton.gameObject.SetActive(false);
+                SetGameState(gameState = GameState.Normal);
             }
 
             //if (!gameStarted)
@@ -264,8 +265,11 @@ public class GameManager : MonoBehaviour
             {
                 //cancel actions and return game state to normal.
                 //StopCoroutine(Alert("", 0));
+
                 DisplayAlertWithDuration(GetText("cancelAction"));
-                SetGameState(gameState = GameState.Normal);
+
+                //if game hasn't started yet, we don't go to normal state.
+                SetGameState(gameState = gameStarted ? GameState.Normal : GameState.EnemyPreparing);
             }
         }
 
@@ -446,7 +450,7 @@ public class GameManager : MonoBehaviour
     public bool GameRunning()
     {
         return gameState == GameState.Normal || gameState == GameState.UnitSelectX || gameState == GameState.UnitSelectY || 
-            gameState == GameState.CoordinatesSelect;
+            gameState == GameState.EnemyPreparing;
     }
 
     /* Load the specified level. NOTE: Save States only load the current level from the beginning, and not the state
@@ -477,18 +481,19 @@ public class GameManager : MonoBehaviour
         Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
 
 
-        //ready button check
+        //ready button check. button is disabled by default.
         gameStarted = false;
+        readyButton.gameObject.SetActive(false);
 
-        if (!inTutorial)
+        /*if (!inTutorial)
         {
             readyButton.gameObject.SetActive(true);
         }
         else
         {
-            //disable ready button
+            //disable ready button by default
             readyButton.gameObject.SetActive(false);
-        }
+        }*/
 
         Logger.DebugLogFormat("Level Count: {0}", levelData.levels.Length);
 
@@ -626,7 +631,7 @@ public class GameManager : MonoBehaviour
             {
                 //Logger.DebugLog("Build queue full!");
                 DisplayAlertWithDuration(GetText("buildQueueFull"));
-                SetGameState(gameState = GameState.Normal);
+                SetGameState(gameState = gameStarted ? GameState.Normal : GameState.EnemyPreparing);
                 return;
             }
 
@@ -634,7 +639,7 @@ public class GameManager : MonoBehaviour
             {
                 //unit is occupying this space or is being built, or a crystal is there.
                 DisplayAlertWithDuration(GetText("spaceOccupied"));
-                SetGameState(gameState = GameState.Normal);
+                SetGameState(gameState = gameStarted ? GameState.Normal : GameState.EnemyPreparing);
                 return;
             }
 
@@ -723,7 +728,7 @@ public class GameManager : MonoBehaviour
             //save unit's position
             //Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
             //playerUnitType = PlayerUnitType.NoUnitSelected;
-            SetGameState(gameState = GameState.Normal);
+            SetGameState(gameState = gameStarted ? GameState.Normal : GameState.EnemyPreparing);
         }     
     }
 
@@ -978,9 +983,20 @@ public class GameManager : MonoBehaviour
             case GameState.Normal:
                 //alertText.text = "";
                 am.HideGuideArrows();
+                readyButton.gameObject.SetActive(false);
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(true);
                 playerUnitType = PlayerUnitType.NoUnitSelected;
+                break;
+            
+            case GameState.EnemyPreparing:
+                //show ready button
+                readyButton.gameObject.SetActive(true);
+                am.HideGuideArrows();
+                axisContainerY.gameObject.SetActive(true);
+                axisContainerX.gameObject.SetActive(true);
+                playerUnitType = PlayerUnitType.NoUnitSelected;
+                //DisplayAlertWithDuration(GetText("enemyPreparing"), 10);
 
                 //start portal timers
                 foreach(Portal portal in activePortals)
@@ -1015,8 +1031,6 @@ public class GameManager : MonoBehaviour
                 axisContainerX.gameObject.SetActive(false);
                 break;
             
-            case GameState.CoordinatesSelect:
-                break;
 
             case GameState.StartLevel:
                 //look for any opening dialogue. If there's none, game resumes.
@@ -1044,7 +1058,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    SetGameState(gameState = GameState.Normal);
+                    SetGameState(gameState = GameState.EnemyPreparing);
                 }
                 break;
 
