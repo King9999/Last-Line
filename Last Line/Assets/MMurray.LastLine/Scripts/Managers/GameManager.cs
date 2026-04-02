@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
             s.saveState.LoadState(s.saveState.ReadState);
             //s.saveState.ReadState(s.gameData);
         }
-        //currentLevel = 1;
+        currentLevel = 2;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -397,10 +397,12 @@ public class GameManager : MonoBehaviour
             {
                 i = Random.Range(0, points.Count);
                 crystal.transform.position = Camera.main.ScreenToWorldPoint(points[i].transform.position);
+                crystal.transform.position = new Vector3(crystal.transform.position.x, crystal.transform.position.y, 1);    //must change Z so crystal is visible.
             }
             while (points[i].unit != null);
 
             points[i].crystal = crystal;
+            Logger.DebugLog("Crystal generated");
 
             if (!crystal.gameObject.activeSelf)
                 crystal.gameObject.SetActive(true);

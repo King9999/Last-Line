@@ -72,10 +72,13 @@ namespace MMurray.LastLine
                 return;
             }*/
 
-            //update movement
+            //update movement. TODO: the translation has to factor in the length of the path, otherwise the unit speed will
+            //be inconsistent.
             if (currentPoint != nextPoint)
             {
-                transform.Translate(direction * 0.1f * moveSpeed * Time.deltaTime);
+                //transform.Translate(direction * 0.1f * moveSpeed * Time.deltaTime);
+                float step = 0.1f * moveSpeed * Time.deltaTime;
+                transform.position = Vector2.MoveTowards(transform.position, nextPoint, step);
 
                 //update healthbar position if necessary
                 if (healthBar.gameObject.activeSelf)
