@@ -20,6 +20,10 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameManager gm = Singleton.instance.GameManager;
+        if (!gm.GameRunning())
+            return;
+            
         //this should only occur when the bullet is active and onscreen.
         transform.Translate(direction * moveSpeed * Time.deltaTime);
 

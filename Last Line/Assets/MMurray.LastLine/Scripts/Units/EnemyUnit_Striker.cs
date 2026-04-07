@@ -38,6 +38,9 @@ public class EnemyUnit_Striker : EnemyUnit
         base.Update();
         //move unit
         //transform.Translate(direction * moveSpeed * Time.deltaTime);
+        GameManager gm = Singleton.instance.GameManager;
+        if (!gm.GameRunning())
+            return;
 
         //fire weapon
         if (bullet == null)     //this is to prevent game from updating before bullet exists.

@@ -30,6 +30,10 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
     // Update is called once per frame
     void Update()
     {
+        GameManager gm = Singleton.instance.GameManager;
+        if (!gm.GameRunning())
+            return;
+            
         AttackTarget();
     }
 

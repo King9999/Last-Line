@@ -35,6 +35,10 @@ public class PlayerUnit_StraightShooter : PlayerUnit
     // Update is called once per frame
     void Update()
     {
+        GameManager gm = Singleton.instance.GameManager;
+        if (!gm.GameRunning())
+            return;
+            
         //fire weapon
         if (bullet == null)     //this is to prevent game from updating before bullet exists.
             return;

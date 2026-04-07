@@ -15,6 +15,10 @@ public class EnemyUnit_Dozer : EnemyUnit
     {
         base.Update();
 
+        GameManager gm = Singleton.instance.GameManager;
+        if (!gm.GameRunning())
+            return;
+
         //speed increases whenever barrier is gone.
         if (!speedUp && !barrierCollider.gameObject.activeSelf)
         {

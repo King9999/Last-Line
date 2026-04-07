@@ -28,6 +28,10 @@ public class PlayerUnit_Bomb : PlayerUnit
     // Update is called once per frame
     void Update()
     {
+        GameManager gm = Singleton.instance.GameManager;
+        if (!gm.GameRunning())
+            return;
+            
         /*if (bombRange.gameObject.activeSelf && timer <= 0)
         {
             timer = Time.time;
