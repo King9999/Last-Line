@@ -22,7 +22,12 @@ public class ArrowGuide : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-  
+    void OnEnable()
+    {
+        arrow = GetComponent<Image>();
+    }
+
+
     /// <summary>
     /// Places an arrow near the desired game object.
     /// </summary>

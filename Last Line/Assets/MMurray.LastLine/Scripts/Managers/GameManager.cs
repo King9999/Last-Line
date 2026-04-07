@@ -1165,13 +1165,13 @@ public class GameManager : MonoBehaviour
                     portal.gameObject.SetActive(false);
                 }*/
 
-                //display "YOU SURVIVED"
-
+                //display end level text
+                endLevelText.ShowText();
 
                 //display dialogue if any
                 Logger.DebugLogFormat("Level {0} complete", currentLevel);
                 //check for conditional trigger to activate dialogue
-                triggerFound = false;
+                /*triggerFound = false;
                 i = 0;
                 while (!triggerFound && i < dialogueManager.condTriggerList.Count)
                 {
@@ -1192,17 +1192,11 @@ public class GameManager : MonoBehaviour
                 {
                     triggerIndex = i;
                     SetGameState(gameState = GameState.DialogueEndOfLevel);
-                    //goto case GameState.DisplayEndOfLevelDialogue;
                 }
                 else
                 {
                     SetGameState(gameState = GameState.GoToNextLevel);
-                    //ui.endOfLevelWindow.gameObject.SetActive(true);
-                    //ui.endOfLevelWindow.OpenWindow();
-                    //goto case GameState.GoToNextLevel;
-                }
-                //load next level
-                //if all levels complete, show congrats
+                }*/
                 break;
 
             case GameState.GoToNextLevel:
