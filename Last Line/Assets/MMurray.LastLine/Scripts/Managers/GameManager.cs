@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         UnitSelectSecondUnit, UnitSelectSecondUnitX, UnitSelectSecondUnitY, BuildingFirstUnit, BuildingSecondUnit, 
         ActivateAbility, ActivateAbilitySelectX, ActivateAbilitySelectY,
         DialogueEnemyIncoming, DeployEnemyUnits, BaseDestroyed, LevelComplete,
+        CrystalIntro
     }
 
     public enum PlayerUnitType {NoUnitSelected, Base, StraightShooter, VerticalShooter, TrackingBeam, Bomb}
@@ -117,7 +118,10 @@ public class GameManager : MonoBehaviour
     when coroutines are executed this way. */
     Coroutine alertCoroutine = null;
     Coroutine screenShakeCoroutine = null;
-    Coroutine animateMoneyCoroutine = null;     
+    Coroutine animateMoneyCoroutine = null;
+
+    /****bools for various tutorial checks****/
+    public bool crystalTutorialViewed;     
 
     // Start is called before the first frame update
     void Start()
@@ -184,7 +188,7 @@ public class GameManager : MonoBehaviour
     /// should no longer play.
     /// </summary>
     /// <returns></returns>
-    bool UnplayableState()
+    public bool UnplayableState()
     {
         bool cannotPlay = false;
         if (gameState == GameState.BaseDestroyed || gameState == GameState.LevelComplete || gameState == GameState.DialogueEndOfLevel)
@@ -390,19 +394,56 @@ public class GameManager : MonoBehaviour
         {
             accumulatedMoney = 0;
 
-            //generate a crystal and it to random point
-
-            int i = 0;
-            do
+            //generate a crystal and it to random point. On level 2, the crystal appears at a fixed point.
+            if (currentLevel == 2)
             {
-                i = Random.Range(0, points.Count);
-                crystal.transform.position = Camera.main.ScreenToWorldPoint(points[i].transform.position);
-                crystal.transform.position = new Vector3(crystal.transform.position.x, crystal.transform.position.y, 1);    //must change Z so crystal is visible.
-            }
-            while (points[i].unit != null);
+                //place crystal at origin
+                crystal.transform.position = Camera.main.ScreenToWorldPoint(points[25].transform.position);
+                crystal.transform.position = new Vector3(crystal.transform.position.x, crystal.transform.position.y, 1);
+                points[25].crystal = crystal;
+                Logger.DebugLogFormat("Crystal generated at {0}", points[25].pointAxes);
 
-            points[i].crystal = crystal;
-            Logger.DebugLog("Crystal generated");
+                //pause game and open dialogue explaining crystals.
+                if (!crystalTutorialViewed)
+                {
+                    crystalTutorialViewed = true;
+                    inTutorial = true;
+                    SetGameState(tutorialState = TutorialState.CrystalIntro);
+                }
+
+                /*int i = 0;
+                bool originFound = false;
+                while(!originFound && i < points.Count)
+                {
+                    if (points[i].pointAxes == Vector2.zero)
+                    {
+                        originFound = true;
+                        crystal.transform.position = Camera.main.ScreenToWorldPoint(points[i].transform.position);
+                        crystal.transform.position = new Vector3(crystal.transform.position.x, crystal.transform.position.y, 1);
+                        points[i].crystal = crystal;
+                        Logger.DebugLogFormat("Crystal generated at {0}", points[i].pointAxes);
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }*/
+                
+            }
+            else
+            {
+                int i = 0;
+                do
+                {
+                    i = Random.Range(0, points.Count);
+                    crystal.transform.position = Camera.main.ScreenToWorldPoint(points[i].transform.position);
+                    crystal.transform.position = new Vector3(crystal.transform.position.x, crystal.transform.position.y, 1);    //must change Z so crystal is visible.
+                }
+                while (points[i].unit != null);
+
+                points[i].crystal = crystal;
+                Logger.DebugLogFormat("Crystal generated at {0}", points[i].pointAxes);
+            }
 
             if (!crystal.gameObject.activeSelf)
                 crystal.gameObject.SetActive(true);
@@ -451,8 +492,8 @@ public class GameManager : MonoBehaviour
 
     public bool GameRunning()
     {
-        return gameState == GameState.Normal || gameState == GameState.UnitSelectX || gameState == GameState.UnitSelectY || 
-            gameState == GameState.EnemyPreparing;
+        return !inTutorial && (gameState == GameState.Normal || gameState == GameState.UnitSelectX || gameState == GameState.UnitSelectY || 
+            gameState == GameState.EnemyPreparing);
     }
 
     /* Load the specified level. NOTE: Save States only load the current level from the beginning, and not the state
@@ -842,6 +883,7 @@ public class GameManager : MonoBehaviour
             return;
 
         playerBase.point = points[i];
+        points[i].unit = playerBase;
     }
 
     /// <summary>
@@ -1275,6 +1317,11 @@ public class GameManager : MonoBehaviour
             case TutorialState.DeployEnemyUnits:
                 //there's only 1 portal in the tutorial
                 activePortals[0].timer.SetTimer(0);
+                break;
+
+            case TutorialState.CrystalIntro:
+                keyList = dialogueManager.dialogueList[DialogueManager.CRYSTAL_INTRO].dialogueKeyList[0];
+                dialogueManager.dialogueList[DialogueManager.CRYSTAL_INTRO].ShowDialogue(keyList);
                 break;
             
 

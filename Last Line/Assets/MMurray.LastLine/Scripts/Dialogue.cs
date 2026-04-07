@@ -5,6 +5,7 @@ using UnityEngine;
 using MMurray.LastLine;
 using LoLSDK;
 using System;
+using UnityEngine.Rendering;
 
 /* Consists of a window and text. Dialogue appears at certain points. Uses keys to call dialogue. */
 public class Dialogue : MonoBehaviour
@@ -235,6 +236,12 @@ public class Dialogue : MonoBehaviour
                     case GameManager.TutorialState.DialogueEndOfLevel:
                         //move to next level
                         gm.SetGameState(gm.gameState = GameManager.GameState.GoToNextLevel);
+                        break;
+                    
+                    case GameManager.TutorialState.CrystalIntro:
+                        gm.inTutorial = false;
+                        Singleton.instance.ArrowGuideManager.HideGuideArrows();
+                        //gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
                         break;
                     
                 }
