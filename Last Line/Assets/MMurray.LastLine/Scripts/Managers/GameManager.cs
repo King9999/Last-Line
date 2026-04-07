@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private List<MoneyText> moneyTexts;    //is displayed when an enemy unit is destroyed.
     public Button readyButton;     //used to advance game by 60 seconds to start early.
     [SerializeField]private TextMeshProUGUI readyLabel;
+    [SerializeField]private EndLevelText endLevelText;       //displays "BASE DEFENDED"
 
     
 
@@ -1163,6 +1164,10 @@ public class GameManager : MonoBehaviour
                 {
                     portal.gameObject.SetActive(false);
                 }*/
+
+                //display "YOU SURVIVED"
+
+
                 //display dialogue if any
                 Logger.DebugLogFormat("Level {0} complete", currentLevel);
                 //check for conditional trigger to activate dialogue
