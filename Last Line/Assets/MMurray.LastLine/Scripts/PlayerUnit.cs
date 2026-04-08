@@ -16,6 +16,9 @@ namespace MMurray.LastLine
         public Point point;                             //reference to the point the unit is placed on.
         public Vector2 pointAxes;
         [SerializeField]protected bool isEnhanced;        //becomes true when unit is placed in a power up space.
+        [SerializeField]protected bool isInvul;         //when damaged by bullet, unit becomes invul for a duration. Still not protected against collisions.
+        [SerializeField]protected float invulTime = 2;  //time in seconds
+        protected float invulCounter;
 
         public override void GetUnitData(UnitData data)
         {
@@ -50,14 +53,35 @@ namespace MMurray.LastLine
             hitPoints = maxHitPoints;
         }
 
-        /*void Update()
+        public void SetInvul()
         {
-            if (hitPoints <= 0)
+            isInvul = true;
+            invulCounter = Time.time;
+            Logger.DebugLogFormat("{0} is invul", unitName);
+        }
+
+        public bool IsInvul()
+        {
+            return isInvul;
+        }
+
+        protected virtual void Update()
+        {
+            GameManager gm = Singleton.instance.GameManager;
+            if (!gm.GameRunning())
+                return;
+
+            if (isInvul && Time.time > invulCounter + invulTime)
+            {
+                isInvul = false;
+                Logger.DebugLogFormat("Invul removed on {0}", unitName);
+            }
+            /*if (hitPoints <= 0)
             {
                 GameManager gm = Singleton.instance.GameManager;
                 gm.RemovePlayerUnit(this);
-            }
-        }*/
+            }*/
+        }
 
     }
 }

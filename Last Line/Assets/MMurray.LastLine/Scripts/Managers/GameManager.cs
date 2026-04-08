@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
             s.saveState.LoadState(s.saveState.ReadState);
             //s.saveState.ReadState(s.gameData);
         }
-        currentLevel = 2;
+        currentLevel = 3;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -586,14 +586,20 @@ public class GameManager : MonoBehaviour
 
                 case Portal.EnemyType.Striker:
                     portal.name = "Portal - Striker";
+                    EnemyUnit_Striker striker = unit as EnemyUnit_Striker;
+                    InstantiateEnemyUnit(striker, portal);
                     break;
                 
                 case Portal.EnemyType.Dozer:
                     portal.name = "Portal - Dozer";
+                    EnemyUnit_Dozer dozer = unit as EnemyUnit_Dozer;
+                    InstantiateEnemyUnit(dozer, portal);
                     break;
 
                 case Portal.EnemyType.Juggernaut:
                     portal.name = "Portal - Juggernaut";
+                    EnemyUnit_Juggernaut jugg = unit as EnemyUnit_Juggernaut;
+                    InstantiateEnemyUnit(jugg, portal);
                     break;
             }
            

@@ -118,6 +118,15 @@ namespace MMurray.LastLine
                     gm.RemoveEnemyUnit(enemy);
                 }
             }
+            else
+            {
+                PlayerUnit unit = this as PlayerUnit;
+                if (unit is not PlayerUnit_Base)
+                {
+                    //unit becomes temporarily invul
+                    unit.SetInvul();
+                }
+            }
         }
 
         //updates health bar's slider value, position, and visibility.

@@ -91,13 +91,27 @@ public class EnemyUnit_Striker : EnemyUnit
 
         if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
         {
-            Logger.DebugLog("Hit Unit " + unit.name);
-
-            //both player unit and enemy unit die.
             GameManager gm = Singleton.instance.GameManager;
-            gm.RemovePlayerUnit(unit);
-            //gm.deadPlayerUnits.Add(unit);
-            gm.RemoveEnemyUnit(this);
+            if (unit is PlayerUnit_Base)
+            {
+                //base takes damage.
+                unit.ReduceHitPoints(collisionDamage);
+                Logger.DebugLog("Hit " + unit.name);
+                gm.RemoveEnemyUnit(this);
+            }
+            else if(unit is PlayerUnit_Bomb)
+            {
+                //enemy unit dies, but bomb is activated.
+                PlayerUnit_Bomb bomb = unit as PlayerUnit_Bomb;
+                bomb.ActivateBomb();
+                gm.RemoveEnemyUnit(this);
+            }
+            else
+            {
+                //both player unit and enemy unit die.
+                gm.RemovePlayerUnit(unit);
+                gm.RemoveEnemyUnit(this);
+            }
         }
     }
 

@@ -72,7 +72,8 @@ public class Bullet : MonoBehaviour
             else //if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
             {
                 //unit.hitPoints -= damage;
-                unit.ReduceHitPoints(damage);
+                if (!unit.IsInvul())
+                    unit.ReduceHitPoints(damage);
                 //unit.SetHealth(unit.hitPoints);
                 //unit.UpdateHealthBar(unit.transform.position);
 
