@@ -1166,6 +1166,7 @@ public class GameManager : MonoBehaviour
                 }*/
 
                 //display end level text
+                //endLevelText.gameObject.SetActive(true);
                 endLevelText.ShowText();
 
                 //display dialogue if any

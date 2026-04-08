@@ -24,12 +24,13 @@ public class EndLevelText : MonoBehaviour
 
             //set character's position and rotation. 
             textChar.transform.position = new Vector3(transform.position.x + (i * charPos) - xOffset, transform.position.y + 50, 0);
+            textChar.alpha = 0;         //invisible by default
             text.Add(textChar);
         }
 
         //StartCoroutine(AnimateClearText());
-        //textPrefab.gameObject.SetActive(false);
-        gameObject.SetActive(false);
+        //textPrefab.gameObject.SetActive(false);     //don't need this again
+        //gameObject.SetActive(false);
     }
 
     void OnDisable()
@@ -41,10 +42,10 @@ public class EndLevelText : MonoBehaviour
         }
     }
 
-    void OnEnable()
+    /*void OnEnable()
     {
         textPrefab.gameObject.SetActive(false);
-    }
+    }*/
 
 
     string GetText(string key)
@@ -55,7 +56,7 @@ public class EndLevelText : MonoBehaviour
 
     public void ShowText()
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
         animateText = StartCoroutine(AnimateClearText());
     }
 
@@ -63,27 +64,49 @@ public class EndLevelText : MonoBehaviour
     {
         /* each letter fades in one at a time. When one letter is fully visible, the next letter fades in. */
 
-        yield return new WaitForSeconds(2);     //wait for any other UI or other game elements to complete
+        yield return new WaitForSeconds(1);     //wait for any other UI or other game elements to complete
+
+        //fade in
+        float alphaSpeed = 100;                 //fade in/out rate
+        float duration = 0.02f;
+        for (int i = 0; i < text.Count; i++)
+        {
+            if (text[i].text.Equals(" ")) 
+                continue;
+
+            text[i].gameObject.SetActive(true);
+            while(text[i].alpha < 1)
+            {
+                text[i].alpha += alphaSpeed * Time.deltaTime;
+                yield return new WaitForSeconds(duration);
+            }
+        }
+
+        //fade out
+        yield return new WaitForSeconds(1);
 
         for (int i = 0; i < text.Count; i++)
         {
             if (text[i].text.Equals(" ")) 
                 continue;
 
-            float currentAlpha = 0;
-            while(text[i].alpha < 1)
+            while(text[i].alpha > 0)
             {
-                text[i].alpha += 2 * Time.deltaTime;
-                //Color charColor = text[i].color;
-                //text[i].color = new Color(charColor.r, charColor.g, charColor.b, currentAlpha);
-                yield return new WaitForSeconds(0.08f);
+                text[i].alpha -= alphaSpeed * Time.deltaTime;
+                yield return new WaitForSeconds(duration);
             }
         }
 
-        //move to next level.
-        //check for conditional trigger to activate dialogue
+        //letters go invisible again 
+        foreach(TextMeshProUGUI c in text)
+        {
+            c.alpha = 0;
+            c.gameObject.SetActive(false);
+        }
+
         yield return new WaitForSeconds(1);
-        //gameObject.SetActive(false);
+
+        //move to next level.
         GameManager gm = Singleton.instance.GameManager;
         bool triggerFound = false;
         int j = 0;
@@ -100,7 +123,7 @@ public class EndLevelText : MonoBehaviour
             }
 
         }
-
+        
 
         if (triggerFound)
         {
