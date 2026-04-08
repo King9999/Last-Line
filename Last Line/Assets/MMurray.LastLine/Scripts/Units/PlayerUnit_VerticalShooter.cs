@@ -72,12 +72,13 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         GameManager gm = Singleton.instance.GameManager;
         if (!gm.GameRunning())
             return;
-            
+
+        base.Update();    
         //fire weapon
         if (bullets == null)     //this is to prevent game from updating before bullet exists.
             return;

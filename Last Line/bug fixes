@@ -1,7 +1,10 @@
 WHAT TO DO FOR FIXING PORTAL POSITIONING
 
--Save the actual Point's position to the portal data.
--When instantiating the portal, assign saved position to the new object.
--Search the points for the Point object to reference using the Point's coordinates.
+-Save the actual Point's position to the portal data. DONE
+-When instantiating the portal, assign saved position to the new object. DONE 
+-Search the points for the Point object to reference using the Point's coordinates. DONE
 
 Basically, I'm doing the reverse of what I was doing before. Doing this should hopefully solve the problem.
+
+-Figure out why Striker is one shotting the base on collision
+-Add invincibility to player units when they get hit. Might also have to increase shot cooldown for enemy units.

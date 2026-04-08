@@ -2088,7 +2088,7 @@ MonoBehaviour:
     playerBase: {fileID: 3822519161217737272}
     toggleUnit: 01010000
   - level: 3
-    startingMoney: 20
+    startingMoney: 40
     crystalThreshold: 50
     crystalValue: 50
     portals:
@@ -2164,7 +2164,7 @@ MonoBehaviour:
     base_point_axes: {x: 1, y: 3}
     toggle_unit: 01010000
   - level: 3
-    starting_money: 20
+    starting_money: 40
     crystal_threshold: 50
     crystal_value: 50
     portals:
@@ -2182,8 +2182,8 @@ MonoBehaviour:
       point_position: {x: 293.02002, y: 265.9}
       enemy_type: 1
       deploy_cooldown: 2
-      deploy_time: 80
-      enemy_count: 10
+      deploy_time: 120
+      enemy_count: 5
       enemy_path_points:
       - {x: 0, y: 0, z: 0}
       - {x: 2.7497141, y: -0.0047810078, z: 1}
@@ -5683,7 +5683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: enemyCount
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: pointLocation
@@ -5699,7 +5699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4775052253253935630, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: initTime
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 7141536553807059900, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: m_LocalScale.z
