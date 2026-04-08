@@ -121,7 +121,7 @@ namespace MMurray.LastLine
             else
             {
                 PlayerUnit unit = this as PlayerUnit;
-                if (unit is not PlayerUnit_Base)
+                if (unit != null && unit is not PlayerUnit_Base)
                 {
                     //unit becomes temporarily invul
                     unit.SetInvul();

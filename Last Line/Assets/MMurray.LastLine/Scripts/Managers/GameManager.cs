@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
             s.saveState.LoadState(s.saveState.ReadState);
             //s.saveState.ReadState(s.gameData);
         }
-        currentLevel = 3;
+        currentLevel = 4;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -635,6 +635,19 @@ public class GameManager : MonoBehaviour
         money = newLevel.starting_money;
         menu.UpdateMoneyText();
 
+        /*****POWER UP SPACE SETUP******/
+        if (levelData.levels[level].power_up_space_active)
+        {
+            powerUpSpace.gameObject.SetActive(true);
+            powerUpSpace.transform.position = Camera.main.ScreenToWorldPoint(newLevel.power_up_space_position);
+            powerUpSpace.transform.position = new Vector3(powerUpSpace.transform.position.x, powerUpSpace.transform.position.y, 0);
+            SetPointRef(powerUpSpace, newLevel.power_up_space_point_axes);
+        }
+        else
+        {
+            powerUpSpace.gameObject.SetActive(false);
+        }
+
         /******AVAILABLE PLAYER UNITS******/
         //by default, all unit buttons are visible.
         for (int i = 0; i < newLevel.toggle_unit.Length; i++)
@@ -891,6 +904,29 @@ public class GameManager : MonoBehaviour
 
         playerBase.point = points[i];
         points[i].unit = playerBase;
+    }
+
+    void SetPointRef(PowerUpSpace powerSpace, Vector2 pointAxes)
+    {
+        bool pointFound = false;
+        int i = 0;
+        while(!pointFound && i < points.Count)
+        {
+            if (pointAxes == points[i].pointAxes)
+            {
+                pointFound = true;
+            }
+            else
+            {
+                i++;
+            }
+        }
+
+        if (!pointFound)
+            return;
+
+        powerSpace.point = points[i];
+        points[i].powerUpSpace = powerSpace;
     }
 
     /// <summary>

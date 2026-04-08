@@ -51,12 +51,21 @@
                 "x": 1.0,
                 "y": 3.0
             },
+            "power_up_space_position": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "power_up_space_point_axes": {
+                "x": 0.0,
+                "y": 0.0
+            },
             "toggle_unit": [
                 true,
                 false,
                 false,
                 false
-            ]
+            ],
+            "power_up_space_active": false
         },
         {
             "level": 1,
@@ -109,12 +118,21 @@
                 "x": 4.0,
                 "y": 4.0
             },
+            "power_up_space_position": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "power_up_space_point_axes": {
+                "x": 0.0,
+                "y": 0.0
+            },
             "toggle_unit": [
                 true,
                 false,
                 false,
                 false
-            ]
+            ],
+            "power_up_space_active": false
         },
         {
             "level": 2,
@@ -193,12 +211,21 @@
                 "x": 1.0,
                 "y": 3.0
             },
+            "power_up_space_position": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "power_up_space_point_axes": {
+                "x": 0.0,
+                "y": 0.0
+            },
             "toggle_unit": [
                 true,
                 true,
                 false,
                 false
-            ]
+            ],
+            "power_up_space_active": false
         },
         {
             "level": 3,
@@ -292,12 +319,140 @@
                 "x": 3.0,
                 "y": 5.0
             },
+            "power_up_space_position": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "power_up_space_point_axes": {
+                "x": 0.0,
+                "y": 0.0
+            },
             "toggle_unit": [
                 true,
                 true,
                 false,
                 false
-            ]
+            ],
+            "power_up_space_active": false
+        },
+        {
+            "level": 4,
+            "starting_money": 20,
+            "crystal_threshold": 30,
+            "crystal_value": 50,
+            "portals": [
+                {
+                    "point_axes": {
+                        "x": 0.0,
+                        "y": 3.0
+                    },
+                    "point_position": {
+                        "x": 97.5,
+                        "y": 351.8999938964844
+                    },
+                    "enemy_type": 0,
+                    "deploy_cooldown": 1.5,
+                    "deploy_time": 60.0,
+                    "enemy_count": 20,
+                    "enemy_path_points": [
+                        {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        {
+                            "x": 8.220037460327149,
+                            "y": 0.016827821731567384,
+                            "z": 1.0
+                        }
+                    ]
+                },
+                {
+                    "point_axes": {
+                        "x": 1.0,
+                        "y": 2.0
+                    },
+                    "point_position": {
+                        "x": 195.260009765625,
+                        "y": 265.8999938964844
+                    },
+                    "enemy_type": 1,
+                    "deploy_cooldown": 2.0,
+                    "deploy_time": 120.0,
+                    "enemy_count": 5,
+                    "enemy_path_points": [
+                        {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        {
+                            "x": 6.704671382904053,
+                            "y": -0.004781007766723633,
+                            "z": 1.0
+                        },
+                        {
+                            "x": 6.688464164733887,
+                            "y": 1.3956482410430909,
+                            "z": 1.0
+                        }
+                    ]
+                },
+                {
+                    "point_axes": {
+                        "x": 2.0,
+                        "y": 1.0
+                    },
+                    "point_position": {
+                        "x": 293.02001953125,
+                        "y": 179.89999389648438
+                    },
+                    "enemy_type": 0,
+                    "deploy_cooldown": 1.5,
+                    "deploy_time": 60.0,
+                    "enemy_count": 20,
+                    "enemy_path_points": [
+                        {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        {
+                            "x": 5.322951793670654,
+                            "y": 0.016827821731567384,
+                            "z": 1.0
+                        },
+                        {
+                            "x": 5.320720672607422,
+                            "y": 2.7161998748779299,
+                            "z": 0.0
+                        }
+                    ]
+                }
+            ],
+            "player_base_position": {
+                "x": 586.2999877929688,
+                "y": 351.8999938964844
+            },
+            "base_point_axes": {
+                "x": 5.0,
+                "y": 3.0
+            },
+            "power_up_space_position": {
+                "x": 586.2999877929688,
+                "y": 179.89999389648438
+            },
+            "power_up_space_point_axes": {
+                "x": 5.0,
+                "y": 1.0
+            },
+            "toggle_unit": [
+                true,
+                true,
+                false,
+                false
+            ],
+            "power_up_space_active": true
         }
     ]
 }

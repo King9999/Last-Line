@@ -19,9 +19,11 @@ namespace MMurray.LastLine
             public int level, startingMoney, crystalThreshold, crystalValue;
             public List<Portal> portals;
             public PlayerUnit_Base playerBase;
+            public PowerUpSpace powerUpSpace;
 
             //bools
             public bool[] toggleUnit = new bool[4];
+            public bool powerUpSpaceActive;
             //public bool toggleStraightShooter, toggleVerticalShooter, toggleTrackingBeam, toggleBomb;
         }
 
@@ -129,6 +131,14 @@ namespace MMurray.LastLine
                     {
                         data.player_base_position = newLevel.playerBase.point.transform.position;
                         data.base_point_axes = newLevel.playerBase.point.pointAxes;
+                    }
+
+                    //power up space data
+                    if (newLevel.powerUpSpace != null)
+                    {
+                        data.power_up_space_active = newLevel.powerUpSpaceActive;
+                        data.power_up_space_position = newLevel.powerUpSpace.point.transform.position;
+                        data.power_up_space_point_axes = newLevel.powerUpSpace.point.pointAxes;
                     }
 
                     //get portal data.
