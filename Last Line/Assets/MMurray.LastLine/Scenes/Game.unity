@@ -3080,6 +3080,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8455551735379712664, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
+      propertyPath: dialogueList.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455551735379712664, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
+      propertyPath: dialogueList.Array.data[10]
+      value: 
+      objectReference: {fileID: 6859608517825341614}
     - target: {fileID: 8531383243452956154, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3241,6 +3249,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
+--- !u!114 &6859608517825341614 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6431288640742510365, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
+  m_PrefabInstance: {fileID: 6859608517825341613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ae7054454ca143db3630b145796e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6859608517825341615 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2365137175386679259, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
