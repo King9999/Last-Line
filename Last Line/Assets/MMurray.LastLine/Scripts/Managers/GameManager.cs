@@ -440,7 +440,7 @@ public class GameManager : MonoBehaviour
                     crystal.transform.position = Camera.main.ScreenToWorldPoint(points[i].transform.position);
                     crystal.transform.position = new Vector3(crystal.transform.position.x, crystal.transform.position.y, 1);    //must change Z so crystal is visible.
                 }
-                while (points[i].unit != null);
+                while (!points[i].IsEmpty()); //points[i].unit != null && points[i].portal != null);
 
                 points[i].crystal = crystal;
                 Logger.DebugLogFormat("Crystal generated at {0}", points[i].pointAxes);

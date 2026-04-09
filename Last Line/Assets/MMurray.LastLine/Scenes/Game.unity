@@ -1649,6 +1649,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d176e5e71ec80c89a6a4140eeffc20d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1687248005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3324086829510308530, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
+  m_PrefabInstance: {fileID: 6859608517825341613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ae7054454ca143db3630b145796e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1794143891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1893,14 +1904,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5022834714304011585, guid: b47e43f9c5fcc7b499f41588af999de1, type: 3}
-      propertyPath: arrowLocations.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5022834714304011585, guid: b47e43f9c5fcc7b499f41588af999de1, type: 3}
-      propertyPath: arrowLocations.Array.data[8]
-      value: 
-      objectReference: {fileID: 1153665171969786667}
     - target: {fileID: 5905237110718435686, guid: b47e43f9c5fcc7b499f41588af999de1, type: 3}
       propertyPath: targetedObject
       value: 
@@ -1926,11 +1929,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b47e43f9c5fcc7b499f41588af999de1, type: 3}
---- !u!224 &1153665171969786667 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 935832337799517441, guid: b47e43f9c5fcc7b499f41588af999de1, type: 3}
-  m_PrefabInstance: {fileID: 1153665171969786666}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1709465635546160780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3082,12 +3080,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8455551735379712664, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
       propertyPath: dialogueList.Array.size
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8455551735379712664, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
       propertyPath: dialogueList.Array.data[10]
       value: 
       objectReference: {fileID: 6859608517825341614}
+    - target: {fileID: 8455551735379712664, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
+      propertyPath: dialogueList.Array.data[11]
+      value: 
+      objectReference: {fileID: 1687248005}
     - target: {fileID: 8531383243452956154, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

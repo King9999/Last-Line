@@ -51,6 +51,8 @@ namespace MMurray.LastLine
             //standard buff for all units.
             maxHitPoints += 1;
             hitPoints = maxHitPoints;
+            GameManager gm = Singleton.instance.GameManager;
+            gm.DisplayAlertWithDuration(GetText("unitEnhanced"));
         }
 
         public void SetInvul()
@@ -81,6 +83,12 @@ namespace MMurray.LastLine
                 GameManager gm = Singleton.instance.GameManager;
                 gm.RemovePlayerUnit(this);
             }*/
+        }
+
+        string GetText(string key)
+        {
+            string value = SharedState.LanguageDefs?[key];
+            return value ?? "--missing--";
         }
 
     }

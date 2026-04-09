@@ -24,7 +24,8 @@ namespace MMurray.LastLine
 
         public bool IsEmpty()
         {
-            return unit == null && crystal == null && portal == null;
+            //note that power up space is excluded
+            return unit == null && crystal == null && portal == null /*&& powerUpSpace == null*/;
         }
 
 

@@ -28,7 +28,8 @@
       "notEnoughMoney": 25,
       "levelCompleted": 20,
       "readyButtonText": 20,
-      "enemyPreparing": 35
+      "enemyPreparing": 35,
+      "unitEnhanced": 30
     }
   },
   "en": {
@@ -63,6 +64,7 @@
 	"levelCompleted": "BASE DEFENDED",
 	"readyButtonText": "Ready to Play",
 	"enemyPreparing": "Start building your units.",
+	"unitEnhanced": "Unit is powered up!",
 	"dialogue_build_second_unit": "Good job, commander. Build one more unit to back up the first one!",
 	"dialogue_activate_ability": "Commander, order the new unit to fire in the other direction.",
 	"system_activate_ability": "<color=#0CCF5A>To activate a unit's special ability, re-enter the coordinates where the unit is located.</color>",
@@ -74,7 +76,9 @@
 	"system_intro_level1_b": "<color=#0CCF5A>Mother Base has provided some <color=#06DDEF>scrap parts</color> for you to build your units. If you need more scrap, <color=#06DDEF>destroy enemies with your units.</color> Good luck!</color>",
 	"dialogue_crystal_intro": "Commander, a <color=#06DDEF>crystal</color> has appeared at the <color=#06DDEF>origin</color>. If you <color=#06DDEF>enter its coordinates</color>, we can use it to build more units.",
 	"dialogue_intro_level2": "This is Mother Base. We've created a new unit for you. Deploy it when you're ready.",
-	"dialogue_intro_level3": "Commander, we've detected a new type of enemy. <color=#06DDEF>This enemy will attack your units</color>. Try to protect them as best as you can. Good luck!"
+	"dialogue_intro_level3": "Commander, we've detected a new type of enemy. <color=#06DDEF>This enemy will attack your units</color>. Try to protect them as best as you can. Good luck!",
+	"dialogue_intro_level4": "This is Mother Base. We've identified an unusual entity that appears to change your units in some way. It will help in our fight against the enemy.",
+	"system_power_space_intro": "<color=#0CCF5A>Building a unit over this space will <color=#06DDEF>power up your unit</color>. The effects are different for each unit, but for now try building this one. Don't forget to change its attack direction!</color>"
   },
   "es": {
     

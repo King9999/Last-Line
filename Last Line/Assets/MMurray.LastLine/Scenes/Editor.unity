@@ -739,6 +739,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6111079841945754037, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
+      propertyPath: enemyCount
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6167148172560934709, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -765,7 +769,7 @@ PrefabInstance:
       objectReference: {fileID: 7943554938627735102}
     - target: {fileID: 6713779057758097474, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
       propertyPath: enemyCount
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6857519637250646726, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
       propertyPath: m_AnchorMax.y
