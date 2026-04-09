@@ -196,7 +196,7 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
         while (i < duration)
         {
             i += Time.deltaTime;
-            beam.widthMultiplier -= 0.01f * Time.deltaTime;
+            beam.widthMultiplier -= 0.05f * Time.deltaTime;
             yield return null;
         }
         //yield return new WaitForSeconds(duration);

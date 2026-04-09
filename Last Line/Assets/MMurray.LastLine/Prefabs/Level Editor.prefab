@@ -2120,7 +2120,7 @@ MonoBehaviour:
     powerUpSpaceActive: 1
   - level: 5
     startingMoney: 20
-    crystalThreshold: 60
+    crystalThreshold: 80
     crystalValue: 40
     portals:
     - {fileID: 6478031425920468336}
@@ -2281,7 +2281,7 @@ MonoBehaviour:
     power_up_space_active: 1
   - level: 5
     starting_money: 20
-    crystal_threshold: 60
+    crystal_threshold: 80
     crystal_value: 40
     portals:
     - point_axes: {x: 5, y: 1}
@@ -2289,7 +2289,7 @@ MonoBehaviour:
       enemy_type: 2
       deploy_cooldown: 3
       deploy_time: 60
-      enemy_count: 10
+      enemy_count: 15
       enemy_path_points:
       - {x: 0, y: 0, z: 0}
       - {x: 0.030799389, y: 1.3118424, z: 0}
@@ -2315,7 +2315,7 @@ MonoBehaviour:
       enemy_type: 0
       deploy_cooldown: 1.5
       deploy_time: 60
-      enemy_count: 50
+      enemy_count: 60
       enemy_path_points:
       - {x: 0, y: 0, z: 0}
       - {x: 0.10313988, y: 2.8275566, z: 0}
@@ -6609,7 +6609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: enemyCount
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: pointLocation
@@ -7992,7 +7992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: enemyCount
-      value: 50
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: pointLocation
