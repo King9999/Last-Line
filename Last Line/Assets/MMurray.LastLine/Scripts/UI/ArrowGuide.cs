@@ -66,7 +66,7 @@ public class ArrowGuide : MonoBehaviour
 
     public void PointArrow(Transform location, Vector2 direction)
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
         /*the offset value will change depending on whether the arrow is pointing to a UI object or a game object.
         also, depending on the arrow's direction, its position will always be adjusted to be a short distance away 
         from the pointed object.*/

@@ -97,6 +97,7 @@ public class Dialogue : MonoBehaviour
                     //arrows = new List<ArrowGuide>();    //keep reference to these arrows.
                     foreach (ArrowGuide arrow in am.arrowGuides[i].arrowList)
                     {
+                        arrow.gameObject.SetActive(true);
                         arrow.PointArrow(arrow.arrowLocation, arrow.direction);
                         //arrows.Add(arrow);
                         am.activeArrows.Add(arrow);
