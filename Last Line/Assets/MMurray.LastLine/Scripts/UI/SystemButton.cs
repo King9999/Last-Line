@@ -14,6 +14,8 @@ public class SystemButton : MonoBehaviour
     
     public void OnMouseClick()
     {
+        GameManager gm = Singleton.instance.GameManager;
+
         //check which button was clicked.
         switch (option)
         {
@@ -21,11 +23,27 @@ public class SystemButton : MonoBehaviour
                 Singleton.instance.musicEnabled = !Singleton.instance.musicEnabled;
                 Logger.DebugLogFormat("Music enabled: {0}", Singleton.instance.musicEnabled);
                 //TODO: button graphics should change to reflect state
+                if (!Singleton.instance.musicEnabled)
+                {
+                    gm.DisplayAlertWithDuration(GetText("musicOff"));
+                }
+                else
+                {
+                    gm.DisplayAlertWithDuration(GetText("musicOn"));
+                }
                 break;
 
             case Options.TTS:
                 Singleton.instance.ttsEnabled = !Singleton.instance.ttsEnabled;
                 Logger.DebugLogFormat("TTS enabled: {0}", Singleton.instance.ttsEnabled);
+                if (!Singleton.instance.ttsEnabled)
+                {
+                    gm.DisplayAlertWithDuration(GetText("ttsOff"));
+                }
+                else
+                {
+                    gm.DisplayAlertWithDuration(GetText("ttsOn"));
+                }
                 break;
 
             case Options.ExitGame:
@@ -35,5 +53,11 @@ public class SystemButton : MonoBehaviour
                 sf.ChangeSceneFadeOut("Title");
                 break;
         }
+    }
+
+    string GetText(string key)
+    {
+        string value = SharedState.LanguageDefs?[key];
+        return value ?? "--missing--";
     }
 }
