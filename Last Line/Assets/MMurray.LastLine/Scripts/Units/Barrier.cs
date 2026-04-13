@@ -20,12 +20,19 @@ public class Barrier : MonoBehaviour
         }
         else if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
         {
-            //destroy both unit and barrier.
+            //destroy both unit and barrier.           
             GameManager gm = Singleton.instance.GameManager;
-            gm.RemovePlayerUnit(unit);
-            EnemyUnit_Dozer dozer = gameObject.GetComponentInParent<EnemyUnit_Dozer>();
-            dozer.SetInvul(true);
-            gameObject.SetActive(false);
+
+            if (unit is PlayerUnit_Base)
+                //just remove barrier. Base doesn't take damage from barrier.
+                gameObject.SetActive(false);
+            else
+            {
+                gm.RemovePlayerUnit(unit);
+                EnemyUnit_Dozer dozer = gameObject.GetComponentInParent<EnemyUnit_Dozer>();
+                dozer.SetInvul(true);
+                gameObject.SetActive(false);
+            }
             
             Logger.DebugLog("Barrier hit unit");
         }

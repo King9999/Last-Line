@@ -34,7 +34,7 @@ public class EnemyUnit_Dozer : EnemyUnit
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    /*void OnTriggerEnter2D(Collider2D collision)
     {
         if (barrierCollider.IsTouching(collision))
         {
@@ -42,6 +42,6 @@ public class EnemyUnit_Dozer : EnemyUnit
             return;
         }
             
-    }
+    }*/
 
 }

@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
             s.saveState.LoadState(s.saveState.ReadState);
             //s.saveState.ReadState(s.gameData);
         }
-        currentLevel = 6;
+        currentLevel = 7;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);

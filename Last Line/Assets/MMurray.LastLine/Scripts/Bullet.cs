@@ -60,6 +60,12 @@ public class Bullet : MonoBehaviour
             //ignore any enemy attack range colliders
             if (collision.TryGetComponent<CircleCollider2D>(out CircleCollider2D range))
                 return; 
+            
+            if (collision.TryGetComponent<Barrier>(out Barrier b))
+            {
+                Logger.DebugLog("enemy's Bullet hit barrier");
+                return;
+            }
 
             PlayerUnit unit = collision.GetComponent<PlayerUnit>();
             if (unit is PlayerUnit_Base || unit is PlayerUnit_Bomb)//collision.TryGetComponent<PlayerUnit_Base>(out PlayerUnit_Base unitBase))
