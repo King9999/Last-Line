@@ -19,7 +19,7 @@ public class ArrowGuide : MonoBehaviour
     void Start()
     {
         arrow = GetComponent<Image>();
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     void OnEnable()

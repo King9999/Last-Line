@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UnitData_Bomb
   m_EditorClassIdentifier: 
   unitName: Bomb
-  unitCost: 50
+  unitCost: 100
   unitBuildTime: 10
   unitMoneyReward: 0
   hitPoints: 100
@@ -22,4 +22,4 @@ MonoBehaviour:
   weaponCooldown: 0
   bulletSpeed: 0
   bulletDistance: 0
-  weaponDamage: 3
+  weaponDamage: 5

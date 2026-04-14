@@ -21,10 +21,10 @@ public class UnitButton : MonoBehaviour
     /// </summary>
     public void OnMouseHoverEnter()
     {
-        GameManager gm = Singleton.instance.GameManager;
+        /*GameManager gm = Singleton.instance.GameManager;
         if ((gm.gameState != GameManager.GameState.Normal && gm.gameState != GameManager.GameState.EnemyPreparing) ||
             (gm.inTutorial && gm.tutorialState != GameManager.TutorialState.Normal))   //prevent any other action while unit selected.
-            return;
+            return;*/
 
         Logger.DebugLog("Hovering over button");
         Menu menu = Singleton.instance.Menu;

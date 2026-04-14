@@ -24,6 +24,19 @@ public class ArrowGuideManager : MonoBehaviour
     void Awake()
     {
         Singleton.instance.ArrowGuideManager = this;
+
+        //all arrows are hidden by default.
+        foreach(ArrowGuides arrow in arrowGuides)
+        {   
+            for (int i = 0; i < arrow.arrowList.Count; i++)
+            {
+                arrow.arrowList[i].gameObject.SetActive(false);
+            }
+            
+        }
+
+        arrowUnitSelectX.gameObject.SetActive(false);
+        arrowUnitSelectY.gameObject.SetActive(false);
     }
 
     public void HideGuideArrows()
