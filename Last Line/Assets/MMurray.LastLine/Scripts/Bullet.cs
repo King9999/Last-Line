@@ -67,6 +67,13 @@ public class Bullet : MonoBehaviour
                 return;
             }
 
+            //ignore other enemies
+            if (collision.TryGetComponent<EnemyUnit>(out EnemyUnit enemy))
+            {
+                Logger.DebugLogFormat("enemy's Bullet hit {0}", enemy.name);
+                return;
+            }
+
             PlayerUnit unit = collision.GetComponent<PlayerUnit>();
             if (unit is PlayerUnit_Base || unit is PlayerUnit_Bomb)//collision.TryGetComponent<PlayerUnit_Base>(out PlayerUnit_Base unitBase))
             {
