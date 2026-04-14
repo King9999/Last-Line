@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     public DialogueManager dialogueManager;
     public int triggerIndex;                //used to iterate through conditional triggers.
     [SerializeField]private ProgressBar[] progressBars;  //used to show build times for units.
-    private int progressIndex;              //keeps track of which progress bar is active and filling up.
+    private int progressIndex, activeBarIndex;              //keeps track of which progress bar is active and filling up.
     private int availableProgressIndex;     //always points to an inactive progress bar.
     public Laser testLaser;
     [SerializeField]private List<MoneyText> moneyTexts;    //is displayed when an enemy unit is destroyed.
@@ -752,7 +752,10 @@ public class GameManager : MonoBehaviour
             }
 
             if (buildQueue.Count <= 0)  //make sure progressIndex is reset when build queue is empty
+            {
                 progressIndex = 0;
+                activeBarIndex = 0;
+            }
 
             buildQueue.Enqueue(newUnit);
             
@@ -769,7 +772,7 @@ public class GameManager : MonoBehaviour
             menu.unitsInQueue[menu.queueIndex].sprite = newUnit.unitSprite;
 
             //find an available progress bar and activate it.
-            bool barFound = false;
+            /*bool barFound = false;
             int i = 0;
             while (!barFound && i < progressBars.Length)
             {
@@ -782,10 +785,13 @@ public class GameManager : MonoBehaviour
                 {
                     i++;
                 }
-            }
+            }*/
 
-            if (i < progressBars.Length)
-                progressBars[i].DisplayProgressBar(true, point);
+            //if (i < progressBars.Length)
+                //progressBars[i].DisplayProgressBar(true, point);
+            //active bar index always points to the next bar to activate.
+            progressBars[activeBarIndex].DisplayProgressBar(true, point);
+            activeBarIndex = (activeBarIndex + 1 < progressBars.Length) ? activeBarIndex + 1 : 0;
             //activePlayerUnits.Add(newUnit);
 
             //save unit's position
