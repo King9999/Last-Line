@@ -60,7 +60,9 @@ public class GameManager : MonoBehaviour
     public Laser testLaser;
     [SerializeField]private List<MoneyText> moneyTexts;    //is displayed when an enemy unit is destroyed.
     public Button readyButton;     //used to advance game by 60 seconds to start early.
+    public Button exitButton;      //ends game when last level completed.
     [SerializeField]private TextMeshProUGUI readyLabel;
+    [SerializeField]private TextMeshProUGUI exitGameLabel;
     [SerializeField]private EndLevelText endLevelText;       //displays "BASE DEFENDED"
 
     
@@ -145,6 +147,8 @@ public class GameManager : MonoBehaviour
         //UI setup
         alertText.text = "";
         readyLabel.text = GetText("readyButtonText");
+        exitGameLabel.text = GetText("exitButtonText");
+        exitButton.gameObject.SetActive(false);     //only appears at end of game.
 
         //load save state
         Singleton s = Singleton.instance;
@@ -670,7 +674,7 @@ public class GameManager : MonoBehaviour
         {
             //TODO: Place a target to show that the player selected a point. 
             //if space is occupied, activate context-sensitive ability. nothing happens if unit doesn't have one.
-            if (point.unit != null)
+            if (point.unit != null /*&& point.unit is not PlayerUnit_Base*/)
             {
                 point.unit.ActivateAbility();
                 //return;
@@ -1249,7 +1253,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GoToNextLevel:
-                if (currentLevel + 1 < maxLevels)
+                if (currentLevel + 1 <= maxLevels)
                 {
                     Singleton.instance.ScreenFade.LoadLevelFadeOut(++currentLevel);
                 }
@@ -1258,6 +1262,12 @@ public class GameManager : MonoBehaviour
                     //game complete
                     SetGameState(gameState = GameState.GameCompleted);
                 }
+                break;
+            
+            case GameState.GameCompleted:
+                //show end message
+                //show exit game button
+                exitButton.gameObject.SetActive(true);
                 break;
         }
     }
@@ -1495,6 +1505,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+#region Button Methods
     /// <summary>
     /// Starts game early. Used by ready button.
     /// </summary>
@@ -1507,6 +1518,17 @@ public class GameManager : MonoBehaviour
 
         readyButton.gameObject.SetActive(false);
     }
+
+    /// <summary>
+    /// Ends game once all levels are completed.
+    /// </summary>
+    /// <returns></returns>
+    public void EndGame()
+    {
+        LOLSDK.Instance.SubmitProgress(0, currentLevel, maxLevels);
+        LOLSDK.Instance.CompleteGame();
+    }
+#endregion
 
 #region Coroutines
 

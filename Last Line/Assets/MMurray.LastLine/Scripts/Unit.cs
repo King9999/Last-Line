@@ -47,7 +47,8 @@ namespace MMurray.LastLine
         //Used by specific units to active a special ability, such as changing firing direction.
         public virtual void ActivateAbility()
         {
-            
+            GameManager gm = Singleton.instance.GameManager;
+            gm.DisplayAlertWithDuration(GetText("noUnitAbility"));
         }
 
         //fire unit's unique weapon if they have one.
@@ -80,6 +81,12 @@ namespace MMurray.LastLine
             laser.direction = Vector2.right;
             laser.damage = weaponDamage;
             laser.distance = bulletDistance;
+        }
+
+        string GetText(string key)
+        {
+            string value = SharedState.LanguageDefs?[key];
+            return value ?? "--missing--";
         }
 
         public void ReduceHitPoints(int amount)

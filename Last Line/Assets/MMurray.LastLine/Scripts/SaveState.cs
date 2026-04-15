@@ -18,8 +18,7 @@ namespace MMurray.LastLine
             data.level = gm.currentLevel;
 
             //submit progress
-            LOLSDK.Instance.SubmitProgress(0, data.level + 1, gm.maxLevels); //add 1 to level because level starts at 0.
-
+            LOLSDK.Instance.SubmitProgress(0, data.level, gm.maxLevels);    //level 0 is the tutorial.
             LOLSDK.Instance.SaveState(data);
         }
 
