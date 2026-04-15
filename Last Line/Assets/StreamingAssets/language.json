@@ -33,7 +33,8 @@
       "musicOn": 15,
       "musicOff": 15,
       "ttsOn": 10,
-      "ttsOff": 10
+      "ttsOff": 10,
+      "gameComplete": 30
     }
   },
   "en": {
@@ -73,6 +74,7 @@
 	"musicOff": "MUSIC OFF",
 	"ttsOn": "TTS ON",
 	"ttsOff": "TTS OFF",
+	"gameComplete": "MISSION ACCOMPLISHED",
 	"dialogue_build_second_unit": "Good job, commander. Build one more unit to back up the first one!",
 	"dialogue_activate_ability": "Commander, order the new unit to fire in the other direction.",
 	"system_activate_ability": "<color=#0CCF5A>To activate a unit's special ability, re-enter the coordinates where the unit is located.</color>",
@@ -94,7 +96,8 @@
 	"dialogue_intro_level7": "Commander, we've created a new unit for you. Be very careful with it!",
 	"system_bomb_intro": "<color=#0CCF5A>You can activate the unit by re-entering its coordinates. <color=#06DDEF>All units</color> in range will be destroyed, and <color=#06DDEF>your base will be damaged</color>. Use caution!</color>",
 	"dialogue_intro_level8": "This is it, commander. The enemy will be hitting us hardest in their final wave. We detect a new enemy type, and it seems to be very tough. Do your best!",
-	"system_intro_juggernaut": "<color=#0CCF5A>The enemy's new unit is so powerful, <color=#06DDEF>the base will be destroyed in one hit</color> if it gets close. Good luck!</color>"
+	"system_intro_juggernaut": "<color=#0CCF5A>The enemy's new unit is so powerful, <color=#06DDEF>the base will be destroyed in 1 hit if it gets close</color>. Good luck!</color>",
+	"dialogue_end_of_game": "Well done, commander. Thanks to your efforts, the quadrant is saved."
   },
   "es": {
     
