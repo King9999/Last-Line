@@ -7,6 +7,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 using UnityEditor;
+using MMurray.GenericCode;
 
 
 public class GameManager : MonoBehaviour
@@ -60,7 +61,7 @@ public class GameManager : MonoBehaviour
     public Laser testLaser;
     [SerializeField]private List<MoneyText> moneyTexts;    //is displayed when an enemy unit is destroyed.
     public Button readyButton;     //used to advance game by 60 seconds to start early.
-    public Button exitButton;      //ends game when last level completed.
+    //public Button exitButton;      //ends game when last level completed.
     [SerializeField]private TextMeshProUGUI readyLabel;
     [SerializeField]private TextMeshProUGUI exitGameLabel;
     [SerializeField]private EndLevelText endLevelText;       //displays "BASE DEFENDED"
@@ -149,7 +150,7 @@ public class GameManager : MonoBehaviour
         alertText.text = "";
         readyLabel.text = GetText("readyButtonText");
         exitGameLabel.text = GetText("exitButtonText");
-        exitButton.gameObject.SetActive(false);     //only appears at end of game.
+        //exitButton.gameObject.SetActive(false);     //only appears at end of game.
         targetCursor.gameObject.SetActive(false);
 
         //load save state
@@ -1271,9 +1272,13 @@ public class GameManager : MonoBehaviour
                 break;
             
             case GameState.GameCompleted:
+                //go to end screen
+                Singleton.instance.saveState.WriteState(Singleton.instance.gameData);   //save progress
+                ScreenFade sf = Singleton.instance.ScreenFade;
+                sf.ChangeSceneFadeOut("End Screen");
                 //show end message
                 //show exit game button
-                exitButton.gameObject.SetActive(true);
+                //exitButton.gameObject.SetActive(true);
                 break;
         }
     }
@@ -1529,11 +1534,11 @@ public class GameManager : MonoBehaviour
     /// Ends game once all levels are completed.
     /// </summary>
     /// <returns></returns>
-    public void EndGame()
+    /*public void EndGame()
     {
         LOLSDK.Instance.SubmitProgress(0, currentLevel, maxLevels);
         LOLSDK.Instance.CompleteGame();
-    }
+    }*/
 #endregion
 
 #region Coroutines

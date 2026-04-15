@@ -34,9 +34,10 @@
       "musicOff": 15,
       "ttsOn": 10,
       "ttsOff": 10,
-      "gameComplete": 30,
+      "missionComplete": 30,
       "exitButtonText": 15,
-      "noUnitAbility": 30
+      "noUnitAbility": 30,
+      "thanksForPlaying": 30
     }
   },
   "en": {
@@ -76,7 +77,8 @@
 	"musicOff": "MUSIC OFF",
 	"ttsOn": "TTS ON",
 	"ttsOff": "TTS OFF",
-	"gameComplete": "MISSION ACCOMPLISHED",
+	"missionComplete": "MISSION ACCOMPLISHED",
+	"thanksForPlaying": "Thank you for playing!",
 	"exitButtonText": "End Game",
 	"noUnitAbility": "Unit has no ability.",
 	"dialogue_build_second_unit": "Good job, commander. Build one more unit to back up the first one!",
