@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private TextMeshProUGUI readyLabel;
     [SerializeField]private TextMeshProUGUI exitGameLabel;
     [SerializeField]private EndLevelText endLevelText;       //displays "BASE DEFENDED"
+    [SerializeField]private TargetCursor targetCursor;
 
     
 
@@ -149,6 +150,7 @@ public class GameManager : MonoBehaviour
         readyLabel.text = GetText("readyButtonText");
         exitGameLabel.text = GetText("exitButtonText");
         exitButton.gameObject.SetActive(false);     //only appears at end of game.
+        targetCursor.gameObject.SetActive(false);
 
         //load save state
         Singleton s = Singleton.instance;
@@ -674,6 +676,8 @@ public class GameManager : MonoBehaviour
         {
             //TODO: Place a target to show that the player selected a point. 
             //if space is occupied, activate context-sensitive ability. nothing happens if unit doesn't have one.
+            targetCursor.ShowCursor(point.transform.position);
+
             if (point.unit != null /*&& point.unit is not PlayerUnit_Base*/)
             {
                 point.unit.ActivateAbility();
