@@ -55,8 +55,8 @@ public class UnitButton : MonoBehaviour
         GameManager gm = Singleton.instance.GameManager;
         DialogueManager dm = Singleton.instance.DialogueManager;
 
-        if ((gm.gameState != GameManager.GameState.Normal && gm.gameState != GameManager.GameState.EnemyPreparing) || dm.dialogueOpen) /*|| (gm.tutorialState != GameManager.TutorialState.Normal &&
-            gm.tutorialState != GameManager.TutorialState.UnitSelectSecondUnit))*/   //prevent any other action while unit selected.
+        if ((gm.gameState != GameManager.GameState.Normal && gm.gameState != GameManager.GameState.EnemyPreparing) || dm.dialogueOpen
+            || gm.UnplayableState())   //prevent any other action while unit selected.
             return;
 
         gm.playerUnitType = unitType;

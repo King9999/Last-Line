@@ -20,7 +20,7 @@ public class AxisButton : MonoBehaviour
         GameManager gm = Singleton.instance.GameManager;
         DialogueManager dm = Singleton.instance.DialogueManager;
 
-        if (dm.dialogueOpen)
+        if (dm.dialogueOpen || gm.UnplayableState())
             return;
 
         //check which axis we're on and record the value. A special case is made for the origin.

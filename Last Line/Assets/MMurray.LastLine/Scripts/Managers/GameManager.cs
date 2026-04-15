@@ -198,7 +198,8 @@ public class GameManager : MonoBehaviour
     public bool UnplayableState()
     {
         bool cannotPlay = false;
-        if (gameState == GameState.BaseDestroyed || gameState == GameState.LevelComplete || gameState == GameState.DialogueEndOfLevel)
+        if (gameState == GameState.BaseDestroyed || gameState == GameState.LevelComplete || gameState == GameState.DialogueEndOfLevel ||
+            gameState == GameState.GameCompleted)
             cannotPlay = true;
         
         if (inTutorial && (tutorialState == TutorialState.LevelComplete || tutorialState == TutorialState.DialogueEndOfLevel))
@@ -247,7 +248,8 @@ public class GameManager : MonoBehaviour
                 //return;
         }
 
-        if (totalEnemies <= 0)
+        if (totalEnemies <= 0 && gameState != GameState.LevelComplete && gameState != GameState.GameCompleted && 
+            gameState != GameState.BaseDestroyed)
         {
             //level is over.
             //if base is destroyed, then it's game over.
