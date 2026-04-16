@@ -7,17 +7,7 @@ public class Explosion : MonoBehaviour
 {
     [SerializeField]private ParticleSystem flash;
     [SerializeField]private ParticleSystem sparks;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public void Play(Vector2 location)
     {

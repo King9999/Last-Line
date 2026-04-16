@@ -84,6 +84,8 @@ public class GameManager : MonoBehaviour
 
     [Header("---Particle Effects---")]
     [SerializeField]private List<Explosion> explosionList;
+    [SerializeField]private BaseExplosion baseExplosion;
+
 
     [Header("---Money---")]
     public int money;                               //how much money player has to create units. In game, it's called scrap.
