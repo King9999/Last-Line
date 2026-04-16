@@ -671,7 +671,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void CallExpolsion(Vector2 location)
+    void CallExplosion(Vector2 location)
     {
         //instantiate explosion only if one doesn't exist already in the explosion list.
         if (explosionList.Count <= 0)
@@ -706,6 +706,7 @@ public class GameManager : MonoBehaviour
                 explosionList.Add(explosion);
             }
         }
+
     }
 
     #region Unit/Portal Management
@@ -1091,7 +1092,8 @@ public class GameManager : MonoBehaviour
                 deadPlayerUnits.Add(unit);
                 activePlayerUnits.Remove(unit);
                 unit.gameObject.SetActive(false);
-                CallExpolsion(unit.transform.position);
+                ScreenShake();          //only for player units.
+                CallExplosion(unit.transform.position);
                 Logger.DebugLogFormat("Removing {0} from grid at point {1}", unit.name, points[i].pointAxes);
                 points[i].unit = null;
             }
@@ -1114,7 +1116,7 @@ public class GameManager : MonoBehaviour
         unit.portal = null;
         Logger.DebugLogFormat("Removing {0}", unit.name);
         unit.gameObject.SetActive(false);
-        CallExpolsion(unit.transform.position);
+        CallExplosion(unit.transform.position);
         totalEnemies--;
         Logger.DebugLogFormat("Enemies remaining: {0}", totalEnemies);
     }
@@ -1525,6 +1527,9 @@ public class GameManager : MonoBehaviour
 
     public void ScreenShake()
     {
+        if (screenShakeCoroutine != null)
+            StopCoroutine(screenShakeCoroutine);
+        
         screenShakeCoroutine = StartCoroutine(ShakeCamera());
     }
 
