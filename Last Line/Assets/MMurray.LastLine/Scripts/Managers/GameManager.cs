@@ -671,6 +671,43 @@ public class GameManager : MonoBehaviour
 
     }
 
+    void CallExpolsion(Vector2 location)
+    {
+        //instantiate explosion only if one doesn't exist already in the explosion list.
+        if (explosionList.Count <= 0)
+        {
+            Explosion explosion = Instantiate(explosionPrefab, explosionContainer.transform);
+            explosion.Play(location);
+            explosionList.Add(explosion);
+        }
+        else
+        {
+            //search for existing particle
+            bool found = false;
+            int i = 0;
+            while(!found && i < explosionList.Count)
+            {
+                if (!explosionList[i].IsPlaying())
+                {
+                    found = true;
+                    explosionList[i].Play(location);
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            //if no particle available, instantiate new one.
+            if (!found)
+            {
+                Explosion explosion = Instantiate(explosionPrefab, explosionContainer.transform);
+                explosion.Play(location);
+                explosionList.Add(explosion);
+            }
+        }
+    }
+
     #region Unit/Portal Management
 
     /// <summary>
@@ -1051,10 +1088,10 @@ public class GameManager : MonoBehaviour
             if (points[i].unit == unit)
             {
                 unitFound = true;
-                unit.explosion.Play(unit.transform.position);
                 deadPlayerUnits.Add(unit);
                 activePlayerUnits.Remove(unit);
                 unit.gameObject.SetActive(false);
+                CallExpolsion(unit.transform.position);
                 Logger.DebugLogFormat("Removing {0} from grid at point {1}", unit.name, points[i].pointAxes);
                 points[i].unit = null;
             }
@@ -1077,6 +1114,7 @@ public class GameManager : MonoBehaviour
         unit.portal = null;
         Logger.DebugLogFormat("Removing {0}", unit.name);
         unit.gameObject.SetActive(false);
+        CallExpolsion(unit.transform.position);
         totalEnemies--;
         Logger.DebugLogFormat("Enemies remaining: {0}", totalEnemies);
     }

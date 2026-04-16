@@ -20,7 +20,6 @@ namespace MMurray.LastLine
         public int weaponDamage;
 
         public Slider healthBar;        //only visible when unit is damaged to reduce clutter.
-        public Explosion explosion;        //played when unit dies.
 
 
         //gets data from scriptable object
