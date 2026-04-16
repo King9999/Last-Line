@@ -82,6 +82,9 @@ public class GameManager : MonoBehaviour
     public PlayerUnit_Base playerBase;              //there's only 1 of these
     public PowerUpSpace powerUpSpace;               //1 per level.
 
+    [Header("---Particle Effects---")]
+    [SerializeField]private List<Explosion> explosionList;
+
     [Header("---Money---")]
     public int money;                               //how much money player has to create units. In game, it's called scrap.
     [SerializeField]private int crystalThreshold;   //the amount of money needed for a crystal to appear. Resets once threshold is hit.
@@ -95,6 +98,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private GameObject axisContainerX;
     [SerializeField]private GameObject axisContainerY;
     [SerializeField]private GameObject moneyTextContainer;
+    [SerializeField]private GameObject explosionContainer;          //handles explosion particle effect
 
     [Header("---Prefabs---")]
     public Bullet bulletPrefab;
@@ -111,6 +115,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private EnemyUnit juggPrefab;
     [SerializeField]private PowerUpSpace powerUpPrefab;
     [SerializeField]private MoneyText moneyTextPrefab;
+    [SerializeField]private Explosion explosionPrefab;
 
 
     /***Units that are destroyed are sent to an array, and recycled whenever a new unit needs to be generated. 
@@ -1046,6 +1051,7 @@ public class GameManager : MonoBehaviour
             if (points[i].unit == unit)
             {
                 unitFound = true;
+                unit.explosion.Play(unit.transform.position);
                 deadPlayerUnits.Add(unit);
                 activePlayerUnits.Remove(unit);
                 unit.gameObject.SetActive(false);
