@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private TextMeshProUGUI readyLabel;
     [SerializeField]private TextMeshProUGUI exitGameLabel;
     [SerializeField]private EndLevelText endLevelText;       //displays "BASE DEFENDED"
+    [SerializeField]private GameOverText gameOverText;       //displays "BASE DESTROYED"
     [SerializeField]private TargetCursor targetCursor;
 
     
@@ -167,6 +168,7 @@ public class GameManager : MonoBehaviour
             s.saveState.LoadState(s.saveState.ReadState);
             //s.saveState.ReadState(s.gameData);
         }
+        gameOverText.ShowText();
         currentLevel = 8;
         LoadLevel(currentLevel);
 
@@ -1621,6 +1623,13 @@ public class GameManager : MonoBehaviour
         }
 
         alertText.text = "";
+    }
+
+    //pauses game for a duration, then base explodes, followed by a "BASE DESTROYED" message
+    IEnumerator ExplodeBase()
+    {
+
+        yield return null;
     }
 
     /*IEnumerator AnimateMoney(int newAmount)
