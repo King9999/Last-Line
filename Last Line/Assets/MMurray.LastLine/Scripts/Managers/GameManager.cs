@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
     Coroutine alertCoroutine = null;
     Coroutine screenShakeCoroutine = null;
     Coroutine animateMoneyCoroutine = null;
+    Coroutine explodeBase = null;
 
     /****bools for various tutorial checks****/
     public bool crystalTutorialViewed;     
@@ -168,8 +169,8 @@ public class GameManager : MonoBehaviour
             s.saveState.LoadState(s.saveState.ReadState);
             //s.saveState.ReadState(s.gameData);
         }
-        gameOverText.ShowText();
-        currentLevel = 8;
+
+        currentLevel = 1;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -1264,7 +1265,8 @@ public class GameManager : MonoBehaviour
 
             case GameState.BaseDestroyed:
                 //have hitstop then blow up base
-                playerBase.gameObject.SetActive(false);
+                DestroyBase();
+                //playerBase.gameObject.SetActive(false);
                 break;
 
             case GameState.LevelComplete:
@@ -1529,18 +1531,13 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+#region Coroutine calls
     public void ScreenShake()
     {
         if (screenShakeCoroutine != null)
             StopCoroutine(screenShakeCoroutine);
         
         screenShakeCoroutine = StartCoroutine(ShakeCamera());
-    }
-
-    string GetText(string key)
-    {
-        string value = SharedState.LanguageDefs?[key];
-        return value ?? "--missing--";
     }
 
     public void DisplayAlert(string msg)
@@ -1558,6 +1555,18 @@ public class GameManager : MonoBehaviour
             StopCoroutine(alertCoroutine);
         alertCoroutine = StartCoroutine(Alert(msg, duration));
         SpeakText(msg);
+    }
+
+    void DestroyBase()
+    {
+        explodeBase = StartCoroutine(ExplodeBase());
+    }
+#endregion
+
+    string GetText(string key)
+    {
+        string value = SharedState.LanguageDefs?[key];
+        return value ?? "--missing--";
     }
 
     void SpeakText(string key)
@@ -1628,8 +1637,11 @@ public class GameManager : MonoBehaviour
     //pauses game for a duration, then base explodes, followed by a "BASE DESTROYED" message
     IEnumerator ExplodeBase()
     {
-
-        yield return null;
+        yield return new WaitForSeconds(1);
+        playerBase.gameObject.SetActive(false);
+        baseExplosion.Play(playerBase.transform.position);
+        //yield return new WaitForSeconds(2);
+        gameOverText.ShowText();
     }
 
     /*IEnumerator AnimateMoney(int newAmount)
