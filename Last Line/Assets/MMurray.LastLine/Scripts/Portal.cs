@@ -73,8 +73,10 @@ public class Portal : MonoBehaviour
         SpriteRenderer renderer = unitIcon.GetComponentInChildren<SpriteRenderer>();
         renderer.sprite = enemyUnits[0].GetComponentInChildren<SpriteRenderer>().sprite;
         enemyCountText.text = "x" + enemyCount;
-        enemyCountText.transform.position = Camera.main.WorldToScreenPoint(new Vector2(unitIcon.transform.position.x + 0.5f,
+        enemyCountText.transform.position = Camera.main.WorldToScreenPoint(new Vector2(unitIcon.transform.position.x + 0.55f,
             unitIcon.transform.position.y - 0.1f));
+        unitIcon.gameObject.SetActive(true);
+        enemyCountText.gameObject.SetActive(true);
         
 
         //path setup TODO: Why can't I just get a reference to the line renderer's vertices directly?

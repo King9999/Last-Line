@@ -68,6 +68,7 @@ namespace MMurray.GenericCode
         {
             time = seconds;
             initTime = time;
+            timerUI.color = Color.white;
         }
 
         public string CurrentTimeFormat(TimeFormat format)

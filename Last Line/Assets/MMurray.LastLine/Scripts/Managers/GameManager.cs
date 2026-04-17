@@ -259,8 +259,8 @@ public class GameManager : MonoBehaviour
                 //return;
         }
 
-        if (totalEnemies <= 0 && gameState != GameState.LevelComplete && gameState != GameState.GameCompleted && 
-            gameState != GameState.BaseDestroyed)
+        if (totalEnemies <= 0 && gameState == GameState.Normal) //gameState != GameState.EnemyPreparing && gameState != GameState.LevelComplete && gameState != GameState.GameCompleted && 
+            //gameState != GameState.BaseDestroyed)
         {
             //level is over.
             //if base is destroyed, then it's game over.
