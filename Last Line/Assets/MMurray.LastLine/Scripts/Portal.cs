@@ -109,6 +109,13 @@ public class Portal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //animate enemy path
+        /*for (int i = 0; i < enemyPath.colorGradient.alphaKeys.Length; i++)
+        {
+            if (enemyPath.colorGradient.alphaKeys[i].alpha > 0)
+                enemyPath.colorGradient.alphaKeys[i].alpha -= 2 * Time.deltaTime;
+        }*/
+
         GameManager gm = Singleton.instance.GameManager;
         if (!gm.GameRunning())
             return;
@@ -135,6 +142,7 @@ public class Portal : MonoBehaviour
             nextEnemy++;
             Logger.DebugLog("nextEnemy index: " + nextEnemy);
         }
+
     }
 
     //when an enemy dies, we must adjust the index so it points to the correct enemy in case there are more
