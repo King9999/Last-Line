@@ -9,6 +9,7 @@ but the dozer keeps moving at a faster speed. */
 public class EnemyUnit_Dozer : EnemyUnit
 {
     [SerializeField]private BoxCollider2D barrierCollider;
+    [SerializeField]Transform leftBarrierPos, rightBarrierPos;
     bool speedUp = false;
 
     void Update()
@@ -18,6 +19,12 @@ public class EnemyUnit_Dozer : EnemyUnit
         GameManager gm = Singleton.instance.GameManager;
         if (!gm.GameRunning())
             return;
+
+        //barrier changes position depending on dozer's direction.
+        if (barrierCollider.gameObject.activeSelf)
+        {
+            barrierCollider.transform.position = direction.x <= 0 ? leftBarrierPos.position : rightBarrierPos.position;
+        }
 
         //speed increases whenever barrier is gone.
         if (!speedUp && !barrierCollider.gameObject.activeSelf)

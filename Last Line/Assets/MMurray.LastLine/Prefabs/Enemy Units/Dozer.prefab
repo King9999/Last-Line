@@ -194,6 +194,8 @@ Transform:
   - {fileID: 7914276042371534788}
   - {fileID: 6923243756315284507}
   - {fileID: 496914115494349668}
+  - {fileID: 2110222979934017181}
+  - {fileID: 4067147721673592579}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8087227832348738245
@@ -210,6 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitData: {fileID: 11400000, guid: 136167382a47b7cb39ce50936a9a3adc, type: 2}
   unitName: 
+  unitType: 0
   hitPoints: 0
   maxHitPoints: 0
   weaponCooldown: 0
@@ -228,6 +231,8 @@ MonoBehaviour:
   currentPoint: {x: 0, y: 0}
   nextPoint: {x: 0, y: 0}
   barrierCollider: {fileID: 5378462932804867036}
+  leftBarrierPos: {fileID: 2110222979934017181}
+  rightBarrierPos: {fileID: 4067147721673592579}
 --- !u!61 &2688772659251892402
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -391,6 +396,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee143d51d0f347c7bad2f79e547cdf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2506433558682390141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4067147721673592579}
+  m_Layer: 0
+  m_Name: Right Barrier Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4067147721673592579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506433558682390141}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.031, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5615709925795303172}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3482642798639672407
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,6 +649,37 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &4843952759099183901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2110222979934017181}
+  m_Layer: 0
+  m_Name: Left Barrier Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2110222979934017181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843952759099183901}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.031, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5615709925795303172}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6273098904600929889
 GameObject:
   m_ObjectHideFlags: 0
