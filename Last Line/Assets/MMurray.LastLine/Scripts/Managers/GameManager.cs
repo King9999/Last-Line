@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 2;
+        //currentLevel = 2;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -199,6 +199,15 @@ public class GameManager : MonoBehaviour
              testPortal.transform.position.y - testLaser.transform.position.y);
         float z = testLaser.GetAngle(testLaser.transform.position, fireDir);
         testLaser.FireWeapon(fireDir, z);*/
+    }
+
+    void OnGUI()
+    {
+        if (GUI.Button(new Rect(0, 0, 100, 50), "Restart"))
+        {
+            Logger.DebugLog("Restarting level");
+            Singleton.instance.ScreenFade.LoadLevelFadeOut(currentLevel);
+        }
     }
 
     /// <summary>
@@ -1177,6 +1186,8 @@ public class GameManager : MonoBehaviour
                 readyButton.gameObject.SetActive(false);
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(true);
+                enteringValueX = false;
+                enteringValueY = false;
                 playerUnitType = PlayerUnitType.NoUnitSelected;
                 break;
             
@@ -1186,6 +1197,8 @@ public class GameManager : MonoBehaviour
                 am.HideGuideArrows();
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(true);
+                enteringValueX = false;
+                enteringValueY = false;
                 playerUnitType = PlayerUnitType.NoUnitSelected;
                 //DisplayAlertWithDuration(GetText("enemyPreparing"), 10);
 
@@ -1406,6 +1419,8 @@ public class GameManager : MonoBehaviour
 
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(true);
+                enteringValueX = false;
+                enteringValueY = false;
                 playerUnitType = PlayerUnitType.NoUnitSelected;
                 break;
 
