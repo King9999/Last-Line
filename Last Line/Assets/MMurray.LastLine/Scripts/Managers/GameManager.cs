@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     {
         Normal, EnemyPreparing,                //when game state is normal the game is running. Otherwise the game is paused.
         UnitSelectX, UnitSelectY, ///player is entering coordinates
-        StartLevel, DialogueStartOfLevel, DialogueEndOfLevel,
+        StartLevel, DialogueStartOfLevel, DialogueEndOfLevel, DialogueGameOver,
         SelectingValueX, SelectingValueY,       //used when placing units on screen.
         BaseDestroyed, LevelComplete, GoToNextLevel, GameCompleted
     }
@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 1;
+        currentLevel = 2;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -480,6 +480,14 @@ public class GameManager : MonoBehaviour
         //deactivate current portals for use in the next level.
         foreach (Portal portal in activePortals)
         {
+            //cleanup any enemy units in case of a game over
+            for (int i = 0; i < portal.enemyUnits.Count; i++)
+            {
+                portal.enemyUnits[i].gameObject.SetActive(false);
+                deadEnemyUnits.Add(portal.enemyUnits[i]);
+                portal.enemyUnits.Remove(portal.enemyUnits[i]);
+                i--;
+            }
             portal.gameObject.SetActive(false);
         }
 
@@ -559,6 +567,7 @@ public class GameManager : MonoBehaviour
         }*/
 
         Logger.DebugLogFormat("Level Count: {0}", levelData.levels.Length);
+        totalEnemies = 0;
 
         for (int i = 0; i < levelData.levels[level].portals.Count; i++)
         {
@@ -593,32 +602,32 @@ public class GameManager : MonoBehaviour
             
 
             /******Enemy setup*****/
-            EnemyUnit unit = null;
+            //EnemyUnit unit = null;
             switch(portal.enemyType)
             {
                 case Portal.EnemyType.Scout:
                     //rename portal
                     portal.name = "Portal - Scout";
-                    EnemyUnit_Scout scout = unit as EnemyUnit_Scout;
-                    InstantiateEnemyUnit(scout, portal);
+                    //EnemyUnit_Scout scout = unit as EnemyUnit_Scout;
+                    InstantiateEnemyUnit(UnitData.UnitType.Scout, portal);
                     break;
 
                 case Portal.EnemyType.Striker:
                     portal.name = "Portal - Striker";
-                    EnemyUnit_Striker striker = unit as EnemyUnit_Striker;
-                    InstantiateEnemyUnit(striker, portal);
+                    //EnemyUnit_Striker striker = unit as EnemyUnit_Striker;
+                    InstantiateEnemyUnit(UnitData.UnitType.Striker, portal);
                     break;
                 
                 case Portal.EnemyType.Dozer:
                     portal.name = "Portal - Dozer";
-                    EnemyUnit_Dozer dozer = unit as EnemyUnit_Dozer;
-                    InstantiateEnemyUnit(dozer, portal);
+                    //EnemyUnit_Dozer dozer = unit as EnemyUnit_Dozer;
+                    InstantiateEnemyUnit(UnitData.UnitType.Dozer, portal);
                     break;
 
                 case Portal.EnemyType.Juggernaut:
                     portal.name = "Portal - Juggernaut";
-                    EnemyUnit_Juggernaut jugg = unit as EnemyUnit_Juggernaut;
-                    InstantiateEnemyUnit(jugg, portal);
+                    //EnemyUnit_Juggernaut jugg = unit as EnemyUnit_Juggernaut;
+                    InstantiateEnemyUnit(UnitData.UnitType.Juggernaut, portal);
                     break;
             }
            
@@ -640,11 +649,18 @@ public class GameManager : MonoBehaviour
 
         /******BASE SETUP******/
         LevelData newLevel = levelData.levels[level];
+
+        //make base visible in case it was destroyed
+        if (!playerBase.gameObject.activeSelf)
+            playerBase.gameObject.SetActive(true);
+
         playerBase.transform.position = Camera.main.ScreenToWorldPoint(newLevel.player_base_position);
         playerBase.transform.position = new Vector3(playerBase.transform.position.x, playerBase.transform.position.y, 0);
         SetPointRef(playerBase, newLevel.base_point_axes);
         playerBase.hitPoints = playerBase.maxHitPoints;
         playerBase.UpdateHealthBar(playerBase.transform.position);
+
+        
 
 
         /*******CRYSTAL & STARTING MONEY SETUP******/
@@ -1000,7 +1016,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="enemyType">The type of enemy to instantiate.</param>
     /// <param name="portal">The portal to where the enemy will be assigned.</param>
-    void InstantiateEnemyUnit(EnemyUnit enemy, Portal portal)
+    void InstantiateEnemyUnit(UnitData.UnitType enemyType, Portal portal)
     {
         if (portal == null)
         {
@@ -1011,15 +1027,35 @@ public class GameManager : MonoBehaviour
         EnemyUnit unit = null;
         for (int i = 0; i < portal.enemyCount; i++)
         {
-            if (deadEnemyUnits.Contains(enemy))
+            //search the graveyard for enemy unit first.
+            //Logger.DebugLogFormat("Enemy Type: {0}", enemy.GetType());
+            bool enemyFound = false;
+            int j = 0;
+            while(!enemyFound && j < deadEnemyUnits.Count)
+            {
+                if (deadEnemyUnits[j].unitType == enemyType)
+                {
+                    enemyFound = true;
+                    unit = deadEnemyUnits[j];
+                    unit.GetUnitData(unit.unitData);
+                    unit.portal = portal;
+                    portal.enemyUnits.Add(unit);
+                    deadEnemyUnits.Remove(unit);
+                }
+                else
+                {
+                    j++;
+                }
+            }
+            /*if (deadEnemyUnits.Contains(enemy))
             {
                 //remove unit from graveyard
                 enemy.GetUnitData(enemy.unitData);
                 enemy.portal = portal;
                 portal.enemyUnits.Add(enemy);
                 deadEnemyUnits.Remove(enemy);
-            }
-            else
+            }*/
+            if (!enemyFound) //else
             {
                 //get the enemy type and instantiate correct enemy
                 switch(portal.enemyType)
@@ -1254,6 +1290,25 @@ public class GameManager : MonoBehaviour
                         dialogueFound = true;
                         Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[j].dialogueKeyList[0];
                         //string dKey = dialogueManager.dialogueList[j].dialogueKeyList[0].key;
+                        dialogueManager.dialogueList[j].ShowDialogue(keyList);
+                    }
+                    else
+                    {
+                        j++;
+                    }
+                }
+                break;
+            
+            case GameState.DialogueGameOver:
+                dialogueFound = false;
+                j = 0;
+                while (!dialogueFound && j < dialogueManager.dialogueList.Count)
+                {
+                    int dialogueId = dialogueManager.dialogueList[j].dialogueId;
+                    if (dialogueId > 0 && dialogueId == dialogueManager.gameOverDialogueList[triggerIndex].dialogueId)
+                    {
+                        dialogueFound = true;
+                        Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[j].dialogueKeyList[0];
                         dialogueManager.dialogueList[j].ShowDialogue(keyList);
                     }
                     else

@@ -7,7 +7,7 @@ using System;
 public class DialogueManager : MonoBehaviour
 {
     public List<Dialogue> dialogueList;
-    public List<Dialogue> commonDialogueList;     //dialogue for common scenarios
+    //public List<Dialogue> commonDialogueList;     //dialogue for common scenarios
     //public List<DialogueTrigger> dialogueTrigger;
     public bool dialogueOpen;                       //prevents player actions while dialogue window is open.
 
@@ -24,6 +24,16 @@ public class DialogueManager : MonoBehaviour
     }
 
     public List<ConditionalTrigger> condTriggerList;
+
+    /* Common dialogue appears after a game over to provide tips. */
+    [Serializable]
+    public struct GameOverDialogue
+    {
+        public int level;
+        public int dialogueId;          //dialogue id should start at 200 so it doesn't get mixed up with conditional triggers.
+    }
+
+    public List<GameOverDialogue> gameOverDialogueList;
 
     /*****constants for various tutorial dialogue ******
     Used to find dialogue in the dialogue list*/
@@ -45,10 +55,10 @@ public class DialogueManager : MonoBehaviour
             dialogue.gameObject.SetActive(false);
         }
 
-        foreach (Dialogue dialogue in commonDialogueList)
+        /*foreach (CommonDialogue dialogue in commonDialogueList)
         {
             dialogue.gameObject.SetActive(false);
-        }
+        }*/
 
         /*foreach(DialogueTrigger trigger in dialogueTrigger)
         {

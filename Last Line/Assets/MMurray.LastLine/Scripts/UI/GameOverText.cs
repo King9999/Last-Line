@@ -75,5 +75,30 @@ public class GameOverText : MonoBehaviour
 
         //go to next game state. Check for any dialogue to show
         GameManager gm = Singleton.instance.GameManager;
+        DialogueManager dm = Singleton.instance.DialogueManager;
+        bool dialogueFound = false;
+        int j = 0;
+        while(!dialogueFound && j < dm.gameOverDialogueList.Count)
+        {
+            if (gm.currentLevel == dm.gameOverDialogueList[j].level)
+            {
+                dialogueFound = true;
+                gm.triggerIndex = j;
+            }
+            else
+            {
+                j++;
+            }
+        }
+
+        if (dialogueFound)
+        {
+            gm.SetGameState(gm.gameState = GameManager.GameState.DialogueGameOver);
+        }
+        else
+        {
+            //restart level
+            Singleton.instance.ScreenFade.LoadLevelFadeOut(gm.currentLevel);
+        }
     }
 }

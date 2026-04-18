@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 /* Contains the stats for every unit in the game. */
 [CreateAssetMenu(fileName = "UnitData_", menuName = "Unit Data", order = 1)]
 public class UnitData : ScriptableObject
 {
+    public enum UnitType { Base, StraightShooter, VerticalShooter, TrackingBeam, Bomb, Scout, Striker, Dozer, Juggernaut}
+    public UnitType unitType;
     public string unitName;             //internal name that won't be used in game
     public int unitCost;                //only applies to player units
     public float unitBuildTime;         //applies to player units. How long it takes to build unit.

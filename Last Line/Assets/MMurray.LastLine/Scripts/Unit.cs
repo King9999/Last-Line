@@ -11,6 +11,7 @@ namespace MMurray.LastLine
     {
         [SerializeField]public UnitData unitData;
         [SerializeField]protected string unitName;
+        public UnitData.UnitType unitType;
         public int hitPoints, maxHitPoints;    
         public float weaponCooldown;   //time in seconds that must pass before unit can fire weapon, if applicable
         //public float moveSpeed; 
@@ -26,6 +27,7 @@ namespace MMurray.LastLine
         public virtual void GetUnitData(UnitData data)
         {
             unitName = data.unitName;
+            unitType = data.unitType;
             weaponCooldown = data.weaponCooldown;
             //MoveSpeed = data.moveSpeed;
             maxHitPoints = data.hitPoints;

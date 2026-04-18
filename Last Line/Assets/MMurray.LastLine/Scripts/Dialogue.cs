@@ -262,6 +262,11 @@ public class Dialogue : MonoBehaviour
                         gm.SetGameState(gm.gameState = GameManager.GameState.GoToNextLevel);
                         break;
                     
+                    case GameManager.GameState.DialogueGameOver:
+                        //restart level
+                        Singleton.instance.ScreenFade.LoadLevelFadeOut(gm.currentLevel);
+                        break;
+                    
                     default:
                         gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
                         break;
