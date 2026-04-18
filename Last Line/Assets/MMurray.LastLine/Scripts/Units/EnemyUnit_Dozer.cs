@@ -10,6 +10,8 @@ public class EnemyUnit_Dozer : EnemyUnit
 {
     [SerializeField]private BoxCollider2D barrierCollider;
     [SerializeField]Transform leftBarrierPos, rightBarrierPos;
+    [SerializeField]ParticleSystem barrierParticles;
+    Vector3 particleAngle = new Vector3(0, 90, 0);
     bool speedUp = false;
 
     void Update()
@@ -20,10 +22,21 @@ public class EnemyUnit_Dozer : EnemyUnit
         if (!gm.GameRunning())
             return;
 
-        //barrier changes position depending on dozer's direction.
+        //barrier changes position depending on dozer's direction. The particle's angle has to change for the particles to 
+        //animate towards the unit.
         if (barrierCollider.gameObject.activeSelf)
         {
-            barrierCollider.transform.position = direction.x <= 0 ? leftBarrierPos.position : rightBarrierPos.position;
+            if (direction.x <= 0.05f)   //for cases where the unit is moving only slightly left.
+            {
+                barrierCollider.transform.position = leftBarrierPos.position;
+                barrierParticles.transform.localEulerAngles = particleAngle;
+            }
+            else
+            {
+                barrierCollider.transform.position = rightBarrierPos.position;
+                barrierParticles.transform.localEulerAngles = -particleAngle;
+            }
+            //barrierCollider.transform.position = direction.x <= 0 ? leftBarrierPos.position : rightBarrierPos.position;
         }
 
         //speed increases whenever barrier is gone.
