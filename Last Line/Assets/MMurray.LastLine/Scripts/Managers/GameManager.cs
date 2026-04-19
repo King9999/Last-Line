@@ -225,7 +225,7 @@ public class GameManager : MonoBehaviour
         if (inTutorial && (tutorialState == TutorialState.LevelComplete || tutorialState == TutorialState.DialogueEndOfLevel))
             cannotPlay = true;
         
-        Logger.DebugLogFormat("Game is in unplayable state? {0}", cannotPlay);
+        //Logger.DebugLogFormat("Game is in unplayable state? {0}", cannotPlay);
         return cannotPlay;
     }
 
@@ -530,21 +530,18 @@ public class GameManager : MonoBehaviour
 
     public bool GameRunning()
     {
-        bool gameRunning = false;
+        //bool gameRunning = false;
         if (inTutorial)
-        {
-            if (tutorialState == TutorialState.Normal || tutorialState == TutorialState.DeployEnemyUnits)
-                gameRunning = true; 
-        }
-        else
-        {
-            if (gameState == GameState.Normal || gameState == GameState.UnitSelectX || gameState == GameState.UnitSelectY || 
-                gameState == GameState.EnemyPreparing)
-                gameRunning = true;
-        }
+            //if (tutorialState == TutorialState.Normal || tutorialState == TutorialState.DeployEnemyUnits)
+            return true; 
+        
+        return gameState == GameState.Normal || gameState == GameState.UnitSelectX || gameState == GameState.UnitSelectY || 
+            gameState == GameState.EnemyPreparing;
+                //gameRunning = true;
+        
         //return !inTutorial && (gameState == GameState.Normal || gameState == GameState.UnitSelectX || gameState == GameState.UnitSelectY || 
             //gameState == GameState.EnemyPreparing);
-        return gameRunning;
+        //return gameRunning;
     }
 
     /* Load the specified level. NOTE: Save States only load the current level from the beginning, and not the state
