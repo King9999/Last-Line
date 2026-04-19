@@ -128,7 +128,10 @@ public class EndLevelText : MonoBehaviour
         if (triggerFound)
         {
             gm.triggerIndex = j;
-            gm.SetGameState(gm.gameState = GameManager.GameState.DialogueEndOfLevel);
+            if (gm.inTutorial)
+                gm.SetGameState(gm.tutorialState = GameManager.TutorialState.DialogueEndOfLevel);
+            else
+                gm.SetGameState(gm.gameState = GameManager.GameState.DialogueEndOfLevel);
         }
         else
         {

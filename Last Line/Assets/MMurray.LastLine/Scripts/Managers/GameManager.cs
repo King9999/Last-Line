@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 5;
+        //currentLevel = 1;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -225,6 +225,7 @@ public class GameManager : MonoBehaviour
         if (inTutorial && (tutorialState == TutorialState.LevelComplete || tutorialState == TutorialState.DialogueEndOfLevel))
             cannotPlay = true;
         
+        Logger.DebugLogFormat("Game is in unplayable state? {0}", cannotPlay);
         return cannotPlay;
     }
 
@@ -268,7 +269,7 @@ public class GameManager : MonoBehaviour
                 //return;
         }
 
-        if (totalEnemies <= 0 && gameState == GameState.Normal) //gameState != GameState.EnemyPreparing && gameState != GameState.LevelComplete && gameState != GameState.GameCompleted && 
+        if (totalEnemies <= 0 && (gameState == GameState.Normal || (inTutorial && tutorialState == TutorialState.Normal))) //gameState != GameState.EnemyPreparing && gameState != GameState.LevelComplete && gameState != GameState.GameCompleted && 
             //gameState != GameState.BaseDestroyed)
         {
             //level is over.
@@ -529,8 +530,21 @@ public class GameManager : MonoBehaviour
 
     public bool GameRunning()
     {
-        return !inTutorial && (gameState == GameState.Normal || gameState == GameState.UnitSelectX || gameState == GameState.UnitSelectY || 
-            gameState == GameState.EnemyPreparing);
+        bool gameRunning = false;
+        if (inTutorial)
+        {
+            if (tutorialState == TutorialState.Normal || tutorialState == TutorialState.DeployEnemyUnits)
+                gameRunning = true; 
+        }
+        else
+        {
+            if (gameState == GameState.Normal || gameState == GameState.UnitSelectX || gameState == GameState.UnitSelectY || 
+                gameState == GameState.EnemyPreparing)
+                gameRunning = true;
+        }
+        //return !inTutorial && (gameState == GameState.Normal || gameState == GameState.UnitSelectX || gameState == GameState.UnitSelectY || 
+            //gameState == GameState.EnemyPreparing);
+        return gameRunning;
     }
 
     /* Load the specified level. NOTE: Save States only load the current level from the beginning, and not the state
@@ -678,6 +692,9 @@ public class GameManager : MonoBehaviour
         crystal.SetMoneyValue(newLevel.crystal_value);
         money = newLevel.starting_money;
         menu.UpdateMoneyText();
+
+        /****LEVEL NUMBER SETUP***/
+        menu.UpdateLevel(level);
 
         /*****POWER UP SPACE SETUP******/
         if (levelData.levels[level].power_up_space_active)
@@ -1416,7 +1433,7 @@ public class GameManager : MonoBehaviour
             case TutorialState.BuildingSecondUnit:
                 //hide any arrow guides that were shown
                 am.HideGuideArrows();
-
+                readyButton.gameObject.SetActive(false);
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(true);
                 enteringValueX = false;
@@ -1472,12 +1489,14 @@ public class GameManager : MonoBehaviour
             case TutorialState.UnitSelectSecondUnitX:
                 //show arrow pointing to value. Player cannot pick other values.
                 am.HideGuideArrows();
+                am.arrowUnitSelectX.gameObject.SetActive(true);
                 am.arrowUnitSelectX.PointArrow(am.arrowUnitSelectX.arrowLocation, am.arrowUnitSelectX.direction);
                 break;
             
             case TutorialState.UnitSelectSecondUnitY:
                 //show arrow pointing to value. Player cannot pick other values.
                 am.arrowUnitSelectX.gameObject.SetActive(false);
+                am.arrowUnitSelectY.gameObject.SetActive(true);
                 am.arrowUnitSelectY.PointArrow(am.arrowUnitSelectY.arrowLocation, am.arrowUnitSelectY.direction);
                 break;
             
@@ -1489,11 +1508,13 @@ public class GameManager : MonoBehaviour
                 break;
             
             case TutorialState.ActivateAbilitySelectX:
+                am.arrowUnitSelectX.gameObject.SetActive(true);
                 am.arrowUnitSelectX.PointArrow(am.arrowUnitSelectX.arrowLocation, am.arrowUnitSelectX.direction);
                 break;
             
             case TutorialState.ActivateAbilitySelectY:
                 am.arrowUnitSelectX.gameObject.SetActive(false);
+                am.arrowUnitSelectY.gameObject.SetActive(true);
                 am.arrowUnitSelectY.PointArrow(am.arrowUnitSelectY.arrowLocation, am.arrowUnitSelectY.direction);
                 break;
 
@@ -1508,6 +1529,8 @@ public class GameManager : MonoBehaviour
             case TutorialState.DeployEnemyUnits:
                 //there's only 1 portal in the tutorial
                 activePortals[0].timer.SetTimer(0);
+                activePortals[0].timer.StartTimer();
+                tutorialState = TutorialState.Normal;   //nothing more needs to be done here.
                 break;
 
             case TutorialState.CrystalIntro:
@@ -1565,10 +1588,12 @@ public class GameManager : MonoBehaviour
                 {
                     portal.gameObject.SetActive(false);
                 }
+
+                endLevelText.ShowText();
                 //display dialogue if any
                 Logger.DebugLogFormat("Level {0} complete", currentLevel);
                 //check for conditional trigger to activate dialogue
-                bool triggerFound = false;
+                /*bool triggerFound = false;
                 int i = 0;
                 while (!triggerFound && i < dialogueManager.condTriggerList.Count)
                 {
@@ -1593,7 +1618,7 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     SetGameState(gameState = GameState.GoToNextLevel);
-                }
+                }*/
                 //load next level
                 //if all levels complete, show congrats
                 break;

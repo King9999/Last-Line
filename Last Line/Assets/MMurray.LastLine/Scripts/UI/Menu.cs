@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     public Tooltip tooltip;
-    [SerializeField]private TextMeshProUGUI unitLabel, systemLabel, buildQueueLabel;
+    [SerializeField]private TextMeshProUGUI unitLabel, systemLabel, buildQueueLabel, currentLevel;
 
     [Header("---Money---")]
     [SerializeField]private GameObject moneyContainer;
@@ -55,6 +55,15 @@ public class Menu : MonoBehaviour
     {
         GameManager gm = Singleton.instance.GameManager;
         moneyValue.text = string.Format("{0:000}", gm.money); //gm.money + " CR";
+    }
+
+    public void UpdateLevel(int level)
+    {
+        GameManager gm = Singleton.instance.GameManager;
+        if (level < 0 || level > gm.maxLevels)
+            return;
+        
+        currentLevel.text = level == 0 ? GetText("tutorialLevel") : string.Format("{0} {1}", GetText("currentLevel"), gm.currentLevel);
     }
     /// <summary>
     /// Opens a tooltip window displaying info about a button when mouse hovers over it.
