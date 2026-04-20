@@ -98,5 +98,17 @@ public class TitleManager : MonoBehaviour
         sf.ChangeSceneFadeOut("Game");
     }
 
+    public void CreditsButtonClicked()
+    {
+        ScreenFade sf = Singleton.instance.ScreenFade;
+
+        if (sf.coroutineOn)
+            return;
+
+        //AudioManager audio = Singleton.instance.AudioManager;
+        //audio.soundSource.PlayOneShot(audio.click, audio.soundVolume);
+        sf.ChangeSceneFadeOut("Credits");
+    }
+
 
 }
