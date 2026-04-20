@@ -35,7 +35,8 @@ public class UnitButton : MonoBehaviour
 
         //display unit details. An exception is made for the bomb since it can't be destroyed.
         string health = (data.hitPoints < 100) ? data.hitPoints.ToString() : "\u221e"; //\u221e is ascii code for infinity
-            
+
+        //menu.tooltip.gameObject.SetActive(true);    
         menu.tooltip.DisplayUnitTooltip(true, GetText(key), data.unitCost.ToString(), data.unitBuildTime.ToString(),
             data.weaponDamage.ToString(), health);
     }

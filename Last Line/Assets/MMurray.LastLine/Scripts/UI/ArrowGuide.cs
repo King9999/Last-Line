@@ -113,10 +113,11 @@ public class ArrowGuide : MonoBehaviour
 
         while (gameObject.activeSelf)
         {
+            float moveSpeed = 1.5f;
             while(Vector2.Distance(transform.position, targetPos) > 0.1f /*, transform.position.x < oldPos.x + targetXPos*/)
             {
                 Vector2 newPos = transform.position;
-                transform.position = new Vector2(newPos.x + (targetXPos * 2 * Time.deltaTime), newPos.y + (targetYPos * 2 * Time.deltaTime));
+                transform.position = new Vector2(newPos.x + (targetXPos * moveSpeed * Time.deltaTime), newPos.y + (targetYPos * moveSpeed * Time.deltaTime));
                 yield return null;
             }
             transform.position = oldPos;
