@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        //currentLevel = 1;
+        currentLevel = 6;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -768,7 +768,7 @@ public class GameManager : MonoBehaviour
             //if space is occupied, activate context-sensitive ability. nothing happens if unit doesn't have one.
             targetCursor.ShowCursor(point.transform.position);
 
-            if (point.unit != null /*&& point.unit is not PlayerUnit_Base*/)
+            if (point.unit != null && point.unit.gameObject.activeSelf)     //prevents unit ability from activating when it's not active.
             {
                 point.unit.ActivateAbility();
                 //return;

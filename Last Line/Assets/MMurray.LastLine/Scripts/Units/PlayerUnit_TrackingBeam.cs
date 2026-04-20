@@ -13,6 +13,8 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
     [SerializeField]private float cooldownTimer;            //tracks when weapon fires.
     [SerializeField]private Collider2D attackRange, strikerCollider;
     [SerializeField]private List<Vector2> linePositions;    //the points that will be used to draw the beam lines.
+    [SerializeField]ParticleSystem chargeParticles;
+    bool isCharging = false;
     private Coroutine animateBeam = null;
     private bool beamFired;
 
@@ -34,7 +36,15 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
         if (!gm.GameRunning())
             return;
 
-        base.Update();    
+        base.Update();
+
+        //play particle effect if there's 1 second remaining in the charge up
+        if (OneSecondRemaining() && !isCharging)
+        {
+            isCharging = true;
+            chargeParticles.Play();
+            Logger.DebugLog("Charging laser!");
+        }    
         AttackTarget();
     }
 
@@ -49,6 +59,12 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
             if (!targets.Contains(unit))
                 targets.Add(unit);
         }
+    }
+
+    bool OneSecondRemaining()
+    {
+        float timeRemaining = cooldownTimer + weaponCooldown - Time.time;
+        return timeRemaining > 0 && timeRemaining <= 1;
     }
 
     /*void OnTriggerEnter2D(Collider2D collision)
@@ -201,6 +217,7 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
         }
         //yield return new WaitForSeconds(duration);
         cooldownTimer = Time.time;
+        isCharging = false;
         beam.widthMultiplier = 0.3f;
         beamFired = false;
         beam.gameObject.SetActive(false);
