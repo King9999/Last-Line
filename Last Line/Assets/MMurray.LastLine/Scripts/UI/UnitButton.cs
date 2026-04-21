@@ -107,6 +107,7 @@ public class UnitButton : MonoBehaviour
             if (data.unitCost > gm.money)
             {
                 gm.DisplayAlertWithDuration(GetText("notEnoughMoney"));
+                gm.playerUnitType = GameManager.PlayerUnitType.NoUnitSelected; //prevents an issue where player could still build unit anyway
             }
             else
             {

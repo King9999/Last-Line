@@ -9,10 +9,16 @@ but the dozer keeps moving at a faster speed. */
 public class EnemyUnit_Dozer : EnemyUnit
 {
     [SerializeField]private BoxCollider2D barrierCollider;
+    float barrierOffset;
     [SerializeField]Transform leftBarrierPos, rightBarrierPos;
     [SerializeField]ParticleSystem barrierParticles;
     Vector3 particleAngle = new Vector3(0, 90, 0);
     bool speedUp = false;
+
+    void OnEnable()
+    {
+        barrierOffset = barrierCollider.offset.x;
+    }
 
     void Update()
     {
@@ -30,11 +36,13 @@ public class EnemyUnit_Dozer : EnemyUnit
             {
                 barrierCollider.transform.position = leftBarrierPos.position;
                 barrierParticles.transform.localEulerAngles = particleAngle;
+                barrierCollider.offset = new Vector2(barrierOffset, barrierCollider.offset.y);
             }
             else
             {
                 barrierCollider.transform.position = rightBarrierPos.position;
                 barrierParticles.transform.localEulerAngles = -particleAngle;
+                barrierCollider.offset = new Vector2(0, barrierCollider.offset.y);  //so the hitbox isn't too far away from dozer
             }
             //barrierCollider.transform.position = direction.x <= 0 ? leftBarrierPos.position : rightBarrierPos.position;
         }

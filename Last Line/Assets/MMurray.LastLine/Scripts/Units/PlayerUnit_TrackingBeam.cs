@@ -209,13 +209,22 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
     IEnumerator AnimateBeam(float duration)
     {
         float i = 0;
+        //AnimationCurve origCurve = beam.widthCurve;
+
         while (i < duration)
         {
             i += Time.deltaTime;
+            /*for (int j = 0; j < beam.widthCurve.keys.Length; j++)
+            {
+                beam.widthCurve.keys[j].value -= 0.05f * Time.deltaTime;
+                Logger.DebugLogFormat("beam width {0}", beam.widthCurve.keys[j].value);
+                yield return null;
+            }*/
             beam.widthMultiplier -= 0.05f * Time.deltaTime;
             yield return null;
         }
         //yield return new WaitForSeconds(duration);
+        //beam.widthCurve = origCurve;
         cooldownTimer = Time.time;
         isCharging = false;
         beam.widthMultiplier = 0.3f;
