@@ -21,8 +21,30 @@ namespace MMurray.LastLine
         public int weaponDamage;
 
         public Slider healthBar;        //only visible when unit is damaged to reduce clutter.
+        public SpriteRenderer unitSpriteRenderer;
 
+        //coroutine
+        Coroutine animateUnit = null;
+        bool coroutineRunning;
 
+        /*void Update()
+        {
+            unitSpriteRenderer.transform.position = new Vector3(0, -3, 1);
+            /*if (!coroutineRunning)
+            {
+                coroutineRunning = true;
+                animateUnit = StartCoroutine(AnimateUnit());
+            }
+        }*/
+
+        public void AnimateUnit()
+        {
+            if (!coroutineRunning)
+            {
+                coroutineRunning = true;
+                animateUnit = StartCoroutine(Animate());
+            }
+        }
         //gets data from scriptable object
         public virtual void GetUnitData(UnitData data)
         {
@@ -155,5 +177,31 @@ namespace MMurray.LastLine
             else
                 healthBar.gameObject.SetActive(true);
         } 
+
+        //float unit up and down. Only the sprite itself moves to prevent hitboxes from being affected.
+        IEnumerator Animate()
+        {
+            float yDestination = 0.1f;
+            float moveSpeed = 0.1f;
+            Vector2 origPos = unitSpriteRenderer.transform.position;
+
+            //float up
+            while (unitSpriteRenderer.transform.position.y < origPos.y + yDestination)
+            {
+                Vector2 unitPos = unitSpriteRenderer.transform.position;
+                unitSpriteRenderer.transform.position = new Vector2(unitPos.x, unitPos.y + moveSpeed * Time.deltaTime);
+                yield return null;
+            }
+
+            //float down
+            while (unitSpriteRenderer.transform.position.y > origPos.y)
+            {
+                Vector2 unitPos = unitSpriteRenderer.transform.position;
+                unitSpriteRenderer.transform.position = new Vector2(unitPos.x, unitPos.y - moveSpeed * Time.deltaTime);
+                yield return null;
+            }
+            unitSpriteRenderer.transform.position = origPos;
+            coroutineRunning = false;
+        }
     }
 }

@@ -436,6 +436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitData: {fileID: 11400000, guid: 05f666dcfdace26d793c2ce3c51c1438, type: 2}
   unitName: 
+  unitType: 0
   hitPoints: 0
   maxHitPoints: 0
   weaponCooldown: 0
@@ -444,12 +445,15 @@ MonoBehaviour:
   bulletRange: {x: 0, y: 0}
   weaponDamage: 0
   healthBar: {fileID: 5986740357745238205}
+  unitSpriteRenderer: {fileID: 2184682607946509901}
   unitCost: 0
   buildTime: 0
   unitSprite: {fileID: 0}
   point: {fileID: 0}
   pointAxes: {x: 0, y: 0}
   isEnhanced: 0
+  isInvul: 0
+  invulTime: 2
 --- !u!61 &6783415214433305499
 BoxCollider2D:
   m_ObjectHideFlags: 0

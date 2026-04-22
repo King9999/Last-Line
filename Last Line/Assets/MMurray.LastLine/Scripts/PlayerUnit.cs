@@ -73,6 +73,8 @@ namespace MMurray.LastLine
             if (!gm.GameRunning())
                 return;
 
+            AnimateUnit();
+            
             if (isInvul && Time.time > invulCounter + invulTime)
             {
                 isInvul = false;

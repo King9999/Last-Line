@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitData: {fileID: 11400000, guid: 9164909a2dbe20d40adb9c4fdd8a6511, type: 2}
   unitName: 
+  unitType: 0
   hitPoints: 0
   maxHitPoints: 0
   weaponCooldown: 0
@@ -133,6 +134,7 @@ MonoBehaviour:
   bulletRange: {x: 0, y: 0}
   weaponDamage: 0
   healthBar: {fileID: 8423144159187339115}
+  unitSpriteRenderer: {fileID: 3509802399844897601}
   direction: {x: 0, y: 0}
   moveSpeed: 0
   moneyAmount: 0
