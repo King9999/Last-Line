@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MMurray.LastLine;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 /* Bombs do nothing until either an enemy touches it or the player detonates it. Bombs can be detonated by re-entering the coordinates
 of where they were placed. Bombs have a high build time to prevent players from just using bombs to win. 
@@ -26,12 +27,13 @@ public class PlayerUnit_Bomb : PlayerUnit
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         GameManager gm = Singleton.instance.GameManager;
         if (!gm.GameRunning())
             return;
-            
+
+        base.Update();    
         /*if (bombRange.gameObject.activeSelf && timer <= 0)
         {
             timer = Time.time;
@@ -103,8 +105,8 @@ public class PlayerUnit_Bomb : PlayerUnit
         {
             if (targets[i] is PlayerUnit_Base)
             {
-                //targets[i].hitPoints -= weaponDamage;
-                targets[i].ReduceHitPoints(weaponDamage);
+                if (!isEnhanced)
+                    targets[i].ReduceHitPoints(weaponDamage);
             }
             else if (targets[i] is PlayerUnit)
             {
@@ -119,6 +121,11 @@ public class PlayerUnit_Bomb : PlayerUnit
         }
 
         gm.RemovePlayerUnit(this);
+    }
+
+    public float BombRange()
+    {
+        return bombRange.radius;
     }
 
     string GetText(string key)

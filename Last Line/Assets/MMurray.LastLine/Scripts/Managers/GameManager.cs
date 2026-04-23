@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
     [Header("---Particle Effects---")]
     [SerializeField]private List<Explosion> explosionList;
     [SerializeField]private BaseExplosion baseExplosion;
+    [SerializeField]private BombExplosion bombExplosion;
 
 
     [Header("---Money---")]
@@ -170,7 +171,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 6;
+        currentLevel = 8;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -501,11 +502,19 @@ public class GameManager : MonoBehaviour
             portal.gameObject.SetActive(false);
         }
 
+        //remove active player units. Must also check the build queue for any units not yet built.
         for (int i = 0; i < activePlayerUnits.Count; i++)
         {
             activePlayerUnits[i].gameObject.SetActive(false);
             deadPlayerUnits.Add(activePlayerUnits[i]);
             activePlayerUnits.Remove(activePlayerUnits[i]);
+            i--;
+        }
+
+        for (int i = 0; i < buildQueue.Count; i++)
+        {
+            PlayerUnit unit = buildQueue.Dequeue();
+            deadPlayerUnits.Add(unit);
             i--;
         }
 
@@ -1157,7 +1166,13 @@ public class GameManager : MonoBehaviour
                 activePlayerUnits.Remove(unit);
                 unit.gameObject.SetActive(false);
                 ScreenShake();          //only for player units.
-                CallExplosion(unit.transform.position);
+                if (unit is PlayerUnit_Bomb)
+                {
+                    PlayerUnit_Bomb bomb = unit as PlayerUnit_Bomb;
+                    bombExplosion.Play(unit.transform.position, bomb.BombRange() * 2);
+                }
+                else
+                    CallExplosion(unit.transform.position);
                 Logger.DebugLogFormat("Removing {0} from grid at point {1}", unit.name, points[i].pointAxes);
                 points[i].unit = null;
             }

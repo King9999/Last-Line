@@ -42,6 +42,16 @@ public class EnemyUnit_Striker : EnemyUnit
         if (!gm.GameRunning())
             return;
 
+        //flip sprite based on unit's direction.
+        if (direction.x <= 0.05f)
+        {
+            unitSpriteRenderer.flipX = true;
+        }
+        else
+        {
+            unitSpriteRenderer.flipX = false;
+        }
+
         //fire weapon
         if (bullet == null)     //this is to prevent game from updating before bullet exists.
             return;
