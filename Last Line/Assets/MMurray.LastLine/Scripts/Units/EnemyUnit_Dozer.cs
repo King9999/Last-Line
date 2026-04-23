@@ -17,6 +17,7 @@ public class EnemyUnit_Dozer : EnemyUnit
 
     void OnEnable()
     {
+        GetUnitData(unitData);  //must call this or else OnEnable will not call GetUnitData from base class. 
         barrierOffset = barrierCollider.offset.x;
     }
 
