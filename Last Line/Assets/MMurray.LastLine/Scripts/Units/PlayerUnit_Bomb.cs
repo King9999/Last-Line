@@ -110,7 +110,8 @@ public class PlayerUnit_Bomb : PlayerUnit
             }
             else if (targets[i] is PlayerUnit)
             {
-                gm.RemovePlayerUnit(targets[i] as PlayerUnit);
+                if (!isEnhanced)
+                    gm.RemovePlayerUnit(targets[i] as PlayerUnit);
             }
             else
             {

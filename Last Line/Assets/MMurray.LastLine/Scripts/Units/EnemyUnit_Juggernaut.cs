@@ -97,7 +97,21 @@ public class EnemyUnit_Juggernaut : EnemyUnit
 
             //player unit dies, but not the juggernaut.
             GameManager gm = Singleton.instance.GameManager;
-            gm.RemovePlayerUnit(unit);
+            if (unit is PlayerUnit_Base)
+            {
+                //base takes damage.
+                unit.ReduceHitPoints(collisionDamage);  //base should die
+            }
+            else if(unit is PlayerUnit_Bomb)
+            {
+                //bomb is activated. Juggernaut only dies to the blast.
+                PlayerUnit_Bomb bomb = unit as PlayerUnit_Bomb;
+                bomb.ActivateBomb();
+            }
+            else
+            {
+                gm.RemovePlayerUnit(unit);
+            }
         }
     }
 

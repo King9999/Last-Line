@@ -38,12 +38,14 @@ public class EnemyUnit_Dozer : EnemyUnit
                 barrierCollider.transform.position = leftBarrierPos.position;
                 barrierParticles.transform.localEulerAngles = particleAngle;
                 barrierCollider.offset = new Vector2(barrierOffset, barrierCollider.offset.y);
+                unitSpriteRenderer.flipX = true;
             }
             else
             {
                 barrierCollider.transform.position = rightBarrierPos.position;
                 barrierParticles.transform.localEulerAngles = -particleAngle;
                 barrierCollider.offset = new Vector2(0, barrierCollider.offset.y);  //so the hitbox isn't too far away from dozer
+                unitSpriteRenderer.flipX = false;
             }
             //barrierCollider.transform.position = direction.x <= 0 ? leftBarrierPos.position : rightBarrierPos.position;
         }
