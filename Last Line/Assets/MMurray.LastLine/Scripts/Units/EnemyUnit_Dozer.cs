@@ -19,6 +19,8 @@ public class EnemyUnit_Dozer : EnemyUnit
     {
         GetUnitData(unitData);  //must call this or else OnEnable will not call GetUnitData from base class. 
         barrierOffset = barrierCollider.offset.x;
+        healthBar.maxValue = maxHitPoints;
+        healthBar.gameObject.SetActive(false);
     }
 
     void Update()
