@@ -207,7 +207,8 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
 
     //beam shrinks over time. When it's finished, cooldown starts.
     IEnumerator AnimateBeam(float duration)
-    {
+    {   
+        Logger.DebugLog("Animate Beam called");
         float i = 0;
         //AnimationCurve origCurve = beam.widthCurve;
 

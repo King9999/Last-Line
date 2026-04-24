@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 8;
+        currentLevel = 2;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -541,8 +541,12 @@ public class GameManager : MonoBehaviour
     {
         //bool gameRunning = false;
         if (inTutorial)
-            //if (tutorialState == TutorialState.Normal || tutorialState == TutorialState.DeployEnemyUnits)
-            return true; 
+        {
+            if (tutorialState == TutorialState.CrystalIntro)
+                return false;
+            else
+                return true; 
+        }
         
         return gameState == GameState.Normal || gameState == GameState.UnitSelectX || gameState == GameState.UnitSelectY || 
             gameState == GameState.EnemyPreparing;

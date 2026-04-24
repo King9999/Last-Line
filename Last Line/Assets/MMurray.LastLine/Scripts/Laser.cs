@@ -85,6 +85,7 @@ public class Laser : MonoBehaviour
     //Check if laser collides with an enemy
     void OnTriggerStay2D(Collider2D collision)
     {
+        Logger.DebugLogFormat("Time: {0} Hit Cooldown: {1}", Time.time, hitCooldownTime + hitCooldown);
         if (Time.time < hitCooldownTime + hitCooldown)
             return;
         //if (owner == Owner.Player)
