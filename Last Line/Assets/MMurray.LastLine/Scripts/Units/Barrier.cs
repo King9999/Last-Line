@@ -15,6 +15,14 @@ public class Barrier : MonoBehaviour
             if (bullet.owner == Bullet.Owner.Player)
             {
                 bullet.bulletStruckUnit = true; //this should be true even if the bullet pierces
+
+                //Only the straight shooter has bullets, so we get a reference to it to set the cooldown.
+                //if unit is enhanced, cooldown is reset temporarily to original value.
+                if (bullet.bulletType == Bullet.BulletType.Pierce)
+                {
+                    PlayerUnit_StraightShooter unit = bullet.unit as PlayerUnit_StraightShooter;
+                    unit.weaponCooldown = unit.unitData.weaponCooldown;
+                }
                 Logger.DebugLog("Bullet hit barrier");
             }
         }

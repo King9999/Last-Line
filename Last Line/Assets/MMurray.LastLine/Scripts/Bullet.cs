@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour
     public Vector2 direction;
     public int damage;
     public bool bulletStruckUnit;
+    public Unit unit;               //reference to the unit the bullet is connected to.
 
     // Update is called once per frame
     void Update()

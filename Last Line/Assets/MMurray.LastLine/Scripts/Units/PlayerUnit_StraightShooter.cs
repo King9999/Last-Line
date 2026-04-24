@@ -48,6 +48,10 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         {
             //cooldownTimer = Time.time;
             bullet.gameObject.SetActive(true);
+
+            //Extra step in case weapon cooldown was altered due to piercing bullet getting blocked by something.
+            if (isEnhanced && weaponCooldown > 0)
+                weaponCooldown = 0;
         }
         else
         {
@@ -110,6 +114,12 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         SetBulletRange(bullet);
         //bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
         Logger.DebugLog("Unit is enhanced");
+    }
+
+    //Used for when bullet hits barrier.
+    public void SetCooldown()
+    {
+        cooldownTimer = Time.time;
     }
 
     string GetText(string key)
