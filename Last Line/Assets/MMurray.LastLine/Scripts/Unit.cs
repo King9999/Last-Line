@@ -154,10 +154,19 @@ namespace MMurray.LastLine
             else
             {
                 PlayerUnit unit = this as PlayerUnit;
-                if (unit != null && unit is not PlayerUnit_Base)
+                if (unit != null)
                 {
-                    //unit becomes temporarily invul
-                    unit.SetInvul();
+                    if (unit is not PlayerUnit_Base)
+                    {
+                        //unit becomes temporarily invul
+                        unit.SetInvul();
+                    }
+                    else
+                    {
+                        //display base's particles to indicate it got damaged.
+                        PlayerUnit_Base unitBase = this as PlayerUnit_Base;
+                        unitBase.PlayParticles();
+                    }
                 }
             }
         }

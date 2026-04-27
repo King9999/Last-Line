@@ -7,6 +7,7 @@ using UnityEngine;
 The base's health bar is larger than other units to highlight the unit's importance to the player. */
 public class PlayerUnit_Base : PlayerUnit
 {
+    [SerializeField]ParticleSystem baseParticles;       //displays when base is hit. Colour changes as base is damaged.
     private const float checkTime = 0.5f;
     private float timer;
     // Start is called before the first frame update
@@ -33,5 +34,26 @@ public class PlayerUnit_Base : PlayerUnit
     bool BaseDestroyed()
     {
         return hitPoints <= 0;
+    }
+
+    //update particle color based on base's hit points.
+    public void PlayParticles()
+    {
+        var particleMain = baseParticles.main;
+
+        if (hitPoints >= maxHitPoints - 3)
+        {
+            particleMain.startColor = Color.white;
+        }
+        else if (hitPoints >= maxHitPoints - 6)
+        {
+            particleMain.startColor = Color.yellow;
+        }
+        else
+        {
+            particleMain.startColor = Color.red;
+        }
+
+        baseParticles.Play();
     }
 }
