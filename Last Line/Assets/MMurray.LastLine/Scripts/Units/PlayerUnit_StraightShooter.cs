@@ -72,7 +72,8 @@ public class PlayerUnit_StraightShooter : PlayerUnit
                 {
                     reverseDirection = false;
                     bullet.direction *= -1;
-                    unitSpriteRenderer.flipX = !unitSpriteRenderer.flipX;
+                    rotateCoroutine = StartCoroutine(RotateUnit());
+                    //unitSpriteRenderer.flipX = !unitSpriteRenderer.flipX;
                     //SetBulletRange(bullet);
                     //bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
                 }
@@ -138,44 +139,51 @@ public class PlayerUnit_StraightShooter : PlayerUnit
 
     /* Rotate unit on its Z axis until it reaches 180 degrees. Halfway through the rotation, the sprite's Y
     axis is flipped so the shadow appears at the bottom. */
-    /*IEnumerator RotateUnit()
+    IEnumerator RotateUnit()
     {
         float zTarget = 180;
         float halfwayPoint = 90;
-        float rotateSpeed = 100;
+        float rotateSpeed = 1000;
 
-        if (transform.localEulerAngles.z == 0)
+        if (unitSpriteRenderer.transform.localEulerAngles.z == 0)
         {
-            while(transform.localEulerAngles.z < zTarget)
+            while(unitSpriteRenderer.transform.localEulerAngles.z < zTarget)
             {
-                Vector3 currentAngle = transform.localEulerAngles;
-                transform.localEulerAngles = new Vector3(0, 0, currentAngle.z + rotateSpeed * Time.deltaTime);
+                Vector3 currentAngle = unitSpriteRenderer.transform.localEulerAngles;
+                unitSpriteRenderer.transform.localEulerAngles = new Vector3(0, 0, currentAngle.z + rotateSpeed * Time.deltaTime);
 
                 //check if sprite needs flipping
-                if (unitSpriteRenderer.flipY == false && transform.localEulerAngles.z >= halfwayPoint)
+                if (unitSpriteRenderer.flipY == false && unitSpriteRenderer.transform.localEulerAngles.z >= halfwayPoint)
                 {
                     unitSpriteRenderer.flipY = true;
                 }
                 yield return null;
             }
-            transform.localEulerAngles = new Vector3(0, 0, zTarget);
+
+            unitSpriteRenderer.transform.localEulerAngles = new Vector3(0, 0, zTarget); //unsure why Z value is always negative.
+            if (unitSpriteRenderer.transform.localEulerAngles.z < 0)
+                unitSpriteRenderer.transform.localEulerAngles *= -1;
         }
         else
         {
             //reset angle to 0
-            while(transform.localEulerAngles.z > 0)
+            while(unitSpriteRenderer.transform.localEulerAngles.z > 0)
             {
-                Vector3 currentAngle = transform.localEulerAngles;
-                transform.localEulerAngles = new Vector3(0, 0, currentAngle.z - rotateSpeed * Time.deltaTime);
+                Vector3 currentAngle = unitSpriteRenderer.transform.localEulerAngles;
+                unitSpriteRenderer.transform.localEulerAngles = new Vector3(0, 0, currentAngle.z - rotateSpeed * Time.deltaTime);
 
                 //check if sprite needs flipping
-                if (unitSpriteRenderer.flipY == true && transform.localEulerAngles.z <= halfwayPoint)
+                if (unitSpriteRenderer.flipY == true && unitSpriteRenderer.transform.localEulerAngles.z <= halfwayPoint)
                 {
                     unitSpriteRenderer.flipY = false;
                 }
+
+                //must check if approaching 0 and not overshoot
+                if (Vector3.Distance(unitSpriteRenderer.transform.localEulerAngles, Vector3.zero) <= 10f)
+                    unitSpriteRenderer.transform.localEulerAngles = Vector3.zero;
                 yield return null;
             }
-            transform.localEulerAngles = Vector3.zero;
+            //transform.localEulerAngles = Vector3.zero;
         }
-    }*/
+    }
 }
