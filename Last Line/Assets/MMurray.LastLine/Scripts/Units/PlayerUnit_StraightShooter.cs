@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MMurray.LastLine;
+using UnityEngine.UIElements;
 
 /*Straight Shooter fires their weapon in a horizontal direction. The direction can be changed by re-entering the
 coordinates of where the unit was placed. The weapon's range is 2 spaces.
@@ -12,6 +13,8 @@ public class PlayerUnit_StraightShooter : PlayerUnit
     //public Vector2 bulletRange;
     private float cooldownTimer;            //tracks when weapon fires.
     [SerializeField]private bool reverseDirection;  //if true, unit fires left.
+
+    Coroutine rotateCoroutine;
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +72,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
                 {
                     reverseDirection = false;
                     bullet.direction *= -1;
+                    unitSpriteRenderer.flipX = !unitSpriteRenderer.flipX;
                     //SetBulletRange(bullet);
                     //bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
                 }
@@ -86,6 +90,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         //bullet.moveSpeed = 6;
         bullet.direction = Vector2.right;
         bullet.owner = Bullet.Owner.Player;
+        bullet.GetComponent<SpriteRenderer>().sortingOrder = 0;   //bullet appears behind unit.
         //bullet.damage = 1;
         //bullet.distance = 4;
     }
@@ -97,6 +102,9 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         gm.DisplayAlertWithDuration(GetText("reverseFireDirection"));
         Logger.DebugLog("Reversing Unit firing direction!");
         reverseDirection = true;
+
+        //rotate unit on Z axis and flip sprite on Y axis so that shadow appears correct.
+        //rotateCoroutine = StartCoroutine(RotateUnit());
     }
 
     //Extend bullet range and grant piercing effect.
@@ -127,4 +135,47 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
     }
+
+    /* Rotate unit on its Z axis until it reaches 180 degrees. Halfway through the rotation, the sprite's Y
+    axis is flipped so the shadow appears at the bottom. */
+    /*IEnumerator RotateUnit()
+    {
+        float zTarget = 180;
+        float halfwayPoint = 90;
+        float rotateSpeed = 100;
+
+        if (transform.localEulerAngles.z == 0)
+        {
+            while(transform.localEulerAngles.z < zTarget)
+            {
+                Vector3 currentAngle = transform.localEulerAngles;
+                transform.localEulerAngles = new Vector3(0, 0, currentAngle.z + rotateSpeed * Time.deltaTime);
+
+                //check if sprite needs flipping
+                if (unitSpriteRenderer.flipY == false && transform.localEulerAngles.z >= halfwayPoint)
+                {
+                    unitSpriteRenderer.flipY = true;
+                }
+                yield return null;
+            }
+            transform.localEulerAngles = new Vector3(0, 0, zTarget);
+        }
+        else
+        {
+            //reset angle to 0
+            while(transform.localEulerAngles.z > 0)
+            {
+                Vector3 currentAngle = transform.localEulerAngles;
+                transform.localEulerAngles = new Vector3(0, 0, currentAngle.z - rotateSpeed * Time.deltaTime);
+
+                //check if sprite needs flipping
+                if (unitSpriteRenderer.flipY == true && transform.localEulerAngles.z <= halfwayPoint)
+                {
+                    unitSpriteRenderer.flipY = false;
+                }
+                yield return null;
+            }
+            transform.localEulerAngles = Vector3.zero;
+        }
+    }*/
 }
