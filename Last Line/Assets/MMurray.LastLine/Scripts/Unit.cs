@@ -106,6 +106,7 @@ namespace MMurray.LastLine
             laser.direction = Vector2.right;
             laser.damage = weaponDamage;
             laser.distance = bulletDistance;
+            laser.GetComponent<SpriteRenderer>().sortingOrder = 0;
         }
 
         string GetText(string key)
