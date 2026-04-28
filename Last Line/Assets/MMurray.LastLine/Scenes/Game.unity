@@ -2809,6 +2809,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4315812460733485097, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4db244a1d46d6395ca32f06c438c70bb, type: 3}
     - target: {fileID: 4394197287156717309, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3181,6 +3185,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7625905791089528661, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f606cf87d3a0e8a399756719275198b9, type: 3}
+    - target: {fileID: 7625905791089528661, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cff455bb012e3a0029139cd04d2641d0, type: 3}
     - target: {fileID: 7657148298514761173, guid: d8cc8d1262cf7a23d8692e99d04b151a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
