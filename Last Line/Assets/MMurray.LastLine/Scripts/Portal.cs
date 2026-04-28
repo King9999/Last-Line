@@ -71,7 +71,7 @@ public class Portal : MonoBehaviour
 
         //icon setup
         SpriteRenderer renderer = unitIcon.GetComponentInChildren<SpriteRenderer>();
-        renderer.sprite = enemyUnits[0].GetComponentInChildren<SpriteRenderer>().sprite;
+        renderer.sprite = enemyUnits[0].uiSprite; //.GetComponentInChildren<SpriteRenderer>().sprite;
         enemyCountText.text = "x" + enemyCount;
         enemyCountText.transform.position = Camera.main.WorldToScreenPoint(new Vector2(unitIcon.transform.position.x + 0.55f,
             unitIcon.transform.position.y - 0.1f));
@@ -96,6 +96,7 @@ public class Portal : MonoBehaviour
         {
             timer.gameObject.SetActive(true);
             timer.timerUI.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+            timer.timerBackground.transform.position = timer.timerUI.transform.position;
             timer.timeFormat = Timer.TimeFormat.Seconds;
             timer.timerUI.text = timer.DisplayTimer();
             //timer.StartTimer();

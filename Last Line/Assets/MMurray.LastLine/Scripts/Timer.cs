@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using MMurray.LastLine;
+using UnityEngine.UI;
 
 /* This is a generic countdown timer */
 
@@ -27,6 +28,7 @@ namespace MMurray.GenericCode
 
         [Header("---Timer UI---")]
         public TextMeshProUGUI timerUI;
+        public Image timerBackground;
 
         // Start is called before the first frame update
         void Start()
