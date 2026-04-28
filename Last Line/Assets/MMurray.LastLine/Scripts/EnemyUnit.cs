@@ -11,7 +11,7 @@ namespace MMurray.LastLine
         public float moveSpeed;
         public int moneyAmount;
         public int collisionDamage;
-        protected const float INVUL_TIME = 0.8f;    //time that unit can't be damaged after being delpoyed.
+        protected const float INVUL_TIME = 0.6f;    //time that unit can't be damaged after being delpoyed.
         protected float currentInvulTime;
         protected bool isInvul;
         public Portal portal;               //reference to the portal the enemy belongs to.

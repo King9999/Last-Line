@@ -24,7 +24,7 @@ public class ProgressBar : MonoBehaviour
     /// Display progress bar at specified point on the grid.
     /// </summary>
     /// <param name="point">The point on the grid to display the bar. This is a screen position.</param>
-    public void DisplayProgressBar(bool toggle, Point point = null)
+    public void DisplayProgressBar(bool toggle, Point point = null, Sprite unitSprite = null)
     {
         gameObject.SetActive(toggle);
 
@@ -32,6 +32,7 @@ public class ProgressBar : MonoBehaviour
         {
             transform.position = point.transform.position;
             //TODO: display unit icon
+            unitIcon.sprite = unitSprite;
         }
     }
 

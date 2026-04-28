@@ -12,7 +12,7 @@ namespace MMurray.LastLine
     {
         public int unitCost;
         public float buildTime;                         //the time it takes to deploy unit.
-        public Sprite unitSprite;                       //used by the menu's build queue.
+        //public Sprite unitSprite;                       //used by the menu's build queue.
         public Point point;                             //reference to the point the unit is placed on.
         public Vector2 pointAxes;
         [SerializeField]protected bool isEnhanced;        //becomes true when unit is placed in a power up space.

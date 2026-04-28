@@ -880,7 +880,7 @@ public class GameManager : MonoBehaviour
                 buildTimer[menu.queueIndex] = Time.time;
 
             menu.unitsInQueue[menu.queueIndex].enabled = true;
-            menu.unitsInQueue[menu.queueIndex].sprite = newUnit.unitSprite;
+            menu.unitsInQueue[menu.queueIndex].sprite = newUnit.uiSprite;
 
             //find an available progress bar and activate it.
             /*bool barFound = false;
@@ -901,7 +901,7 @@ public class GameManager : MonoBehaviour
             //if (i < progressBars.Length)
                 //progressBars[i].DisplayProgressBar(true, point);
             //active bar index always points to the next bar to activate.
-            progressBars[activeBarIndex].DisplayProgressBar(true, point);
+            progressBars[activeBarIndex].DisplayProgressBar(true, point, newUnit.uiSprite);
             activeBarIndex = (activeBarIndex + 1 < progressBars.Length) ? activeBarIndex + 1 : 0;
             //activePlayerUnits.Add(newUnit);
 

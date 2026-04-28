@@ -22,6 +22,7 @@ namespace MMurray.LastLine
 
         public Slider healthBar;        //only visible when unit is damaged to reduce clutter.
         public SpriteRenderer unitSpriteRenderer;
+        public Sprite uiSprite;         //used for UI and portal unit icons.
 
         //coroutine
         Coroutine animateUnit = null;
