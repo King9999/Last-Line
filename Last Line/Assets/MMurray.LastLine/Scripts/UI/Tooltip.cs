@@ -33,7 +33,7 @@ public class Tooltip : MonoBehaviour
             gameObject.transform.position = new Vector2(Input.mousePosition.x + tooltipXOffset, Input.mousePosition.y + tooltipYOffset);
             unitDetails.text = details;
             unitCost.text = cost;
-            unitBuildTime.text = buildTime;
+            unitBuildTime.text = string.Format("{0} sec.", buildTime);
             unitDamage.text = damage;
             unitHealth.text = health;
         }
