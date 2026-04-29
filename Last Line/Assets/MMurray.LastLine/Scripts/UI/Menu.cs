@@ -29,6 +29,14 @@ public class Menu : MonoBehaviour
     [SerializeField]private Button ttsButton;
     [SerializeField]private Button musicButton;
     [SerializeField]private Button exitGameButton;
+    [Header("---System Button Images---")]
+    [SerializeField]Image ttsButtonImage;
+    [SerializeField]Image musicButtonImage;
+    [SerializeField]Sprite ttsSpriteOn; 
+    [SerializeField]Sprite ttsSpriteOff;
+    [SerializeField]Sprite musicSpriteOn;
+    [SerializeField]Sprite musicSpriteOff;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -49,6 +57,7 @@ public class Menu : MonoBehaviour
         systemLabel.text = GetText("systemLabel");
         buildQueueLabel.text = GetText("buildQueueLabel");
         //UpdateMoneyText();
+        UpdateSystemButtonSprites();    //this is called to update sprites upon loading game state.
     }
 
     public void UpdateMoneyText()
@@ -64,6 +73,13 @@ public class Menu : MonoBehaviour
             return;
         
         currentLevel.text = level == 0 ? GetText("tutorialLevel") : string.Format("{0} {1}", GetText("currentLevel"), gm.currentLevel);
+    }
+
+    public void UpdateSystemButtonSprites()
+    {
+        Singleton s = Singleton.instance;
+        ttsButtonImage.sprite = s.ttsEnabled ? ttsSpriteOn : ttsSpriteOff;
+        musicButtonImage.sprite = s.musicEnabled ? musicSpriteOn : musicSpriteOff;
     }
     /// <summary>
     /// Opens a tooltip window displaying info about a button when mouse hovers over it.

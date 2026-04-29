@@ -15,6 +15,7 @@ public class SystemButton : MonoBehaviour
     public void OnMouseClick()
     {
         GameManager gm = Singleton.instance.GameManager;
+        Menu menu = Singleton.instance.Menu;
 
         //check which button was clicked.
         switch (option)
@@ -31,6 +32,9 @@ public class SystemButton : MonoBehaviour
                 {
                     gm.DisplayAlertWithDuration(GetText("musicOn"));
                 }
+                //update button sprites
+                menu.UpdateSystemButtonSprites();
+                Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
                 break;
 
             case Options.TTS:
@@ -44,6 +48,9 @@ public class SystemButton : MonoBehaviour
                 {
                     gm.DisplayAlertWithDuration(GetText("ttsOn"));
                 }
+                //update button sprites
+                menu.UpdateSystemButtonSprites();
+                Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
                 break;
 
             case Options.ExitGame:
@@ -53,6 +60,7 @@ public class SystemButton : MonoBehaviour
                 sf.ChangeSceneFadeOut("Title");
                 break;
         }
+        
     }
 
     string GetText(string key)
