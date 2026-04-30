@@ -526,6 +526,7 @@ public class GameManager : MonoBehaviour
 
         crystal.gameObject.SetActive(false);
         powerUpSpace.gameObject.SetActive(false);
+        playerBase.gameObject.SetActive(false);
     }
 
     bool CancelButtonPressed()
@@ -1413,7 +1414,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GoToNextLevel:
-                if (currentLevel + 1 <= maxLevels)
+                if (currentLevel + 1 < maxLevels)
                 {
                     Singleton.instance.ScreenFade.LoadLevelFadeOut(++currentLevel);
                 }
