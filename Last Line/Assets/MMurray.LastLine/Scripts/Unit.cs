@@ -37,7 +37,7 @@ namespace MMurray.LastLine
                 animateUnit = StartCoroutine(AnimateUnit());
             }
         }*/
-        void OnEnable()
+        void OnDisable()
         {
             coroutineRunning = false;
             if (animateUnit != null)
