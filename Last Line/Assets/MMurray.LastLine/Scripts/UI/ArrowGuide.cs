@@ -77,9 +77,11 @@ public class ArrowGuide : MonoBehaviour
 
         //change sprite orientation if needed
         if (direction.x < 0)
-            arrow.transform.localScale = new Vector3(-1, 1, 1);
-        else if (direction.x > 0)
-            arrow.transform.localScale = new Vector3(1, 1, 1);
+            //arrow.transform.localScale = new Vector3(-arrow.transform.localScale.x, arrow.transform.localScale.y, 1);
+            arrow.transform.localEulerAngles = new Vector3(180, 0, 180);    //flips the arrow   
+        else //if (direction.x > 0)
+            arrow.transform.localEulerAngles = Vector3.zero;
+            //arrow.transform.localScale = new Vector3(arrow.transform.localScale.x, arrow.transform.localScale.y, 1);
 
         animateCoroutine = StartCoroutine(AnimateArrow(direction));
     }
