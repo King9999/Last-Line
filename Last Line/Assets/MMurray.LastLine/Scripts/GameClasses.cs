@@ -20,7 +20,9 @@ namespace MMurray.LastLine
         public const int TRACKING_BEAM = 2;
         public const int BOMB = 3;
         public bool power_up_space_active;
-        //public bool toggle_straight_shooter, toggle_vertical_shooter, toggle_tracking_beam, toggle_bomb;
+
+        //planets. They're only cosmetic
+        public bool show_small_planet, show_medium_planet, show_large_planet;
     }
 
     [Serializable]

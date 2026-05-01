@@ -24,7 +24,9 @@ namespace MMurray.LastLine
             //bools
             public bool[] toggleUnit = new bool[4];
             public bool powerUpSpaceActive;
-            //public bool toggleStraightShooter, toggleVerticalShooter, toggleTrackingBeam, toggleBomb;
+
+            //planets. They're only cosmetic
+            public bool showSmallPlanet, showMediumPlanet, showLargePlanet;
         }
 
         /*[Serializable]
@@ -121,6 +123,11 @@ namespace MMurray.LastLine
                         data.toggle_unit[i] = newLevel.toggleUnit[i];
                     }
 
+                    //planet data
+                    data.show_small_planet = newLevel.showSmallPlanet;
+                    data.show_medium_planet = newLevel.showMediumPlanet;
+                    data.show_large_planet = newLevel.showLargePlanet;
+
                     /*data.toggle_straight_shooter = newLevel.toggleStraightShooter;
                     data.toggle_vertical_shooter = newLevel.toggleVerticalShooter;
                     data.toggle_tracking_beam = newLevel.toggleTrackingBeam;
@@ -180,6 +187,7 @@ namespace MMurray.LastLine
                 //string level = JsonUtility.ToJson(levelDataList[i], true);
                 //string startingMoney = JsonUtility.ToJson(levels[i].starting_money);
                 //Logger.DebugLogFormat("Level: {0}", level);
+
 
                 writer.Write(levelString);
             

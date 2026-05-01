@@ -104,6 +104,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]private GameObject moneyTextContainer;
     [SerializeField]private GameObject explosionContainer;          //handles explosion particle effect
 
+    [Header("---Planets---")]
+    [SerializeField]GameObject smallPlanet;
+    [SerializeField]GameObject mediumPlanet;
+    [SerializeField]GameObject largePlanet;
+
     [Header("---Prefabs---")]
     public Bullet bulletPrefab;
     public Laser laserPrefab;
@@ -171,7 +176,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 5;
+        currentLevel = 3;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -726,6 +731,11 @@ public class GameManager : MonoBehaviour
         {
             menu.unitButtons[i].gameObject.SetActive(newLevel.toggle_unit[i]);
         }
+
+        /*****PLANETS******/
+        smallPlanet.gameObject.SetActive(newLevel.show_small_planet);
+        mediumPlanet.gameObject.SetActive(newLevel.show_medium_planet);
+        largePlanet.gameObject.SetActive(newLevel.show_large_planet);
 
     }
 

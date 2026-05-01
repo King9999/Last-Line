@@ -337,8 +337,32 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 533508810704252218, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
+      propertyPath: levels.Array.data[3].showSmallPlanet
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 533508810704252218, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
+      propertyPath: levels.Array.data[5].showSmallPlanet
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 533508810704252218, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
+      propertyPath: levels.Array.data[8].showLargePlanet
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 533508810704252218, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
+      propertyPath: levels.Array.data[4].showMediumPlanet
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 533508810704252218, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
+      propertyPath: levels.Array.data[5].showMediumPlanet
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 533508810704252218, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
       propertyPath: levels.Array.data[7].crystalThreshold
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 533508810704252218, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
+      propertyPath: levels.Array.data[7].showMediumPlanet
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 533508810704252218, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
       propertyPath: levels.Array.data[8].crystalThreshold

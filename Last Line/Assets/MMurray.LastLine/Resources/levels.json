@@ -65,7 +65,10 @@
                 false,
                 false
             ],
-            "power_up_space_active": false
+            "power_up_space_active": false,
+            "show_small_planet": false,
+            "show_medium_planet": false,
+            "show_large_planet": false
         },
         {
             "level": 1,
@@ -132,7 +135,10 @@
                 false,
                 false
             ],
-            "power_up_space_active": false
+            "power_up_space_active": false,
+            "show_small_planet": false,
+            "show_medium_planet": false,
+            "show_large_planet": false
         },
         {
             "level": 2,
@@ -225,7 +231,10 @@
                 false,
                 false
             ],
-            "power_up_space_active": false
+            "power_up_space_active": false,
+            "show_small_planet": false,
+            "show_medium_planet": false,
+            "show_large_planet": false
         },
         {
             "level": 3,
@@ -333,7 +342,10 @@
                 false,
                 false
             ],
-            "power_up_space_active": false
+            "power_up_space_active": false,
+            "show_small_planet": true,
+            "show_medium_planet": false,
+            "show_large_planet": false
         },
         {
             "level": 4,
@@ -452,7 +464,10 @@
                 false,
                 false
             ],
-            "power_up_space_active": true
+            "power_up_space_active": true,
+            "show_small_planet": false,
+            "show_medium_planet": true,
+            "show_large_planet": false
         },
         {
             "level": 5,
@@ -720,7 +735,10 @@
                 true,
                 false
             ],
-            "power_up_space_active": true
+            "power_up_space_active": true,
+            "show_small_planet": true,
+            "show_medium_planet": true,
+            "show_large_planet": false
         },
         {
             "level": 6,
@@ -934,7 +952,10 @@
                 true,
                 false
             ],
-            "power_up_space_active": true
+            "power_up_space_active": true,
+            "show_small_planet": false,
+            "show_medium_planet": false,
+            "show_large_planet": false
         },
         {
             "level": 7,
@@ -1113,7 +1134,10 @@
                 true,
                 true
             ],
-            "power_up_space_active": false
+            "power_up_space_active": false,
+            "show_small_planet": false,
+            "show_medium_planet": true,
+            "show_large_planet": false
         },
         {
             "level": 8,
@@ -1383,7 +1407,10 @@
                 true,
                 true
             ],
-            "power_up_space_active": true
+            "power_up_space_active": true,
+            "show_small_planet": false,
+            "show_medium_planet": false,
+            "show_large_planet": true
         }
     ]
 }
