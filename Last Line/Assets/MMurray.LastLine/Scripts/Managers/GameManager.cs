@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 5;
+        currentLevel = 6;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -275,7 +275,7 @@ public class GameManager : MonoBehaviour
                 //return;
         }
 
-        if (totalEnemies <= 0 && (gameState == GameState.Normal || (inTutorial && tutorialState == TutorialState.Normal))) //gameState != GameState.EnemyPreparing && gameState != GameState.LevelComplete && gameState != GameState.GameCompleted && 
+        if (totalEnemies <= 0 && (GameRunning() /*gameState == GameState.Normal*/ || (inTutorial && tutorialState == TutorialState.Normal))) //gameState != GameState.EnemyPreparing && gameState != GameState.LevelComplete && gameState != GameState.GameCompleted && 
             //gameState != GameState.BaseDestroyed)
         {
             //level is over.
@@ -1086,6 +1086,7 @@ public class GameManager : MonoBehaviour
                     unit = deadEnemyUnits[j];
                     unit.GetUnitData(unit.unitData);
                     unit.portal = portal;
+                    unit.transform.position = portal.transform.position;
                     portal.enemyUnits.Add(unit);
                     deadEnemyUnits.Remove(unit);
                 }
