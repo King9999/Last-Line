@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /* this is used to point to different elements on the screen. */
 public class ArrowGuide : MonoBehaviour
 {
-    public GameObject targetedObject; //the object the arrow will point to.
+    //public GameObject targetedObject; //the object the arrow will point to.
     public Transform arrowLocation;     //the arrow's position.
     public Vector2 direction;
     private Image arrow;
