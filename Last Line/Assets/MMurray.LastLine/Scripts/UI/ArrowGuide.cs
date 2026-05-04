@@ -83,6 +83,9 @@ public class ArrowGuide : MonoBehaviour
             arrow.transform.localEulerAngles = Vector3.zero;
             //arrow.transform.localScale = new Vector3(arrow.transform.localScale.x, arrow.transform.localScale.y, 1);
 
+        if (animateCoroutine != null)
+            StopCoroutine(animateCoroutine);
+            
         animateCoroutine = StartCoroutine(AnimateArrow(direction));
     }
 

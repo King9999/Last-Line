@@ -264,6 +264,7 @@ public class Dialogue : MonoBehaviour
                     
                     case GameManager.GameState.DialogueGameOver:
                         //restart level
+                        Singleton.instance.ArrowGuideManager.HideGuideArrows();
                         Singleton.instance.ScreenFade.LoadLevelFadeOut(gm.currentLevel);
                         break;
                     
