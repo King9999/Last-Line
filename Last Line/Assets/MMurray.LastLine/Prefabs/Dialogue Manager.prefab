@@ -33,6 +33,38 @@ Transform:
   - {fileID: 6536253136994736945}
   m_Father: {fileID: 3801057080204765330}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2090262814011428329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8040577866476845876}
+  m_Layer: 0
+  m_Name: Game Over Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8040577866476845876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090262814011428329}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5530376267412986957}
+  m_Father: {fileID: 3801057080204765330}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2420253155186452195
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +161,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4684894517912025629}
-  - {fileID: 547420776450902000}
   - {fileID: 1343531600753254003}
   - {fileID: 4967115548823871621}
   - {fileID: 5124198597725667229}
@@ -140,6 +171,7 @@ Transform:
   - {fileID: 2545243399356944839}
   - {fileID: 5419783831053648255}
   - {fileID: 1235974743579982617}
+  - {fileID: 8040577866476845876}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4596547124491923780
@@ -172,6 +204,7 @@ MonoBehaviour:
   - {fileID: 480921212579714780}
   - {fileID: 2581877725342360221}
   - {fileID: 3055166687309728365}
+  - {fileID: 5196408764038249523}
   dialogueOpen: 0
   condTriggerList:
   - level: 0
@@ -207,7 +240,9 @@ MonoBehaviour:
   - level: 8
     dialogueId: 110
     condition: 2
-  gameOverDialogueList: []
+  gameOverDialogueList:
+  - level: 1
+    dialogueId: 200
 --- !u!1 &2689840477471962433
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,38 +342,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4434952079430730314}
-  m_Father: {fileID: 3801057080204765330}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5833686616998786951
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 547420776450902000}
-  m_Layer: 0
-  m_Name: Game Over Dialogue L1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &547420776450902000
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5833686616998786951}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5530376267412986957}
   m_Father: {fileID: 3801057080204765330}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6300630616200267364
@@ -3323,7 +3326,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 547420776450902000}
+    m_TransformParent: {fileID: 8040577866476845876}
     m_Modifications:
     - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
       propertyPath: textSpeed
@@ -3331,7 +3334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
       propertyPath: dialogueId
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
       propertyPath: promptTimer
@@ -3466,6 +3469,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
+--- !u!114 &5196408764038249523 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
+  m_PrefabInstance: {fileID: 6622698762043818325}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ae7054454ca143db3630b145796e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5530376267412986957 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1681912519623204120, guid: f251f013b208bae54a1c4a5760b02379, type: 3}

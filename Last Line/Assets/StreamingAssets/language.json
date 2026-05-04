@@ -54,13 +54,13 @@
     "unitLabel": "UNITS",
     "moneyLabel": "SCRAP",
     "dialoguePrompt": "[Left click] or [Enter] to continue",
-    "dialogue_intro": "Commander, this is Mother Base. Sorry to wake you up early, but we are under attack! Set up our defenses!",
+    "dialogue_intro": "Commander, this is Mother Base. Sorry to wake you up early, but we're under attack! Alpha Quadrant must be defended!",
     "system_intro1": "<color=#0CCF5A>In this game, you'll create units to defend your base. Start by selecting this unit with the left mouse button.</color>",
     "system_intro2": "<color=#0CCF5A>Next, put the unit on a space. To do that, we will create an <color=#06DDEF>ordered pair</color>. First, select the value on the X axis with the left mouse button.</color>",
     "system_intro3": "<color=#0CCF5A>Now select the value on the Y axis the same way.</color>",
     "unitSelect_x": "Select X value\n(Right click to cancel)",
 	"unitSelect_y": "Select Y value\n(Right click to cancel)",
-	"cannotEnterYBeforeX": "Choose an X value first!",
+	"cannotEnterYBeforeX": "Choose a value on the X axis first!",
 	"nothingAtPoint": "Nothing here.",
 	"cancelAction": "Action cancelled.",
 	"buildQueueFull": "Can only build 3 units at a time!",
@@ -109,7 +109,8 @@
 	"system_intro_juggernaut": "<color=#0CCF5A>The enemy's new unit is so powerful, <color=#06DDEF>the base will be destroyed in 1 hit if it gets close</color>. Good luck!</color>",
 	"dialogue_end_of_game": "Well done, commander. Thanks to your efforts, the quadrant is saved.",
 	"currentLevel": "WAVE",
-	"tutorialLevel": "TUTORIAL"
+	"tutorialLevel": "TUTORIAL",
+	"system_game_over_level1": "<color=#0CCF5A>You don't have to wait for a unit to finish building before making another one! You can build up to 3 units at a time if you have enough scrap.</color>"
   },
   "es": {
     
