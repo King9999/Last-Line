@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         CrystalIntro
     }
 
-    public enum PlayerUnitType {NoUnitSelected, Base, StraightShooter, VerticalShooter, TrackingBeam, Bomb}
+    public enum PlayerUnitType {NoUnitSelected, /*Base,*/ StraightShooter, VerticalShooter, TrackingBeam, Bomb}
     public PlayerUnitType playerUnitType;
     public GameState gameState, previousState;  //previousState is used by menu window to revert to previous state after menu is closed.
     public TutorialState tutorialState, previousTutorialState;
@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 6;
+        currentLevel = 7;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -830,27 +830,47 @@ public class GameManager : MonoBehaviour
 
             PlayerUnit newUnit = null;
             //check what player picked and instantiate
-            switch (unit)
+            bool unitFound = false;
+            int i = 0;
+            while(!unitFound && i < deadPlayerUnits.Count)
             {
-                case PlayerUnitType.Base:   //there can only be 1
-                    newUnit = Instantiate(basePrefab, playerUnitContainer.transform);
-                    break;
+                if ((int)deadPlayerUnits[i].unitType == (int)unit)  //cast is used to compare the enums' values
+                {
+                    unitFound = true;
+                    newUnit = deadPlayerUnits[i];
+                    newUnit.GetUnitData(newUnit.unitData);
+                    deadPlayerUnits.Remove(newUnit);
+                }
+                else
+                {
+                    i++;
+                }
+            }
 
-                case PlayerUnitType.StraightShooter:
-                    newUnit = Instantiate(straightShooterPrefab, playerUnitContainer.transform);
-                    break;
-                
-                case PlayerUnitType.VerticalShooter:
-                    newUnit = Instantiate(verticalShooterPrefab, playerUnitContainer.transform);
-                    break;
+            if (!unitFound)
+            {
+                switch (unit)
+                {
+                    /*case PlayerUnitType.Base:   //there can only be 1
+                        newUnit = Instantiate(basePrefab, playerUnitContainer.transform);
+                        break;*/
 
-                case PlayerUnitType.TrackingBeam:
-                    newUnit = Instantiate(trackingBeamPrefab, playerUnitContainer.transform);
-                    break;
+                    case PlayerUnitType.StraightShooter:
+                        newUnit = Instantiate(straightShooterPrefab, playerUnitContainer.transform);
+                        break;
+                    
+                    case PlayerUnitType.VerticalShooter:
+                        newUnit = Instantiate(verticalShooterPrefab, playerUnitContainer.transform);
+                        break;
 
-                case PlayerUnitType.Bomb:
-                    newUnit = Instantiate(bombPrefab, playerUnitContainer.transform);
-                    break;
+                    case PlayerUnitType.TrackingBeam:
+                        newUnit = Instantiate(trackingBeamPrefab, playerUnitContainer.transform);
+                        break;
+
+                    case PlayerUnitType.Bomb:
+                        newUnit = Instantiate(bombPrefab, playerUnitContainer.transform);
+                        break;
+                }
             }
 
 
@@ -929,7 +949,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="unit"></param>
     /// <param name="point"></param>
-    public void PlaceUnit(PlayerUnitType unit, Vector2 point)
+    /*public void PlaceUnit(PlayerUnitType unit, Vector2 point)
     {
         bool pointFound = false;
         int i = 0;
@@ -974,7 +994,7 @@ public class GameManager : MonoBehaviour
 
         //add to list
         activePlayerUnits.Add(newUnit);
-    }
+    }*/
 
     /// <summary>
     /// Sets portal's reference to a point using the given axes
@@ -1425,7 +1445,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GoToNextLevel:
-                if (currentLevel + 1 < maxLevels)
+                if (currentLevel + 1 <= maxLevels)
                 {
                     Singleton.instance.ScreenFade.LoadLevelFadeOut(++currentLevel);
                 }
