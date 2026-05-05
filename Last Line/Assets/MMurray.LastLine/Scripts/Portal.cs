@@ -150,8 +150,8 @@ public class Portal : MonoBehaviour
     //in the list to deploy.
     public void ReduceEnemyCount()
     {
-        //nextEnemy--;
-        nextEnemy = nextEnemy - 1 >= 0 ? nextEnemy - 1 : 0;
+        nextEnemy--;
+        //nextEnemy = nextEnemy - 1 >= 0 ? nextEnemy - 1 : 0;
         enemyCount--;
         Logger.DebugLog("nextEnemy index: " + nextEnemy);
     }

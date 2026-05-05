@@ -1225,6 +1225,9 @@ public class GameManager : MonoBehaviour
     /// <param name="unit">The unit to remove.</param>
     public void RemoveEnemyUnit(EnemyUnit unit)
     {
+        if (unit == null)
+            return;
+            
         deadEnemyUnits.Add(unit);
         unit.portal.enemyUnits.Remove(unit);
         unit.portal.ReduceEnemyCount();

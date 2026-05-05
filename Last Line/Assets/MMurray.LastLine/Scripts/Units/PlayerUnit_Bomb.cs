@@ -16,6 +16,7 @@ public class PlayerUnit_Bomb : PlayerUnit
     [SerializeField]private GameObject outline;         //flash effect when bomb's going to detonate.
     [SerializeField]private List<Unit> targets;         //includes friendly units. Base takes 3 damage.
     Coroutine flashCoroutine = null;
+    private bool isDetonating;                          //used to prevent Explode from being called more than once.
     // Start is called before the first frame update
     /*void Start()
     {
@@ -34,6 +35,9 @@ public class PlayerUnit_Bomb : PlayerUnit
         startupTimer = 1;
         timer = -1;
         bombRange.radius = 4;
+
+        if (targets.Count > 0)
+            targets = new List<Unit>();
 
         if (flashCoroutine != null)
             StopCoroutine(flashCoroutine);
@@ -54,9 +58,10 @@ public class PlayerUnit_Bomb : PlayerUnit
             flashCoroutine = StartCoroutine(Flash());
         }*/
 
-        if (bombRange.gameObject.activeSelf && Time.time > timer + startupTimer)
+        if (!isDetonating && bombRange.gameObject.activeSelf && Time.time > timer + startupTimer)
         {
             //bomb blows up
+            isDetonating = true;
             Explode();
         }
     }
@@ -68,7 +73,7 @@ public class PlayerUnit_Bomb : PlayerUnit
         {
             //Logger.DebugLogFormat("Target is {0}", unit.name);
             //add target to list
-            if (!targets.Contains(unit))
+            if (unit != null && unit.gameObject.activeSelf && !targets.Contains(unit))
                 targets.Add(unit);
         }
     }
@@ -116,6 +121,7 @@ public class PlayerUnit_Bomb : PlayerUnit
         GameManager gm = Singleton.instance.GameManager;
         for (int i = 0; i < targets.Count; i++)
         {
+                
             if (targets[i] is PlayerUnit_Base)
             {
                 if (!isEnhanced)

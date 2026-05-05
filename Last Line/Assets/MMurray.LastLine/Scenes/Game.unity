@@ -1566,17 +1566,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6308136599856449628, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
   m_PrefabInstance: {fileID: 985950098}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1197930370 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8326046935441731722, guid: 1c6f59d1fa24b4b8b9e0ef92f4479892, type: 3}
-  m_PrefabInstance: {fileID: 1558290941900014449}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90ae7054454ca143db3630b145796e88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1234637717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2204,42 +2193,6 @@ PrefabInstance:
     - target: {fileID: 3801057080204765330, guid: 1c6f59d1fa24b4b8b9e0ef92f4479892, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596547124491923780, guid: 1c6f59d1fa24b4b8b9e0ef92f4479892, type: 3}
-      propertyPath: dialogueList.Array.size
-      value: 23
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596547124491923780, guid: 1c6f59d1fa24b4b8b9e0ef92f4479892, type: 3}
-      propertyPath: dialogueList.Array.data[22]
-      value: 
-      objectReference: {fileID: 1197930370}
-    - target: {fileID: 4596547124491923780, guid: 1c6f59d1fa24b4b8b9e0ef92f4479892, type: 3}
-      propertyPath: gameOverDialogueList.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596547124491923780, guid: 1c6f59d1fa24b4b8b9e0ef92f4479892, type: 3}
-      propertyPath: gameOverDialogueList.Array.data[5].level
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596547124491923780, guid: 1c6f59d1fa24b4b8b9e0ef92f4479892, type: 3}
-      propertyPath: gameOverDialogueList.Array.data[6].level
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596547124491923780, guid: 1c6f59d1fa24b4b8b9e0ef92f4479892, type: 3}
-      propertyPath: gameOverDialogueList.Array.data[7].level
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596547124491923780, guid: 1c6f59d1fa24b4b8b9e0ef92f4479892, type: 3}
-      propertyPath: gameOverDialogueList.Array.data[5].dialogueId
-      value: 205
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596547124491923780, guid: 1c6f59d1fa24b4b8b9e0ef92f4479892, type: 3}
-      propertyPath: gameOverDialogueList.Array.data[6].dialogueId
-      value: 206
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596547124491923780, guid: 1c6f59d1fa24b4b8b9e0ef92f4479892, type: 3}
-      propertyPath: gameOverDialogueList.Array.data[7].dialogueId
-      value: 207
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
