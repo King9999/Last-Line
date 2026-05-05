@@ -15,28 +15,10 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
     public List<Transform> maxRanges; //0 is for top laser, 1 is for bottom laser
 
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
         //bullet setup
         GameManager gm = Singleton.instance.GameManager;
-        //GetUnitData(unitData);
-        
-        /*for (int i = 0; i < BulletCount; i++)
-        {
-            Bullet bullet = Instantiate(gm.bulletPrefab, parent: this.transform);
-            SetupBullet(bullet);
-
-            //range and direction setup
-            if (i == 0)
-                bullet.direction = Vector2.up;
-            else
-                bullet.direction = Vector2.down;
-
-            Vector2 bulletRange = new Vector2(transform.position.x, transform.position.y + (bullet.distance * bullet.direction.y));
-            bulletRanges.Add(bulletRange);
-            bullet.gameObject.SetActive(false);
-            bullets.Add(bullet);
-        }*/
 
         //laser setup
         for (int i = 0; i < BulletCount; i++)
@@ -69,6 +51,54 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
         
         cooldownTimer = 0;
         //EnhanceUnit();
+    }*/
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        GameManager gm = Singleton.instance.GameManager;
+        //laser setup
+        if (lasers.Count <= 0)
+        {
+            for (int i = 0; i < BulletCount; i++)
+            {
+                Laser laser = Instantiate(gm.laserPrefab, parent: this.transform);
+                SetupLaser(laser);
+
+                //range and direction setup. The laser is going to be rotated, which will alter its direction. So X is modified
+                //instead of the Y value. (It makes sense if you rotate the laser object in the Inspector and see how the movement changes.) 
+                if (i == 0)
+                {
+                    laser.direction = Vector2.up; //new Vector2(1, 0); //Vector2.up;
+                }
+                else
+                {
+                    laser.direction = Vector2.down; //new Vector2(-1, 0); //Vector2.down;
+                }
+
+                //Lasers aren't round so must adjust angle.
+                //Vector3 angle = laser.transform.eulerAngles;
+                //laser.transform.eulerAngles = new Vector3(angle.x, angle.y, -90);
+
+                //laser's range is altered on the X pos due to rotation..
+                //Vector2 laserRange = new Vector2(transform.position.x + (laser.distance * laser.direction.x), transform.position.y);
+                Vector2 laserRange = new Vector2(transform.position.x, transform.position.y + (laser.distance * laser.direction.y));
+                laserRanges.Add(laserRange);
+                laser.gameObject.SetActive(false);
+                lasers.Add(laser);
+            }
+        }
+        else
+        {
+            //reuse existing lasers.
+            for(int i = 0; i < lasers.Count; i++)
+            {
+                Vector2 laserRange = new Vector2(transform.position.x, transform.position.y + (lasers[i].distance * lasers[i].direction.y));
+                laserRanges[i] = laserRange;
+                lasers[i].gameObject.SetActive(false);
+            }
+        }
+        cooldownTimer = 0;       
     }
 
     // Update is called once per frame

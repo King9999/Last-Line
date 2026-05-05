@@ -27,7 +27,7 @@ namespace MMurray.LastLine
             buildTime = data.unitBuildTime;
         }
 
-        void OnEnable()
+        protected virtual void OnEnable()
         {
             GetUnitData(unitData);
             //healthBar.gameObject.SetActive(true);
@@ -36,6 +36,7 @@ namespace MMurray.LastLine
                         //transform.position.y + 0.4f));
             healthBar.maxValue = maxHitPoints;
             healthBar.gameObject.SetActive(false);
+            isEnhanced = false;
             //UpdateHealthBar(transform.position);
             //TODO: For some reason the player unit's health bar is not positioning correctly.
         }

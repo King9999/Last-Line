@@ -17,13 +17,26 @@ public class PlayerUnit_Bomb : PlayerUnit
     [SerializeField]private List<Unit> targets;         //includes friendly units. Base takes 3 damage.
     Coroutine flashCoroutine = null;
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
         //bomb range starts deactivated.
         bombRange.gameObject.SetActive(false);
         outline.gameObject.SetActive(false);
         startupTimer = 1;
         timer = -1;
+    }*/
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        bombRange.gameObject.SetActive(false);
+        outline.gameObject.SetActive(false);
+        startupTimer = 1;
+        timer = -1;
+        bombRange.radius = 4;
+
+        if (flashCoroutine != null)
+            StopCoroutine(flashCoroutine);
     }
 
     // Update is called once per frame
@@ -116,8 +129,11 @@ public class PlayerUnit_Bomb : PlayerUnit
             else
             {
                 EnemyUnit unit = targets[i] as EnemyUnit;
-                gm.AddMoney(unit.moneyAmount, unit.transform.position);
-                gm.RemoveEnemyUnit(unit);
+                if (unit != null)
+                {
+                    gm.AddMoney(unit.moneyAmount, unit.transform.position);
+                    gm.RemoveEnemyUnit(unit);
+                }
             }
         }
 

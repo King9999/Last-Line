@@ -28,6 +28,13 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
         //EnhanceUnit();
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        if (animateBeam != null)
+            StopCoroutine(animateBeam);
+    }
+
 
     // Update is called once per frame
     protected override void Update()
