@@ -40,8 +40,6 @@ namespace MMurray.LastLine
         void OnEnable()
         {
             GetUnitData(unitData);
-            pathIndex = 0;
-            path.Clear();
             isInvul = true;
             currentInvulTime = Time.time;
 
@@ -99,7 +97,7 @@ namespace MMurray.LastLine
         public void SetPath(List<Vector3> newPath)
         {
             //path.Clear();
-            //pathIndex = 0;
+            pathIndex = 0;
             path = newPath;
 
             //get the first point
