@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class AttackRange : MonoBehaviour
 {
-    [SerializeField]private List<Collider2D> unitColliders;
-    void OnTriggerEnter2D(Collider2D collision)
+    public List<PlayerUnit> targets;
+    void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
         {
-            if (!unitColliders.Contains(collision))
+            if (!targets.Contains(unit) && unit is not PlayerUnit_Base)
             {
-                unitColliders.Add(collision);
+                targets.Add(unit);
             }
         }
     }

@@ -10,7 +10,8 @@ public class EnemyUnit_Striker : EnemyUnit
     public Bullet bullet;
     //public Vector2 bulletRange;
     [SerializeField]private float cooldownTimer;            //tracks when weapon fires.
-    [SerializeField]private Collider2D attackRange, strikerCollider;
+    [SerializeField]private Collider2D attackRangeCollider, strikerCollider;
+    [SerializeField]private AttackRange attackRange;
     [SerializeField]private PlayerUnit target;          //bullets are fired at this unit
     [SerializeField]private List<PlayerUnit> targets;
 
@@ -96,10 +97,10 @@ public class EnemyUnit_Striker : EnemyUnit
     void OnTriggerEnter2D(Collider2D collision)
     {
         //Attack range is ignored. Only want to check when the unit hits a player unit.
-        if (attackRange.IsTouching(collision) && !strikerCollider.IsTouching(collision))
+        if (attackRangeCollider.IsTouching(collision) && !strikerCollider.IsTouching(collision))
             return;
 
-        if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
+        if (strikerCollider.IsTouching(collision) && collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
         {
             GameManager gm = Singleton.instance.GameManager;
             if (unit is PlayerUnit_Base)
@@ -127,7 +128,7 @@ public class EnemyUnit_Striker : EnemyUnit
 
     //The only thing the attack range does is collect all player units in range for targeting. The actual
     //firing of the weapon happens in AttackTarget using the data acquired here.
-    void OnTriggerStay2D(Collider2D collision)
+    /*void OnTriggerStay2D(Collider2D collision)
     {
         //TODO: Need to get all units in range and fire at the closest one.
         if (attackRange.IsTouching(collision) && collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
@@ -136,40 +137,17 @@ public class EnemyUnit_Striker : EnemyUnit
             if (!targets.Contains(unit) && unit is not PlayerUnit_Base)//!collision.TryGetComponent<PlayerUnit_Base>(out PlayerUnit_Base unitBase))
                 targets.Add(unit);
             
-            //get closest target and fire
-            /*float smallestDistance = 1000;
-            foreach (PlayerUnit target in targets)
-            {
-                float distance = Vector2.Distance(transform.position, target.transform.position);
-                if (distance < smallestDistance)
-                {
-                    smallestDistance = distance;
-                    this.target = target;
-                }
-            }
-
-            //fire weapon at target if able
-            if (target != null && !bullet.gameObject.activeSelf && Time.time > cooldownTimer + weaponCooldown)
-            {
-                bullet.direction = new Vector2(target.transform.position.x - transform.position.x, 
-                    target.transform.position.y - transform.position.y);
-                FireWeapon(bullet, bullet.direction);
-            }
-
-            //clear targets
-            target = null;
-            targets.Clear();*/
         }
-    }
+    }*/
 
     void AttackTarget()
     {
-        if (targets.Count <= 0)
+        if (attackRange.targets.Count <= 0)
             return;
 
         //get closest target and fire
         float smallestDistance = 1000;
-        foreach (PlayerUnit target in targets)
+        foreach (PlayerUnit target in attackRange.targets)
         {
             float distance = Vector2.Distance(transform.position, target.transform.position);
             if (distance < smallestDistance)
@@ -190,7 +168,7 @@ public class EnemyUnit_Striker : EnemyUnit
 
         //clear targets. Targets may not always be valid on the next frame.
         target = null;
-        targets.Clear();
+        attackRange.targets.Clear();
         
     }
 
