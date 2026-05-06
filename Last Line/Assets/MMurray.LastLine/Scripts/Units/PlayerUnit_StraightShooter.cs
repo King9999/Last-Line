@@ -38,7 +38,8 @@ public class PlayerUnit_StraightShooter : PlayerUnit
     protected override void OnEnable()
     {
         base.OnEnable();
-        bullet.direction = Vector2.right;   //just in case direction was changed before.
+        if (bullet != null)
+            bullet.direction = Vector2.right;   //just in case direction was changed before.
         cooldownTimer = 0;
     }
 
