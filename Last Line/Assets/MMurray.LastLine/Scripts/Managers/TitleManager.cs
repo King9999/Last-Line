@@ -16,6 +16,7 @@ public class TitleManager : MonoBehaviour
     [SerializeField]private Button creditsButton;
     [SerializeField]private TextMeshProUGUI startButtonText, continueButtonText, creditsButtonText;
     [SerializeField]private TextMeshProUGUI version;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,13 +89,8 @@ public class TitleManager : MonoBehaviour
         if (sf.coroutineOn)
             return;
 
-        //the save state is deleted when starting a new game.
-        //AudioManager audio = Singleton.instance.AudioManager;
-        //audio.soundSource.PlayOneShot(audio.click, audio.soundVolume);
-        //PlayerPrefs.DeleteAll();
-        //Singleton.instance.musicEnabled = true;
-        //Singleton.instance.ttsEnabled = true;
-        //Singleton.instance.saveStateFound = false;
+        AudioManager audio = Singleton.instance.AudioManager;
+        audio.soundSource.PlayOneShot(audio.buttonClick, audio.soundVolume);
         sf.ChangeSceneFadeOut("Game");
     }
 
@@ -105,8 +101,8 @@ public class TitleManager : MonoBehaviour
         if (sf.coroutineOn)
             return;
 
-        //AudioManager audio = Singleton.instance.AudioManager;
-        //audio.soundSource.PlayOneShot(audio.click, audio.soundVolume);
+        AudioManager audio = Singleton.instance.AudioManager;
+        audio.soundSource.PlayOneShot(audio.buttonClick, audio.soundVolume);
         sf.ChangeSceneFadeOut("Credits");
     }
 
