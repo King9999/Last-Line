@@ -16,6 +16,7 @@ public class PlayerUnit_Bomb : PlayerUnit
     [SerializeField]private GameObject outline;         //flash effect when bomb's going to detonate.
     [SerializeField]private List<Unit> targets;         //includes friendly units. Base takes 3 damage.
     Coroutine flashCoroutine = null;
+    Coroutine explode;
     private bool isDetonating;                          //used to prevent Explode from being called more than once.
     // Start is called before the first frame update
     /*void Start()
@@ -37,10 +38,13 @@ public class PlayerUnit_Bomb : PlayerUnit
         bombRange.radius = 4;
 
         if (targets.Count > 0)
-            targets = new List<Unit>();
+            targets.Clear();
 
         if (flashCoroutine != null)
             StopCoroutine(flashCoroutine);
+        
+        if (explode != null)
+            StopCoroutine(explode);
     }
 
     // Update is called once per frame
@@ -58,11 +62,12 @@ public class PlayerUnit_Bomb : PlayerUnit
             flashCoroutine = StartCoroutine(Flash());
         }*/
 
-        if (!isDetonating && bombRange.gameObject.activeSelf && Time.time > timer + startupTimer)
+        if (isDetonating /*&& bombRange.gameObject.activeSelf*/ && Time.time > timer + startupTimer)
         {
             //bomb blows up
-            isDetonating = true;
-            Explode();
+            isDetonating = false;
+            //Explode();
+            explode = StartCoroutine(ExplodeBomb());
         }
     }
 
@@ -107,17 +112,20 @@ public class PlayerUnit_Bomb : PlayerUnit
 
     public void ActivateBomb()
     {
-        if (bombRange.gameObject.activeSelf)
+        if (isDetonating /*bombRange.gameObject.activeSelf*/)
             return;
 
-        bombRange.gameObject.SetActive(true);
+        //bombRange.gameObject.SetActive(true);
+        isDetonating = true;
         timer = Time.time;
         flashCoroutine = StartCoroutine(Flash());
     }
 
+
     void Explode()
     {
         //destroy all units in the target list. if the target is the base, damage it.
+        
         GameManager gm = Singleton.instance.GameManager;
         for (int i = 0; i < targets.Count; i++)
         {
@@ -160,12 +168,19 @@ public class PlayerUnit_Bomb : PlayerUnit
     IEnumerator Flash()
     {
         bool toggle = true;
-        while(bombRange.gameObject.activeSelf)
+        while(isDetonating /*bombRange.gameObject.activeSelf*/)
         {
             outline.gameObject.SetActive(toggle);
             yield return new WaitForSeconds(0.1f);
             toggle = !toggle;
         }
+    }
+
+    IEnumerator ExplodeBomb()
+    {
+        bombRange.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.1f);  //we wait to give the game time to collect targets.
+        Explode();
     }
     
 }
