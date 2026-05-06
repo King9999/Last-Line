@@ -943,58 +943,7 @@ public class GameManager : MonoBehaviour
         }     
     }
 
-    /// <summary>
-    /// Places unit at the specified point. The difference with this method is that the point is located first, then the 
-    /// unit is generated. 
-    /// </summary>
-    /// <param name="unit"></param>
-    /// <param name="point"></param>
-    /*public void PlaceUnit(PlayerUnitType unit, Vector2 point)
-    {
-        bool pointFound = false;
-        int i = 0;
-        while(!pointFound && i < points.Count)
-        {
-            if (point == points[i].pointAxes)
-            {
-                pointFound = true;
-            }
-            else
-            {
-                i++;
-            }
-        }
-
-        if (!pointFound)
-            return;
-        
-        //if we got here, point was found. Generate unit.
-        PlayerUnit newUnit = null;
-        //check what player picked and instantiate
-        switch (unit)
-        {
-            case PlayerUnitType.Base:   //there can only be 1
-                newUnit = Instantiate(basePrefab, playerUnitContainer.transform);
-                break;
-
-            case PlayerUnitType.StraightShooter:
-                newUnit = Instantiate(straightShooterPrefab, playerUnitContainer.transform);
-                break;
-            
-            case PlayerUnitType.VerticalShooter:
-                newUnit = Instantiate(verticalShooterPrefab, playerUnitContainer.transform);
-                break;
-        }
-
-        //must convert the point's location to world coordinates.
-        Vector2 newPos = Camera.main.ScreenToWorldPoint(points[i].transform.position);
-        newUnit.transform.position = newPos;
-        //newUnit.UpdateHealthBar(newPos);        //TODO: Not quite sure why this fixes the healthbar positioning issue for player units.
-        points[i].unit = newUnit;
-
-        //add to list
-        activePlayerUnits.Add(newUnit);
-    }*/
+   
 
     /// <summary>
     /// Sets portal's reference to a point using the given axes
@@ -1151,38 +1100,6 @@ public class GameManager : MonoBehaviour
                 portal.enemyUnits.Add(unit);
             }
         }
-        /*switch(enemyType)
-        {
-            case Portal.EnemyType.Scout:
-                //rename portal
-                portal.name = "Portal - Scout";
-                EnemyUnit_Scout scout = unit as EnemyUnit_Scout;
-                if (deadEnemyUnits.Contains(scout))
-                {
-                    //remove unit from graveyard
-                    scout.GetUnitData(scout.unitData);
-                    scout.portal = portal;
-                    activeEnemyUnits.Add(scout);
-                    deadEnemyUnits.Remove(scout);
-                }
-                else
-                {
-                    unit = Instantiate(scoutPrefab, portal.transform);
-                    unit.portal = portal;
-                    unit.gameObject.SetActive(false);
-                    activeEnemyUnits.Add(unit);
-                }
-                break;
-
-            case Portal.EnemyType.Striker:
-                break;
-            
-            case Portal.EnemyType.Dozer:
-                break;
-
-            case Portal.EnemyType.Juggernaut:
-                break;
-        }*/
     }
 
     /// <summary>
@@ -1281,24 +1198,13 @@ public class GameManager : MonoBehaviour
                 //disable Y values, then disable X values.
                 //TODO: Have dialogue during tutorial to explain how to set units
                 DisplayAlert(GetText("unitSelect_x"));
-                //alertText.text = GetText("unitSelect_x");
                 axisContainerY.gameObject.SetActive(false);
-
-                //if we're in the tutorial, do some extra steps
-                /*if (inTutorial)
-                {
-                    //display dialogue
-                    previousState = state;  //need this so the unit selection isn't lost.
-                    string dKey = dialogueManager.dialogueList[1].dialogueKeyList[0];
-                    dialogueManager.dialogueList[1].ShowDialogue(dKey);
-                }*/
                 break;
             
             case GameState.UnitSelectY:
                 //disable Y values, then disable X values.
                 //TODO: in tutorial, make mention of origin and how it might be used
                 DisplayAlert(GetText("unitSelect_y"));
-                //alertText.text = GetText("unitSelect_y");
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(false);
                 break;

@@ -22,7 +22,7 @@ namespace MMurray.LastLine
         //public HintDialogueManager HintDialogueManager { get; set; }
         public ScreenFade ScreenFade {get; private set;}
         //public UI UI { get; set; }
-        //public AudioManager AudioManager { get; private set; }
+        public AudioManager AudioManager { get; private set; }
         public TitleManager TitleManager {get; private set;}
         public Menu Menu {get; set;}
         public ArrowGuideManager ArrowGuideManager {get; set;}
@@ -49,7 +49,7 @@ namespace MMurray.LastLine
             ScreenFade = GetComponentInChildren<ScreenFade>();
             //if (ScreenFade != null)
                 //Debug.Log("ScreenFade not null");
-            //AudioManager = GetComponentInChildren<AudioManager>();
+            AudioManager = GetComponentInChildren<AudioManager>();
             gameData = new GameData();
             saveState = new SaveState();
             Application.runInBackground = false;

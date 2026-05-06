@@ -72,8 +72,8 @@ public class TitleManager : MonoBehaviour
             return;
 
         //the save state is deleted when starting a new game.
-        //AudioManager audio = Singleton.instance.AudioManager;
-        //audio.soundSource.PlayOneShot(audio.click, audio.soundVolume);
+        AudioManager audio = Singleton.instance.AudioManager;
+        audio.soundSource.PlayOneShot(audio.buttonClick, audio.soundVolume);
         PlayerPrefs.DeleteAll();
         Singleton.instance.musicEnabled = true;
         Singleton.instance.ttsEnabled = true;
