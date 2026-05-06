@@ -294,30 +294,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Title Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 4754998889683781077, guid: 962e48a04cb7f9c33b7662608ca3f100, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754998889683781077, guid: 962e48a04cb7f9c33b7662608ca3f100, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754998889683781077, guid: 962e48a04cb7f9c33b7662608ca3f100, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754998889683781077, guid: 962e48a04cb7f9c33b7662608ca3f100, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754998889683781077, guid: 962e48a04cb7f9c33b7662608ca3f100, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -101.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754998889683781077, guid: 962e48a04cb7f9c33b7662608ca3f100, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 24.7
-      objectReference: {fileID: 0}
     - target: {fileID: 7132115675224120166, guid: 962e48a04cb7f9c33b7662608ca3f100, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.019318473
@@ -358,25 +334,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7468506112219386801, guid: 962e48a04cb7f9c33b7662608ca3f100, type: 3}
-      propertyPath: m_text
-      value: v1.0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468506112219386801, guid: 962e48a04cb7f9c33b7662608ca3f100, type: 3}
-      propertyPath: m_fontSize
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468506112219386801, guid: 962e48a04cb7f9c33b7662608ca3f100, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468506112219386801, guid: 962e48a04cb7f9c33b7662608ca3f100, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 7468506112219386801, guid: 962e48a04cb7f9c33b7662608ca3f100, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 4
+    - target: {fileID: 7465093715664420353, guid: 962e48a04cb7f9c33b7662608ca3f100, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CreditsButtonClicked
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
