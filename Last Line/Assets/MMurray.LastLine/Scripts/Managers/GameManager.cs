@@ -749,6 +749,9 @@ public class GameManager : MonoBehaviour
 
     void CallExplosion(Vector2 location)
     {
+        AudioManager am = Singleton.instance.AudioManager;
+        am.soundSource.PlayOneShot(am.unitExplode, am.soundVolume);
+
         //instantiate explosion only if one doesn't exist already in the explosion list.
         if (explosionList.Count <= 0)
         {
@@ -1697,8 +1700,10 @@ public class GameManager : MonoBehaviour
     //pauses game for a duration, then base explodes, followed by a "BASE DESTROYED" message
     IEnumerator ExplodeBase()
     {
+        AudioManager am = Singleton.instance.AudioManager;
         yield return new WaitForSeconds(1);
         playerBase.gameObject.SetActive(false);
+        am.soundSource.PlayOneShot(am.baseExplode, am.soundVolume - 0.1f);
         baseExplosion.Play(playerBase.transform.position);
         //yield return new WaitForSeconds(2);
         gameOverText.ShowText();

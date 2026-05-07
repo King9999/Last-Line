@@ -278,7 +278,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0330b0cd86580e2dcbd22a1c44f87110, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30756c9da95c6de69b700e6042852cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundVolume: 1
+  soundVolume: 0.6
   mainMusic: {fileID: 0}
   buildSound: {fileID: 5885523595256691872}
   soundSource: {fileID: 1220199200347477058}
@@ -545,6 +545,8 @@ MonoBehaviour:
   buttonClick: {fileID: 8300000, guid: cba07df57557cc1e5b2a037d72a6ae4a, type: 3}
   buttonClickStartGame: {fileID: 8300000, guid: 8c9423ce228752007a6427780f58192d, type: 3}
   targetCursorSound: {fileID: 8300000, guid: 328964f60f6b16379b3b757d4cab4b4f, type: 3}
+  baseExplode: {fileID: 8300000, guid: 9fa8cbe1f0284a543a6fa9306fbc6355, type: 3}
+  unitExplode: {fileID: 8300000, guid: 3367d2221b7e5e0048466cca5da55d2e, type: 3}
 --- !u!1 &7844255965132947321
 GameObject:
   m_ObjectHideFlags: 0

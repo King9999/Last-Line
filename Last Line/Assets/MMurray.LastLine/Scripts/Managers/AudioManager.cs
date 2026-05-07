@@ -18,6 +18,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip buttonClick;
     public AudioClip buttonClickStartGame;  //used when player starts game or continues from a save state
     public AudioClip targetCursorSound;
+    public AudioClip baseExplode;
+    public AudioClip unitExplode;
                  
 
 
