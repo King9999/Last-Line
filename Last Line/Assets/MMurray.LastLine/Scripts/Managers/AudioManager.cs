@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource buildSound;      //sound for when a unit is building.
     public AudioSource soundSource;     //for general sounds
     public AudioSource trackingBeamShot;
+    public AudioSource bombExplode;
 
     [Header("---Audio Clips---")]
     public AudioClip bulletSfx;        //used by straight shooter and striker

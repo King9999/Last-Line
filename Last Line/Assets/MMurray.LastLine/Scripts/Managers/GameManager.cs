@@ -1133,6 +1133,8 @@ public class GameManager : MonoBehaviour
                 if (unit is PlayerUnit_Bomb)
                 {
                     PlayerUnit_Bomb bomb = unit as PlayerUnit_Bomb;
+                    AudioManager am = Singleton.instance.AudioManager;
+                    am.bombExplode.Play();
                     bombExplosion.Play(unit.transform.position, bomb.BombRange() * 2);
                 }
                 else

@@ -179,11 +179,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &721183238 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1753147330076923611, guid: 93bfff934e5ef0199816053d315d14a1, type: 3}
-  m_PrefabInstance: {fileID: 8524748365512826198}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &990072143
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +339,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1937667078 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8325429661064761352, guid: 93bfff934e5ef0199816053d315d14a1, type: 3}
+  m_PrefabInstance: {fileID: 8524748365512826198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8524748365512826198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -397,21 +397,9 @@ PrefabInstance:
       value: Master Singleton
       objectReference: {fileID: 0}
     - target: {fileID: 8456802421609386527, guid: 93bfff934e5ef0199816053d315d14a1, type: 3}
-      propertyPath: laserSfx
+      propertyPath: bombExplode
       value: 
-      objectReference: {fileID: 8300000, guid: a0255fe72fdf372e480a724b94b380d3, type: 3}
-    - target: {fileID: 8456802421609386527, guid: 93bfff934e5ef0199816053d315d14a1, type: 3}
-      propertyPath: bulletSfx
-      value: 
-      objectReference: {fileID: 8300000, guid: dbe010eaa8b8d53c194d6aa72c6cf17a, type: 3}
-    - target: {fileID: 8456802421609386527, guid: 93bfff934e5ef0199816053d315d14a1, type: 3}
-      propertyPath: trackingBeamShot
-      value: 
-      objectReference: {fileID: 721183238}
-    - target: {fileID: 8456802421609386527, guid: 93bfff934e5ef0199816053d315d14a1, type: 3}
-      propertyPath: trackingBeamCharging
-      value: 
-      objectReference: {fileID: 8300000, guid: 99e55457f66fadbf78d43892f1693ca6, type: 3}
+      objectReference: {fileID: 1937667078}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
