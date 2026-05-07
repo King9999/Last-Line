@@ -59,6 +59,8 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         {
             //cooldownTimer = Time.time;
             bullet.gameObject.SetActive(true);
+            AudioManager audio = Singleton.instance.AudioManager;
+            audio.soundSource.PlayOneShot(audio.bulletSfx, audio.soundVolume);
 
             //Extra step in case weapon cooldown was altered due to piercing bullet getting blocked by something.
             if (isEnhanced && weaponCooldown > 0)

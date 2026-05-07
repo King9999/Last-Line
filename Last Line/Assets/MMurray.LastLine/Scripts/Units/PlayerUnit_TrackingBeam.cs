@@ -33,6 +33,9 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
         base.OnEnable();
         if (animateBeam != null)
             StopCoroutine(animateBeam);
+        
+        AudioManager audio = Singleton.instance.AudioManager;
+        audio.trackingBeamShot.Stop();  //just in case it was playing before.
     }
 
 
@@ -49,6 +52,8 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
         if (OneSecondRemaining() && !isCharging)
         {
             isCharging = true;
+            AudioManager audio = Singleton.instance.AudioManager;
+            audio.soundSource.PlayOneShot(audio.trackingBeamCharging, audio.soundVolume);
             chargeParticles.Play();
             Logger.DebugLog("Charging laser!");
         }    
@@ -118,6 +123,9 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
     void FireWeapon(EnemyUnit target)
     {
         if (target == null)
+            return;
+        
+        if (beamFired)
             return;
 
         if (!isEnhanced)
@@ -201,6 +209,9 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
 
             animateBeam = StartCoroutine(AnimateBeam(1));
         }
+
+        AudioManager audio = Singleton.instance.AudioManager;
+        audio.trackingBeamShot.Play();
     }
 
     public override void EnhanceUnit()
@@ -228,7 +239,7 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
                 Logger.DebugLogFormat("beam width {0}", beam.widthCurve.keys[j].value);
                 yield return null;
             }*/
-            beam.widthMultiplier -= 0.05f * Time.deltaTime;
+            beam.widthMultiplier -= 0.3f * Time.deltaTime;
             yield return null;
         }
         //yield return new WaitForSeconds(duration);

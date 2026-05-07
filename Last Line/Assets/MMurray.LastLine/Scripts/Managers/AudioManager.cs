@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource mainMusic;       //plays during gameplay.
     public AudioSource buildSound;      //sound for when a unit is building.
     public AudioSource soundSource;     //for general sounds
+    public AudioSource trackingBeamShot;
 
     [Header("---Audio Clips---")]
     public AudioClip bulletSfx;        //used by straight shooter and striker
@@ -20,6 +21,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip targetCursorSound;
     public AudioClip baseExplode;
     public AudioClip unitExplode;
+    public AudioClip trackingBeamCharging;
                  
 
 
@@ -29,9 +31,10 @@ public class AudioManager : MonoBehaviour
         soundSource.volume = soundVolume;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StopAllSounds()
     {
-        
+        mainMusic.Stop();
+        buildSound.Stop();
+        soundSource.Stop();
     }
 }

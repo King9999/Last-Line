@@ -91,6 +91,8 @@ public class EnemyUnit_Striker : EnemyUnit
     {
         bullet.gameObject.SetActive(true);
         bullet.direction = direction;
+        AudioManager audio = Singleton.instance.AudioManager;
+        audio.soundSource.PlayOneShot(audio.bulletSfx, audio.soundVolume);
     }
 
     //Checks for collision against player units.

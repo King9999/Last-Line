@@ -194,6 +194,8 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
                 lasersReady = LasersReadyToFire();
                 if (lasersReady && Time.time > cooldownTimer + weaponCooldown)
                 {
+                    AudioManager audio = Singleton.instance.AudioManager;
+                    audio.soundSource.PlayOneShot(audio.laserSfx, audio.soundVolume);
                     cooldownTimer = Time.time;
                     Logger.DebugLog("Lasers ready");
                 }

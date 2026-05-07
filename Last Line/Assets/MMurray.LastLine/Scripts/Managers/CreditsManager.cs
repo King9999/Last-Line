@@ -19,6 +19,7 @@ public class CreditsManager : MonoBehaviour
     [SerializeField]private TextMeshProUGUI uiText;
     [SerializeField]private TextMeshProUGUI musicText;
     [SerializeField]private TextMeshProUGUI soundText;
+    [SerializeField]private TextMeshProUGUI disclaimerText;     //disclaimer that no AI was used. Shouldn't have to state this
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +41,7 @@ public class CreditsManager : MonoBehaviour
         uiText.text = GetText("credit_ui");
         musicText.text = GetText("credit_music");
         soundText.text = GetText("credit_sfx");
+        disclaimerText.text = GetText("disclaimer");
     }
 
     public void BackButtonClicked()

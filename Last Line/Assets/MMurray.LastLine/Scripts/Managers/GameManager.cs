@@ -1701,6 +1701,7 @@ public class GameManager : MonoBehaviour
     IEnumerator ExplodeBase()
     {
         AudioManager am = Singleton.instance.AudioManager;
+        am.StopAllSounds();
         yield return new WaitForSeconds(1);
         playerBase.gameObject.SetActive(false);
         am.soundSource.PlayOneShot(am.baseExplode, am.soundVolume - 0.1f);
