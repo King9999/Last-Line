@@ -19,14 +19,14 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
     private bool beamFired;
 
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
         //there will always be at least 1 point that won't change.
         linePositions.Add(transform.position);
         beam.widthMultiplier = 0.3f;
         beam.gameObject.SetActive(false);
         //EnhanceUnit();
-    }
+    }*/
 
     protected override void OnEnable()
     {
@@ -34,8 +34,12 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
         if (animateBeam != null)
             StopCoroutine(animateBeam);
         
-        AudioManager audio = Singleton.instance.AudioManager;
-        audio.trackingBeamShot.Stop();  //just in case it was playing before.
+        //reset line position
+        if (linePositions.Count > 0)
+            linePositions.Clear();
+        linePositions.Add(transform.position);
+        beam.widthMultiplier = 0.3f;
+        beam.gameObject.SetActive(false);
     }
 
 

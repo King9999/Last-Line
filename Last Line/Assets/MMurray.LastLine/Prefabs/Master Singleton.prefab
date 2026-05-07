@@ -102,6 +102,134 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &2436201946534846435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7019563243920529350}
+  - component: {fileID: 1753147330076923611}
+  m_Layer: 0
+  m_Name: Tracking Beam Shot Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7019563243920529350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2436201946534846435}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5742402786674165117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1753147330076923611
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2436201946534846435}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7ad08303cbf14fdbf87521dbf3d05802, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.6
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2479823784972192502
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,6 +650,7 @@ Transform:
   m_Children:
   - {fileID: 6879065745628743682}
   - {fileID: 113470496242629831}
+  - {fileID: 7019563243920529350}
   m_Father: {fileID: 1831436354224451263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8456802421609386527
@@ -540,13 +669,15 @@ MonoBehaviour:
   mainMusic: {fileID: 0}
   buildSound: {fileID: 5885523595256691872}
   soundSource: {fileID: 1220199200347477058}
-  bulletSfx: {fileID: 0}
-  laserSfx: {fileID: 0}
+  trackingBeamShot: {fileID: 1753147330076923611}
+  bulletSfx: {fileID: 8300000, guid: dbe010eaa8b8d53c194d6aa72c6cf17a, type: 3}
+  laserSfx: {fileID: 8300000, guid: a0255fe72fdf372e480a724b94b380d3, type: 3}
   buttonClick: {fileID: 8300000, guid: cba07df57557cc1e5b2a037d72a6ae4a, type: 3}
   buttonClickStartGame: {fileID: 8300000, guid: 8c9423ce228752007a6427780f58192d, type: 3}
   targetCursorSound: {fileID: 8300000, guid: 328964f60f6b16379b3b757d4cab4b4f, type: 3}
   baseExplode: {fileID: 8300000, guid: 9fa8cbe1f0284a543a6fa9306fbc6355, type: 3}
   unitExplode: {fileID: 8300000, guid: 3367d2221b7e5e0048466cca5da55d2e, type: 3}
+  trackingBeamCharging: {fileID: 8300000, guid: 99e55457f66fadbf78d43892f1693ca6, type: 3}
 --- !u!1 &7844255965132947321
 GameObject:
   m_ObjectHideFlags: 0
