@@ -15,7 +15,10 @@ public class AudioManager : MonoBehaviour
     [Header("---Audio Clips---")]
     public AudioClip bulletSfx;        //used by straight shooter and striker
     public AudioClip laserSfx;          //used by vertical shooter
-    public AudioClip buttonClick;                
+    public AudioClip buttonClick;
+    public AudioClip buttonClickStartGame;  //used when player starts game or continues from a save state
+    public AudioClip targetCursorSound;
+                 
 
 
     // Start is called before the first frame update

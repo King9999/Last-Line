@@ -80,6 +80,9 @@ public class UnitButton : MonoBehaviour
                 break;
         }*/
 
+        AudioManager audio = Singleton.instance.AudioManager;
+        audio.soundSource.PlayOneShot(audio.buttonClick, audio.soundVolume);
+
         Logger.DebugLogFormat("Unit cost: {0}", data.unitCost);
 
         if (gm.inTutorial)

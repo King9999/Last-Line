@@ -22,6 +22,9 @@ public class AxisButton : MonoBehaviour
 
         if (dm.dialogueOpen || gm.UnplayableState())
             return;
+        
+        AudioManager audio = Singleton.instance.AudioManager;
+        audio.soundSource.PlayOneShot(audio.buttonClick, audio.soundVolume);
 
         //check which axis we're on and record the value. A special case is made for the origin.
         if (axisValue == AxisValue.ORIGIN)

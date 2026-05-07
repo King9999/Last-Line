@@ -322,9 +322,16 @@ public class GameManager : MonoBehaviour
             Menu menu = Singleton.instance.Menu;
             progressBars[progressIndex].radialBar.fillAmount = (Time.time - buildTimer[progressIndex]) / unit.buildTime;
 
+            //update sound
+            AudioManager am = Singleton.instance.AudioManager;
+            if (!am.buildSound.isPlaying)
+                am.buildSound.Play();
+
             if (Time.time > buildTimer[progressIndex] + unit.buildTime)
             {
                 //deploy unit.
+                am.buildSound.Stop();
+                SpeakText("unitDeployed");
                 activePlayerUnits.Add(unit);
                 unit.gameObject.SetActive(true);
                 buildQueue.Dequeue();
@@ -380,9 +387,10 @@ public class GameManager : MonoBehaviour
         //int oldAmount = money;
         //int newAmount = money + amount;
         //animateMoneyCoroutine = StartCoroutine(AnimateMoney(newAmount));
-        money += amount;
-        if (money > 999)
-            money = 999;
+        //money += amount;
+        money = (money + amount <= 999) ? money + amount : 999;
+        //if (money > 999)
+            //money = 999;
 
         Menu menu = Singleton.instance.Menu;
         menu.UpdateMoneyText();

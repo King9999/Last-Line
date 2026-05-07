@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MMurray.LastLine;
 
 /* Appears when the player chooses a point without selecting a unit first. */
 public class TargetCursor : MonoBehaviour
@@ -38,6 +39,10 @@ public class TargetCursor : MonoBehaviour
             transform.localScale = new Vector3(newScaleX, newScaleY, 1);
             yield return null;
         }
+
+        //play sound
+        AudioManager audio = Singleton.instance.AudioManager;
+        audio.soundSource.PlayOneShot(audio.targetCursorSound, audio.soundVolume);
 
         yield return new WaitForSeconds(0.8f);
         transform.localScale = new Vector3(defaultScale, defaultScale, 1);

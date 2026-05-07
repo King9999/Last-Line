@@ -17,6 +17,9 @@ public class SystemButton : MonoBehaviour
         GameManager gm = Singleton.instance.GameManager;
         Menu menu = Singleton.instance.Menu;
 
+        AudioManager audio = Singleton.instance.AudioManager;
+        audio.soundSource.PlayOneShot(audio.buttonClick, audio.soundVolume);
+
         //check which button was clicked.
         switch (option)
         {
