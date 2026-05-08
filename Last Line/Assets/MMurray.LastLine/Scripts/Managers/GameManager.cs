@@ -609,7 +609,9 @@ public class GameManager : MonoBehaviour
         }*/
 
         Logger.DebugLogFormat("Level Count: {0}", levelData.levels.Length);
+        //resetting values
         totalEnemies = 0;
+        accumulatedMoney = 0;
 
         for (int i = 0; i < levelData.levels[level].portals.Count; i++)
         {
