@@ -17,6 +17,7 @@ namespace MMurray.LastLine
             Singleton s = Singleton.instance;
             //data.test_unit_pos = gm.testUnit.transform.position;
             data.level = gm.currentLevel;
+            data.max_levels = gm.maxLevels;
             data.tts_enabled = s.ttsEnabled;
             data.music_enabled = s.musicEnabled;
 

@@ -1525,7 +1525,7 @@ public class GameManager : MonoBehaviour
             StopCoroutine(alertCoroutine);
         //StopCoroutine(Alert(""));   //just in case coroutine was running. Otherwise msg will disappear.
         alertText.text = msg;
-        SpeakText(msg);
+        //SpeakText(msg);
     }
 
     public void DisplayAlertWithDuration(string msg, float duration = 4)
@@ -1533,7 +1533,7 @@ public class GameManager : MonoBehaviour
         if (alertCoroutine != null)
             StopCoroutine(alertCoroutine);
         alertCoroutine = StartCoroutine(Alert(msg, duration));
-        SpeakText(msg);
+        //SpeakText(msg);
     }
 
     void DestroyBase()
