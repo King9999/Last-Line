@@ -14,9 +14,9 @@ namespace MMurray.LastLine
         public int max_levels;      //includes tutorial levels
 
         /***********player data. Includes positions of all player units, as well as money *******/
-        public List<Vector2> unit_positions;
-        public int money;
-        public Vector2 test_unit_pos;
+        //public List<Vector2> unit_positions;
+        //public int money;
+        //public Vector2 test_unit_pos;
 
         /**********Enemy data**********/
 

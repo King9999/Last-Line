@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     [Header("---Level File---")]
     [SerializeField]private TextAsset levelFile;
-    Levels levelData;
+    [SerializeField]Levels levelData;
 
     [Header("---UI---")]
     public TextMeshProUGUI alertText;           //used to inform player of various things.
@@ -172,7 +172,8 @@ public class GameManager : MonoBehaviour
         Singleton s = Singleton.instance;
         if (s.saveStateFound)
         {
-            s.saveState.LoadState(s.saveState.ReadState);
+            //s.saveState.LoadState(s.saveState.ReadState);
+            currentLevel = s.gameData.level;
             //s.saveState.ReadState(s.gameData);
         }
 

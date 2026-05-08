@@ -3728,6 +3728,13 @@ struct GUILayoutUtility_t48D00CD11CFC1E09E8EC2E51D59E735F5D24836F  : public Runt
 struct GUIUtility_tA20863F7281628086EFC61CF90CB52D20E1FD76A  : public RuntimeObject
 {
 };
+struct GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5  : public RuntimeObject
+{
+	int32_t ___level;
+	int32_t ___max_levels;
+	bool ___music_enabled;
+	bool ___tts_enabled;
+};
 struct GlobalizationMode_t8C0DD244B8C6347DE7AB7AE83B10911D2EB7582A  : public RuntimeObject
 {
 };
@@ -23293,16 +23300,6 @@ struct GUIStyleState_t7A948723D9DCDFD8EE4F418B6EC909C18E023F95_marshaled_com
 {
 	intptr_t ___m_Ptr;
 	GUIStyle_t20BA2F9F3FE9D13AAA607EEEBE5547835A6F6580_marshaled_com* ___m_SourceStyle;
-};
-struct GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5  : public RuntimeObject
-{
-	int32_t ___level;
-	int32_t ___max_levels;
-	List_1_t8F3790B7F8C471B3A1336522C7415FB0AC36D47B* ___unit_positions;
-	int32_t ___money;
-	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___test_unit_pos;
-	bool ___music_enabled;
-	bool ___tts_enabled;
 };
 struct GameState_tC983BACF990EE4872C1D748FF28D91407835490F 
 {

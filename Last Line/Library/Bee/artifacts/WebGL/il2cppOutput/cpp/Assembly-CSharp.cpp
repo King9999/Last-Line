@@ -844,6 +844,13 @@ struct Alternative_tB6AA9F1D10BBEDF88D5A92F924B7672499889E3B  : public RuntimeOb
 struct CustomYieldInstruction_t6B81A50D5D210C1ACAAE247FB53B65CDFFEB7617  : public RuntimeObject
 {
 };
+struct GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5  : public RuntimeObject
+{
+	int32_t ___level;
+	int32_t ___max_levels;
+	bool ___music_enabled;
+	bool ___tts_enabled;
+};
 struct JSONNode_tB60A2E9FF9130CDB864BD5CEFFBDAD3D9377EF79  : public RuntimeObject
 {
 };
@@ -1641,16 +1648,6 @@ struct FontStyles_t9E611EE6BBE6E192A73EAFF7872596517C527FF5
 struct FontWeight_tA2585C0A73B70D31CE71E7843149098A5E16BC80 
 {
 	int32_t ___value__;
-};
-struct GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5  : public RuntimeObject
-{
-	int32_t ___level;
-	int32_t ___max_levels;
-	List_1_t8F3790B7F8C471B3A1336522C7415FB0AC36D47B* ___unit_positions;
-	int32_t ___money;
-	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___test_unit_pos;
-	bool ___music_enabled;
-	bool ___tts_enabled;
 };
 struct GameState_tC983BACF990EE4872C1D748FF28D91407835490F 
 {
@@ -15430,8 +15427,6 @@ IL_0014:
 		TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* L_2 = __this->___alertText;
 		String_t* L_3 = ___0_msg;
 		VirtualActionInvoker1< String_t* >::Invoke(66, L_2, L_3);
-		String_t* L_4 = ___0_msg;
-		GameManager_SpeakText_mCE1740F0B0EBFF8B7CA7E506308748B7A6D884D3(__this, L_4, NULL);
 		return;
 	}
 }
@@ -15459,8 +15454,6 @@ IL_0014:
 		L_5 = MonoBehaviour_StartCoroutine_m4CAFF732AA28CD3BDC5363B44A863575530EC812(__this, L_4, NULL);
 		__this->___alertCoroutine = L_5;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___alertCoroutine), (void*)L_5);
-		String_t* L_6 = ___0_msg;
-		GameManager_SpeakText_mCE1740F0B0EBFF8B7CA7E506308748B7A6D884D3(__this, L_6, NULL);
 		return;
 	}
 }

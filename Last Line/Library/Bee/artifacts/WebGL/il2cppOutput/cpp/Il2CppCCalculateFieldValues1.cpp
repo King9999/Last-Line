@@ -734,6 +734,13 @@ struct GUILayoutUtility_t48D00CD11CFC1E09E8EC2E51D59E735F5D24836F  : public Runt
 struct GUIUtility_tA20863F7281628086EFC61CF90CB52D20E1FD76A  : public RuntimeObject
 {
 };
+struct GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5  : public RuntimeObject
+{
+	int32_t ___level;
+	int32_t ___max_levels;
+	bool ___music_enabled;
+	bool ___tts_enabled;
+};
 struct GraphicRegistry_t374118CCD6DBB47209C783A4BF2F4EF9EA78A326  : public RuntimeObject
 {
 	Dictionary_2_tEE7FC6BA6AB04543D3D194562A8EF7670F76FAA5* ___m_Graphics;
@@ -8993,16 +9000,6 @@ struct GUIStyleState_t7A948723D9DCDFD8EE4F418B6EC909C18E023F95_marshaled_com
 {
 	intptr_t ___m_Ptr;
 	GUIStyle_t20BA2F9F3FE9D13AAA607EEEBE5547835A6F6580_marshaled_com* ___m_SourceStyle;
-};
-struct GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5  : public RuntimeObject
-{
-	int32_t ___level;
-	int32_t ___max_levels;
-	List_1_t8F3790B7F8C471B3A1336522C7415FB0AC36D47B* ___unit_positions;
-	int32_t ___money;
-	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___test_unit_pos;
-	bool ___music_enabled;
-	bool ___tts_enabled;
 };
 struct GameState_tC983BACF990EE4872C1D748FF28D91407835490F 
 {
@@ -18773,9 +18770,9 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable3771[1] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable3772[7] = 
 {
 	static_cast<int32_t>(offsetof(PortalData_tA6B0217C0AAA5BC25937FCCB2CDAE716A61E42E0, ___point_axes)),static_cast<int32_t>(offsetof(PortalData_tA6B0217C0AAA5BC25937FCCB2CDAE716A61E42E0, ___point_position)),static_cast<int32_t>(offsetof(PortalData_tA6B0217C0AAA5BC25937FCCB2CDAE716A61E42E0, ___enemy_type)),static_cast<int32_t>(offsetof(PortalData_tA6B0217C0AAA5BC25937FCCB2CDAE716A61E42E0, ___deploy_cooldown)),static_cast<int32_t>(offsetof(PortalData_tA6B0217C0AAA5BC25937FCCB2CDAE716A61E42E0, ___deploy_time)),static_cast<int32_t>(offsetof(PortalData_tA6B0217C0AAA5BC25937FCCB2CDAE716A61E42E0, ___enemy_count)),static_cast<int32_t>(offsetof(PortalData_tA6B0217C0AAA5BC25937FCCB2CDAE716A61E42E0, ___enemy_path_points)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable3773[7] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable3773[4] = 
 {
-	static_cast<int32_t>(offsetof(GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5, ___level)),static_cast<int32_t>(offsetof(GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5, ___max_levels)),static_cast<int32_t>(offsetof(GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5, ___unit_positions)),static_cast<int32_t>(offsetof(GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5, ___money)),static_cast<int32_t>(offsetof(GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5, ___test_unit_pos)),static_cast<int32_t>(offsetof(GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5, ___music_enabled)),static_cast<int32_t>(offsetof(GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5, ___tts_enabled)),};
+	static_cast<int32_t>(offsetof(GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5, ___level)),static_cast<int32_t>(offsetof(GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5, ___max_levels)),static_cast<int32_t>(offsetof(GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5, ___music_enabled)),static_cast<int32_t>(offsetof(GameData_t0AED5F69A9D270EE4087AFA90E7E8C0EEAFF80B5, ___tts_enabled)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable3774[12] = 
 {
 	static_cast<int32_t>(offsetof(Level_tCA18BD4C19AB86AC952DAAC8D287851831388417, ___level)),static_cast<int32_t>(offsetof(Level_tCA18BD4C19AB86AC952DAAC8D287851831388417, ___startingMoney)),static_cast<int32_t>(offsetof(Level_tCA18BD4C19AB86AC952DAAC8D287851831388417, ___crystalThreshold)),static_cast<int32_t>(offsetof(Level_tCA18BD4C19AB86AC952DAAC8D287851831388417, ___crystalValue)),static_cast<int32_t>(offsetof(Level_tCA18BD4C19AB86AC952DAAC8D287851831388417, ___portals)),static_cast<int32_t>(offsetof(Level_tCA18BD4C19AB86AC952DAAC8D287851831388417, ___playerBase)),static_cast<int32_t>(offsetof(Level_tCA18BD4C19AB86AC952DAAC8D287851831388417, ___powerUpSpace)),static_cast<int32_t>(offsetof(Level_tCA18BD4C19AB86AC952DAAC8D287851831388417, ___toggleUnit)),static_cast<int32_t>(offsetof(Level_tCA18BD4C19AB86AC952DAAC8D287851831388417, ___powerUpSpaceActive)),static_cast<int32_t>(offsetof(Level_tCA18BD4C19AB86AC952DAAC8D287851831388417, ___showSmallPlanet)),static_cast<int32_t>(offsetof(Level_tCA18BD4C19AB86AC952DAAC8D287851831388417, ___showMediumPlanet)),static_cast<int32_t>(offsetof(Level_tCA18BD4C19AB86AC952DAAC8D287851831388417, ___showLargePlanet)),};
