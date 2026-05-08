@@ -35,6 +35,9 @@ public class SystemButton : MonoBehaviour
                 {
                     gm.DisplayAlertWithDuration(GetText("musicOn"));
                 }
+
+                gm.PlayMusic(Singleton.instance.musicEnabled);
+
                 //update button sprites
                 menu.UpdateSystemButtonSprites();
                 Singleton.instance.saveState.WriteState(Singleton.instance.gameData);

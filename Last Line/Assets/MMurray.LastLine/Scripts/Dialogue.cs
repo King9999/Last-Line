@@ -35,7 +35,7 @@ public class Dialogue : MonoBehaviour
         canAdvanceDialogue = false;
         currentKey = 0;
         //arrows = new List<ArrowGuide>();
-        promptTimer = 1;
+        //promptTimer = 1;
     }
 
     void Update()

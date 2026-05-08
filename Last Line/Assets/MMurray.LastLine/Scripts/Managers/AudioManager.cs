@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
 
     public void StopAllSounds()
     {
-        mainMusic.Stop();
+        //mainMusic.Stop();
         buildSound.Stop();
         soundSource.Stop();
     }

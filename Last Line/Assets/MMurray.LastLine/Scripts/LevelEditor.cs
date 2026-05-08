@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using MMurray.GenericCode;
-using UnityEditor.Experimental.GraphView;
 
 /* This script is used to add portals and enemy paths to the scene, and record their positions to a JSON file. 
 This all works by copying vector2 data from Level into LevelData. the LevelData gets written to JSON. */

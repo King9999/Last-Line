@@ -271,6 +271,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1346277920 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7597125345759381242, guid: 93bfff934e5ef0199816053d315d14a1, type: 3}
+  m_PrefabInstance: {fileID: 8524748365512826198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1594109297
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,11 +344,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1937667078 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8325429661064761352, guid: 93bfff934e5ef0199816053d315d14a1, type: 3}
-  m_PrefabInstance: {fileID: 8524748365512826198}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8524748365512826198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -396,10 +396,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Master Singleton
       objectReference: {fileID: 0}
+    - target: {fileID: 7597125345759381242, guid: 93bfff934e5ef0199816053d315d14a1, type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8456802421609386527, guid: 93bfff934e5ef0199816053d315d14a1, type: 3}
-      propertyPath: bombExplode
+      propertyPath: mainMusic
       value: 
-      objectReference: {fileID: 1937667078}
+      objectReference: {fileID: 1346277920}
     - target: {fileID: 8456802421609386527, guid: 93bfff934e5ef0199816053d315d14a1, type: 3}
       propertyPath: crystalSpawned
       value: 
