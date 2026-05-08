@@ -207,14 +207,14 @@ public class GameManager : MonoBehaviour
         testLaser.FireWeapon(fireDir, z);*/
     }
 
-    void OnGUI()
+    /*void OnGUI()
     {
         if (GUI.Button(new Rect(0, 0, 100, 50), "Restart"))
         {
             Logger.DebugLog("Restarting level");
             Singleton.instance.ScreenFade.LoadLevelFadeOut(currentLevel);
         }
-    }
+    }*/
 
     /// <summary>
     /// Used to check when the Update loop should stop running when the game enters a state where the player
@@ -590,6 +590,7 @@ public class GameManager : MonoBehaviour
         //This is done here because only the current level is saved and nothing else.
         //The player resumes from the beginning of the level.
         Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
+        Logger.DebugLogFormat("Level is now {0}", Singleton.instance.gameData.level);
 
 
         //ready button check. button is disabled by default.

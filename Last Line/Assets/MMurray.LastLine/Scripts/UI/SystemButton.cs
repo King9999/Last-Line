@@ -60,6 +60,7 @@ public class SystemButton : MonoBehaviour
                 break;
 
             case Options.ExitGame:
+                gm.PlayMusic(false);
                 //save current state before changing screen
                 Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
                 ScreenFade sf = Singleton.instance.ScreenFade;
