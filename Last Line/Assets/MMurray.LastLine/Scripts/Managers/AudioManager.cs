@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip baseExplode;
     public AudioClip unitExplode;
     public AudioClip trackingBeamCharging;
+    public AudioClip crystalSpawned;
                  
 
 

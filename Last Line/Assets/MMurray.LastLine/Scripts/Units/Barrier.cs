@@ -34,6 +34,13 @@ public class Barrier : MonoBehaviour
             if (unit is PlayerUnit_Base)
                 //just remove barrier. Base doesn't take damage from barrier.
                 gameObject.SetActive(false);
+            else if(unit is PlayerUnit_Bomb)
+            {
+                //barrier is disabled, but bomb is activated.
+                PlayerUnit_Bomb bomb = unit as PlayerUnit_Bomb;
+                bomb.ActivateBomb();
+                gameObject.SetActive(false);
+            }
             else
             {
                 gm.RemovePlayerUnit(unit);
@@ -42,7 +49,7 @@ public class Barrier : MonoBehaviour
                 gameObject.SetActive(false);
             }
             
-            Logger.DebugLog("Barrier hit unit");
+            Logger.DebugLogFormat("Barrier hit unit {0}", unit.name);
         }
     }
 }

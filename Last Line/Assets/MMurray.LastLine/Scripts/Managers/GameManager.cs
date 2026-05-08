@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         Normal, EnemyPreparing,                //when game state is normal the game is running. Otherwise the game is paused.
-        UnitSelectX, UnitSelectY, ///player is entering coordinates
+        UnitSelectX, UnitSelectY,               //player is entering coordinates
         StartLevel, DialogueStartOfLevel, DialogueEndOfLevel, DialogueGameOver,
         SelectingValueX, SelectingValueY,       //used when placing units on screen.
         BaseDestroyed, LevelComplete, GoToNextLevel, GameCompleted
@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 8;
+        currentLevel = 2;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -387,10 +387,7 @@ public class GameManager : MonoBehaviour
         //int oldAmount = money;
         //int newAmount = money + amount;
         //animateMoneyCoroutine = StartCoroutine(AnimateMoney(newAmount));
-        //money += amount;
         money = (money + amount <= 999) ? money + amount : 999;
-        //if (money > 999)
-            //money = 999;
 
         Menu menu = Singleton.instance.Menu;
         menu.UpdateMoneyText();
@@ -438,6 +435,10 @@ public class GameManager : MonoBehaviour
         {
             accumulatedMoney = 0;
 
+            //play sound
+            AudioManager am = Singleton.instance.AudioManager;
+            am.soundSource.PlayOneShot(am.crystalSpawned, 1);
+
             //generate a crystal and it to random point. On level 2, the crystal appears at a fixed point.
             if (currentLevel == 2)
             {
@@ -455,23 +456,6 @@ public class GameManager : MonoBehaviour
                     SetGameState(tutorialState = TutorialState.CrystalIntro);
                 }
 
-                /*int i = 0;
-                bool originFound = false;
-                while(!originFound && i < points.Count)
-                {
-                    if (points[i].pointAxes == Vector2.zero)
-                    {
-                        originFound = true;
-                        crystal.transform.position = Camera.main.ScreenToWorldPoint(points[i].transform.position);
-                        crystal.transform.position = new Vector3(crystal.transform.position.x, crystal.transform.position.y, 1);
-                        points[i].crystal = crystal;
-                        Logger.DebugLogFormat("Crystal generated at {0}", points[i].pointAxes);
-                    }
-                    else
-                    {
-                        i++;
-                    }
-                }*/
                 
             }
             else
@@ -483,7 +467,7 @@ public class GameManager : MonoBehaviour
                     crystal.transform.position = Camera.main.ScreenToWorldPoint(points[i].transform.position);
                     crystal.transform.position = new Vector3(crystal.transform.position.x, crystal.transform.position.y, 1);    //must change Z so crystal is visible.
                 }
-                while (!points[i].IsEmpty()); //points[i].unit != null && points[i].portal != null);
+                while (!points[i].IsEmpty());
 
                 points[i].crystal = crystal;
                 Logger.DebugLogFormat("Crystal generated at {0}", points[i].pointAxes);
@@ -924,32 +908,11 @@ public class GameManager : MonoBehaviour
             menu.unitsInQueue[menu.queueIndex].enabled = true;
             menu.unitsInQueue[menu.queueIndex].sprite = newUnit.uiSprite;
 
-            //find an available progress bar and activate it.
-            /*bool barFound = false;
-            int i = 0;
-            while (!barFound && i < progressBars.Length)
-            {
-                if (!progressBars[i].ProgressBarActive())
-                {
-                    //availableProgressIndex = i;
-                    barFound = true;
-                }
-                else
-                {
-                    i++;
-                }
-            }*/
-
-            //if (i < progressBars.Length)
-                //progressBars[i].DisplayProgressBar(true, point);
             //active bar index always points to the next bar to activate.
             progressBars[activeBarIndex].DisplayProgressBar(true, point, newUnit.uiSprite);
             activeBarIndex = (activeBarIndex + 1 < progressBars.Length) ? activeBarIndex + 1 : 0;
-            //activePlayerUnits.Add(newUnit);
 
             //save unit's position
-            //Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
-            //playerUnitType = PlayerUnitType.NoUnitSelected;
             SetGameState(gameState = gameStarted ? GameState.Normal : GameState.EnemyPreparing);
         }     
     }
@@ -1325,45 +1288,13 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.LevelComplete:
-                //deactivate current portals for use in the next level.
-                /*foreach (Portal portal in activePortals)
-                {
-                    portal.gameObject.SetActive(false);
-                }*/
+                //stop any sounds that are playing
+                AudioManager audio = Singleton.instance.AudioManager;
+                audio.StopAllSounds();
 
-                //display end level text
-                //endLevelText.gameObject.SetActive(true);
                 endLevelText.ShowText();
-
-                //display dialogue if any
                 Logger.DebugLogFormat("Level {0} complete", currentLevel);
-                //check for conditional trigger to activate dialogue
-                /*triggerFound = false;
-                i = 0;
-                while (!triggerFound && i < dialogueManager.condTriggerList.Count)
-                {
-                    if (dialogueManager.condTriggerList[i].level == currentLevel &&
-                        dialogueManager.condTriggerList[i].condition == DialogueManager.ConditionalTrigger.Condition.LevelEnd)
-                    {
-                        triggerFound = true;
-                    }
-                    else
-                    {
-                        i++;
-                    }
-
-                }
-
-
-                if (triggerFound)
-                {
-                    triggerIndex = i;
-                    SetGameState(gameState = GameState.DialogueEndOfLevel);
-                }
-                else
-                {
-                    SetGameState(gameState = GameState.GoToNextLevel);
-                }*/
+                
                 break;
 
             case GameState.GoToNextLevel:
@@ -1383,9 +1314,6 @@ public class GameManager : MonoBehaviour
                 Singleton.instance.saveState.WriteState(Singleton.instance.gameData);   //save progress
                 ScreenFade sf = Singleton.instance.ScreenFade;
                 sf.ChangeSceneFadeOut("End Screen");
-                //show end message
-                //show exit game button
-                //exitButton.gameObject.SetActive(true);
                 break;
         }
     }
@@ -1562,35 +1490,6 @@ public class GameManager : MonoBehaviour
                 endLevelText.ShowText();
                 //display dialogue if any
                 Logger.DebugLogFormat("Level {0} complete", currentLevel);
-                //check for conditional trigger to activate dialogue
-                /*bool triggerFound = false;
-                int i = 0;
-                while (!triggerFound && i < dialogueManager.condTriggerList.Count)
-                {
-                    if (dialogueManager.condTriggerList[i].level == currentLevel &&
-                        dialogueManager.condTriggerList[i].condition == DialogueManager.ConditionalTrigger.Condition.LevelEnd)
-                    {
-                        triggerFound = true;
-                    }
-                    else
-                    {
-                        i++;
-                    }
-
-                }
-
-
-                if (triggerFound)
-                {
-                    triggerIndex = i;
-                    SetGameState(tutorialState = TutorialState.DialogueEndOfLevel);
-                }
-                else
-                {
-                    SetGameState(gameState = GameState.GoToNextLevel);
-                }*/
-                //load next level
-                //if all levels complete, show congrats
                 break;
         }
     }
