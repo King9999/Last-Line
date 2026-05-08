@@ -8401,7 +8401,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dialogue_Start_m13418F24BA6BCA19C31321CE
 	{
 		__this->___canAdvanceDialogue = (bool)0;
 		__this->___currentKey = 0;
-		__this->___promptTimer = (1.0f);
+		__this->___promptTimer = (3.0f);
 		return;
 	}
 }
@@ -12214,11 +12214,12 @@ IL_003e:
 		L_13 = Component_get_gameObject_m57AEFBB14DB39EC476F740BA000E170355DE691B(L_12, NULL);
 		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_13, (bool)0, NULL);
 		__this->___totalEnemies = 0;
+		__this->___accumulatedMoney = 0;
 		V_2 = 0;
-		goto IL_024d;
+		goto IL_0254;
 	}
 
-IL_007d:
+IL_0084:
 	{
 		Levels_t14283DA03BEE709D6D7E3F384AF656144F3854C3* L_14 = __this->___levelData;
 		LevelDataU5BU5D_tEE32C67033921D9288C925BA9196FD635D823DC2* L_15 = L_14->___levels;
@@ -12237,7 +12238,7 @@ IL_007d:
 		L_24 = List_1_get_Count_m64DDBD4C388481DADCB04CD3994A894551C5FEA7_inline(L_23, List_1_get_Count_m64DDBD4C388481DADCB04CD3994A894551C5FEA7_RuntimeMethod_var);
 		if ((((int32_t)L_22) >= ((int32_t)L_24)))
 		{
-			goto IL_00c4;
+			goto IL_00cb;
 		}
 	}
 	{
@@ -12250,10 +12251,10 @@ IL_007d:
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_29;
 		L_29 = Component_get_gameObject_m57AEFBB14DB39EC476F740BA000E170355DE691B(L_28, NULL);
 		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_29, (bool)1, NULL);
-		goto IL_00de;
+		goto IL_00e5;
 	}
 
-IL_00c4:
+IL_00cb:
 	{
 		Portal_tE2F7930209B3375E45391927843AE7674ACDDE59* L_30 = __this->___portalPrefab;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
@@ -12265,7 +12266,7 @@ IL_00c4:
 		List_1_Add_m1532B684CE60C541DEDDAD02D32FE91D9491E198_inline(L_32, L_33, List_1_Add_m1532B684CE60C541DEDDAD02D32FE91D9491E198_RuntimeMethod_var);
 	}
 
-IL_00de:
+IL_00e5:
 	{
 		Portal_tE2F7930209B3375E45391927843AE7674ACDDE59* L_34 = V_4;
 		PortalData_tA6B0217C0AAA5BC25937FCCB2CDAE716A61E42E0* L_35 = V_3;
@@ -12326,54 +12327,54 @@ IL_00de:
 		{
 			case 0:
 			{
-				goto IL_01a3;
+				goto IL_01aa;
 			}
 			case 1:
 			{
-				goto IL_01ba;
+				goto IL_01c1;
 			}
 			case 2:
 			{
-				goto IL_01d1;
+				goto IL_01d8;
 			}
 			case 3:
 			{
-				goto IL_01e8;
+				goto IL_01ef;
 			}
 		}
 	}
 	{
-		goto IL_01fd;
+		goto IL_0204;
 	}
 
-IL_01a3:
+IL_01aa:
 	{
 		Portal_tE2F7930209B3375E45391927843AE7674ACDDE59* L_70 = V_4;
 		Object_set_name_mC79E6DC8FFD72479C90F0C4CC7F42A0FEAF5AE47(L_70, _stringLiteral09F7639E722E1616E5D250007093DD8738CAB8CD, NULL);
 		Portal_tE2F7930209B3375E45391927843AE7674ACDDE59* L_71 = V_4;
 		GameManager_InstantiateEnemyUnit_m00462DCE631B327A17421F05DFB8AE12A7918B31(__this, 5, L_71, NULL);
-		goto IL_01fd;
+		goto IL_0204;
 	}
 
-IL_01ba:
+IL_01c1:
 	{
 		Portal_tE2F7930209B3375E45391927843AE7674ACDDE59* L_72 = V_4;
 		Object_set_name_mC79E6DC8FFD72479C90F0C4CC7F42A0FEAF5AE47(L_72, _stringLiteral8B877D9A23BDB7365825F72D1A235ABE66C52272, NULL);
 		Portal_tE2F7930209B3375E45391927843AE7674ACDDE59* L_73 = V_4;
 		GameManager_InstantiateEnemyUnit_m00462DCE631B327A17421F05DFB8AE12A7918B31(__this, 6, L_73, NULL);
-		goto IL_01fd;
+		goto IL_0204;
 	}
 
-IL_01d1:
+IL_01d8:
 	{
 		Portal_tE2F7930209B3375E45391927843AE7674ACDDE59* L_74 = V_4;
 		Object_set_name_mC79E6DC8FFD72479C90F0C4CC7F42A0FEAF5AE47(L_74, _stringLiteral998B8313FF6191B7B6ECB301B98598F9567DC80B, NULL);
 		Portal_tE2F7930209B3375E45391927843AE7674ACDDE59* L_75 = V_4;
 		GameManager_InstantiateEnemyUnit_m00462DCE631B327A17421F05DFB8AE12A7918B31(__this, 7, L_75, NULL);
-		goto IL_01fd;
+		goto IL_0204;
 	}
 
-IL_01e8:
+IL_01ef:
 	{
 		Portal_tE2F7930209B3375E45391927843AE7674ACDDE59* L_76 = V_4;
 		Object_set_name_mC79E6DC8FFD72479C90F0C4CC7F42A0FEAF5AE47(L_76, _stringLiteral79C7E46A684501303EBC3F617B50E5F34CB4F5F6, NULL);
@@ -12381,7 +12382,7 @@ IL_01e8:
 		GameManager_InstantiateEnemyUnit_m00462DCE631B327A17421F05DFB8AE12A7918B31(__this, 8, L_77, NULL);
 	}
 
-IL_01fd:
+IL_0204:
 	{
 		Portal_tE2F7930209B3375E45391927843AE7674ACDDE59* L_78 = V_4;
 		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_79 = L_78->___enemyPath;
@@ -12408,7 +12409,7 @@ IL_01fd:
 		V_2 = ((int32_t)il2cpp_codegen_add(L_94, 1));
 	}
 
-IL_024d:
+IL_0254:
 	{
 		int32_t L_95 = V_2;
 		Levels_t14283DA03BEE709D6D7E3F384AF656144F3854C3* L_96 = __this->___levelData;
@@ -12421,7 +12422,7 @@ IL_024d:
 		L_102 = List_1_get_Count_mD1FB5514F78994C6DE64E780C0AE9482CD661E15_inline(L_101, List_1_get_Count_mD1FB5514F78994C6DE64E780C0AE9482CD661E15_RuntimeMethod_var);
 		if ((((int32_t)L_95) < ((int32_t)L_102)))
 		{
-			goto IL_007d;
+			goto IL_0084;
 		}
 	}
 	{
@@ -12438,7 +12439,7 @@ IL_024d:
 		L_110 = GameObject_get_activeSelf_m4F3E5240E138B66AAA080EA30759A3D0517DA368(L_109, NULL);
 		if (L_110)
 		{
-			goto IL_029b;
+			goto IL_02a2;
 		}
 	}
 	{
@@ -12448,7 +12449,7 @@ IL_024d:
 		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_112, (bool)1, NULL);
 	}
 
-IL_029b:
+IL_02a2:
 	{
 		PlayerUnit_Base_t166A087F32DF616DC592E82ED5B3C1384B81C9AE* L_113 = __this->___playerBase;
 		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_114;
@@ -12526,7 +12527,7 @@ IL_029b:
 		bool L_159 = L_158->___power_up_space_active;
 		if (!L_159)
 		{
-			goto IL_0432;
+			goto IL_0439;
 		}
 	}
 	{
@@ -12569,10 +12570,10 @@ IL_029b:
 		LevelData_t2BDD3674B47C7236956255D0CDEBA1569693ECC0* L_181 = V_0;
 		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_182 = L_181->___power_up_space_point_axes;
 		GameManager_SetPointRef_m67797FE0602E522F79C931BAA6C8AA718D8B356A(__this, L_180, L_182, NULL);
-		goto IL_0443;
+		goto IL_044a;
 	}
 
-IL_0432:
+IL_0439:
 	{
 		PowerUpSpace_t27AC9E477434B7A18F1E4CA838880039B732BEE7* L_183 = __this->___powerUpSpace;
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_184;
@@ -12580,13 +12581,13 @@ IL_0432:
 		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_184, (bool)0, NULL);
 	}
 
-IL_0443:
+IL_044a:
 	{
 		V_6 = 0;
-		goto IL_046e;
+		goto IL_0475;
 	}
 
-IL_0448:
+IL_044f:
 	{
 		Menu_t818E8DA587A0E558DE9BC83947BABC9A6FDD0C05* L_185 = V_1;
 		List_1_t4B6B1E3EAE41B8E69B17EE39785C61CA711E275D* L_186 = L_185->___unitButtons;
@@ -12605,14 +12606,14 @@ IL_0448:
 		V_6 = ((int32_t)il2cpp_codegen_add(L_195, 1));
 	}
 
-IL_046e:
+IL_0475:
 	{
 		int32_t L_196 = V_6;
 		LevelData_t2BDD3674B47C7236956255D0CDEBA1569693ECC0* L_197 = V_0;
 		BooleanU5BU5D_tD317D27C31DB892BE79FAE3AEBC0B3FFB73DE9B4* L_198 = L_197->___toggle_unit;
 		if ((((int32_t)L_196) < ((int32_t)((int32_t)(((RuntimeArray*)L_198)->max_length)))))
 		{
-			goto IL_0448;
+			goto IL_044f;
 		}
 	}
 	{
@@ -12643,7 +12644,7 @@ IL_046e:
 		L_214 = AudioSource_get_isPlaying_mC203303F2F7146B2C056CB47B9391463FDF408FC(L_213, NULL);
 		if (L_214)
 		{
-			goto IL_04e2;
+			goto IL_04e9;
 		}
 	}
 	{
@@ -12653,7 +12654,7 @@ IL_046e:
 		GameManager_PlayMusic_m4CF8CC161BDE5CA8C784DD2F7CE7E5930FBB6FB5(__this, L_216, NULL);
 	}
 
-IL_04e2:
+IL_04e9:
 	{
 		return;
 	}

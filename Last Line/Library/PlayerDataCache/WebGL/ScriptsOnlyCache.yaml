@@ -167,50 +167,35 @@ ScriptsOnlyBuild:
     fullTypeName: TitleManager
     methodName: StartButtonClicked
   - assembly: Assembly-CSharp
-    fullTypeName: SystemButton
-    methodName: OnMouseClick
+    fullTypeName: AxisButton
+    methodName: GetValue
   - assembly: Assembly-CSharp
-    fullTypeName: SystemButton
-    methodName: OnMouseClick
+    fullTypeName: AxisButton
+    methodName: GetValue
   - assembly: Assembly-CSharp
-    fullTypeName: SystemButton
-    methodName: OnMouseClick
+    fullTypeName: AxisButton
+    methodName: GetValue
   - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverEnter
+    fullTypeName: AxisButton
+    methodName: GetValue
   - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverExit
+    fullTypeName: AxisButton
+    methodName: GetValue
   - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseClick
+    fullTypeName: AxisButton
+    methodName: GetValue
   - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverEnter
+    fullTypeName: AxisButton
+    methodName: GetValue
   - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverExit
+    fullTypeName: AxisButton
+    methodName: GetValue
   - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseClick
+    fullTypeName: AxisButton
+    methodName: GetValue
   - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverEnter
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverExit
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseClick
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverEnter
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverExit
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseClick
+    fullTypeName: AxisButton
+    methodName: GetValue
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
     methodName: AdvancePortalTimers
@@ -248,35 +233,50 @@ ScriptsOnlyBuild:
     fullTypeName: AxisButton
     methodName: GetValue
   - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
+    fullTypeName: SystemButton
+    methodName: OnMouseClick
   - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
+    fullTypeName: SystemButton
+    methodName: OnMouseClick
   - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
+    fullTypeName: SystemButton
+    methodName: OnMouseClick
   - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverEnter
   - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverExit
   - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
+    fullTypeName: UnitButton
+    methodName: OnMouseClick
   - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverEnter
   - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverExit
   - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
+    fullTypeName: UnitButton
+    methodName: OnMouseClick
   - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverExit
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverExit
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseClick
   - assembly: Assembly-CSharp
     fullTypeName: EndScreenManager
     methodName: EndGame
