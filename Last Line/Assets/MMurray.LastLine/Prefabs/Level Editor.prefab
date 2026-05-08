@@ -953,7 +953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2562223048533548571
 Transform:
   m_ObjectHideFlags: 0
@@ -2277,7 +2277,7 @@ MonoBehaviour:
     - point_axes: {x: 5, y: 2}
       point_position: {x: 586.3, y: 265.9}
       enemy_type: 0
-      deploy_cooldown: 1.5
+      deploy_cooldown: 2
       deploy_time: 10
       enemy_count: 10
       enemy_path_points:
@@ -2302,7 +2302,7 @@ MonoBehaviour:
     - point_axes: {x: 1, y: 1}
       point_position: {x: 195.26001, y: 179.9}
       enemy_type: 0
-      deploy_cooldown: 1.2
+      deploy_cooldown: 2
       deploy_time: 60
       enemy_count: 15
       enemy_path_points:
@@ -2327,7 +2327,7 @@ MonoBehaviour:
     - point_axes: {x: 5, y: 4}
       point_position: {x: 586.3, y: 437.9}
       enemy_type: 0
-      deploy_cooldown: 1.5
+      deploy_cooldown: 2
       deploy_time: 60
       enemy_count: 20
       enemy_path_points:
@@ -2337,7 +2337,7 @@ MonoBehaviour:
     - point_axes: {x: 5, y: 2}
       point_position: {x: 586.3, y: 265.9}
       enemy_type: 0
-      deploy_cooldown: 1.5
+      deploy_cooldown: 2
       deploy_time: 60
       enemy_count: 20
       enemy_path_points:
@@ -2361,7 +2361,7 @@ MonoBehaviour:
     - point_axes: {x: 5, y: 1}
       point_position: {x: 586.3, y: 179.9}
       enemy_type: 0
-      deploy_cooldown: 1.5
+      deploy_cooldown: 2
       deploy_time: 60
       enemy_count: 20
       enemy_path_points:
@@ -2371,7 +2371,7 @@ MonoBehaviour:
     - point_axes: {x: 2, y: 2}
       point_position: {x: 293.02002, y: 265.9}
       enemy_type: 1
-      deploy_cooldown: 2
+      deploy_cooldown: 3
       deploy_time: 120
       enemy_count: 5
       enemy_path_points:
@@ -2387,7 +2387,7 @@ MonoBehaviour:
     power_up_space_point_axes: {x: 0, y: 0}
     toggle_unit: 01010000
     power_up_space_active: 0
-    show_small_planet: 0
+    show_small_planet: 1
     show_medium_planet: 0
     show_large_planet: 0
   - level: 4
@@ -2398,7 +2398,7 @@ MonoBehaviour:
     - point_axes: {x: 0, y: 3}
       point_position: {x: 97.5, y: 351.9}
       enemy_type: 0
-      deploy_cooldown: 1.5
+      deploy_cooldown: 2
       deploy_time: 60
       enemy_count: 20
       enemy_path_points:
@@ -2407,7 +2407,7 @@ MonoBehaviour:
     - point_axes: {x: 1, y: 2}
       point_position: {x: 195.26001, y: 265.9}
       enemy_type: 1
-      deploy_cooldown: 2
+      deploy_cooldown: 3
       deploy_time: 120
       enemy_count: 5
       enemy_path_points:
@@ -2417,7 +2417,7 @@ MonoBehaviour:
     - point_axes: {x: 2, y: 1}
       point_position: {x: 293.02002, y: 179.9}
       enemy_type: 0
-      deploy_cooldown: 1.5
+      deploy_cooldown: 2
       deploy_time: 60
       enemy_count: 20
       enemy_path_points:
@@ -2431,7 +2431,7 @@ MonoBehaviour:
     toggle_unit: 01010000
     power_up_space_active: 1
     show_small_planet: 0
-    show_medium_planet: 0
+    show_medium_planet: 1
     show_large_planet: 0
   - level: 5
     starting_money: 20
@@ -2441,7 +2441,7 @@ MonoBehaviour:
     - point_axes: {x: 5, y: 1}
       point_position: {x: 586.3, y: 179.9}
       enemy_type: 2
-      deploy_cooldown: 3
+      deploy_cooldown: 4
       deploy_time: 60
       enemy_count: 15
       enemy_path_points:
@@ -2467,9 +2467,9 @@ MonoBehaviour:
     - point_axes: {x: 1, y: 1}
       point_position: {x: 195.26001, y: 179.9}
       enemy_type: 0
-      deploy_cooldown: 1.5
+      deploy_cooldown: 2
       deploy_time: 60
-      enemy_count: 60
+      enemy_count: 20
       enemy_path_points:
       - {x: 0, y: 0, z: 0}
       - {x: 0.10313988, y: 2.8275566, z: 0}
@@ -2499,18 +2499,18 @@ MonoBehaviour:
     power_up_space_point_axes: {x: 3, y: 4}
     toggle_unit: 01010100
     power_up_space_active: 1
-    show_small_planet: 0
-    show_medium_planet: 0
+    show_small_planet: 1
+    show_medium_planet: 1
     show_large_planet: 0
   - level: 6
     starting_money: 40
-    crystal_threshold: 20
+    crystal_threshold: 40
     crystal_value: 40
     portals:
     - point_axes: {x: 3, y: 1}
       point_position: {x: 390.78, y: 179.9}
       enemy_type: 2
-      deploy_cooldown: 3
+      deploy_cooldown: 4
       deploy_time: 120
       enemy_count: 5
       enemy_path_points:
@@ -2520,7 +2520,7 @@ MonoBehaviour:
     - point_axes: {x: 1, y: 5}
       point_position: {x: 195.26001, y: 523.9}
       enemy_type: 0
-      deploy_cooldown: 1.5
+      deploy_cooldown: 2
       deploy_time: 60
       enemy_count: 30
       enemy_path_points:
@@ -2540,7 +2540,7 @@ MonoBehaviour:
     - point_axes: {x: 1, y: 1}
       point_position: {x: 195.26001, y: 179.9}
       enemy_type: 1
-      deploy_cooldown: 2
+      deploy_cooldown: 3
       deploy_time: 90
       enemy_count: 10
       enemy_path_points:
@@ -2572,7 +2572,7 @@ MonoBehaviour:
     - point_axes: {x: 4, y: 1}
       point_position: {x: 488.54, y: 179.9}
       enemy_type: 2
-      deploy_cooldown: 3
+      deploy_cooldown: 4
       deploy_time: 60
       enemy_count: 15
       enemy_path_points:
@@ -2582,7 +2582,7 @@ MonoBehaviour:
     - point_axes: {x: 4, y: 4}
       point_position: {x: 488.54, y: 437.9}
       enemy_type: 2
-      deploy_cooldown: 3
+      deploy_cooldown: 4
       deploy_time: 60
       enemy_count: 15
       enemy_path_points:
@@ -2592,8 +2592,8 @@ MonoBehaviour:
     - point_axes: {x: 5, y: 5}
       point_position: {x: 586.3, y: 523.9}
       enemy_type: 1
-      deploy_cooldown: 2
-      deploy_time: 90
+      deploy_cooldown: 3
+      deploy_time: 120
       enemy_count: 15
       enemy_path_points:
       - {x: 0, y: 0, z: 0}
@@ -2617,17 +2617,17 @@ MonoBehaviour:
     toggle_unit: 01010101
     power_up_space_active: 0
     show_small_planet: 0
-    show_medium_planet: 0
+    show_medium_planet: 1
     show_large_planet: 0
   - level: 8
     starting_money: 100
-    crystal_threshold: 0
-    crystal_value: 70
+    crystal_threshold: 100
+    crystal_value: 100
     portals:
     - point_axes: {x: 1, y: 1}
       point_position: {x: 195.26001, y: 179.9}
       enemy_type: 0
-      deploy_cooldown: 1.5
+      deploy_cooldown: 2
       deploy_time: 60
       enemy_count: 20
       enemy_path_points:
@@ -2642,7 +2642,7 @@ MonoBehaviour:
     - point_axes: {x: 5, y: 5}
       point_position: {x: 586.3, y: 523.9}
       enemy_type: 1
-      deploy_cooldown: 2
+      deploy_cooldown: 3
       deploy_time: 60
       enemy_count: 15
       enemy_path_points:
@@ -2659,7 +2659,7 @@ MonoBehaviour:
     - point_axes: {x: 5, y: 1}
       point_position: {x: 586.3, y: 179.9}
       enemy_type: 2
-      deploy_cooldown: 3
+      deploy_cooldown: 4
       deploy_time: 120
       enemy_count: 15
       enemy_path_points:
@@ -2674,9 +2674,9 @@ MonoBehaviour:
     - point_axes: {x: 1, y: 5}
       point_position: {x: 195.26001, y: 523.9}
       enemy_type: 3
-      deploy_cooldown: 10
-      deploy_time: 180
-      enemy_count: 3
+      deploy_cooldown: 12
+      deploy_time: 120
+      enemy_count: 4
       enemy_path_points:
       - {x: 0, y: 0, z: 0}
       - {x: -0.048870087, y: -3.9005632, z: 0}
@@ -2689,13 +2689,13 @@ MonoBehaviour:
       - {x: 4.067644, y: -3.190819, z: 0}
     player_base_position: {x: 390.78, y: 351.9}
     base_point_axes: {x: 3, y: 3}
-    power_up_space_position: {x: 293.02002, y: 351.9}
-    power_up_space_point_axes: {x: 2, y: 3}
+    power_up_space_position: {x: 390.78, y: 437.9}
+    power_up_space_point_axes: {x: 3, y: 4}
     toggle_unit: 01010101
     power_up_space_active: 1
     show_small_planet: 0
     show_medium_planet: 0
-    show_large_planet: 0
+    show_large_planet: 1
   levelFile: {fileID: 4900000, guid: 0f65ce2e85a53a2e78ecc74fee2c465e, type: 3}
 --- !u!1 &3032015632212372210
 GameObject:
@@ -4492,7 +4492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4308218530600431878
 Transform:
   m_ObjectHideFlags: 0
@@ -5267,7 +5267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2728058057039820361
 Transform:
   m_ObjectHideFlags: 0
@@ -5489,7 +5489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2250034385891119907
 Transform:
   m_ObjectHideFlags: 0
@@ -8304,7 +8304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1436739048914159098, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3239290757994061521, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
       propertyPath: m_LocalScale.x
@@ -8477,7 +8477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1436739048914159098, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3239290757994061521, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
       propertyPath: m_LocalScale.x
@@ -9301,7 +9301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1436739048914159098, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3239290757994061521, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
       propertyPath: m_LocalScale.x
@@ -10217,7 +10217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1436739048914159098, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3239290757994061521, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
       propertyPath: m_LocalScale.x
@@ -11013,7 +11013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: enemyCount
-      value: 60
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: pointLocation
