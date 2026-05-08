@@ -1551,6 +1551,7 @@ public class GameManager : MonoBehaviour
 
     void SpeakText(string key)
     {
+        Logger.DebugLogFormat("TTS Enabled: {0}", Singleton.instance.ttsEnabled);
         if (Singleton.instance.ttsEnabled)
         {
             LOLSDK.Instance.SpeakText(key);

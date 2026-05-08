@@ -40,6 +40,8 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         base.OnEnable();
         if (bullet != null)
             bullet.direction = Vector2.right;   //just in case direction was changed before.
+            
+        unitSpriteRenderer.transform.localEulerAngles = Vector3.zero;
         cooldownTimer = 0;
     }
 
