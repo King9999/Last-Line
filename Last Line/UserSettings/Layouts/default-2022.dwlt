@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1341
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Hierarchy
   m_RootView: {fileID: 8}
   m_MinSize: {x: 875, y: 421}
   m_MaxSize: {x: 10000, y: 10000}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 51
+  controlID: 28
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 52
+  controlID: 29
   draggingID: 0
 --- !u!114 &12
 MonoBehaviour:
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 21
+  controlID: 30
   draggingID: 0
 --- !u!114 &13
 MonoBehaviour:
@@ -410,7 +410,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/MMurray.LastLine/Scenes
+    - Assets/MMurray.LastLine/Prefabs/Enemy Units
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -418,15 +418,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/MMurray.LastLine/Scenes
+  - Assets/MMurray.LastLine/Prefabs/Enemy Units
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /home/michael/_GameProjects/Last-Line/Last Line
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 54.30214}
-    m_SelectedIDs: 2a640000
-    m_LastClickedID: 25642
+    m_SelectedIDs: 20640000
+    m_LastClickedID: 25632
     m_ExpandedIDs: 00000000e8630000ea630000ec630000ee630000f0630000f2630000f4630000f6630000f8630000fa630000fc630000fe63000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -597,7 +597,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 1ec9fdff64c9fdffcacbfdff18ccfdff0aeefdff82eefdffe2eefdff84effdff8a00feffe204feff9211feff38b4feff84b4fefff4b6feff38b7feffacd8feff1cd9feff74d9feffaae1feffb0e1feffe4e1feff9ee3feffa4e3feffd8e3feff5ee5feff2625ffffac26ffff982bffff9a2bfffff22fffff3830ffffa832ffffec32ffff6054ffffd054ffff2855ffff20a3ffffd6a3ffff1afbfffff4ffffff
+      m_ExpandedIDs: 00a6ffff46a6ffffb6a8fffffaa8ffffe2caffff52cbffffaacbffff1afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 753.48267, y: 210.11858, z: -4.1658273}
     speed: 2
-    m_Value: {x: 487, y: 263, z: -5}
+    m_Value: {x: 753.48267, y: 210.11858, z: -4.1658273}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1122,7 +1122,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 420.14722
     speed: 2
-    m_Value: 621.58105
+    m_Value: 420.14722
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1214,7 +1214,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
