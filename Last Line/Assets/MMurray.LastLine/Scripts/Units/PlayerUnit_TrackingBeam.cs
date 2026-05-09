@@ -37,8 +37,13 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
         //reset line position
         if (linePositions.Count > 0)
             linePositions.Clear();
+
         linePositions.Add(transform.position);
         beam.widthMultiplier = 0.3f;
+        targets.Clear();
+        target = null;
+        isCharging = false;
+        cooldownTimer = Time.time;          //unit doesn't fire immediately.
         beam.gameObject.SetActive(false);
     }
 
