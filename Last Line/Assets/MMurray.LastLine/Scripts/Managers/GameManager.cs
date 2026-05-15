@@ -141,7 +141,12 @@ public class GameManager : MonoBehaviour
     Coroutine explodeBase = null;
 
     /****bools for various tutorial checks****/
-    public bool crystalTutorialViewed;     
+    public bool crystalTutorialViewed;
+
+    //object positions need to be scaled due to aspect ratio. Get current screen width and height
+    float screenWidthScale = (float)Screen.width / 1024;
+    float screenHeightScale = (float)Screen.height / 576;
+     
 
     // Start is called before the first frame update
     void Start()
@@ -453,7 +458,8 @@ public class GameManager : MonoBehaviour
             if (currentLevel == 2)
             {
                 //place crystal at origin
-                crystal.transform.position = Camera.main.ScreenToWorldPoint(points[25].transform.position);
+                crystal.transform.position = Camera.main.ScreenToWorldPoint(new Vector2(points[25].transform.position.x * screenWidthScale, 
+                    points[25].transform.position.y * screenHeightScale));
                 crystal.transform.position = new Vector3(crystal.transform.position.x, crystal.transform.position.y, 1);
                 points[25].crystal = crystal;
                 Logger.DebugLogFormat("Crystal generated at {0}", points[25].pointAxes);
@@ -474,7 +480,8 @@ public class GameManager : MonoBehaviour
                 do
                 {
                     i = Random.Range(0, points.Count);
-                    crystal.transform.position = Camera.main.ScreenToWorldPoint(points[i].transform.position);
+                    crystal.transform.position = Camera.main.ScreenToWorldPoint(new Vector2(points[i].transform.position.x * screenWidthScale, 
+                        points[i].transform.position.y * screenHeightScale));
                     crystal.transform.position = new Vector3(crystal.transform.position.x, crystal.transform.position.y, 1);    //must change Z so crystal is visible.
                 }
                 while (!points[i].IsEmpty());
@@ -570,6 +577,7 @@ public class GameManager : MonoBehaviour
     every unit's position. Also, the game runs in real time so the player might get confused on what they were doing. */
     public void LoadLevel(int level)
     {
+        Logger.DebugLogFormat("X and Y scale: {0}, {1}", screenWidthScale, screenHeightScale);
 
         /************get level from JSON***********/
         levelData = JsonUtility.FromJson<Levels>(levelFile.text);
@@ -633,7 +641,8 @@ public class GameManager : MonoBehaviour
                 activePortals.Add(portal);
             }
             portal.pointAxes = portalData.point_axes;
-            portal.transform.position = Camera.main.ScreenToWorldPoint(portalData.point_position);
+            portal.transform.position = Camera.main.ScreenToWorldPoint(new Vector2(portalData.point_position.x * screenWidthScale, 
+                portalData.point_position.y * screenHeightScale));
 
             //have to set portal's Z to 0 since it takes the camera's Z value as its own, which is -10
             portal.transform.position = new Vector3(portal.transform.position.x, portal.transform.position.y, 0);
@@ -698,7 +707,8 @@ public class GameManager : MonoBehaviour
         if (!playerBase.gameObject.activeSelf)
             playerBase.gameObject.SetActive(true);
 
-        playerBase.transform.position = Camera.main.ScreenToWorldPoint(newLevel.player_base_position);
+        playerBase.transform.position = Camera.main.ScreenToWorldPoint(new Vector2(newLevel.player_base_position.x * screenWidthScale,
+            newLevel.player_base_position.y * screenHeightScale));
         playerBase.transform.position = new Vector3(playerBase.transform.position.x, playerBase.transform.position.y, 0);
         SetPointRef(playerBase, newLevel.base_point_axes);
         playerBase.hitPoints = playerBase.maxHitPoints;
@@ -721,7 +731,8 @@ public class GameManager : MonoBehaviour
         if (levelData.levels[level].power_up_space_active)
         {
             powerUpSpace.gameObject.SetActive(true);
-            powerUpSpace.transform.position = Camera.main.ScreenToWorldPoint(newLevel.power_up_space_position);
+            powerUpSpace.transform.position = Camera.main.ScreenToWorldPoint(new Vector2(newLevel.power_up_space_position.x * screenWidthScale,
+                newLevel.power_up_space_position.y * screenHeightScale));
             powerUpSpace.transform.position = new Vector3(powerUpSpace.transform.position.x, powerUpSpace.transform.position.y, 0);
             SetPointRef(powerUpSpace, newLevel.power_up_space_point_axes);
         }
@@ -888,7 +899,7 @@ public class GameManager : MonoBehaviour
 
 
             //must convert the point's location to world coordinates.
-            Vector2 newPos = Camera.main.ScreenToWorldPoint(point.transform.position);
+            Vector2 newPos = Camera.main.ScreenToWorldPoint(point.transform.position);  //point is already scaled since point is a UI transform.
             newUnit.transform.position = newPos;
             //Logger.AddPlayerId(newUnit.name);
             //newUnit.UpdateHealthBar(newPos);        //TODO: Not quite sure why this fixes the healthbar positioning issue for player units.

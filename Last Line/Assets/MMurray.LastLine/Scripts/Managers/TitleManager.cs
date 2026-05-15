@@ -20,6 +20,7 @@ public class TitleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Logger.DebugLogFormat("Screen dimensions: {0}, {1}", Screen.width, Screen.height);
         //Must call the screen fade since the game begins with a black background on init.
         ScreenFade sf = Singleton.instance.ScreenFade;
         sf.FadeIn();
