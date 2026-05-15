@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         UnitSelectSecondUnit, UnitSelectSecondUnitX, UnitSelectSecondUnitY, BuildingFirstUnit, BuildingSecondUnit, 
         ActivateAbility, ActivateAbilitySelectX, ActivateAbilitySelectY,
         DialogueEnemyIncoming, DeployEnemyUnits, BaseDestroyed, LevelComplete,
-        CrystalIntro
+        CrystalIntro, OriginTutorial
     }
 
     public enum PlayerUnitType {NoUnitSelected, /*Base,*/ StraightShooter, VerticalShooter, TrackingBeam, Bomb}
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
     Coroutine explodeBase = null;
 
     /****bools for various tutorial checks****/
-    public bool crystalTutorialViewed;
+    public bool crystalTutorialViewed, originTutorialViewed;
 
     //object positions need to be scaled due to aspect ratio. Get current screen width and height
     float screenWidthScale = (float)Screen.width / 1024;
@@ -458,8 +458,7 @@ public class GameManager : MonoBehaviour
             if (currentLevel == 2)
             {
                 //place crystal at origin
-                crystal.transform.position = Camera.main.ScreenToWorldPoint(new Vector2(points[25].transform.position.x * screenWidthScale, 
-                    points[25].transform.position.y * screenHeightScale));
+                crystal.transform.position = Camera.main.ScreenToWorldPoint(points[25].transform.position);
                 crystal.transform.position = new Vector3(crystal.transform.position.x, crystal.transform.position.y, 1);
                 points[25].crystal = crystal;
                 Logger.DebugLogFormat("Crystal generated at {0}", points[25].pointAxes);
@@ -480,8 +479,7 @@ public class GameManager : MonoBehaviour
                 do
                 {
                     i = Random.Range(0, points.Count);
-                    crystal.transform.position = Camera.main.ScreenToWorldPoint(new Vector2(points[i].transform.position.x * screenWidthScale, 
-                        points[i].transform.position.y * screenHeightScale));
+                    crystal.transform.position = Camera.main.ScreenToWorldPoint(points[i].transform.position);
                     crystal.transform.position = new Vector3(crystal.transform.position.x, crystal.transform.position.y, 1);    //must change Z so crystal is visible.
                 }
                 while (!points[i].IsEmpty());
@@ -557,7 +555,7 @@ public class GameManager : MonoBehaviour
         //bool gameRunning = false;
         if (inTutorial)
         {
-            if (tutorialState == TutorialState.CrystalIntro)
+            if (tutorialState == TutorialState.CrystalIntro || tutorialState == TutorialState.OriginTutorial)
                 return false;
             else
                 return true; 
@@ -828,6 +826,17 @@ public class GameManager : MonoBehaviour
                 AddMoney(crystal.GetMoneyValue(), crystal.transform.position, isCrystal: true);
                 point.crystal = null;
                 crystal.gameObject.SetActive(false);
+
+                //tutorial check. Explain the origin
+                if (currentLevel == 2)
+                {
+                    if (!originTutorialViewed)
+                    {
+                        originTutorialViewed = true;
+                        inTutorial = true;
+                        SetGameState(tutorialState = TutorialState.OriginTutorial);
+                    }
+                }
             }
             else
             {
@@ -1463,6 +1472,11 @@ public class GameManager : MonoBehaviour
             case TutorialState.CrystalIntro:
                 keyList = dialogueManager.dialogueList[DialogueManager.CRYSTAL_INTRO].dialogueKeyList[0];
                 dialogueManager.dialogueList[DialogueManager.CRYSTAL_INTRO].ShowDialogue(keyList);
+                break;
+            
+            case TutorialState.OriginTutorial:
+                keyList = dialogueManager.dialogueList[DialogueManager.ORIGIN_TUTORIAL].dialogueKeyList[0];
+                dialogueManager.dialogueList[DialogueManager.ORIGIN_TUTORIAL].ShowDialogue(keyList);
                 break;
             
 

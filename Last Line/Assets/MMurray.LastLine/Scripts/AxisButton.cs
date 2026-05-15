@@ -29,40 +29,49 @@ public class AxisButton : MonoBehaviour
         //check which axis we're on and record the value. A special case is made for the origin.
         if (axisValue == AxisValue.ORIGIN)
         {
-            //tutorial check. Origin is not used, and is ignored completely.
+            //tutorial check. Exception is made if we're on level 2 to pick up crystal and explain the origin.
             if (gm.inTutorial)
-                return;
-
-            if (!gm.enteringValueX && !gm.enteringValueY)
             {
-                gm.enteringValueX = true;       //always start with X
-                gm.playerCoordinates.x = value;
+                if (gm.currentLevel == 2)
+                {
+                    if (!gm.enteringValueX && !gm.enteringValueY)
+                    {
+                        gm.enteringValueX = true;       //always start with X
+                        gm.playerCoordinates.x = value;
 
-                //change state
-                gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
-                Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
+                        //change state
+                        gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
+                        Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
+                    }
+                    else
+                    {
+                        gm.playerCoordinates.y = value;
+                        gm.enteringValueY = true;
+                        Logger.DebugLogFormat("player Y: {0}", gm.playerCoordinates.y);
+                    }
+                }
             }
             else
             {
-                gm.playerCoordinates.y = value;
-                gm.enteringValueY = true;
-                //change state
-                //gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
-                Logger.DebugLogFormat("player Y: {0}", gm.playerCoordinates.y);
-            }
-            
+                if (!gm.enteringValueX && !gm.enteringValueY)
+                {
+                    gm.enteringValueX = true;       //always start with X
+                    gm.playerCoordinates.x = value;
 
-            //if both X and Y are selected, do the next action.
-            /*if (gm.enteringValueX && gm.enteringValueY)
-            {
-                //highlight the point selected.
-                Logger.DebugLog("We're in the origin");
-                gm.enteringValueX = false;
-                gm.enteringValueY = false;
-                //change state
-                gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
-            }*/
-            //return;
+                    //change state
+                    gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
+                    Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
+                }
+                else
+                {
+                    gm.playerCoordinates.y = value;
+                    gm.enteringValueY = true;
+                    //change state
+                    //gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
+                    Logger.DebugLogFormat("player Y: {0}", gm.playerCoordinates.y);
+                }
+            }
+
         }
 
         else if (axisValue == AxisValue.X_AXIS)

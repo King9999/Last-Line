@@ -277,7 +277,8 @@ public class Dialogue : MonoBehaviour
                         gm.SetGameState(gm.gameState = GameManager.GameState.GoToNextLevel);
                         break;
                     
-                    case GameManager.TutorialState.CrystalIntro:
+                    //case GameManager.TutorialState.CrystalIntro:
+                    case GameManager.TutorialState.OriginTutorial:
                         gm.inTutorial = false;
                         Singleton.instance.ArrowGuideManager.HideGuideArrows();
                         //gm.SetGameState(gm.gameState = GameManager.GameState.Normal);

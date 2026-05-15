@@ -43,6 +43,7 @@ public class DialogueManager : MonoBehaviour
     public const int ACTIVATING_UNIT_ABILITY = 4;
     public const int ENEMY_INCOMING = 5;
     public const int CRYSTAL_INTRO = 8;
+    public const int ORIGIN_TUTORIAL = 9;
 
     // Start is called before the first frame update
     void Awake()
