@@ -3562,14 +3562,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
       propertyPath: dialogueKeyList.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
       propertyPath: dialogueKeyList.Array.data[0].key
       value: system_intro2
       objectReference: {fileID: 0}
     - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
+      propertyPath: dialogueKeyList.Array.data[1].key
+      value: system_intro3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
       propertyPath: dialogueKeyList.Array.data[0].showArrowGuides
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
+      propertyPath: dialogueKeyList.Array.data[1].showArrowGuides
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1681912519623204120, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
@@ -3662,7 +3670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4431170139149532644, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
       propertyPath: m_Name
-      value: Dialogue Box
+      value: Dialogue - Choosing X Value
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4376,7 +4384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
       propertyPath: dialogueKeyList.Array.data[0].key
-      value: system_intro3
+      value: system_intro4
       objectReference: {fileID: 0}
     - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
       propertyPath: dialogueKeyList.Array.data[0].showArrowGuides
