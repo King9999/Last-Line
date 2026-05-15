@@ -55,10 +55,22 @@ public class Dialogue : MonoBehaviour
         return Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) /*|| Input.GetMouseButtonDown(0)*/;
     }
 
+    //if dialogue was read previously, clicking will show all the dialogue in full, even if the text is still
+    //animating. clicking again after will advance dialogue.
     public void OnMouseClick()
     {
+        //dialogueRead = true;
         if (!canAdvanceDialogue)
+        {
+            if (dialogueRead)
+            {
+                //show remaining dialogue
+                StopCoroutine(animateTextCoroutine);
+                dialogueText.text = GetText(dialogueKeyList[currentKey].key);
+                StartCoroutine(ShowPrompt());
+            }           
             return;
+        }
         
         Logger.DebugLog("Advancing Dialogue");
         AdvanceDialogue();
