@@ -42,10 +42,23 @@ public class Dialogue : MonoBehaviour
     void Update()
     {
         //check for input
-        if (canAdvanceDialogue && InputPressed())
+        if (InputPressed())
         {
-            Logger.DebugLog("Advancing Dialogue");
-            AdvanceDialogue();
+            if (!canAdvanceDialogue)
+            {
+                if (dialogueRead)
+                {
+                    //show remaining dialogue
+                    StopCoroutine(animateTextCoroutine);
+                    dialogueText.text = GetText(dialogueKeyList[currentKey].key);
+                    StartCoroutine(ShowPrompt());
+                }           
+            }
+            else
+            {
+                Logger.DebugLog("Advancing Dialogue");
+                AdvanceDialogue();
+            }
         }
     }
 
@@ -69,11 +82,12 @@ public class Dialogue : MonoBehaviour
                 dialogueText.text = GetText(dialogueKeyList[currentKey].key);
                 StartCoroutine(ShowPrompt());
             }           
-            return;
         }
-        
-        Logger.DebugLog("Advancing Dialogue");
-        AdvanceDialogue();
+        else
+        {
+            Logger.DebugLog("Advancing Dialogue");
+            AdvanceDialogue();
+        }
     }
 
 
