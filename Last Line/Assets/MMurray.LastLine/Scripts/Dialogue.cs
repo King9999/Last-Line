@@ -20,6 +20,7 @@ public class Dialogue : MonoBehaviour
     int currentKey;                     //iterator for dialogueKeyList
     [SerializeField]private float promptTimer;           //how much time must pass before player is prompted to go to next dialogue.
     private List<ArrowGuide> arrows;        //reference to any active arrow guides on screen. Used to disable them when advancing dialogue.
+    public bool dialogueRead;           //becomes true when the *entire* set of dialogue is read.
 
     private Coroutine animateTextCoroutine = null;
 
@@ -48,9 +49,19 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    //only checks for keyboard input. Mouse input is handled in OnMouseClick
     bool InputPressed()
     {
-        return Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetMouseButtonDown(0);
+        return Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) /*|| Input.GetMouseButtonDown(0)*/;
+    }
+
+    public void OnMouseClick()
+    {
+        if (!canAdvanceDialogue)
+            return;
+        
+        Logger.DebugLog("Advancing Dialogue");
+        AdvanceDialogue();
     }
 
 
@@ -200,6 +211,7 @@ public class Dialogue : MonoBehaviour
             //close dialogue
             Singleton.instance.DialogueManager.dialogueOpen = false;
             currentKey = 0;
+            dialogueRead = true;
             gameObject.SetActive(false);
             Logger.DebugLog("Closing Window");
 
