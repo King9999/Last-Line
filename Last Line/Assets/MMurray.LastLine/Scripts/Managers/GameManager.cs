@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private EndLevelText endLevelText;       //displays "BASE DEFENDED"
     [SerializeField]private GameOverText gameOverText;       //displays "BASE DESTROYED"
     [SerializeField]private TargetCursor targetCursor;
+    [SerializeField]private TextMeshProUGUI coordinatesText;    //displayed when placed over a player unit or when targeting a point.
 
     
 
@@ -139,6 +140,7 @@ public class GameManager : MonoBehaviour
     Coroutine screenShakeCoroutine = null;
     Coroutine animateMoneyCoroutine = null;
     Coroutine explodeBase = null;
+    Coroutine animateCoordinates = null;
 
     /****bools for various tutorial checks****/
     public bool crystalTutorialViewed, originTutorialViewed;
@@ -172,6 +174,7 @@ public class GameManager : MonoBehaviour
         exitGameLabel.text = GetText("exitButtonText");
         //exitButton.gameObject.SetActive(false);     //only appears at end of game.
         targetCursor.gameObject.SetActive(false);
+        coordinatesText.text = "";
 
         //load save state
         Singleton s = Singleton.instance;
@@ -812,6 +815,9 @@ public class GameManager : MonoBehaviour
             //TODO: Place a target to show that the player selected a point. 
             //if space is occupied, activate context-sensitive ability. nothing happens if unit doesn't have one.
             targetCursor.ShowCursor(point.transform.position);
+            if (animateCoordinates != null)
+                StopCoroutine(animateCoordinates);
+            animateCoordinates = StartCoroutine(ShowCoordinates(point));
 
             if (point.unit != null && point.unit.gameObject.activeSelf)     //prevents unit ability from activating when it's not active.
             {
@@ -1693,6 +1699,23 @@ public class GameManager : MonoBehaviour
         baseExplosion.Play(playerBase.transform.position);
         //yield return new WaitForSeconds(2);
         gameOverText.ShowText();
+    }
+
+    //coordinates animate upwards for a duration
+    IEnumerator ShowCoordinates(Point point, float duration = 1)
+    {
+        coordinatesText.transform.position = new Vector2(targetCursor.transform.position.x, targetCursor.transform.position.y + 50);
+        float time = 0;
+        float moveSpeed = 10;
+        coordinatesText.text = point.pointAxes.ToString("F0");
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            Vector2 newPos = coordinatesText.transform.position;
+            coordinatesText.transform.position = new Vector2(newPos.x, newPos.y + moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+        coordinatesText.text = "";
     }
 
     /*IEnumerator AnimateMoney(int newAmount)
