@@ -153,11 +153,18 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
             //deal damage. Bool is used to prevent beam hitting every frame.
             if (!beamFired)
             {
-                beamFired = true;
-                //target.hitPoints -= weaponDamage;
-                target.ReduceHitPoints(weaponDamage);
-                //target.UpdateHealthBar(target.transform.position);
-                //Logger.DebugLog("enemy hit");
+                //before firing, check if target is still valid.
+                //if (target == null)
+               // {
+                    //StopFiring();
+                //}
+                //else
+                //{
+                    beamFired = true;
+                    if (target != null)
+                        target.ReduceHitPoints(weaponDamage);
+                    //Logger.DebugLog("enemy hit");
+                //}
             }
 
             //coroutine to animate laser
@@ -206,13 +213,17 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
             //damage each enemy. Start at index 1 because the first unit is the player
             if (!beamFired)
             {
+                //check if targets still valid. Remove any invalid targets
+                
                 beamFired = true;
                 for (i = 1; i < units.Count; i++)
                 {
                     //units[i].hitPoints -= weaponDamage;
-                    units[i].ReduceHitPoints(weaponDamage);
-                    //units[i].UpdateHealthBar(units[i].transform.position);
-                    Logger.DebugLogFormat("hit enemy {0} with beam", units[i].name);
+                    if (units[i] != null)
+                    {
+                        units[i].ReduceHitPoints(weaponDamage);
+                        Logger.DebugLogFormat("hit enemy {0} with beam", units[i].name);
+                    }
                 }
             }
 
@@ -230,6 +241,16 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
             
         base.EnhanceUnit();
         isEnhanced = true;
+    }
+
+    //used in cases where target is no longer valid even if it was valid before.
+    void StopFiring()
+    {
+        cooldownTimer = Time.time;
+        isCharging = false;
+        beam.widthMultiplier = 0.3f;
+        beamFired = false;
+        beam.gameObject.SetActive(false);
     }
 
     //beam shrinks over time. When it's finished, cooldown starts.

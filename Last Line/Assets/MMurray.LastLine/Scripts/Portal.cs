@@ -18,7 +18,7 @@ public class Portal : MonoBehaviour
     public float deployCooldown;        //the time that must pass before another unit is generated.
     private float currentDeployTime;
     public int enemyCount;              //the number of enemies in the portal.
-    private int nextEnemy;              //iterator for the enemy unit list.
+    [SerializeField]private int nextEnemy;              //iterator for the enemy unit list.
     [SerializeField]private GameObject unitIcon;    //appears above portal to show player which enemy is deployed.
     [Header("---Path---")]
     public LineRenderer enemyPath;
@@ -143,6 +143,18 @@ public class Portal : MonoBehaviour
             nextEnemy++;
             Logger.DebugLog("nextEnemy index: " + nextEnemy);
         }
+
+        //check for any units that haven't spawned but for some reason nextEnemy exceeds enemy count.
+        /*if (nextEnemy >= enemyCount && enemyUnits.Count > 0)
+        {
+            //spawn this unit.
+            currentDeployTime = Time.time;
+            nextEnemy = 0;
+            enemyUnits[nextEnemy].gameObject.SetActive(true);
+            enemyUnits[nextEnemy].SetPath(pathPoints);
+            nextEnemy++;
+            Logger.DebugLog("spawned straggler");
+        }*/
 
     }
 
