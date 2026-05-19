@@ -72,7 +72,7 @@ public class Dialogue : MonoBehaviour
     //animating. clicking again after will advance dialogue.
     public void OnMouseClick()
     {
-        dialogueRead = true;
+        //dialogueRead = true;
         if (!canAdvanceDialogue)
         {
             if (dialogueRead)
@@ -212,32 +212,13 @@ public class Dialogue : MonoBehaviour
         canAdvanceDialogue = false;
         currentKey++;
 
-        //hide any arrow guides that were shown
-        /*ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
-        if (am.activeArrows.Count > 0)
-        {
-            for (int i = 0; i < am.activeArrows.Count; i++)
-            {
-                am.activeArrows[i].gameObject.SetActive(false);
-                am.activeArrows.Remove(am.activeArrows[i]);
-                i--;
-            }
-        }
-        if (arrows.Count > 0)
-        {
-            foreach(ArrowGuide arrow in arrows)
-            {
-                arrow.gameObject.SetActive(false);
-            }
-            arrows.Clear();
-        }*/
-
         if (currentKey >= dialogueKeyList.Count)
         {
             //close dialogue
             Singleton.instance.DialogueManager.dialogueOpen = false;
             currentKey = 0;
             dialogueRead = true;
+            Singleton.instance.saveState.WriteState(Singleton.instance.gameData);   //save dialogue read state
             gameObject.SetActive(false);
             Logger.DebugLog("Closing Window");
 

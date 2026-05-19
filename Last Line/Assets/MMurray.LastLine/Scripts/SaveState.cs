@@ -21,6 +21,15 @@ namespace MMurray.LastLine
             data.tts_enabled = s.ttsEnabled;
             data.music_enabled = s.musicEnabled;
 
+            //dialogue state setup
+            DialogueManager dm = s.DialogueManager;
+            data.dialogue_read = new bool[dm.dialogueList.Count];
+            for (int i = 0; i < dm.dialogueList.Count; i++)
+            {
+                data.dialogue_read[i] = dm.dialogueList[i].dialogueRead;
+                Logger.DebugLogFormat("Dialogue {0} read state: {1}", i, data.dialogue_read[i]);
+            }
+
             //submit progress
             LOLSDK.Instance.SubmitProgress(0, data.level, gm.maxLevels);    //level 0 is the tutorial.
             LOLSDK.Instance.SaveState(data);

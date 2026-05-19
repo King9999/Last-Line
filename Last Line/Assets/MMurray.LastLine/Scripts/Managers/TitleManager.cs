@@ -41,6 +41,7 @@ public class TitleManager : MonoBehaviour
                 //saved universal settings are applied here
                 Singleton.instance.ttsEnabled = state.data.tts_enabled;
                 Singleton.instance.musicEnabled = state.data.music_enabled;
+
                 continueButton.gameObject.SetActive(true);
                 Logger.DebugLogWarning("Save state found and loaded.");
             }

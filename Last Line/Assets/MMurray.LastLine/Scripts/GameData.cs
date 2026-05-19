@@ -18,8 +18,8 @@ namespace MMurray.LastLine
         //public int money;
         //public Vector2 test_unit_pos;
 
-        /**********Enemy data**********/
-
+        /**********Dialogue data**********/
+        public bool[] dialogue_read;
         
 
         /*********universal data*********/

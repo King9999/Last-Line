@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MMurray.LastLine;
 using System;
+using LoLSDK;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -49,6 +50,21 @@ public class DialogueManager : MonoBehaviour
     void Awake()
     {
         Singleton.instance.DialogueManager = this;
+
+        /***dialogue state check***/
+        LOLSDK.Instance.LoadState<GameData>(state =>
+        {
+            if (state != null)
+            {
+                //DialogueManager dm = Singleton.instance.DialogueManager;
+                for (int i = 0; i < state.data.dialogue_read.Length; i++)
+                {
+                    dialogueList[i].dialogueRead = state.data.dialogue_read[i];
+                    Logger.DebugLogFormat("Dialogue {0} read state: {1}", i, dialogueList[i].dialogueRead);
+                }
+            }
+        
+        });
 
         //disable all dialogues and triggers until ready for them
         foreach(Dialogue dialogue in dialogueList)
