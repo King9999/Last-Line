@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using MMurray.LastLine;
 
 public class Tooltip : MonoBehaviour
 {
@@ -30,7 +31,8 @@ public class Tooltip : MonoBehaviour
             gameObject.SetActive(true);
 
             //place the tooltip around the mouse's position
-            gameObject.transform.position = new Vector2(Input.mousePosition.x + tooltipXOffset, Input.mousePosition.y + tooltipYOffset);
+            GameManager gm = Singleton.instance.GameManager;
+            gameObject.transform.position = new Vector2(Input.mousePosition.x + tooltipXOffset * gm.screenWidthScale, Input.mousePosition.y + tooltipYOffset * gm.screenHeightScale);
             unitDetails.text = details;
             unitCost.text = cost;
             unitBuildTime.text = string.Format("{0} sec.", buildTime);

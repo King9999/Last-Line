@@ -144,8 +144,8 @@ public class GameManager : MonoBehaviour
     public bool crystalTutorialViewed, originTutorialViewed;
 
     //object positions need to be scaled due to aspect ratio. Get current screen width and height
-    float screenWidthScale = (float)Screen.width / 1024;
-    float screenHeightScale = (float)Screen.height / 576;
+    public float screenWidthScale {get;} = (float)Screen.width / 1024;
+    public float screenHeightScale {get;} = (float)Screen.height / 576;
      
 
     // Start is called before the first frame update
