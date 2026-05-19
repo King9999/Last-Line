@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /* A point contains a vector2 that's used to point to a space in the game where a player unit is located. Points can also contain 
 the location of a crystal. */
@@ -13,6 +14,12 @@ namespace MMurray.LastLine
         public Crystal crystal;
         public Portal portal;
         public PowerUpSpace powerUpSpace;
+        public Image pointImage;    //used to visually display points when placing unit or selecting a point manually.
+
+        void Start()
+        {
+            pointImage = GetComponent<Image>();
+        }
 
         public void ClearPoint()
         {
@@ -33,6 +40,11 @@ namespace MMurray.LastLine
         public Vector2 WorldPoint()
         {
             return Camera.main.ScreenToWorldPoint(transform.position);
+        }
+
+        public void ShowPoint(bool toggle)
+        {
+            pointImage.enabled = toggle;
         }
 
     }

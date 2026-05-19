@@ -72,7 +72,7 @@ public class Dialogue : MonoBehaviour
     //animating. clicking again after will advance dialogue.
     public void OnMouseClick()
     {
-        //dialogueRead = true;
+        dialogueRead = true;
         if (!canAdvanceDialogue)
         {
             if (dialogueRead)
@@ -262,6 +262,11 @@ public class Dialogue : MonoBehaviour
                     case GameManager.TutorialState.OriginTutorial:
                         gm.inTutorial = false;
                         Singleton.instance.ArrowGuideManager.HideGuideArrows();
+                        //hide points
+                        foreach (Point p in gm.points)
+                        {
+                            p.ShowPoint(false);
+                        }
                         //gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
                         break;
                     

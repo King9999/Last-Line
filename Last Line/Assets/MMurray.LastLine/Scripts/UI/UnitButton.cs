@@ -62,24 +62,6 @@ public class UnitButton : MonoBehaviour
 
         gm.playerUnitType = unitType;
 
-        //check if player has enough money
-        /*int cost = 0;
-        switch(unitType)
-        {
-            case GameManager.PlayerUnitType.StraightShooter:
-                cost = gm.unitCosts[0];
-                break;
-            case GameManager.PlayerUnitType.VerticalShooter:
-                cost = gm.unitCosts[1];
-                break;
-            case GameManager.PlayerUnitType.TrackingBeam:
-                cost = gm.unitCosts[2];
-                break;
-            case GameManager.PlayerUnitType.Bomb:
-                cost = gm.unitCosts[3];
-                break;
-        }*/
-
         AudioManager audio = Singleton.instance.AudioManager;
         audio.soundSource.PlayOneShot(audio.buttonClick, audio.soundVolume);
 
@@ -101,6 +83,7 @@ public class UnitButton : MonoBehaviour
                     break;
 
                 default:
+                    gm.playerUnitType = GameManager.PlayerUnitType.NoUnitSelected;
                     break;
             }
             //gm.previousTutorialState = gm.tutorialState;    //save this state so we don't lose the unit that was selected after dialogue closes.

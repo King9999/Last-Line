@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 7;
+        currentLevel = 2;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -322,7 +322,6 @@ public class GameManager : MonoBehaviour
                 //StopCoroutine(Alert("", 0));
 
                 DisplayAlertWithDuration(GetText("cancelAction"));
-
                 //if game hasn't started yet, we don't go to normal state.
                 SetGameState(gameState = gameStarted ? GameState.Normal : GameState.EnemyPreparing);
             }
@@ -1188,6 +1187,12 @@ public class GameManager : MonoBehaviour
                 enteringValueX = false;
                 enteringValueY = false;
                 playerUnitType = PlayerUnitType.NoUnitSelected;
+
+                //hide points
+                foreach (Point p in points)
+                {
+                    p.ShowPoint(false);
+                }
                 break;
             
             case GameState.EnemyPreparing:
@@ -1206,12 +1211,21 @@ public class GameManager : MonoBehaviour
                 {
                     portal.timer.StartTimer();
                 }
+                //hide points
+                foreach (Point p in points)
+                {
+                    p.ShowPoint(false);
+                }
                 break;
 
             case GameState.UnitSelectX:
                 //disable Y values, then disable X values.
                 //TODO: Have dialogue during tutorial to explain how to set units
                 DisplayAlert(GetText("unitSelect_x"));
+                foreach (Point p in points)
+                {
+                    p.ShowPoint(true);
+                }
                 axisContainerY.gameObject.SetActive(false);
                 break;
             
@@ -1219,6 +1233,11 @@ public class GameManager : MonoBehaviour
                 //disable Y values, then disable X values.
                 //TODO: in tutorial, make mention of origin and how it might be used
                 DisplayAlert(GetText("unitSelect_y"));
+                //show points
+                foreach (Point p in points)
+                {
+                    p.ShowPoint(true);
+                }
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(false);
                 break;
@@ -1375,6 +1394,10 @@ public class GameManager : MonoBehaviour
                 enteringValueX = false;
                 enteringValueY = false;
                 playerUnitType = PlayerUnitType.NoUnitSelected;
+                foreach (Point p in points)
+                {
+                    p.ShowPoint(false);
+                }
                 break;
 
             case TutorialState.UnitSelectX:
@@ -1394,6 +1417,10 @@ public class GameManager : MonoBehaviour
                     //string dKey = dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].dialogueKeyList[0].key;
                     dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].ShowDialogue(keyList);
                 //}
+                foreach (Point p in points)
+                {
+                    p.ShowPoint(true);
+                }
                 break;
             
             case TutorialState.UnitSelectY:
@@ -1427,6 +1454,10 @@ public class GameManager : MonoBehaviour
                 am.HideGuideArrows();
                 am.arrowUnitSelectX.gameObject.SetActive(true);
                 am.arrowUnitSelectX.PointArrow(am.arrowUnitSelectX.arrowLocation, am.arrowUnitSelectX.direction);
+                foreach (Point p in points)
+                {
+                    p.ShowPoint(true);
+                }
                 break;
             
             case TutorialState.UnitSelectSecondUnitY:
@@ -1446,6 +1477,10 @@ public class GameManager : MonoBehaviour
             case TutorialState.ActivateAbilitySelectX:
                 am.arrowUnitSelectX.gameObject.SetActive(true);
                 am.arrowUnitSelectX.PointArrow(am.arrowUnitSelectX.arrowLocation, am.arrowUnitSelectX.direction);
+                foreach (Point p in points)
+                {
+                    p.ShowPoint(true);
+                }
                 break;
             
             case TutorialState.ActivateAbilitySelectY:
@@ -1458,6 +1493,10 @@ public class GameManager : MonoBehaviour
                 //inform player what they did and to reinforce how ordered pairs are made. Also have dialogue from mother base warning
                 //player that enemy is about to attack.
                 am.arrowUnitSelectY.gameObject.SetActive(false);
+                foreach (Point p in points)
+                {
+                    p.ShowPoint(false);
+                }
                 keyList = dialogueManager.dialogueList[DialogueManager.ENEMY_INCOMING].dialogueKeyList[0];
                 dialogueManager.dialogueList[DialogueManager.ENEMY_INCOMING].ShowDialogue(keyList);
                 break;
