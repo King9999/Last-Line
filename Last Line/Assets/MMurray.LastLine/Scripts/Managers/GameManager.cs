@@ -141,6 +141,7 @@ public class GameManager : MonoBehaviour
     Coroutine animateMoneyCoroutine = null;
     Coroutine explodeBase = null;
     Coroutine animateCoordinates = null;
+    Coroutine launchEnemy = null;
 
     /****bools for various tutorial checks****/
     public bool crystalTutorialViewed, originTutorialViewed;
@@ -185,7 +186,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 2;
+        currentLevel = 1;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -1169,8 +1170,9 @@ public class GameManager : MonoBehaviour
         unit.portal.ReduceEnemyCount();
         unit.portal = null;
         Logger.DebugLogFormat("Removing {0}", unit.name);
-        unit.gameObject.SetActive(false);
-        CallExplosion(unit.transform.position);
+        //unit.gameObject.SetActive(false);
+        //CallExplosion(unit.transform.position);
+        launchEnemy = StartCoroutine(LaunchEnemyUnit(unit));
         totalEnemies--;
         Logger.DebugLogFormat("Enemies remaining: {0}", totalEnemies);
     }
@@ -1707,7 +1709,7 @@ public class GameManager : MonoBehaviour
         coordinatesText.transform.position = new Vector2(targetCursor.transform.position.x, targetCursor.transform.position.y + 50);
         float time = 0;
         float moveSpeed = 10;
-        coordinatesText.text = point.pointAxes.ToString("F0");
+        coordinatesText.text = point.pointAxes.ToString("F0");  //F0 removes decimal places in a float.
         while (time < duration)
         {
             time += Time.deltaTime;
@@ -1716,6 +1718,30 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         coordinatesText.text = "";
+    }
+
+    //enemy is launched a short distance before disappearing. This is my attempt at addressing LoL's concerns over
+    //the game's "violence"
+    IEnumerator LaunchEnemyUnit(EnemyUnit unit, float duration = 0.5f)
+    {
+        float time = 0; //how long the unit is launched before fading away
+        float moveSpeed = 5;
+        unit.healthBar.gameObject.SetActive(false);
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            Vector2 newPos = unit.transform.position;
+            unit.transform.position = new Vector2(newPos.x + (-moveSpeed * Time.deltaTime), newPos.y + (-moveSpeed * Time.deltaTime));
+            //unit fades away
+            if (time > duration * 0.5f)
+            {
+                unit.unitSpriteRenderer.color = new Color(unit.unitSpriteRenderer.color.r, unit.unitSpriteRenderer.color.g, unit.unitSpriteRenderer.color.b,
+                    unit.unitSpriteRenderer.color.a - 2 * Time.deltaTime);
+            }
+            yield return null;
+        }
+
+        unit.gameObject.SetActive(false);
     }
 
     /*IEnumerator AnimateMoney(int newAmount)

@@ -47,6 +47,9 @@ namespace MMurray.LastLine
             healthBar.maxValue = maxHitPoints;
             healthBar.gameObject.SetActive(false);
             //SetHealth(maxHitPoints);
+
+            //reset sprite alpha
+            unitSpriteRenderer.color = new Color(unitSpriteRenderer.color.r, unitSpriteRenderer.color.g, unitSpriteRenderer.color.b, 1);
         }
 
         protected void Update()
