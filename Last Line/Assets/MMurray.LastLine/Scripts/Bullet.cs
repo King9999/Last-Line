@@ -38,6 +38,9 @@ public class Bullet : MonoBehaviour
         {
             if (collision.TryGetComponent<EnemyUnit>(out EnemyUnit unit))
             {
+                if (unit.isDefeated)
+                    return;
+                    
                 //destroy bullet
                 if (bulletType != BulletType.Pierce)
                     bulletStruckUnit = true;

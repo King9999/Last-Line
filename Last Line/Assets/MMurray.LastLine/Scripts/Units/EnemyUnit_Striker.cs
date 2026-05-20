@@ -89,6 +89,9 @@ public class EnemyUnit_Striker : EnemyUnit
 
     public override void FireWeapon(Bullet bullet, Vector2 direction)
     {
+        if (isDefeated)
+            return;
+            
         bullet.gameObject.SetActive(true);
         bullet.direction = direction;
         AudioManager audio = Singleton.instance.AudioManager;

@@ -1160,19 +1160,26 @@ public class GameManager : MonoBehaviour
     /// Remove enemy unit and send to graveyard. Reference to unit's portal is also removed.
     /// </summary>
     /// <param name="unit">The unit to remove.</param>
-    public void RemoveEnemyUnit(EnemyUnit unit)
+    public void RemoveEnemyUnit(EnemyUnit unit, bool enemyCollided = false)
     {
         if (unit == null)
             return;
-            
+
+        unit.isDefeated = true;    
         deadEnemyUnits.Add(unit);
         unit.portal.enemyUnits.Remove(unit);
         unit.portal.ReduceEnemyCount();
         unit.portal = null;
         Logger.DebugLogFormat("Removing {0}", unit.name);
-        //unit.gameObject.SetActive(false);
-        //CallExplosion(unit.transform.position);
-        launchEnemy = StartCoroutine(LaunchEnemyUnit(unit));
+        if (enemyCollided)
+        {
+            unit.gameObject.SetActive(false);
+            CallExplosion(unit.transform.position);
+        }
+        else
+        {
+            launchEnemy = StartCoroutine(LaunchEnemyUnit(unit));
+        }
         totalEnemies--;
         Logger.DebugLogFormat("Enemies remaining: {0}", totalEnemies);
     }
@@ -1727,11 +1734,14 @@ public class GameManager : MonoBehaviour
         float time = 0; //how long the unit is launched before fading away
         float moveSpeed = 5;
         unit.healthBar.gameObject.SetActive(false);
+        float[] randValues = {-1, -0.5f, 0.5f, 1};
+        float randX = randValues[Random.Range(0, randValues.Length)]; //Random.Range(-1, 1);
+        float randY = randValues[Random.Range(0, randValues.Length)]; //Random.Range(-1, 1);
         while (time < duration)
         {
             time += Time.deltaTime;
             Vector2 newPos = unit.transform.position;
-            unit.transform.position = new Vector2(newPos.x + (-moveSpeed * Time.deltaTime), newPos.y + (-moveSpeed * Time.deltaTime));
+            unit.transform.position = new Vector2(newPos.x + (randX * moveSpeed * Time.deltaTime), newPos.y + (randY * moveSpeed * Time.deltaTime));
             //unit fades away
             if (time > duration * 0.5f)
             {

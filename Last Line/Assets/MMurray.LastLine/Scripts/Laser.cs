@@ -97,7 +97,7 @@ public class Laser : MonoBehaviour
                     //bulletStruckUnit = true;
 
                 //check for invul
-                if (unit.IsInvulnerable())
+                if (unit.IsInvulnerable() || unit.isDefeated)
                     return;
                     
                 //unit.hitPoints -= damage;

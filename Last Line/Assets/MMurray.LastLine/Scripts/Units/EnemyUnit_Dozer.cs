@@ -21,6 +21,7 @@ public class EnemyUnit_Dozer : EnemyUnit
         barrierOffset = barrierCollider.offset.x;
         healthBar.maxValue = maxHitPoints;
         healthBar.gameObject.SetActive(false);
+        isDefeated = false;
     }
 
     void Update()

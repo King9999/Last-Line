@@ -11,6 +11,7 @@ namespace MMurray.LastLine
         public float moveSpeed;
         public int moneyAmount;
         public int collisionDamage;
+        public bool isDefeated;         //if true, unit is running away and cannot hurt player units or base.
         protected const float INVUL_TIME = 0.6f;    //time that unit can't be damaged after being delpoyed.
         protected float currentInvulTime;
         protected bool isInvul;
@@ -41,6 +42,7 @@ namespace MMurray.LastLine
         {
             GetUnitData(unitData);
             isInvul = true;
+            isDefeated = false;
             currentInvulTime = Time.time;
 
             //health bar setup. Only visible when damaged.
@@ -126,7 +128,7 @@ namespace MMurray.LastLine
         //Checks for collision against player units.
         void OnTriggerEnter2D(Collider2D collision)
         {
-            if (isInvul)
+            if (isInvul || isDefeated)
                 return;
 
             GameManager gm = Singleton.instance.GameManager;
@@ -144,14 +146,14 @@ namespace MMurray.LastLine
                 //unit.hitPoints -= collisionDamage;
                 unit.ReduceHitPoints(collisionDamage);
                 Logger.DebugLog("Hit " + unit.name);
-                gm.RemoveEnemyUnit(this);
+                gm.RemoveEnemyUnit(this, true);
             }
             else if(unit is PlayerUnit_Bomb)//collision.TryGetComponent<PlayerUnit_Bomb>(out PlayerUnit_Bomb bomb))
             {
                 //enemy unit dies, but bomb is activated.
                 PlayerUnit_Bomb bomb = unit as PlayerUnit_Bomb;
                 bomb.ActivateBomb();
-                gm.RemoveEnemyUnit(this);
+                gm.RemoveEnemyUnit(this, true);
             }
             else //if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
             {
@@ -159,7 +161,7 @@ namespace MMurray.LastLine
 
                 //both player unit and enemy unit die.
                 gm.RemovePlayerUnit(unit);
-                gm.RemoveEnemyUnit(this);
+                gm.RemoveEnemyUnit(this, true);
             }
         }
 
