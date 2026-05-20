@@ -176,6 +176,8 @@ public class GameManager : MonoBehaviour
         //exitButton.gameObject.SetActive(false);     //only appears at end of game.
         targetCursor.gameObject.SetActive(false);
         coordinatesText.text = "";
+        endLevelText.SetupText();
+        gameOverText.SetupText();
 
         //load save state
         Singleton s = Singleton.instance;

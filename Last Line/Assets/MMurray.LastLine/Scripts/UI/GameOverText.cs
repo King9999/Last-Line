@@ -12,7 +12,7 @@ public class GameOverText : MonoBehaviour
     Coroutine animateText = null;
 
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
         float charPos = 40;
         float xOffset = 300;
@@ -28,8 +28,28 @@ public class GameOverText : MonoBehaviour
             textChar.transform.localScale = Vector2.zero;         //invisible by default
             gameOverText.Add(textChar);
         }
+    }*/
+    
+    //must be called by GameManager on start
+    public void SetupText()
+    {
+        GameManager gm = Singleton.instance.GameManager;
+        float charPos = 40 * gm.screenWidthScale;
+        float xOffset = 300 * gm.screenWidthScale;
+        float yOffset = 50;
+        //find the end level text key and populate the list. Must count the number of characters and instantiate object for each one.
+        string clearText = GetText("gameOver");
+        for (int i = 0; i < clearText.Length; i++)
+        {
+            TextMeshProUGUI textChar = Instantiate(textPrefab, transform);
+            textChar.text = clearText[i].ToString();
+
+            //set character's position and rotation. 
+            textChar.transform.position = new Vector3(transform.position.x + (i * charPos) - xOffset, transform.position.y + yOffset, 0);
+            textChar.transform.localScale = Vector2.zero;         //invisible by default
+            gameOverText.Add(textChar);
+        }
     }
- 
 
     string GetText(string key)
     {
