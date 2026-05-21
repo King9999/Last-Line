@@ -11,13 +11,16 @@ public class PlayerUnit_Bomb : PlayerUnit
 {
 
     [SerializeField]private CircleCollider2D bombRange;
+    [SerializeField]private BoxCollider2D bombHitbox;
     [SerializeField]private float startupTimer;         //the delay before bomb blows up.
     private float timer;
     [SerializeField]private GameObject outline;         //flash effect when bomb's going to detonate.
     [SerializeField]private List<Unit> targets;         //includes friendly units. Base takes 3 damage.
     Coroutine flashCoroutine = null;
     Coroutine explode;
-    private bool isDetonating;                          //used to prevent Explode from being called more than once.
+    Coroutine vacuum;
+    [SerializeField]private bool isDetonating;                          //used to prevent Explode from being called more than once.
+    [SerializeField]private bool bombDetonated;
     // Start is called before the first frame update
     /*void Start()
     {
@@ -36,6 +39,9 @@ public class PlayerUnit_Bomb : PlayerUnit
         startupTimer = 1;
         timer = -1;
         bombRange.radius = 4;
+        bombDetonated = false;
+        bombHitbox = GetComponent<BoxCollider2D>();
+        bombHitbox.enabled = true;
 
         if (targets.Count > 0)
             targets.Clear();
@@ -68,6 +74,22 @@ public class PlayerUnit_Bomb : PlayerUnit
             isDetonating = false;
             //Explode();
             explode = StartCoroutine(ExplodeBomb());
+        }
+
+        if (bombDetonated)
+        {
+            bombDetonated = false;
+            vacuum = StartCoroutine(VacuumUnits());
+            /*float moveSpeed = 5 * Time.deltaTime;
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] is PlayerUnit_Base)
+                   continue;
+
+                //direction of each target is towards the bomb's position
+                targets[i].transform.position = Vector2.MoveTowards(targets[i].transform.position, transform.position, moveSpeed);
+
+            }*/
         }
     }
 
@@ -125,7 +147,8 @@ public class PlayerUnit_Bomb : PlayerUnit
     void Explode()
     {
         //destroy all units in the target list. if the target is the base, damage it.
-        
+        /* Updating bomb to instead suck everything in range into a void. The units are being captured. This is a change made to appease LoL
+        because of their concerns of the game being "too violent" */
         GameManager gm = Singleton.instance.GameManager;
         for (int i = 0; i < targets.Count; i++)
         {
@@ -150,8 +173,10 @@ public class PlayerUnit_Bomb : PlayerUnit
                 }
             }
         }
-
-        gm.RemovePlayerUnit(this);
+        bombDetonated = true;
+        //bomb's hitbox is disabled
+        bombHitbox.enabled = false;
+        //gm.RemovePlayerUnit(this);
     }
 
     public float BombRange()
@@ -181,6 +206,28 @@ public class PlayerUnit_Bomb : PlayerUnit
         bombRange.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.1f);  //we wait to give the game time to collect targets.
         Explode();
+    }
+
+    IEnumerator VacuumUnits(float duration = 0.5f)
+    {
+        float time = 0;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float moveSpeed = 5 * Time.deltaTime;
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] is PlayerUnit_Base)
+                    continue;
+
+                //direction of each target is towards the bomb's position
+                targets[i].transform.position = Vector2.MoveTowards(targets[i].transform.position, transform.position, moveSpeed);
+            }
+            yield return null;
+        }
+
+        GameManager gm = Singleton.instance.GameManager;
+        gm.RemovePlayerUnit(this);
     }
     
 }

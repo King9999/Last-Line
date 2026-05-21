@@ -4,7 +4,6 @@ using UnityEngine;
 using LoLSDK;
 using MMurray.LastLine;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine.UI;
 using UnityEditor;
 using MMurray.GenericCode;
@@ -188,7 +187,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 1;
+        currentLevel = 8;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -1185,6 +1184,26 @@ public class GameManager : MonoBehaviour
         totalEnemies--;
         Logger.DebugLogFormat("Enemies remaining: {0}", totalEnemies);
     }
+
+    //this method is called specifically by the bomb. The key difference is that there is no
+    //collision check, and the coroutine called is different.
+    public void RemoveEnemyUnit(EnemyUnit unit)
+    {
+        if (unit == null)
+            return;
+
+        unit.isDefeated = true;    
+        deadEnemyUnits.Add(unit);
+        unit.portal.enemyUnits.Remove(unit);
+        unit.portal.ReduceEnemyCount();
+        unit.portal = null;
+        Logger.DebugLogFormat("Removing {0}", unit.name);
+        
+        launchEnemy = StartCoroutine(FadeUnit(unit));
+        
+        totalEnemies--;
+        Logger.DebugLogFormat("Enemies remaining: {0}", totalEnemies);
+    }
     #endregion
 
     #region Game States
@@ -1744,6 +1763,25 @@ public class GameManager : MonoBehaviour
             time += Time.deltaTime;
             Vector2 newPos = unit.transform.position;
             unit.transform.position = new Vector2(newPos.x + (randX * moveSpeed * Time.deltaTime), newPos.y + (randY * moveSpeed * Time.deltaTime));
+            //unit fades away
+            if (time > duration * 0.5f)
+            {
+                unit.unitSpriteRenderer.color = new Color(unit.unitSpriteRenderer.color.r, unit.unitSpriteRenderer.color.g, unit.unitSpriteRenderer.color.b,
+                    unit.unitSpriteRenderer.color.a - 2 * Time.deltaTime);
+            }
+            yield return null;
+        }
+
+        unit.gameObject.SetActive(false);
+    }
+
+    //simply fades the unit. Used for the bomb's suction effect only.
+    IEnumerator FadeUnit(Unit unit, float duration = 0.5f)
+    {
+        float time = 0;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
             //unit fades away
             if (time > duration * 0.5f)
             {
