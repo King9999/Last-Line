@@ -90,14 +90,16 @@ public class Bullet : MonoBehaviour
             {
                 //unit.hitPoints -= damage;
                 if (unit != null && !unit.IsInvul())
+                {
                     unit.ReduceHitPoints(damage);
+                    Logger.DebugLogFormat("enemy's Bullet struck player unit {0}", unit.name);
+                }
                 //unit.SetHealth(unit.hitPoints);
                 //unit.UpdateHealthBar(unit.transform.position);
 
                 //destroy bullet
                 if (bulletType != BulletType.Pierce)
                     bulletStruckUnit = true;
-                Logger.DebugLogFormat("enemy's Bullet struck player unit {0}", unit.name);
                 //gameObject.SetActive(false);
             }
         }

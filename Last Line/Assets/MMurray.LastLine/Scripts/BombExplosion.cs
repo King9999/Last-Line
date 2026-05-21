@@ -15,4 +15,12 @@ public class BombExplosion : MonoBehaviour
         blastMain.startSize = blastRange;
         bombExplosion.Play();
     }
+
+    //cycle through random colours.
+    /*void Update()
+    {
+        //set new color.
+        var blastMain = bombExplosion.main;
+        blastMain.startColor = new ParticleSystem.MinMaxGradient(Random.ColorHSV(), Random.ColorHSV());
+    }*/
 }
