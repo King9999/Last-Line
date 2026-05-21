@@ -38,7 +38,7 @@ namespace MMurray.LastLine
             collisionDamage = data.collisionDamage;
         }
 
-        void OnEnable()
+        protected virtual void OnEnable()
         {
             GetUnitData(unitData);
             isInvul = true;
@@ -48,6 +48,8 @@ namespace MMurray.LastLine
             //health bar setup. Only visible when damaged.
             healthBar.maxValue = maxHitPoints;
             healthBar.gameObject.SetActive(false);
+            unitHitbox = GetComponent<BoxCollider2D>();
+            unitHitbox.enabled = true;
             //SetHealth(maxHitPoints);
 
             //reset sprite alpha

@@ -15,13 +15,14 @@ public class EnemyUnit_Dozer : EnemyUnit
     Vector3 particleAngle = new Vector3(0, 90, 0);
     bool speedUp = false;
 
-    void OnEnable()
+    protected override void OnEnable()
     {
-        GetUnitData(unitData);  //must call this or else OnEnable will not call GetUnitData from base class. 
+        base.OnEnable();
+        //GetUnitData(unitData);  //must call this or else OnEnable will not call GetUnitData from base class. 
         barrierOffset = barrierCollider.offset.x;
-        healthBar.maxValue = maxHitPoints;
-        healthBar.gameObject.SetActive(false);
-        isDefeated = false;
+        //healthBar.maxValue = maxHitPoints;
+        //healthBar.gameObject.SetActive(false);
+        //isDefeated = false;
     }
 
     void Update()

@@ -23,6 +23,7 @@ namespace MMurray.LastLine
         public Slider healthBar;        //only visible when unit is damaged to reduce clutter.
         public SpriteRenderer unitSpriteRenderer;
         public Sprite uiSprite;         //used for UI and portal unit icons.
+        public BoxCollider2D unitHitbox;    //unit's collision box. Does not include any other colliders, such as attack ranges.
 
         //coroutine
         Coroutine animateUnit = null;
@@ -156,7 +157,7 @@ namespace MMurray.LastLine
                     EnemyUnit enemy = this as EnemyUnit;
                     gm.AddMoney(enemy.moneyAmount, enemy.transform.position);
                     //gm.money += enemy.moneyAmount;
-                    gm.RemoveEnemyUnit(enemy);
+                    gm.RemoveEnemyUnit(enemy, false);
                 }
             }
             else

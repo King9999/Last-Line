@@ -177,6 +177,9 @@ public class PlayerUnit_Bomb : PlayerUnit
         //bomb's hitbox is disabled
         bombHitbox.enabled = false;
         //gm.RemovePlayerUnit(this);
+        AudioManager am = Singleton.instance.AudioManager;
+        am.bombExplode.Play();
+        gm.bombExplosion.Play(transform.position, BombRange() * 2);
     }
 
     public float BombRange()
@@ -221,6 +224,7 @@ public class PlayerUnit_Bomb : PlayerUnit
                     continue;
 
                 //direction of each target is towards the bomb's position
+                targets[i].unitHitbox.enabled = false;
                 targets[i].transform.position = Vector2.MoveTowards(targets[i].transform.position, transform.position, moveSpeed);
             }
             yield return null;

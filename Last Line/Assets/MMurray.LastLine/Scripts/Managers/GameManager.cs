@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
     [Header("---Particle Effects---")]
     [SerializeField]private List<Explosion> explosionList;
     [SerializeField]private BaseExplosion baseExplosion;
-    [SerializeField]private BombExplosion bombExplosion;
+    [SerializeField]public BombExplosion bombExplosion;
 
 
     [Header("---Money---")]
@@ -1136,9 +1136,11 @@ public class GameManager : MonoBehaviour
                 unitFound = true;
                 deadPlayerUnits.Add(unit);
                 activePlayerUnits.Remove(unit);
-                unit.gameObject.SetActive(false);
-                ScreenShake();          //only for player units.
-                if (unit is PlayerUnit_Bomb)
+                points[i].unit = null;
+                unit.Retreat();
+                //unit.gameObject.SetActive(false);
+                //ScreenShake();          //only for player units.
+                /*if (unit is PlayerUnit_Bomb)
                 {
                     PlayerUnit_Bomb bomb = unit as PlayerUnit_Bomb;
                     AudioManager am = Singleton.instance.AudioManager;
@@ -1146,9 +1148,9 @@ public class GameManager : MonoBehaviour
                     bombExplosion.Play(unit.transform.position, bomb.BombRange() * 2);
                 }
                 else
-                    CallExplosion(unit.transform.position);
+                    CallExplosion(unit.transform.position);*/
                 Logger.DebugLogFormat("Removing {0} from grid at point {1}", unit.name, points[i].pointAxes);
-                points[i].unit = null;
+                
             }
             else
             {
@@ -1166,7 +1168,8 @@ public class GameManager : MonoBehaviour
         if (unit == null)
             return;
 
-        unit.isDefeated = true;    
+        unit.isDefeated = true;
+        unit.unitHitbox.enabled = false;    
         deadEnemyUnits.Add(unit);
         unit.portal.enemyUnits.Remove(unit);
         unit.portal.ReduceEnemyCount();
@@ -1192,7 +1195,8 @@ public class GameManager : MonoBehaviour
         if (unit == null)
             return;
 
-        unit.isDefeated = true;    
+        unit.isDefeated = true;
+        unit.unitHitbox.enabled = false;
         deadEnemyUnits.Add(unit);
         unit.portal.enemyUnits.Remove(unit);
         unit.portal.ReduceEnemyCount();

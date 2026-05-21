@@ -19,6 +19,7 @@ namespace MMurray.LastLine
         [SerializeField]protected bool isInvul;         //when damaged by bullet, unit becomes invul for a duration. Still not protected against collisions.
         [SerializeField]protected float invulTime = 2;  //time in seconds
         protected float invulCounter;
+        Coroutine retreat;
 
         public override void GetUnitData(UnitData data)
         {
@@ -37,6 +38,9 @@ namespace MMurray.LastLine
             healthBar.maxValue = maxHitPoints;
             healthBar.gameObject.SetActive(false);
             isEnhanced = false;
+            unitHitbox = GetComponent<BoxCollider2D>();
+            unitHitbox.enabled = true;
+            transform.localScale = Vector2.one;
             //UpdateHealthBar(transform.position);
             //TODO: For some reason the player unit's health bar is not positioning correctly.
         }
@@ -92,6 +96,27 @@ namespace MMurray.LastLine
         {
             string value = SharedState.LanguageDefs?[key];
             return value ?? "--missing--";
+        }
+
+        public void Retreat()
+        {
+            unitHitbox.enabled = false;
+            AudioManager am = Singleton.instance.AudioManager;
+            am.soundSource.PlayOneShot(am.unitExplode, am.soundVolume);
+            retreat = StartCoroutine(AnimateRetreat());
+        }
+
+        //unit teleports away. The X scale is reduced over time.
+        IEnumerator AnimateRetreat()
+        {
+            float scaleRate = 10;
+            while(transform.localScale.x > 0)
+            {
+                transform.localScale = new Vector2(transform.localScale.x - scaleRate * Time.deltaTime, transform.localScale.y);
+                yield return null;
+            }
+            //transform.localScale = Vector2.one;
+            gameObject.SetActive(false);
         }
 
     }
