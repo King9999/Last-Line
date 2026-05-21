@@ -355,17 +355,17 @@
             "portals": [
                 {
                     "point_axes": {
-                        "x": 0.0,
+                        "x": 1.0,
                         "y": 3.0
                     },
                     "point_position": {
-                        "x": 97.5,
+                        "x": 195.260009765625,
                         "y": 351.8999938964844
                     },
                     "enemy_type": 0,
                     "deploy_cooldown": 2.0,
                     "deploy_time": 60.0,
-                    "enemy_count": 20,
+                    "enemy_count": 15,
                     "enemy_path_points": [
                         {
                             "x": 0.0,
@@ -373,7 +373,7 @@
                             "z": 0.0
                         },
                         {
-                            "x": 8.220037460327149,
+                            "x": 7.420000076293945,
                             "y": 0.016827821731567384,
                             "z": 1.0
                         }
@@ -1213,7 +1213,7 @@
                     "enemy_type": 1,
                     "deploy_cooldown": 3.0,
                     "deploy_time": 60.0,
-                    "enemy_count": 15,
+                    "enemy_count": 5,
                     "enemy_path_points": [
                         {
                             "x": 0.0,
@@ -1279,7 +1279,7 @@
                     "enemy_type": 2,
                     "deploy_cooldown": 4.0,
                     "deploy_time": 120.0,
-                    "enemy_count": 15,
+                    "enemy_count": 5,
                     "enemy_path_points": [
                         {
                             "x": 0.0,

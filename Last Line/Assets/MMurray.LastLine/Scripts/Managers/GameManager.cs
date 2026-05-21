@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 8;
+        currentLevel = 4;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -236,7 +236,7 @@ public class GameManager : MonoBehaviour
     {
         bool cannotPlay = false;
         if (gameState == GameState.BaseDestroyed || gameState == GameState.LevelComplete || gameState == GameState.DialogueEndOfLevel ||
-            gameState == GameState.GameCompleted)
+            gameState == GameState.DialogueStartOfLevel || gameState == GameState.GoToNextLevel || gameState == GameState.GameCompleted)
             cannotPlay = true;
         
         if (inTutorial && (tutorialState == TutorialState.LevelComplete || tutorialState == TutorialState.DialogueEndOfLevel))
@@ -253,7 +253,7 @@ public class GameManager : MonoBehaviour
         int i = 0;
         while(!portalReady && i < activePortals.Count)
         {
-            if (activePortals[i].timer.TimeUp())
+            if (activePortals[i].gameObject.activeSelf && activePortals[i].timer.TimeUp())
             {
                 portalReady = true;
             }

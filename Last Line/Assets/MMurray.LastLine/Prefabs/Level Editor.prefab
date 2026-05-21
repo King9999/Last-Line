@@ -93,6 +93,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &226094442904007812
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +334,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &411696372198796255
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,6 +495,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &677907141644977681
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +589,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &680652450188095388
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,6 +849,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &1206197763744197585
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,6 +943,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &1345303405897373896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1418,6 +1424,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &2104960654614634688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,6 +1665,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &2426612235899149428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,6 +1906,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &2505189148806636370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,6 +2000,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &2561156796791789299
 GameObject:
   m_ObjectHideFlags: 0
@@ -2084,6 +2094,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &2675866935131070744
 GameObject:
   m_ObjectHideFlags: 0
@@ -2275,7 +2286,7 @@ MonoBehaviour:
     crystal_value: 0
     portals:
     - point_axes: {x: 5, y: 2}
-      point_position: {x: 586.3, y: 265.9}
+      point_position: {x: 813.0332, y: 368.85352}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 10
@@ -2285,7 +2296,7 @@ MonoBehaviour:
       - {x: -1.4888775, y: 0, z: 1}
       - {x: -3.5143294, y: 1.2997634, z: 1}
       - {x: -7, y: 1.3, z: 1}
-    player_base_position: {x: 195.26001, y: 351.9}
+    player_base_position: {x: 270.77072, y: 488.11133}
     base_point_axes: {x: 1, y: 3}
     power_up_space_position: {x: 0, y: 0}
     power_up_space_point_axes: {x: 0, y: 0}
@@ -2300,7 +2311,7 @@ MonoBehaviour:
     crystal_value: 0
     portals:
     - point_axes: {x: 1, y: 1}
-      point_position: {x: 195.26001, y: 179.9}
+      point_position: {x: 270.77072, y: 249.59569}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
@@ -2310,7 +2321,7 @@ MonoBehaviour:
       - {x: 2, y: 0, z: 1}
       - {x: 2.0342886, y: 4.6643143, z: 1}
       - {x: 5.131258, y: 4.6508245, z: 1}
-    player_base_position: {x: 488.54, y: 437.9}
+    player_base_position: {x: 677.4676, y: 607.36914}
     base_point_axes: {x: 4, y: 4}
     power_up_space_position: {x: 0, y: 0}
     power_up_space_point_axes: {x: 0, y: 0}
@@ -2325,7 +2336,7 @@ MonoBehaviour:
     crystal_value: 50
     portals:
     - point_axes: {x: 5, y: 4}
-      point_position: {x: 586.3, y: 437.9}
+      point_position: {x: 813.0332, y: 607.36914}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
@@ -2335,7 +2346,7 @@ MonoBehaviour:
       - {x: -6.8849707, y: -0.0011806488, z: 1}
       - {x: -6.8974366, y: -1.3152761, z: 1}
     - point_axes: {x: 5, y: 2}
-      point_position: {x: 586.3, y: 265.9}
+      point_position: {x: 813.0332, y: 368.85352}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
@@ -2344,7 +2355,7 @@ MonoBehaviour:
       - {x: 0, y: 0, z: 0}
       - {x: -6.878522, y: -0.0055733323, z: 1}
       - {x: -6.880188, y: 1.0105255, z: 1}
-    player_base_position: {x: 195.26001, y: 351.9}
+    player_base_position: {x: 270.77072, y: 488.11133}
     base_point_axes: {x: 1, y: 3}
     power_up_space_position: {x: 0, y: 0}
     power_up_space_point_axes: {x: 0, y: 0}
@@ -2359,7 +2370,7 @@ MonoBehaviour:
     crystal_value: 50
     portals:
     - point_axes: {x: 5, y: 1}
-      point_position: {x: 586.3, y: 179.9}
+      point_position: {x: 813.0332, y: 249.59569}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
@@ -2369,7 +2380,7 @@ MonoBehaviour:
       - {x: 0.0028386116, y: 5.952213, z: 1}
       - {x: -3.0421073, y: 5.951385, z: 1}
     - point_axes: {x: 2, y: 2}
-      point_position: {x: 293.02002, y: 265.9}
+      point_position: {x: 406.33633, y: 368.85352}
       enemy_type: 1
       deploy_cooldown: 3
       deploy_time: 120
@@ -2381,7 +2392,7 @@ MonoBehaviour:
       - {x: -2.1828332, y: 1.6963134, z: -1.9419699}
       - {x: -2.1652575, y: 4.4733186, z: -1.9419699}
       - {x: 1.5520632, y: 4.4733186, z: -1.9419699}
-    player_base_position: {x: 390.78, y: 523.9}
+    player_base_position: {x: 541.902, y: 726.62695}
     base_point_axes: {x: 3, y: 5}
     power_up_space_position: {x: 0, y: 0}
     power_up_space_point_axes: {x: 0, y: 0}
@@ -2395,17 +2406,17 @@ MonoBehaviour:
     crystal_threshold: 25
     crystal_value: 50
     portals:
-    - point_axes: {x: 0, y: 3}
-      point_position: {x: 97.5, y: 351.9}
+    - point_axes: {x: 1, y: 3}
+      point_position: {x: 270.77072, y: 488.11133}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
-      enemy_count: 20
+      enemy_count: 15
       enemy_path_points:
       - {x: 0, y: 0, z: 0}
       - {x: 8.220037, y: 0.016827822, z: 1}
     - point_axes: {x: 1, y: 2}
-      point_position: {x: 195.26001, y: 265.9}
+      point_position: {x: 270.77072, y: 368.85352}
       enemy_type: 1
       deploy_cooldown: 3
       deploy_time: 120
@@ -2415,7 +2426,7 @@ MonoBehaviour:
       - {x: 6.7046714, y: -0.0047810078, z: 1}
       - {x: 6.688464, y: 1.3956482, z: 1}
     - point_axes: {x: 2, y: 1}
-      point_position: {x: 293.02002, y: 179.9}
+      point_position: {x: 406.33633, y: 249.59569}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
@@ -2424,9 +2435,9 @@ MonoBehaviour:
       - {x: 0, y: 0, z: 0}
       - {x: 5.322952, y: 0.016827822, z: 1}
       - {x: 5.3207207, y: 2.7161999, z: 0}
-    player_base_position: {x: 586.3, y: 351.9}
+    player_base_position: {x: 813.0332, y: 488.11133}
     base_point_axes: {x: 5, y: 3}
-    power_up_space_position: {x: 586.3, y: 179.9}
+    power_up_space_position: {x: 813.0332, y: 249.59569}
     power_up_space_point_axes: {x: 5, y: 1}
     toggle_unit: 01010000
     power_up_space_active: 1
@@ -2439,7 +2450,7 @@ MonoBehaviour:
     crystal_value: 40
     portals:
     - point_axes: {x: 5, y: 1}
-      point_position: {x: 586.3, y: 179.9}
+      point_position: {x: 813.0332, y: 249.59569}
       enemy_type: 2
       deploy_cooldown: 4
       deploy_time: 60
@@ -2465,7 +2476,7 @@ MonoBehaviour:
       - {x: -4.020047, y: 0.21194363, z: 0}
       - {x: -3.8590863, y: 1.1911218, z: 0}
     - point_axes: {x: 1, y: 1}
-      point_position: {x: 195.26001, y: 179.9}
+      point_position: {x: 270.77072, y: 249.59569}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
@@ -2493,9 +2504,9 @@ MonoBehaviour:
       - {x: 3.7381704, y: 0.14487672, z: 0}
       - {x: 3.5772095, y: 0.6679995, z: 0}
       - {x: 3.5101426, y: 1.2313621, z: 0}
-    player_base_position: {x: 390.78, y: 265.9}
+    player_base_position: {x: 541.902, y: 368.85352}
     base_point_axes: {x: 3, y: 2}
-    power_up_space_position: {x: 390.78, y: 437.9}
+    power_up_space_position: {x: 541.902, y: 607.36914}
     power_up_space_point_axes: {x: 3, y: 4}
     toggle_unit: 01010100
     power_up_space_active: 1
@@ -2508,7 +2519,7 @@ MonoBehaviour:
     crystal_value: 40
     portals:
     - point_axes: {x: 3, y: 1}
-      point_position: {x: 390.78, y: 179.9}
+      point_position: {x: 541.902, y: 249.59569}
       enemy_type: 2
       deploy_cooldown: 4
       deploy_time: 120
@@ -2518,7 +2529,7 @@ MonoBehaviour:
       - {x: 3.6141286, y: 0.047289014, z: 0}
       - {x: 3.625778, y: 1.3403823, z: 0}
     - point_axes: {x: 1, y: 5}
-      point_position: {x: 195.26001, y: 523.9}
+      point_position: {x: 270.77072, y: 726.62695}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
@@ -2538,7 +2549,7 @@ MonoBehaviour:
       - {x: 5.9768696, y: -3.8567944, z: 0}
       - {x: 6.725386, y: -4.3811617, z: 0}
     - point_axes: {x: 1, y: 1}
-      point_position: {x: 195.26001, y: 179.9}
+      point_position: {x: 270.77072, y: 249.59569}
       enemy_type: 1
       deploy_cooldown: 3
       deploy_time: 90
@@ -2555,9 +2566,9 @@ MonoBehaviour:
       - {x: 6.6766305, y: 3.9378462, z: 0}
       - {x: 6.9738417, y: 3.0638847, z: 0}
       - {x: 7.0473094, y: 1.8585182, z: 0}
-    player_base_position: {x: 586.3, y: 265.9}
+    player_base_position: {x: 813.0332, y: 368.85352}
     base_point_axes: {x: 5, y: 2}
-    power_up_space_position: {x: 293.02002, y: 179.9}
+    power_up_space_position: {x: 406.33633, y: 249.59569}
     power_up_space_point_axes: {x: 2, y: 1}
     toggle_unit: 01010100
     power_up_space_active: 1
@@ -2570,7 +2581,7 @@ MonoBehaviour:
     crystal_value: 50
     portals:
     - point_axes: {x: 4, y: 1}
-      point_position: {x: 488.54, y: 179.9}
+      point_position: {x: 677.4676, y: 249.59569}
       enemy_type: 2
       deploy_cooldown: 4
       deploy_time: 60
@@ -2580,7 +2591,7 @@ MonoBehaviour:
       - {x: -3.5939703, y: -0.014228821, z: 0}
       - {x: -3.5671892, y: 1.2043214, z: 0}
     - point_axes: {x: 4, y: 4}
-      point_position: {x: 488.54, y: 437.9}
+      point_position: {x: 677.4676, y: 607.36914}
       enemy_type: 2
       deploy_cooldown: 4
       deploy_time: 60
@@ -2590,7 +2601,7 @@ MonoBehaviour:
       - {x: -3.6407518, y: 0.05572176, z: 0}
       - {x: -3.6005797, y: -2.7027547, z: 0}
     - point_axes: {x: 5, y: 5}
-      point_position: {x: 586.3, y: 523.9}
+      point_position: {x: 813.0332, y: 726.62695}
       enemy_type: 1
       deploy_cooldown: 3
       deploy_time: 120
@@ -2610,7 +2621,7 @@ MonoBehaviour:
       - {x: -3.3031373, y: -4.1228213, z: -0}
       - {x: -4.0620227, y: -4.7955494, z: -0}
       - {x: -5.079179, y: -4.848618, z: -0}
-    player_base_position: {x: 293.02002, y: 265.9}
+    player_base_position: {x: 406.33633, y: 368.85352}
     base_point_axes: {x: 2, y: 2}
     power_up_space_position: {x: 0, y: 0}
     power_up_space_point_axes: {x: 0, y: 0}
@@ -2625,7 +2636,7 @@ MonoBehaviour:
     crystal_value: 100
     portals:
     - point_axes: {x: 1, y: 1}
-      point_position: {x: 195.26001, y: 179.9}
+      point_position: {x: 270.77072, y: 249.59569}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
@@ -2640,11 +2651,11 @@ MonoBehaviour:
       - {x: 3.2274907, y: 3.866157, z: 0}
       - {x: 3.4915347, y: 3.4364882, z: 0}
     - point_axes: {x: 5, y: 5}
-      point_position: {x: 586.3, y: 523.9}
+      point_position: {x: 813.0332, y: 726.62695}
       enemy_type: 1
       deploy_cooldown: 3
       deploy_time: 60
-      enemy_count: 15
+      enemy_count: 5
       enemy_path_points:
       - {x: 0, y: 0, z: 0}
       - {x: -0.019213796, y: -0.30099678, z: 0}
@@ -2657,11 +2668,11 @@ MonoBehaviour:
       - {x: -3.6738205, y: -3.8156528, z: 0}
       - {x: -3.7787251, y: -3.4484947, z: 0}
     - point_axes: {x: 5, y: 1}
-      point_position: {x: 586.3, y: 179.9}
+      point_position: {x: 813.0332, y: 249.59569}
       enemy_type: 2
       deploy_cooldown: 4
       deploy_time: 120
-      enemy_count: 15
+      enemy_count: 5
       enemy_path_points:
       - {x: 0, y: 0, z: 0}
       - {x: 0.033196688, y: 0.2509216, z: 0}
@@ -2672,7 +2683,7 @@ MonoBehaviour:
       - {x: -2.9795067, y: 4.04969, z: 0}
       - {x: -3.276672, y: 3.650202, z: 0}
     - point_axes: {x: 1, y: 5}
-      point_position: {x: 195.26001, y: 523.9}
+      point_position: {x: 270.77072, y: 726.62695}
       enemy_type: 3
       deploy_cooldown: 12
       deploy_time: 120
@@ -2687,9 +2698,9 @@ MonoBehaviour:
       - {x: 3.3013837, y: -4.493412, z: 0}
       - {x: 4.0430303, y: -3.8184595, z: 0}
       - {x: 4.067644, y: -3.190819, z: 0}
-    player_base_position: {x: 390.78, y: 351.9}
+    player_base_position: {x: 541.902, y: 488.11133}
     base_point_axes: {x: 3, y: 3}
-    power_up_space_position: {x: 390.78, y: 437.9}
+    power_up_space_position: {x: 541.902, y: 607.36914}
     power_up_space_point_axes: {x: 3, y: 4}
     toggle_unit: 01010101
     power_up_space_active: 1
@@ -2790,6 +2801,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &3105393173347450282
 GameObject:
   m_ObjectHideFlags: 0
@@ -2883,6 +2895,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &3287359258994808332
 GameObject:
   m_ObjectHideFlags: 0
@@ -2976,6 +2989,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &3386816022565352916
 GameObject:
   m_ObjectHideFlags: 0
@@ -3216,6 +3230,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &3626674514329030004
 GameObject:
   m_ObjectHideFlags: 0
@@ -3309,6 +3324,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &3873154867419071687
 GameObject:
   m_ObjectHideFlags: 0
@@ -3402,6 +3418,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &4100517577425021573
 GameObject:
   m_ObjectHideFlags: 0
@@ -3495,6 +3512,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &4154150193286831750
 GameObject:
   m_ObjectHideFlags: 0
@@ -3735,6 +3753,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &4454631254388022022
 GameObject:
   m_ObjectHideFlags: 0
@@ -3904,6 +3923,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &4645960888650292641
 GameObject:
   m_ObjectHideFlags: 0
@@ -3997,6 +4017,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &5308000368786863132
 GameObject:
   m_ObjectHideFlags: 0
@@ -4090,6 +4111,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &5555329801067215427
 GameObject:
   m_ObjectHideFlags: 0
@@ -4477,6 +4499,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &5922061969409083701
 GameObject:
   m_ObjectHideFlags: 0
@@ -4607,6 +4630,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &6636465082548948457
 GameObject:
   m_ObjectHideFlags: 0
@@ -4733,6 +4757,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &6695425881490146547
 GameObject:
   m_ObjectHideFlags: 0
@@ -4826,6 +4851,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &7052620415743310648
 GameObject:
   m_ObjectHideFlags: 0
@@ -5066,6 +5092,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &7242341272343937306
 GameObject:
   m_ObjectHideFlags: 0
@@ -5159,6 +5186,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &7303940387829253711
 GameObject:
   m_ObjectHideFlags: 0
@@ -5252,6 +5280,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &7337637485063601206
 GameObject:
   m_ObjectHideFlags: 0
@@ -5381,6 +5410,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &7557471160670004772
 GameObject:
   m_ObjectHideFlags: 0
@@ -5474,6 +5504,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &7679951839768006274
 GameObject:
   m_ObjectHideFlags: 0
@@ -5489,7 +5520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2250034385891119907
 Transform:
   m_ObjectHideFlags: 0
@@ -5603,6 +5634,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &8238389475169923761
 GameObject:
   m_ObjectHideFlags: 0
@@ -5696,6 +5728,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &8556485295270314454
 GameObject:
   m_ObjectHideFlags: 0
@@ -5789,6 +5822,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &8582713625205539105
 GameObject:
   m_ObjectHideFlags: 0
@@ -5882,6 +5916,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1 &8591562458233372746
 GameObject:
   m_ObjectHideFlags: 0
@@ -6232,6 +6267,7 @@ MonoBehaviour:
   crystal: {fileID: 0}
   portal: {fileID: 0}
   powerUpSpace: {fileID: 0}
+  pointImage: {fileID: 0}
 --- !u!1001 &232418802908001993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8071,7 +8107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3198141876806987049, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.12
+      value: -6.16
       objectReference: {fileID: 0}
     - target: {fileID: 3198141876806987049, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8112,10 +8148,10 @@ PrefabInstance:
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: point
       value: 
-      objectReference: {fileID: 3644749995266213294}
+      objectReference: {fileID: 7205820297529464731}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: enemyCount
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: pointLocation
@@ -8159,7 +8195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8356405512469431045, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: m_Positions.Array.data[1].x
-      value: 8.220037
+      value: 7.42
       objectReference: {fileID: 0}
     - target: {fileID: 8356405512469431045, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: m_Positions.Array.data[1].y
@@ -10217,7 +10253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1436739048914159098, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3239290757994061521, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
       propertyPath: m_LocalScale.x
@@ -10442,7 +10478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: enemyCount
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: pointLocation
@@ -12990,7 +13026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: enemyCount
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: pointLocation
