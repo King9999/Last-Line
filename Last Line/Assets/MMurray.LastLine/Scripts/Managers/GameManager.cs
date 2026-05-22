@@ -713,6 +713,7 @@ public class GameManager : MonoBehaviour
             newLevel.player_base_position.y * screenHeightScale));
         playerBase.transform.position = new Vector3(playerBase.transform.position.x, playerBase.transform.position.y, 0);
         SetPointRef(playerBase, newLevel.base_point_axes);
+        //playerBase.SetCoordinatesUI();
         playerBase.hitPoints = playerBase.maxHitPoints;
         playerBase.UpdateHealthBar(playerBase.transform.position);
 
@@ -920,6 +921,8 @@ public class GameManager : MonoBehaviour
             //Logger.AddPlayerId(newUnit.name);
             //newUnit.UpdateHealthBar(newPos);        //TODO: Not quite sure why this fixes the healthbar positioning issue for player units.
             point.unit = newUnit;
+            newUnit.point = point;
+            newUnit.SetCoordinatesUI();
             newUnit.gameObject.SetActive(false);    //stay hidden until finished building.
 
             //add to list

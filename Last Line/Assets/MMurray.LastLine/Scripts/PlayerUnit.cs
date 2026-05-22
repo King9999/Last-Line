@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
+using UnityEngine.UI;
 //using MMurray.LastLine;
 
 /* Unit that's controlled by hte player. Player units don't move, and cost money to deploy. 
@@ -20,6 +22,10 @@ namespace MMurray.LastLine
         [SerializeField]protected float invulTime = 2;  //time in seconds
         protected float invulCounter;
         Coroutine retreat;
+
+        [Header("---UI---")]
+        [SerializeField]private TextMeshProUGUI unitCoordinates;
+        [SerializeField]private Image hoverSpace;  //shows unit's coordinates if hovering over it.
 
         public override void GetUnitData(UnitData data)
         {
@@ -41,8 +47,7 @@ namespace MMurray.LastLine
             unitHitbox = GetComponent<BoxCollider2D>();
             unitHitbox.enabled = true;
             transform.localScale = Vector2.one;
-            //UpdateHealthBar(transform.position);
-            //TODO: For some reason the player unit's health bar is not positioning correctly.
+
         }
 
         public void SetEnhancedState(bool toggle)
@@ -96,6 +101,25 @@ namespace MMurray.LastLine
         {
             string value = SharedState.LanguageDefs?[key];
             return value ?? "--missing--";
+        }
+
+        //displays unit's coordinates.
+        public void OnMouseHover()
+        {
+            unitCoordinates.text = point.pointAxes.ToString("F0");
+        }
+
+        public void OnMouseHoverExit()
+        {
+            unitCoordinates.text = "";
+        }
+
+        //sets up UI to display coordinates. Must be called after unit is created.
+        public void SetCoordinatesUI()
+        {
+            unitCoordinates.text = "";
+            unitCoordinates.transform.position = Camera.main.WorldToScreenPoint(new Vector2(transform.position.x, transform.position.y + 1));
+            hoverSpace.transform.position = Camera.main.WorldToScreenPoint(new Vector2(transform.position.x, transform.position.y));
         }
 
         public void Retreat()

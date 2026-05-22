@@ -5060,7 +5060,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -5277,14 +5277,17 @@ MonoBehaviour:
   weaponDamage: 0
   healthBar: {fileID: 5986740357745238205}
   unitSpriteRenderer: {fileID: 2184682607946509901}
+  uiSprite: {fileID: 0}
+  unitHitbox: {fileID: 0}
   unitCost: 0
   buildTime: 0
-  unitSprite: {fileID: 0}
   point: {fileID: 0}
   pointAxes: {x: 0, y: 0}
   isEnhanced: 0
   isInvul: 0
   invulTime: 2
+  unitCoordinates: {fileID: 0}
+  hoverSpace: {fileID: 0}
   baseParticles: {fileID: 5256475416706958499}
 --- !u!61 &6783415214433305499
 BoxCollider2D:
