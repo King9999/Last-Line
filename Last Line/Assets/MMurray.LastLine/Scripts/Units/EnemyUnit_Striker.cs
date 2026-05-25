@@ -113,20 +113,20 @@ public class EnemyUnit_Striker : EnemyUnit
                 //base takes damage.
                 unit.ReduceHitPoints(collisionDamage);
                 Logger.DebugLog("Hit " + unit.name);
-                gm.RemoveEnemyUnit(this);
+                gm.RemoveEnemyUnit(this, true);
             }
             else if(unit is PlayerUnit_Bomb)
             {
                 //enemy unit dies, but bomb is activated.
                 PlayerUnit_Bomb bomb = unit as PlayerUnit_Bomb;
                 bomb.ActivateBomb();
-                gm.RemoveEnemyUnit(this);
+                gm.RemoveEnemyUnit(this, true);
             }
             else
             {
                 //both player unit and enemy unit die.
                 gm.RemovePlayerUnit(unit);
-                gm.RemoveEnemyUnit(this);
+                gm.RemoveEnemyUnit(this, true);
             }
         }
     }

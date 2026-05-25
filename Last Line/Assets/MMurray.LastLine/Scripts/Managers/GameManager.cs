@@ -518,12 +518,20 @@ public class GameManager : MonoBehaviour
             portal.gameObject.SetActive(false);
         }
 
-        //remove active player units. Must also check the build queue for any units not yet built.
+        //remove active player and enemy units. Must also check the build queue for any units not yet built.
         for (int i = 0; i < activePlayerUnits.Count; i++)
         {
             activePlayerUnits[i].gameObject.SetActive(false);
             deadPlayerUnits.Add(activePlayerUnits[i]);
             activePlayerUnits.Remove(activePlayerUnits[i]);
+            i--;
+        }
+
+        for (int i = 0; i < activeEnemyUnits.Count; i++)
+        {
+            activeEnemyUnits[i].gameObject.SetActive(false);
+            deadEnemyUnits.Add(activeEnemyUnits[i]);
+            activeEnemyUnits.Remove(activeEnemyUnits[i]);
             i--;
         }
 
