@@ -28,7 +28,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
 
         //range of bullet is the unit's position + 2 units
         //bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
-        SetBulletRange(bullet);
+        bulletRange = SetBulletRange(bullet);
 
         cooldownTimer = 0;
         //EnhanceUnit();
@@ -39,7 +39,11 @@ public class PlayerUnit_StraightShooter : PlayerUnit
     {
         base.OnEnable();
         if (bullet != null)
+        {
             bullet.direction = Vector2.right;   //just in case direction was changed before.
+            bulletRange = SetBulletRange(bullet);
+            bullet.gameObject.SetActive(false);
+        }
             
         unitSpriteRenderer.transform.localEulerAngles = Vector3.zero;
         cooldownTimer = 0;
@@ -132,7 +136,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         weaponCooldown = 0;         //to compensate for the extended range and only 1 bullet fired at a time.
         bullet.bulletType = Bullet.BulletType.Pierce;
         bullet.distance = 10;       //should be large enough to go off screen.
-        SetBulletRange(bullet);
+        bulletRange = SetBulletRange(bullet);
         //bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
         Logger.DebugLog("Unit is enhanced");
     }

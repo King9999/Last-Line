@@ -35,15 +35,17 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
             StopCoroutine(animateBeam);
         
         //reset line position
-        if (linePositions.Count > 0)
-            linePositions.Clear();
+        //if (linePositions.Count > 0)
+            //linePositions.Clear();
 
-        linePositions.Add(transform.position);
+        //linePositions.Add(transform.position);
         beam.widthMultiplier = 0.3f;
         targets.Clear();
         target = null;
         isCharging = false;
         cooldownTimer = Time.time;          //unit doesn't fire immediately.
+        //beam.SetPositions(new Vector3[] {Vector3.zero, Vector3.zero});
+        beam.positionCount = 0;             //this hopefully resets the positions.
         beam.gameObject.SetActive(false);
     }
 
