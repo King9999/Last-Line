@@ -155,13 +155,15 @@ public class PlayerUnit_Bomb : PlayerUnit
                 
             if (targets[i] is PlayerUnit_Base)
             {
-                if (!isEnhanced)
-                    targets[i].ReduceHitPoints(weaponDamage);
+                continue;
+                //if (!isEnhanced)
+                    //targets[i].ReduceHitPoints(weaponDamage);
             }
             else if (targets[i] is PlayerUnit)
             {
                 if (!isEnhanced)
-                    gm.RemovePlayerUnit(targets[i] as PlayerUnit);
+                    //gm.RemovePlayerUnit(targets[i] as PlayerUnit);
+                    gm.VacuumPlayerUnit(targets[i] as PlayerUnit);
             }
             else
             {

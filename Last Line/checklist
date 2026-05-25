@@ -2,5 +2,9 @@ LAST LINE CHECKLIST
 ----
 -Add functionality to cancel actions, like when selecting a unit to build DONE
 
--Show a grid when selecting a unit or clicking an axis button. Can use the Point's image that I currently have disabled.
--After selecting coordinates, display the coordinates.
+-Show a grid when selecting a unit or clicking an axis button. Can use the Point's image that I currently have disabled. DONE
+-After selecting coordinates, display the coordinates. DONE
+-Change straight shooter's bullet to something like noise crush from Mega Man 7
+-When an enemy is deployed, they must go into the active enemy list handled by game manager. Portal only needs to check if there
+are any enemies to deploy, and that's it.
+-Change bomb so that it also captures friendly units. Bomb also must not damage base.

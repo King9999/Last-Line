@@ -11,7 +11,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
 {
     public Bullet bullet;
     //public Vector2 bulletRange;
-    private float cooldownTimer;            //tracks when weapon fires.
+    [SerializeField]private float cooldownTimer;            //tracks when weapon fires.
     [SerializeField]private bool reverseDirection;  //if true, unit fires left.
 
     Coroutine rotateCoroutine;

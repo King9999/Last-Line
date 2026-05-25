@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 4;
+        currentLevel = 7;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -1185,6 +1185,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            if (unit is EnemyUnit_Dozer)
+            {
+                EnemyUnit_Dozer dozer = unit as EnemyUnit_Dozer;
+                dozer.barrierCollider.enabled = false;  //barrier can't hit anything while retreating
+            }
             launchEnemy = StartCoroutine(LaunchEnemyUnit(unit));
         }
         totalEnemies--;
@@ -1206,10 +1211,42 @@ public class GameManager : MonoBehaviour
         unit.portal = null;
         Logger.DebugLogFormat("Removing {0}", unit.name);
         
+        if (unit is EnemyUnit_Dozer)
+        {
+            EnemyUnit_Dozer dozer = unit as EnemyUnit_Dozer;
+            dozer.barrierCollider.enabled = false;  //barrier can't hit anything while retreating
+        }
         launchEnemy = StartCoroutine(FadeUnit(unit));
         
         totalEnemies--;
         Logger.DebugLogFormat("Enemies remaining: {0}", totalEnemies);
+    }
+    public void VacuumPlayerUnit(PlayerUnit unit)
+    {
+        if (unit == null)
+            return;
+
+        bool unitFound = false;
+        int i = 0;
+        while(!unitFound && i < points.Count)
+        {
+            if (points[i].unit == unit)
+            {
+                unitFound = true;
+                deadPlayerUnits.Add(unit);
+                activePlayerUnits.Remove(unit);
+                points[i].unit = null;
+                launchEnemy = StartCoroutine(FadeUnit(unit));
+
+                Logger.DebugLogFormat("Removing {0} from grid at point {1}", unit.name, points[i].pointAxes);
+                
+            }
+            else
+            {
+                i++;
+            }
+        }
+        
     }
     #endregion
 

@@ -8,7 +8,7 @@ from above, below, and behind. If a player unit collides with the barrier, both 
 but the dozer keeps moving at a faster speed. */
 public class EnemyUnit_Dozer : EnemyUnit
 {
-    [SerializeField]private BoxCollider2D barrierCollider;
+    [SerializeField]public BoxCollider2D barrierCollider;
     float barrierOffset;
     [SerializeField]Transform leftBarrierPos, rightBarrierPos;
     [SerializeField]ParticleSystem barrierParticles;
@@ -20,6 +20,7 @@ public class EnemyUnit_Dozer : EnemyUnit
         base.OnEnable();
         //GetUnitData(unitData);  //must call this or else OnEnable will not call GetUnitData from base class. 
         barrierOffset = barrierCollider.offset.x;
+        barrierCollider.enabled = true;
         //healthBar.maxValue = maxHitPoints;
         //healthBar.gameObject.SetActive(false);
         //isDefeated = false;
