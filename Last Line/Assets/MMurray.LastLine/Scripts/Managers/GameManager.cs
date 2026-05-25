@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
     //unit setup
     [Header("---Active Units & Portals---")]
     [SerializeField]private List<PlayerUnit> activePlayerUnits;
-    [SerializeField]private List<EnemyUnit> activeEnemyUnits;
+    [SerializeField]public List<EnemyUnit> activeEnemyUnits;
     [SerializeField]private List<Portal> activePortals;
     private Queue<PlayerUnit> buildQueue;        //the list of units to build after build time.
     private float[] buildTimer;
@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 7;
+        currentLevel = 5;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -1130,6 +1130,9 @@ public class GameManager : MonoBehaviour
     /// <param name="unit">The unit to be removed.</param>
     public void RemovePlayerUnit(PlayerUnit unit)
     {
+        if (unit == null)
+            return;
+
         bool unitFound = false;
         int i = 0;
         while(!unitFound && i < points.Count)
@@ -1171,7 +1174,40 @@ public class GameManager : MonoBehaviour
         if (unit == null)
             return;
 
-        unit.isDefeated = true;
+        bool unitFound = false;
+        int i = 0;
+        while(!unitFound && i < activeEnemyUnits.Count)
+        {
+            if (activeEnemyUnits[i] == unit)
+            {
+                unitFound = true;
+                unit.isDefeated = true;
+                unit.unitHitbox.enabled = false;    
+                deadEnemyUnits.Add(unit);
+                activeEnemyUnits.Remove(unit);
+                totalEnemies--;
+                if (enemyCollided)
+                {
+                    unit.gameObject.SetActive(false);
+                    CallExplosion(unit.transform.position);
+                }
+                else
+                {
+                    if (unit is EnemyUnit_Dozer)
+                    {
+                        EnemyUnit_Dozer dozer = unit as EnemyUnit_Dozer;
+                        dozer.barrierCollider.enabled = false;  //barrier can't hit anything while retreating
+                    }
+                    launchEnemy = StartCoroutine(LaunchEnemyUnit(unit));
+                }
+            }
+            else
+            {
+                i++;
+            }
+        }
+
+        /*unit.isDefeated = true;
         unit.unitHitbox.enabled = false;    
         deadEnemyUnits.Add(unit);
         unit.portal.enemyUnits.Remove(unit);
@@ -1192,7 +1228,7 @@ public class GameManager : MonoBehaviour
             }
             launchEnemy = StartCoroutine(LaunchEnemyUnit(unit));
         }
-        totalEnemies--;
+        totalEnemies--;*/
         Logger.DebugLogFormat("Enemies remaining: {0}", totalEnemies);
     }
 
@@ -1203,20 +1239,32 @@ public class GameManager : MonoBehaviour
         if (unit == null)
             return;
 
-        unit.isDefeated = true;
-        unit.unitHitbox.enabled = false;
-        deadEnemyUnits.Add(unit);
-        unit.portal.enemyUnits.Remove(unit);
-        unit.portal.ReduceEnemyCount();
-        unit.portal = null;
-        Logger.DebugLogFormat("Removing {0}", unit.name);
-        
-        if (unit is EnemyUnit_Dozer)
+        bool unitFound = false;
+        int i = 0;
+        while(!unitFound && i < activeEnemyUnits.Count)
         {
-            EnemyUnit_Dozer dozer = unit as EnemyUnit_Dozer;
-            dozer.barrierCollider.enabled = false;  //barrier can't hit anything while retreating
+            if (activeEnemyUnits[i] == unit)
+            {
+                unitFound = true;
+                unit.isDefeated = true;
+                unit.unitHitbox.enabled = false;    
+                deadEnemyUnits.Add(unit);
+                activeEnemyUnits.Remove(unit);
+                totalEnemies--;
+                if (unit is EnemyUnit_Dozer)
+                {
+                    EnemyUnit_Dozer dozer = unit as EnemyUnit_Dozer;
+                    dozer.barrierCollider.enabled = false;  //barrier can't hit anything while retreating
+                }
+                launchEnemy = StartCoroutine(FadeUnit(unit));
+                
+            }
+            else
+            {
+                i++;
+            }
         }
-        launchEnemy = StartCoroutine(FadeUnit(unit));
+
         
         totalEnemies--;
         Logger.DebugLogFormat("Enemies remaining: {0}", totalEnemies);

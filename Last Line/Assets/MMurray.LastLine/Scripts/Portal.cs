@@ -132,16 +132,21 @@ public class Portal : MonoBehaviour
             enemyCountText.gameObject.SetActive(false);
         }
 
-        if (nextEnemy < enemyCount && Time.time > currentDeployTime + deployCooldown)
+        if (enemyUnits.Count > 0 /*nextEnemy < enemyCount*/ && Time.time > currentDeployTime + deployCooldown)
         {
             //timer.gameObject.SetActive(false);
 
             //deploy unit
             currentDeployTime = Time.time;
-            enemyUnits[nextEnemy].gameObject.SetActive(true);
+            /*enemyUnits[nextEnemy].gameObject.SetActive(true);
             enemyUnits[nextEnemy].SetPath(pathPoints);
-            nextEnemy++;
-            Logger.DebugLog("nextEnemy index: " + nextEnemy);
+            nextEnemy++;*/
+            enemyUnits[0].gameObject.SetActive(true);
+            enemyUnits[0].SetPath(pathPoints);
+            gm.activeEnemyUnits.Add(enemyUnits[0]);
+            enemyUnits.Remove(enemyUnits[0]);
+            
+            //Logger.DebugLog("nextEnemy index: " + nextEnemy);
         }
 
         //check for any units that haven't spawned but for some reason nextEnemy exceeds enemy count.
