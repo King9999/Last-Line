@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 8;
+        currentLevel = 6;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -1275,7 +1275,7 @@ public class GameManager : MonoBehaviour
         }
 
         
-        totalEnemies--;
+        //totalEnemies--;
         Logger.DebugLogFormat("Enemies remaining: {0}", totalEnemies);
     }
     public void VacuumPlayerUnit(PlayerUnit unit)
@@ -1664,6 +1664,7 @@ public class GameManager : MonoBehaviour
             case TutorialState.DialogueEnemyIncoming:
                 //inform player what they did and to reinforce how ordered pairs are made. Also have dialogue from mother base warning
                 //player that enemy is about to attack.
+                xCoordinateText.text = "";
                 am.arrowUnitSelectY.gameObject.SetActive(false);
                 if (points[0].pointImage.enabled)
                 {
@@ -1689,6 +1690,7 @@ public class GameManager : MonoBehaviour
                 break;
             
             case TutorialState.OriginTutorial:
+                xCoordinateText.text = "";
                 keyList = dialogueManager.dialogueList[DialogueManager.ORIGIN_TUTORIAL].dialogueKeyList[0];
                 dialogueManager.dialogueList[DialogueManager.ORIGIN_TUTORIAL].ShowDialogue(keyList);
                 break;

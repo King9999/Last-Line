@@ -2806,6 +2806,14 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_SpriteRenderer_get_flipY();
 		Register_UnityEngine_SpriteRenderer_get_flipY();
 
+		//System.Void UnityEngine.SpriteRenderer::get_color_Injected(UnityEngine.Color&)
+		void Register_UnityEngine_SpriteRenderer_get_color_Injected();
+		Register_UnityEngine_SpriteRenderer_get_color_Injected();
+
+		//System.Void UnityEngine.SpriteRenderer::set_color_Injected(UnityEngine.Color&)
+		void Register_UnityEngine_SpriteRenderer_set_color_Injected();
+		Register_UnityEngine_SpriteRenderer_set_color_Injected();
+
 		//System.Void UnityEngine.SpriteRenderer::set_flipX(System.Boolean)
 		void Register_UnityEngine_SpriteRenderer_set_flipX();
 		Register_UnityEngine_SpriteRenderer_set_flipX();

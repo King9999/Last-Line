@@ -167,6 +167,81 @@ ScriptsOnlyBuild:
     fullTypeName: TitleManager
     methodName: StartButtonClicked
   - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: SystemButton
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SystemButton
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SystemButton
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverExit
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverExit
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverExit
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverExit
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
     fullTypeName: GameManager
     methodName: AdvancePortalTimers
   - assembly: Assembly-CSharp
@@ -203,80 +278,113 @@ ScriptsOnlyBuild:
     fullTypeName: AxisButton
     methodName: GetValue
   - assembly: Assembly-CSharp
-    fullTypeName: SystemButton
+    fullTypeName: Dialogue
     methodName: OnMouseClick
   - assembly: Assembly-CSharp
-    fullTypeName: SystemButton
+    fullTypeName: Dialogue
     methodName: OnMouseClick
   - assembly: Assembly-CSharp
-    fullTypeName: SystemButton
+    fullTypeName: Dialogue
     methodName: OnMouseClick
   - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverEnter
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
   - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: MMurray.LastLine.PlayerUnit
+    methodName: OnMouseHover
+  - assembly: Assembly-CSharp
+    fullTypeName: MMurray.LastLine.PlayerUnit
     methodName: OnMouseHoverExit
   - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseClick
+    fullTypeName: MMurray.LastLine.PlayerUnit
+    methodName: OnMouseHover
   - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverEnter
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
+    fullTypeName: MMurray.LastLine.PlayerUnit
     methodName: OnMouseHoverExit
   - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseClick
+    fullTypeName: MMurray.LastLine.PlayerUnit
+    methodName: OnMouseHover
   - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverEnter
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
+    fullTypeName: MMurray.LastLine.PlayerUnit
     methodName: OnMouseHoverExit
   - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseClick
+    fullTypeName: MMurray.LastLine.PlayerUnit
+    methodName: OnMouseHover
   - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverEnter
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
+    fullTypeName: MMurray.LastLine.PlayerUnit
     methodName: OnMouseHoverExit
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseClick
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
   - assembly: Assembly-CSharp
     fullTypeName: EndScreenManager
     methodName: EndGame
@@ -856,7 +964,7 @@ ScriptsOnlyBuild:
     className: CinemachinePixelPerfect
   - hash:
       serializedVersion: 2
-      Hash: d5ad71396766743d2eeac1d89d055085
+      Hash: 4b71d97f70df80fc7d8e27d2762c02bb
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Portal
@@ -868,7 +976,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 70540b916f26bccdf93b001f18c22698
+      Hash: 1527cd01784393baaf5a0c66471b8579
     assemblyName: Assembly-CSharp
     namespaceName: MMurray.LastLine
     className: Point
@@ -1024,7 +1132,7 @@ ScriptsOnlyBuild:
     className: PathArrow
   - hash:
       serializedVersion: 2
-      Hash: fa4186722967560c3906fbeedf0e18e1
+      Hash: 5c04a8557d1001128cd76783278991da
     assemblyName: Assembly-CSharp
     namespaceName: MMurray.LastLine
     className: Singleton
@@ -1042,7 +1150,7 @@ ScriptsOnlyBuild:
     className: DDOL
   - hash:
       serializedVersion: 2
-      Hash: 8f1c002f1278c5eda99a43f5021457c7
+      Hash: 0235241257714a6e0073dd2944c752db
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerUnit_StraightShooter
@@ -1132,7 +1240,7 @@ ScriptsOnlyBuild:
     className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
-      Hash: 8a6acbb310d23540dd44e2d0d909e6db
+      Hash: 6f49a742fbe1632637fc7185615f78e6
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerUnit_Bomb
@@ -1198,7 +1306,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerExitMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 22b3e55f2a66344b66a4583d6d640074
+      Hash: 18347d6444e3322f2432992cdeb5e798
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerUnit_VerticalShooter
@@ -1222,7 +1330,7 @@ ScriptsOnlyBuild:
     className: SpriteShapeGeometryCache
   - hash:
       serializedVersion: 2
-      Hash: 1cd4f0371b51c7a65d34da81d9549516
+      Hash: bf9d429e2ea0e57c7f5a29bb155632ae
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: EnemyUnit_Juggernaut
@@ -1312,13 +1420,13 @@ ScriptsOnlyBuild:
     className: DictionaryAsset
   - hash:
       serializedVersion: 2
-      Hash: 50dfb774fb5860558753645da1f483b5
+      Hash: 04d8c4d545fcfd372b8d71c40cab02cd
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: EnemyUnit_Striker
   - hash:
       serializedVersion: 2
-      Hash: db49c98de0ac11ef158c8392c97f37bb
+      Hash: 51681417e8012082e66143f40c33034c
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameManager
@@ -1522,13 +1630,13 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: b6bad67982f037e147ad1bb0d137efdf
+      Hash: 0121310e54700878d715a01a8e8a7ed3
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: EnemyUnit_Dozer
   - hash:
       serializedVersion: 2
-      Hash: 50b7f376becd87989c49751474baf997
+      Hash: dd44170c330b5775fcc5487bb8f41b9b
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: EnemyUnit_Scout
@@ -1828,7 +1936,7 @@ ScriptsOnlyBuild:
     className: UnityOnScrollRectValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 2bf3928b2524951b760fecd5d419fd72
+      Hash: 3320066bcb612d74b106f5f271302cf6
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Dialogue
@@ -1870,7 +1978,7 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 50a4c68697ccc551d4e24504cdf39712
+      Hash: e945a6d9bb0079d3ea083c8a67b89106
     assemblyName: Assembly-CSharp
     namespaceName: MMurray.LastLine
     className: EnemyUnit
@@ -1930,7 +2038,7 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
-      Hash: a9b4cf3784ba9da8064886ddec88947b
+      Hash: f97f8040cfc08232cdb49f3be2b8f37c
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerUnit_Base
@@ -2008,7 +2116,7 @@ ScriptsOnlyBuild:
     className: SpeechSceneManager
   - hash:
       serializedVersion: 2
-      Hash: cd44e99b43678930e9228308698c0f5e
+      Hash: 0d82228b85fedaa4d1e2cb5e6f073725
     assemblyName: Assembly-CSharp
     namespaceName: MMurray.LastLine
     className: PlayerUnit
@@ -2050,7 +2158,7 @@ ScriptsOnlyBuild:
     className: FabrikSolver2D
   - hash:
       serializedVersion: 2
-      Hash: 114a2790ecd636c5b97af7f97029ef37
+      Hash: 524a88229da4c68da6e28c21e38d88c8
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerUnit_TrackingBeam

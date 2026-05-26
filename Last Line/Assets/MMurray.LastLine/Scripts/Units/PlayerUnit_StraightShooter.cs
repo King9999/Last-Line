@@ -40,9 +40,11 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         base.OnEnable();
         if (bullet != null)
         {
-            bullet.direction = Vector2.right;   //just in case direction was changed before.
+            SetupBullet(bullet);
+            //bullet.direction = Vector2.right;   //just in case direction was changed before.
             bulletRange = SetBulletRange(bullet);
             bullet.gameObject.SetActive(false);
+            //bullet.bulletType = Bullet.BulletType.Normal;
         }
             
         unitSpriteRenderer.transform.localEulerAngles = Vector3.zero;
@@ -108,6 +110,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         bullet.direction = Vector2.right;
         bullet.owner = Bullet.Owner.Player;
         bullet.GetComponent<SpriteRenderer>().sortingOrder = 0;   //bullet appears behind unit.
+        bullet.bulletType = Bullet.BulletType.Normal;
         //bullet.damage = 1;
         //bullet.distance = 4;
     }

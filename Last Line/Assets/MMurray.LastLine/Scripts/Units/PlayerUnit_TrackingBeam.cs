@@ -101,7 +101,10 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
     void AttackTarget()
     {
         if (targets.Count <= 0)
+        {
+            //StopFiring();
             return;
+        }
 
         //get closest target and fire
         float smallestDistance = 1000;
