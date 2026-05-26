@@ -1325,9 +1325,12 @@ public class GameManager : MonoBehaviour
                 playerUnitType = PlayerUnitType.NoUnitSelected;
 
                 //hide points
-                foreach (Point p in points)
+                if (points[0].pointImage.enabled)
                 {
-                    p.ShowPoint(false);
+                    foreach (Point p in points)
+                    {
+                        p.ShowPoint(false);
+                    }
                 }
                 break;
             
@@ -1348,9 +1351,12 @@ public class GameManager : MonoBehaviour
                     portal.timer.StartTimer();
                 }
                 //hide points
-                foreach (Point p in points)
+                if (points[0].pointImage.enabled)
                 {
-                    p.ShowPoint(false);
+                    foreach (Point p in points)
+                    {
+                        p.ShowPoint(false);
+                    }
                 }
                 break;
 
@@ -1358,9 +1364,12 @@ public class GameManager : MonoBehaviour
                 //disable Y values, then disable X values.
                 //TODO: Have dialogue during tutorial to explain how to set units
                 DisplayAlert(GetText("unitSelect_x"));
-                foreach (Point p in points)
+                if (!points[0].pointImage.enabled)
                 {
-                    p.ShowPoint(true);
+                    foreach (Point p in points)
+                    {
+                        p.ShowPoint(true);
+                    }
                 }
                 axisContainerY.gameObject.SetActive(false);
                 break;
@@ -1370,9 +1379,12 @@ public class GameManager : MonoBehaviour
                 //TODO: in tutorial, make mention of origin and how it might be used
                 DisplayAlert(GetText("unitSelect_y"));
                 //show points
-                foreach (Point p in points)
+                if (!points[0].pointImage.enabled)
                 {
-                    p.ShowPoint(true);
+                    foreach (Point p in points)
+                    {
+                        p.ShowPoint(true);
+                    }
                 }
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(false);
@@ -1475,6 +1487,14 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.BaseDestroyed:
+                playerUnitType = PlayerUnitType.NoUnitSelected;
+                if (points[0].pointImage.enabled)
+                {
+                    foreach (Point p in points)
+                    {
+                        p.ShowPoint(false);
+                    }
+                }
                 //have hitstop then blow up base
                 DestroyBase();
                 //playerBase.gameObject.SetActive(false);
@@ -1530,9 +1550,12 @@ public class GameManager : MonoBehaviour
                 enteringValueX = false;
                 enteringValueY = false;
                 playerUnitType = PlayerUnitType.NoUnitSelected;
-                foreach (Point p in points)
+                if (points[0].pointImage.enabled)
                 {
-                    p.ShowPoint(false);
+                    foreach (Point p in points)
+                    {
+                        p.ShowPoint(false);
+                    }
                 }
                 break;
 
@@ -1553,9 +1576,12 @@ public class GameManager : MonoBehaviour
                     //string dKey = dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].dialogueKeyList[0].key;
                     dialogueManager.dialogueList[DialogueManager.SELECTING_X_VALUE].ShowDialogue(keyList);
                 //}
-                foreach (Point p in points)
+                if (!points[0].pointImage.enabled)
                 {
-                    p.ShowPoint(true);
+                    foreach (Point p in points)
+                    {
+                        p.ShowPoint(true);
+                    }
                 }
                 break;
             
@@ -1590,9 +1616,12 @@ public class GameManager : MonoBehaviour
                 am.HideGuideArrows();
                 am.arrowUnitSelectX.gameObject.SetActive(true);
                 am.arrowUnitSelectX.PointArrow(am.arrowUnitSelectX.arrowLocation, am.arrowUnitSelectX.direction);
-                foreach (Point p in points)
+                if (!points[0].pointImage.enabled)
                 {
-                    p.ShowPoint(true);
+                    foreach (Point p in points)
+                    {
+                        p.ShowPoint(true);
+                    }
                 }
                 break;
             
@@ -1613,9 +1642,12 @@ public class GameManager : MonoBehaviour
             case TutorialState.ActivateAbilitySelectX:
                 am.arrowUnitSelectX.gameObject.SetActive(true);
                 am.arrowUnitSelectX.PointArrow(am.arrowUnitSelectX.arrowLocation, am.arrowUnitSelectX.direction);
-                foreach (Point p in points)
+                if (!points[0].pointImage.enabled)
                 {
-                    p.ShowPoint(true);
+                    foreach (Point p in points)
+                    {
+                        p.ShowPoint(true);
+                    }
                 }
                 break;
             
@@ -1629,9 +1661,12 @@ public class GameManager : MonoBehaviour
                 //inform player what they did and to reinforce how ordered pairs are made. Also have dialogue from mother base warning
                 //player that enemy is about to attack.
                 am.arrowUnitSelectY.gameObject.SetActive(false);
-                foreach (Point p in points)
+                if (points[0].pointImage.enabled)
                 {
-                    p.ShowPoint(false);
+                    foreach (Point p in points)
+                    {
+                        p.ShowPoint(false);
+                    }
                 }
                 keyList = dialogueManager.dialogueList[DialogueManager.ENEMY_INCOMING].dialogueKeyList[0];
                 dialogueManager.dialogueList[DialogueManager.ENEMY_INCOMING].ShowDialogue(keyList);
