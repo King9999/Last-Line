@@ -43,16 +43,17 @@
       "tutorialLevel": 15,
       "backButton": 20,
       "unitDeployed": 20,
-      "disclaimer": 60
+      "disclaimer": 60,
+      "xCoordinateSelected": 20
     }
   },
   "en": {
     "startButton": "Start Game",
     "continueButton": "Continue",
     "creditsButton": "Credits",
-    "unitButton_straightShooter": "Targets a horizontal line. Enter coordinates again to change direction.",
-    "unitButton_verticalShooter": "Targets up and down at the same time.",
-	"unitButton_trackingBeam": "Slow, but has large range and targets the nearest enemy.",
+    "unitButton_straightShooter": "Attacks in a horizontal line. Enter coordinates again to change direction.",
+    "unitButton_verticalShooter": "Attacks up and down at the same time.",
+	"unitButton_trackingBeam": "Has large range and targets the nearest enemy.",
     "unitButton_bomb": "Captures <color=#E1341E>all units</color> in its range. Base is unaffected. Enter coordinates again to activate.",
     "unitLabel": "UNITS",
     "moneyLabel": "SCRAP",
@@ -65,6 +66,7 @@
     "unitSelect_x": "Select X value\n(Right click to cancel)",
 	"unitSelect_y": "Select Y value\n(Right click to cancel)",
 	"cannotEnterYBeforeX": "Choose an X coordinate first!",
+	"xCoordinateSelected": "X coordinate: ",
 	"nothingAtPoint": "Nothing here.",
 	"cancelAction": "Action cancelled.",
 	"buildQueueFull": "Can only build 3 units at a time!",

@@ -38,6 +38,7 @@ public class AxisButton : MonoBehaviour
                     {
                         gm.enteringValueX = true;       //always start with X
                         gm.playerCoordinates.x = value;
+                        gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
 
                         //change state
                         gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
@@ -57,6 +58,7 @@ public class AxisButton : MonoBehaviour
                 {
                     gm.enteringValueX = true;       //always start with X
                     gm.playerCoordinates.x = value;
+                    gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
 
                     //change state
                     gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
@@ -89,7 +91,7 @@ public class AxisButton : MonoBehaviour
                         //if player picked incorrect value, we don't continue.
                         if (value != 3)
                             return;
-
+                        gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
                         gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectY);
                         break;
                     
@@ -97,7 +99,7 @@ public class AxisButton : MonoBehaviour
                         //if player picked incorrect value, we don't continue.
                         if (value != 5)
                             return;
-
+                        gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
                         gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectSecondUnitY);
                         break;
                     
@@ -105,7 +107,7 @@ public class AxisButton : MonoBehaviour
                         //if player picked incorrect value, we don't continue.
                         if (value != 5)
                             return;
-
+                        gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
                         gm.SetGameState(gm.tutorialState = GameManager.TutorialState.ActivateAbilitySelectY);
                         break;
                     
@@ -118,6 +120,7 @@ public class AxisButton : MonoBehaviour
             {
                 //gm.playerCoordinates.x = value;
                 //gm.enteringValueX = true;
+                gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
                 gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
             }
             Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);

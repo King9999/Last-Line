@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
         Normal, EnemyPreparing,                //when game state is normal the game is running. Otherwise the game is paused.
         UnitSelectX, UnitSelectY,               //player is entering coordinates
         StartLevel, DialogueStartOfLevel, DialogueEndOfLevel, DialogueGameOver,
-        SelectingValueX, SelectingValueY,       //used when placing units on screen.
+        //SelectingValueX, SelectingValueY,       //used when placing units on screen.
         BaseDestroyed, LevelComplete, GoToNextLevel, GameCompleted
     }
 
@@ -50,14 +50,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]Levels levelData;
 
     [Header("---UI---")]
-    public TextMeshProUGUI alertText;           //used to inform player of various things.
-    //public Dialogue dialogueBox;
+    [SerializeField]private TextMeshProUGUI alertText;           //used to inform player of various things.
+    public TextMeshProUGUI xCoordinateText;        //used to let player know which X coordinate they picked
     public DialogueManager dialogueManager;
     public int triggerIndex;                //used to iterate through conditional triggers.
     [SerializeField]private ProgressBar[] progressBars;  //used to show build times for units.
     private int progressIndex, activeBarIndex;              //keeps track of which progress bar is active and filling up.
     private int availableProgressIndex;     //always points to an inactive progress bar.
-    public Laser testLaser;
+    //public Laser testLaser;
     [SerializeField]private List<MoneyText> moneyTexts;    //is displayed when an enemy unit is destroyed.
     public Button readyButton;     //used to advance game by 60 seconds to start early.
     //public Button exitButton;      //ends game when last level completed.
@@ -170,6 +170,7 @@ public class GameManager : MonoBehaviour
 
         //UI setup
         alertText.text = "";
+        xCoordinateText.text = "";
         readyLabel.text = GetText("readyButtonText");
         exitGameLabel.text = GetText("exitButtonText");
         //exitButton.gameObject.SetActive(false);     //only appears at end of game.
@@ -1323,6 +1324,7 @@ public class GameManager : MonoBehaviour
                 enteringValueX = false;
                 enteringValueY = false;
                 playerUnitType = PlayerUnitType.NoUnitSelected;
+                xCoordinateText.text = "";
 
                 //hide points
                 if (points[0].pointImage.enabled)
@@ -1343,6 +1345,7 @@ public class GameManager : MonoBehaviour
                 enteringValueX = false;
                 enteringValueY = false;
                 playerUnitType = PlayerUnitType.NoUnitSelected;
+                xCoordinateText.text = "";
                 //DisplayAlertWithDuration(GetText("enemyPreparing"), 10);
 
                 //start portal timers
@@ -1550,6 +1553,7 @@ public class GameManager : MonoBehaviour
                 enteringValueX = false;
                 enteringValueY = false;
                 playerUnitType = PlayerUnitType.NoUnitSelected;
+                xCoordinateText.text = "";
                 if (points[0].pointImage.enabled)
                 {
                     foreach (Point p in points)
