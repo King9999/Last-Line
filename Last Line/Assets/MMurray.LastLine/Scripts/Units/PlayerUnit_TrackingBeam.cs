@@ -43,6 +43,7 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
         targets.Clear();
         target = null;
         isCharging = false;
+        beamFired = false;
         cooldownTimer = Time.time;          //unit doesn't fire immediately.
         //beam.SetPositions(new Vector3[] {Vector3.zero, Vector3.zero});
         beam.positionCount = 0;             //this hopefully resets the positions.
@@ -101,10 +102,7 @@ public class PlayerUnit_TrackingBeam : PlayerUnit
     void AttackTarget()
     {
         if (targets.Count <= 0)
-        {
-            //StopFiring();
             return;
-        }
 
         //get closest target and fire
         float smallestDistance = 1000;

@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 6;
+        //currentLevel = 6;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -536,11 +536,19 @@ public class GameManager : MonoBehaviour
             i--;
         }
 
+        //queue and releated UI cleanup
         for (int i = 0; i < buildQueue.Count; i++)
         {
             PlayerUnit unit = buildQueue.Dequeue();
             deadPlayerUnits.Add(unit);
             i--;
+        }
+
+        Menu menu = Singleton.instance.Menu;
+        for (int i = 0; i < menu.unitsInQueue.Length; i++)
+        {
+            menu.unitsInQueue[i].enabled = false;
+            progressBars[i].DisplayProgressBar(false);
         }
 
         foreach(Point point in points)
