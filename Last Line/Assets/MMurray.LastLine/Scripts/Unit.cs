@@ -93,6 +93,7 @@ namespace MMurray.LastLine
         public virtual void SetupBullet(Bullet bullet)
         {
             bullet.unit = this;
+            bullet.transform.position = transform.position;
             bullet.moveSpeed = bulletSpeed;
             bullet.direction = Vector2.right;
             bullet.damage = weaponDamage;

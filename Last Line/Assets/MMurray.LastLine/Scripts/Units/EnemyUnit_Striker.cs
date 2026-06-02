@@ -16,20 +16,25 @@ public class EnemyUnit_Striker : EnemyUnit
     [SerializeField]private List<PlayerUnit> targets;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         //bullet setup
-        GameManager gm = Singleton.instance.GameManager;
+        //GameManager gm = Singleton.instance.GameManager;
         //GetUnitData(unitData);
         
-        bullet = Instantiate(gm.bulletPrefab, parent: this.transform);
+        if (bullet == null)
+        {
+            GameManager gm = Singleton.instance.GameManager;
+            bullet = Instantiate(gm.bulletPrefab, parent: this.transform);
+        }
         SetupBullet(bullet);
         bullet.gameObject.SetActive(false);
 
         //range of bullet is the unit's position + 2 units
         //bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
 
-        cooldownTimer = 0;
+        cooldownTimer = Time.time / 4;  //so they don't immediately start shooting once the exit the portal.
         strikerCollider = GetComponent<Collider2D>();
     }
 

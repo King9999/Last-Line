@@ -230,6 +230,10 @@ PrefabInstance:
       propertyPath: levelDataList.Array.data[4].portals.Array.data[0].enemy_path_points.Array.data[1].x
       value: 7.42
       objectReference: {fileID: 0}
+    - target: {fileID: 921683353009425569, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1499717311524106852, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -260,6 +264,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1792942203583934090, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353985218043958306, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2675866935131070744, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
@@ -316,7 +324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4445170794013381040, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5689208775733182336, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -420,6 +428,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6857519637250646726, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337637485063601206, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7427734922528283852, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}

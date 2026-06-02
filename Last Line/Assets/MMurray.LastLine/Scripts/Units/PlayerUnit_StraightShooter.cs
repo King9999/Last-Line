@@ -16,7 +16,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
 
     Coroutine rotateCoroutine;
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
         //bullet setup
         GameManager gm = Singleton.instance.GameManager;
@@ -33,21 +33,30 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         cooldownTimer = 0;
         //EnhanceUnit();
         
-    }
+    }*/
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        if (bullet != null)
+
+        if (bullet == null)
         {
+            GameManager gm = Singleton.instance.GameManager;
+            bullet = Instantiate(gm.bulletPrefab, parent: this.transform);
+        }
+
+        //if (bullet != null)
+        //{
             SetupBullet(bullet);
             //bullet.direction = Vector2.right;   //just in case direction was changed before.
             bulletRange = SetBulletRange(bullet);
             bullet.gameObject.SetActive(false);
             //bullet.bulletType = Bullet.BulletType.Normal;
-        }
-            
+        //}
+
+        //rotation reset    
         unitSpriteRenderer.transform.localEulerAngles = Vector3.zero;
+        unitSpriteRenderer.flipY = false;
         cooldownTimer = 0;
     }
 
