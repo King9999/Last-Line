@@ -267,6 +267,25 @@ public class GameManager : MonoBehaviour
         return portalReady;
     }
 
+    //level is over when all portals have no more enemies to deploy and active enemy list is empty.
+    bool AllEnemiesDefeated()
+    {
+        bool levelComplete = false;
+        int emptyCount = 0;
+        for (int i = 0; i < activePortals.Count; i++)
+        {
+            if (activePortals[i].gameObject.activeSelf && activePortals[i].enemyUnits.Count <= 0)
+            {
+                emptyCount++;
+            }
+        }
+
+        if (emptyCount >= activePortals.Count && activeEnemyUnits.Count <= 0)
+            levelComplete = true;
+        
+        return levelComplete;
+    }
+
     public void PlayMusic(bool toggle)
     {
         AudioManager am = Singleton.instance.AudioManager;
@@ -296,7 +315,7 @@ public class GameManager : MonoBehaviour
                 //return;
         }
 
-        if (totalEnemies <= 0 && (GameRunning() /*gameState == GameState.Normal*/ || (inTutorial && tutorialState == TutorialState.Normal))) //gameState != GameState.EnemyPreparing && gameState != GameState.LevelComplete && gameState != GameState.GameCompleted && 
+        if (AllEnemiesDefeated()/*totalEnemies <= 0*/ && (GameRunning() /*gameState == GameState.Normal*/ || (inTutorial && tutorialState == TutorialState.Normal))) //gameState != GameState.EnemyPreparing && gameState != GameState.LevelComplete && gameState != GameState.GameCompleted && 
             //gameState != GameState.BaseDestroyed)
         {
             //level is over.

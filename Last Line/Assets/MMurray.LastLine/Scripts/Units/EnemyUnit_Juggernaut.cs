@@ -16,13 +16,15 @@ public class EnemyUnit_Juggernaut : EnemyUnit
     [SerializeField]private List<PlayerUnit> targets;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void OnEnable()
     {
         //bullet setup
         GameManager gm = Singleton.instance.GameManager;
         //GetUnitData(unitData);
         
-        bullet = Instantiate(gm.bulletPrefab, parent: this.transform);
+        if (bullet == null)
+            bullet = Instantiate(gm.bulletPrefab, parent: this.transform);
+            
         SetupBullet(bullet);
         bullet.gameObject.SetActive(false);
 
