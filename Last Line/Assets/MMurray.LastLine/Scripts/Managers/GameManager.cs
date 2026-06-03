@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
         money = 0;
         crystal.gameObject.SetActive(false);
 
-        //UI setup
+        /*******UI setup*****/
         alertText.text = "";
         xCoordinateText.text = "";
         readyLabel.text = GetText("readyButtonText");
@@ -180,7 +180,13 @@ public class GameManager : MonoBehaviour
         coordinatesText.text = "";
         endLevelText.SetupText();
         gameOverText.SetupText();
-        //coordinatesInputField.text = "test";
+
+        //input field setup
+        coordinatesInputField.characterLimit = 5;       //2 values plus 2 brackets and a comma
+
+        //the field must only accept chars 0 to 5 and nothing else.
+        coordinatesInputField.text.Contains("012345");
+        //coordinatesInputField.placeholder = "test";
 
         //load save state
         Singleton s = Singleton.instance;
@@ -1848,6 +1854,12 @@ public class GameManager : MonoBehaviour
             LOLSDK.Instance.SpeakText(key);
             Logger.DebugLog("TTS is playing");
         }
+    }
+
+    //checks coordinates input field to ensure the characters entered are valid.
+    public void ValidateCoordinates()
+    {
+        //if (coordinatesInputField.text.Contains("012345")
     }
 
 #region Button Methods
