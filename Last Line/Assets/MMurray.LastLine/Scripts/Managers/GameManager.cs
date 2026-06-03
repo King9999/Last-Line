@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]private GameOverText gameOverText;       //displays "BASE DESTROYED"
     [SerializeField]private TargetCursor targetCursor;
     [SerializeField]private TextMeshProUGUI coordinatesText;    //displayed when placed over a player unit or when targeting a point.
+    [SerializeField]private GameObject coordinatesInputContainer;
+    [SerializeField]private TMP_InputField coordinatesInputField;
 
     
 
@@ -178,6 +180,7 @@ public class GameManager : MonoBehaviour
         coordinatesText.text = "";
         endLevelText.SetupText();
         gameOverText.SetupText();
+        //coordinatesInputField.text = "test";
 
         //load save state
         Singleton s = Singleton.instance;
