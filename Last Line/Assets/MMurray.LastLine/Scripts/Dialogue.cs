@@ -235,7 +235,8 @@ public class Dialogue : MonoBehaviour
                 switch(gm.tutorialState)
                 {
                     case GameManager.TutorialState.DialogueStartOfLevel:
-                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.Normal);
+                        //gm.SetGameState(gm.tutorialState = GameManager.TutorialState.Normal);
+                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.BuildingFirstUnit);
                         break;
 
                     case GameManager.TutorialState.UnitSelectX:

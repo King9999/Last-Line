@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public enum TutorialState
     {
         Normal, UnitSelectX, UnitSelectY, DialogueStartOfLevel, DialogueEndOfLevel,
-        UnitSelectSecondUnit, UnitSelectSecondUnitX, UnitSelectSecondUnitY, BuildingFirstUnit, BuildingSecondUnit, 
+        UnitSelectFirstUnit, UnitSelectSecondUnit, UnitSelectSecondUnitX, UnitSelectSecondUnitY, BuildingFirstUnit, BuildingSecondUnit, 
         ActivateAbility, ActivateAbilitySelectX, ActivateAbilitySelectY,
         DialogueEnemyIncoming, DeployEnemyUnits, BaseDestroyed, LevelComplete,
         CrystalIntro, OriginTutorial
@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 6;
+        //currentLevel = 6;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -1364,6 +1364,8 @@ public class GameManager : MonoBehaviour
                 break;
             
             case GameState.EnemyPreparing:
+                if (inTutorial)
+                    break;
                 //show ready button
                 readyButton.gameObject.SetActive(true);
                 am.HideGuideArrows();
@@ -1570,7 +1572,7 @@ public class GameManager : MonoBehaviour
         switch(state)
         {
             case TutorialState.Normal:
-            case TutorialState.BuildingFirstUnit:
+            //case TutorialState.BuildingFirstUnit:
             case TutorialState.BuildingSecondUnit:
                 //hide any arrow guides that were shown
                 am.HideGuideArrows();
@@ -1590,9 +1592,17 @@ public class GameManager : MonoBehaviour
                 }
                 break;
 
+            case TutorialState.BuildingFirstUnit:
+                //the only thing that should happen on this state is the arrow is pointing to 
+                //straight shooter unit during tutorial.
+                axisContainerY.gameObject.SetActive(true);
+                axisContainerX.gameObject.SetActive(true);
+                break;
+
             case TutorialState.UnitSelectX:
                 //disable Y values, then disable X values.
                 DisplayAlert(GetText("unitSelect_x"));
+                am.HideGuideArrows();
                 axisContainerY.gameObject.SetActive(false);
 
                 //if we're in the tutorial, do some extra steps
@@ -1637,7 +1647,7 @@ public class GameManager : MonoBehaviour
             
             case TutorialState.UnitSelectSecondUnit:
                 //player must now select second unit. Show dialogue from mother base
-                //am.HideGuideArrows();
+                am.HideGuideArrows();
                 keyList = dialogueManager.dialogueList[DialogueManager.SELECTING_SECOND_UNIT].dialogueKeyList[0];
                 dialogueManager.dialogueList[DialogueManager.SELECTING_SECOND_UNIT].ShowDialogue(keyList);
                 break;

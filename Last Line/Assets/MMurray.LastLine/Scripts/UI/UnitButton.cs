@@ -74,7 +74,7 @@ public class UnitButton : MonoBehaviour
 
             switch(gm.tutorialState)
             {
-                case GameManager.TutorialState.Normal:
+                case GameManager.TutorialState.BuildingFirstUnit:
                     gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectX);
                     break;
                 
