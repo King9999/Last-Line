@@ -1595,8 +1595,16 @@ public class GameManager : MonoBehaviour
             case TutorialState.BuildingFirstUnit:
                 //the only thing that should happen on this state is the arrow is pointing to 
                 //straight shooter unit during tutorial.
+                xCoordinateText.text = "";
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(true);
+                if (points[0].pointImage.enabled)
+                {
+                    foreach (Point p in points)
+                    {
+                        p.ShowPoint(false);
+                    }
+                }
                 break;
 
             case TutorialState.UnitSelectX:
