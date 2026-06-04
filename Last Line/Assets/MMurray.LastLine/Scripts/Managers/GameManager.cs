@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEditor;
 using MMurray.GenericCode;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 
 public class GameManager : MonoBehaviour
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private TextMeshProUGUI coordinatesText;    //displayed when placed over a player unit or when targeting a point.
     [SerializeField]private GameObject coordinatesInputContainer;
     [SerializeField]private TMP_InputField coordinatesInputField;
+    [SerializeField]private TextMeshProUGUI coordinatesLabel;
 
     
 
@@ -176,6 +178,7 @@ public class GameManager : MonoBehaviour
         xCoordinateText.text = "";
         readyLabel.text = GetText("readyButtonText");
         exitGameLabel.text = GetText("exitButtonText");
+        coordinatesLabel.text = GetText("coordinatesLabel");
         //exitButton.gameObject.SetActive(false);     //only appears at end of game.
         targetCursor.gameObject.SetActive(false);
         coordinatesText.text = "";
@@ -310,6 +313,12 @@ public class GameManager : MonoBehaviour
     {
         if (UnplayableState())
             return;
+
+        //if any keyboard input is recognized, the player can immediately input coordinates in the input field.
+        if (Input.anyKeyDown /*&& (gameState == GameState.Normal || gameState == GameState.EnemyPreparing)*/)
+        {
+            EventSystem.current.SetSelectedGameObject(coordinatesInputField.gameObject, null);
+        }
 
         if (!inTutorial && !gameStarted)
         {
@@ -1362,6 +1371,8 @@ public class GameManager : MonoBehaviour
                 enteringValueY = false;
                 playerUnitType = PlayerUnitType.NoUnitSelected;
                 xCoordinateText.text = "";
+                coordinatesInputField.text = "";
+                coordinatesInputContainer.gameObject.SetActive(true);
 
                 //hide points
                 if (points[0].pointImage.enabled)
@@ -1385,6 +1396,8 @@ public class GameManager : MonoBehaviour
                 enteringValueY = false;
                 playerUnitType = PlayerUnitType.NoUnitSelected;
                 xCoordinateText.text = "";
+                coordinatesInputField.text = "";
+                coordinatesInputContainer.gameObject.SetActive(true);
                 //DisplayAlertWithDuration(GetText("enemyPreparing"), 10);
 
                 //start portal timers
@@ -1406,6 +1419,8 @@ public class GameManager : MonoBehaviour
                 //disable Y values, then disable X values.
                 //TODO: Have dialogue during tutorial to explain how to set units
                 DisplayAlert(GetText("unitSelect_x"));
+                coordinatesInputField.text = "";
+                coordinatesInputContainer.gameObject.SetActive(false);
                 if (!points[0].pointImage.enabled)
                 {
                     foreach (Point p in points)
@@ -1420,6 +1435,8 @@ public class GameManager : MonoBehaviour
                 //disable Y values, then disable X values.
                 //TODO: in tutorial, make mention of origin and how it might be used
                 DisplayAlert(GetText("unitSelect_y"));
+                coordinatesInputField.text = "";
+                coordinatesInputContainer.gameObject.SetActive(false);
                 //show points
                 if (!points[0].pointImage.enabled)
                 {
@@ -1539,6 +1556,7 @@ public class GameManager : MonoBehaviour
                 }
                 //have hitstop then blow up base
                 DestroyBase();
+                coordinatesInputField.text = "";
                 //playerBase.gameObject.SetActive(false);
                 break;
 
@@ -1549,7 +1567,7 @@ public class GameManager : MonoBehaviour
 
                 endLevelText.ShowText();
                 Logger.DebugLogFormat("Level {0} complete", currentLevel);
-                
+                coordinatesInputField.text = "";
                 break;
 
             case GameState.GoToNextLevel:
@@ -1862,20 +1880,38 @@ public class GameManager : MonoBehaviour
     characters aren't valid and don't need to be checked. */
     public void ValidateCoordinates()
     {
-        int x = 0;
-        int y = 0;
-        string newText;
-        List<int> validNums = new List<int>();
-        //add in the parentheses and comma
-        //if (coordinatesInputField.text.Count() <= 0)
-            //return;
-        
-        /*if (coordinatesInputField.text.Count() <= 1)
+        if (gameState != GameState.Normal && gameState != GameState.EnemyPreparing)
         {
-            newText = string.Format("({0},", coordinatesInputField.text.Substring(1));
+            coordinatesInputField.text = "";
+            return;
+        }
+
+        List<int> validNums = new List<int>();
+
+        if (coordinatesInputField.text.Count() > 0)
+        {
+            //change state to normal
+            //SetGameState(gameState = gameStarted ? GameState.Normal : GameState.EnemyPreparing);
+            //show grid
+            if (!points[0].pointImage.enabled)
+            {
+                foreach (Point p in points)
+                {
+                    p.ShowPoint(true);
+                }
+            }
         }
         else
-            newText = string.Format("({0},{1})", coordinatesInputField.text.Substring(1), coordinatesInputField.text.Substring(3));*/
+        {
+            if (points[0].pointImage.enabled)
+            {
+                foreach (Point p in points)
+                {
+                    p.ShowPoint(false);
+                }
+            }
+        }
+
         for (int i = 0; i < coordinatesInputField.text.Count(); i++)
         {
             if(int.TryParse(coordinatesInputField.text.Substring(i, 1), out int num) && num <= 5)
@@ -1914,41 +1950,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-            /*if (coordinatesInputField.text.Count() == 1)
-            {
-                if (int.TryParse(coordinatesInputField.text.Substring(0), out x))
-                {
-                    Logger.DebugLog("X is " + x);
-                    playerCoordinates = new Vector2(x, 0);   
-                }
-                else
-                {
-                    coordinatesInputField.text = "";
-                }
-            }
-            
-            else if (coordinatesInputField.text.Count() == 2)
-            {
-                if (int.TryParse(coordinatesInputField.text.Substring(0), out x))
-                {
-                    Logger.DebugLog("X is " + x);
-                    playerCoordinates = new Vector2(x, 0);   
-                }
-                else
-                {
-                    coordinatesInputField.text = "";
-                }
-                if (int.TryParse(coordinatesInputField.text.Substring(1), out y))
-                {
-                    Logger.DebugLog("Y is " + y);
-                    playerCoordinates = new Vector2(x, y);   
-                }
-                else
-                {
-                    coordinatesInputField.text.Replace(coordinatesInputField.text.Substring(1), "");
-                }
-            }*/
-        
     }
 
 #region Button Methods

@@ -56,12 +56,12 @@
       "dialogue_intro":"Commander, this is Mother Base. Sorry to wake you up early, but we're under attack! Alpha Quadrant must be defended!",
       "credit_art":"<color=#0CCF5A>Art & Visual Effects</color>\nMike Murray",
       "xCoordinateSelected":"X coordinate: ",
-      "system_intro_level1_b":"<color=#0CCF5A>Mother Base has provided some <color=#06DDEF>scrap parts</color> for you to build your units. If you need more scrap, <color=#06DDEF>retire enemies with your units.</color> Good luck!</color>",
+      "system_intro_level1_b":"<color=#0CCF5A>Mother Base has provided some <color=#06DDEF>scrap parts</color> for you to build your units. If you need more scrap, <color=#06DDEF>make enemies retreat with your units.</color> Good luck!</color>",
       "levelCompleted":"BASE DEFENDED",
       "system_ordered_pair_reinforcement":"<color=#0CCF5A>Nice work. Remember, an ordered pair always starts with a value on the X axis, and then a value on the Y axis. These 2 values together are called <color=#06DDEF>coordinates</color>.</color>",
       "credit_program":"<color=#0CCF5A>Programming</color>\nMike Murray",
       "musicOff":"MUSIC OFF",
-      "system_game_over_level3":"<color=#0CCF5A>Always have at least 2 units that can protect each other from enemy attacks. Be ready to build new units before your other units retreat! Grab the crystals if you need them!</color>",
+      "system_game_over_level3":"<color=#0CCF5A>Always have at least 2 units that can protect each other from enemy attacks. Be ready to build new units before your other units retreat! Grab any crystals that appear!</color>",
       "dialogue_intro_level2":"This is Mother Base. We've created a new unit for you. Deploy it when you're ready.",
       "musicOn":"MUSIC ON",
       "tutorialLevel":"TUTORIAL",
@@ -79,13 +79,14 @@
       "dialogue_build_second_unit":"Good job, commander. Build one more unit to back up the first one!",
       "cannotEnterYBeforeX":"Choose an X coordinate first!",
       "moneyLabel":"SCRAP",
-      "dialogue_activate_ability":"Commander, order the new unit to change direction.",
+      "dialogue_activate_ability":"Commander, order the new unit to change its direction.",
       "dialogue_intro_level6":"This is Mother Base. It looks like you're up against 3 enemy types, but they won't attack at the same time. Check which enemy's going to be ready first and prepare!",
       "unitEnhanced":"Unit is powered up!",
       "credit_gameDesign":"<color=#0CCF5A>Game Design</color>\nMike Murray",
       "gameOver":"BASE DESTROYED",
       "exitButtonText":"End Game",
       "dialoguePrompt":"[Left click] or [Enter] to continue",
-      "unitDeployed":"Unit is ready."
+      "unitDeployed":"Unit is ready.",
+      "coordinatesLabel": "Coordinates"
    }
 }

@@ -16939,6 +16939,7 @@ MonoBehaviour:
   coordinatesText: {fileID: 3733855605559425933}
   coordinatesInputContainer: {fileID: 6495468959553343127}
   coordinatesInputField: {fileID: 279029037747031959}
+  coordinatesLabel: {fileID: 7425239901154624949}
   activePlayerUnits: []
   activeEnemyUnits: []
   activePortals: []
@@ -17610,7 +17611,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Coordinates
+  m_text: Coordinates!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5fb24f378e7e1c8b393e389476d76c67, type: 2}
   m_sharedMaterial: {fileID: -8712543200926768247, guid: 5fb24f378e7e1c8b393e389476d76c67, type: 2}
