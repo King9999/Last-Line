@@ -183,10 +183,10 @@ public class GameManager : MonoBehaviour
         gameOverText.SetupText();
 
         //input field setup
-        coordinatesInputField.characterLimit = 5;       //2 values plus 2 brackets and a comma
+        coordinatesInputField.characterLimit = 2;       //2 values plus 2 brackets and a comma
 
         //the field must only accept chars 0 to 5 and nothing else.
-        coordinatesInputField.text.Contains("012345");
+        //coordinatesInputField.text.Contains("012345");
         //coordinatesInputField.placeholder = "test";
 
         //load save state
@@ -1878,7 +1878,7 @@ public class GameManager : MonoBehaviour
             newText = string.Format("({0},{1})", coordinatesInputField.text.Substring(1), coordinatesInputField.text.Substring(3));*/
         for (int i = 0; i < coordinatesInputField.text.Count(); i++)
         {
-            if(int.TryParse(coordinatesInputField.text.Substring(i, 1), out int num))
+            if(int.TryParse(coordinatesInputField.text.Substring(i, 1), out int num) && num <= 5)
             {
                 validNums.Add(num);
                 Logger.DebugLogFormat("Added {0} to validNums", num);
@@ -1886,7 +1886,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 Logger.DebugLog("Can't parse");
-                coordinatesInputField.text.Replace(coordinatesInputField.text.Substring(i, 1), "");
+                coordinatesInputField.text = coordinatesInputField.text.Replace(coordinatesInputField.text.Substring(i, 1), "");
             }
         }
 
@@ -1894,6 +1894,7 @@ public class GameManager : MonoBehaviour
         if (validNums.Count() >= 2)
         {
             Logger.DebugLog("2 valid nums");
+            coordinatesInputField.text = "";
             //find the point matching the values.
             playerCoordinates = new Vector2(validNums[0], validNums[1]);
 
