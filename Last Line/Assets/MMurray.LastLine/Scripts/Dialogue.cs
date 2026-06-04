@@ -259,9 +259,14 @@ public class Dialogue : MonoBehaviour
                         gm.SetGameState(gm.gameState = GameManager.GameState.GoToNextLevel);
                         break;
                     
-                    //case GameManager.TutorialState.CrystalIntro:
+                    case GameManager.TutorialState.CrystalIntro:
+                        gm.DisplayAlert(GetText("pickupCrystalTutorial"));
+                        gm.coordinatesInputContainer.gameObject.SetActive(true);
+                        break;
+
                     case GameManager.TutorialState.OriginTutorial:
                         gm.inTutorial = false;
+                        gm.coordinatesInputContainer.gameObject.SetActive(true);
                         Singleton.instance.ArrowGuideManager.HideGuideArrows();
                         //hide points
                         foreach (Point p in gm.points)

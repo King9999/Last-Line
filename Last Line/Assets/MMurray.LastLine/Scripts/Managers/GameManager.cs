@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private GameOverText gameOverText;       //displays "BASE DESTROYED"
     [SerializeField]private TargetCursor targetCursor;
     [SerializeField]private TextMeshProUGUI coordinatesText;    //displayed when placed over a player unit or when targeting a point.
-    [SerializeField]private GameObject coordinatesInputContainer;
+    public GameObject coordinatesInputContainer;
     [SerializeField]private TMP_InputField coordinatesInputField;
     [SerializeField]private TextMeshProUGUI coordinatesLabel;
 
@@ -201,7 +201,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 1;
+        currentLevel = 2;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -1420,7 +1420,7 @@ public class GameManager : MonoBehaviour
                 //TODO: Have dialogue during tutorial to explain how to set units
                 DisplayAlert(GetText("unitSelect_x"));
                 coordinatesInputField.text = "";
-                coordinatesInputContainer.gameObject.SetActive(false);
+                //coordinatesInputContainer.gameObject.SetActive(false);
                 if (!points[0].pointImage.enabled)
                 {
                     foreach (Point p in points)
@@ -1436,7 +1436,7 @@ public class GameManager : MonoBehaviour
                 //TODO: in tutorial, make mention of origin and how it might be used
                 DisplayAlert(GetText("unitSelect_y"));
                 coordinatesInputField.text = "";
-                coordinatesInputContainer.gameObject.SetActive(false);
+                //coordinatesInputContainer.gameObject.SetActive(false);
                 //show points
                 if (!points[0].pointImage.enabled)
                 {
@@ -1490,6 +1490,7 @@ public class GameManager : MonoBehaviour
                     if (dialogueId > 0 && dialogueId == dialogueManager.condTriggerList[triggerIndex].dialogueId /*== dialogueManager.dialogueList[j].dialogueId*/)
                     {
                         dialogueFound = true;
+                        coordinatesInputContainer.gameObject.SetActive(false);
                         Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[j].dialogueKeyList[0];
                         //string dKey = dialogueManager.dialogueList[j].dialogueKeyList[0].key;
                         dialogueManager.dialogueList[j].ShowDialogue(keyList);
@@ -1515,6 +1516,7 @@ public class GameManager : MonoBehaviour
                     if (dialogueId > 0 && dialogueId == dialogueManager.condTriggerList[triggerIndex].dialogueId)
                     {
                         dialogueFound = true;
+                        coordinatesInputContainer.gameObject.SetActive(false);
                         Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[j].dialogueKeyList[0];
                         //string dKey = dialogueManager.dialogueList[j].dialogueKeyList[0].key;
                         dialogueManager.dialogueList[j].ShowDialogue(keyList);
@@ -1535,6 +1537,7 @@ public class GameManager : MonoBehaviour
                     if (dialogueId > 0 && dialogueId == dialogueManager.gameOverDialogueList[triggerIndex].dialogueId)
                     {
                         dialogueFound = true;
+                        coordinatesInputContainer.gameObject.SetActive(false);
                         Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[j].dialogueKeyList[0];
                         dialogueManager.dialogueList[j].ShowDialogue(keyList);
                     }
@@ -1758,12 +1761,14 @@ public class GameManager : MonoBehaviour
                 break;
 
             case TutorialState.CrystalIntro:
+                coordinatesInputContainer.gameObject.SetActive(false);
                 keyList = dialogueManager.dialogueList[DialogueManager.CRYSTAL_INTRO].dialogueKeyList[0];
                 dialogueManager.dialogueList[DialogueManager.CRYSTAL_INTRO].ShowDialogue(keyList);
                 break;
             
             case TutorialState.OriginTutorial:
                 xCoordinateText.text = "";
+                coordinatesInputContainer.gameObject.SetActive(false);
                 keyList = dialogueManager.dialogueList[DialogueManager.ORIGIN_TUTORIAL].dialogueKeyList[0];
                 dialogueManager.dialogueList[DialogueManager.ORIGIN_TUTORIAL].ShowDialogue(keyList);
                 break;
@@ -1880,7 +1885,8 @@ public class GameManager : MonoBehaviour
     characters aren't valid and don't need to be checked. */
     public void ValidateCoordinates()
     {
-        if (gameState != GameState.Normal && gameState != GameState.EnemyPreparing)
+        if (gameState != GameState.Normal && gameState != GameState.EnemyPreparing && gameState != GameState.UnitSelectX &&
+            gameState != GameState.UnitSelectY)
         {
             coordinatesInputField.text = "";
             return;
@@ -1890,8 +1896,10 @@ public class GameManager : MonoBehaviour
 
         if (coordinatesInputField.text.Count() > 0)
         {
-            //change state to normal
-            //SetGameState(gameState = gameStarted ? GameState.Normal : GameState.EnemyPreparing);
+            xCoordinateText.text = "";
+            alertText.text = "";
+            axisContainerX.gameObject.SetActive(true);
+            axisContainerY.gameObject.SetActive(true);
             //show grid
             if (!points[0].pointImage.enabled)
             {
