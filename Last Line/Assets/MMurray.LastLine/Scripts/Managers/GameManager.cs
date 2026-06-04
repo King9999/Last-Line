@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEditor;
 using MMurray.GenericCode;
+using System.Linq;
 
 
 public class GameManager : MonoBehaviour
@@ -197,7 +198,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        //currentLevel = 6;
+        currentLevel = 1;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -1856,10 +1857,97 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //checks coordinates input field to ensure the characters entered are valid.
+    /*checks coordinates input field to ensure the characters entered are valid.
+    Only characters in specific positions are checked because it's known that the other
+    characters aren't valid and don't need to be checked. */
     public void ValidateCoordinates()
     {
-        //if (coordinatesInputField.text.Contains("012345")
+        int x = 0;
+        int y = 0;
+        string newText;
+        List<int> validNums = new List<int>();
+        //add in the parentheses and comma
+        //if (coordinatesInputField.text.Count() <= 0)
+            //return;
+        
+        /*if (coordinatesInputField.text.Count() <= 1)
+        {
+            newText = string.Format("({0},", coordinatesInputField.text.Substring(1));
+        }
+        else
+            newText = string.Format("({0},{1})", coordinatesInputField.text.Substring(1), coordinatesInputField.text.Substring(3));*/
+        for (int i = 0; i < coordinatesInputField.text.Count(); i++)
+        {
+            if(int.TryParse(coordinatesInputField.text.Substring(i, 1), out int num))
+            {
+                validNums.Add(num);
+                Logger.DebugLogFormat("Added {0} to validNums", num);
+            }
+            else
+            {
+                Logger.DebugLog("Can't parse");
+                coordinatesInputField.text.Replace(coordinatesInputField.text.Substring(i, 1), "");
+            }
+        }
+
+        //if there are 2 valid numbers, then they're accepted and the point is targeted
+        if (validNums.Count() >= 2)
+        {
+            Logger.DebugLog("2 valid nums");
+            //find the point matching the values.
+            playerCoordinates = new Vector2(validNums[0], validNums[1]);
+
+            int i = 0;
+            bool pointFound = false;
+            while(!pointFound && i < points.Count())
+            {
+                if (playerCoordinates == points[i].pointAxes)
+                {
+                    pointFound = true;
+                    PlaceUnit(playerUnitType, points[i]);
+                }
+                else
+                {
+                    i++;
+                }
+            }
+        }
+
+            /*if (coordinatesInputField.text.Count() == 1)
+            {
+                if (int.TryParse(coordinatesInputField.text.Substring(0), out x))
+                {
+                    Logger.DebugLog("X is " + x);
+                    playerCoordinates = new Vector2(x, 0);   
+                }
+                else
+                {
+                    coordinatesInputField.text = "";
+                }
+            }
+            
+            else if (coordinatesInputField.text.Count() == 2)
+            {
+                if (int.TryParse(coordinatesInputField.text.Substring(0), out x))
+                {
+                    Logger.DebugLog("X is " + x);
+                    playerCoordinates = new Vector2(x, 0);   
+                }
+                else
+                {
+                    coordinatesInputField.text = "";
+                }
+                if (int.TryParse(coordinatesInputField.text.Substring(1), out y))
+                {
+                    Logger.DebugLog("Y is " + y);
+                    playerCoordinates = new Vector2(x, y);   
+                }
+                else
+                {
+                    coordinatesInputField.text.Replace(coordinatesInputField.text.Substring(1), "");
+                }
+            }*/
+        
     }
 
 #region Button Methods
