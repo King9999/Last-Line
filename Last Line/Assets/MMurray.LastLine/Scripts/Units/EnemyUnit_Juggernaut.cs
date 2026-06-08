@@ -18,6 +18,7 @@ public class EnemyUnit_Juggernaut : EnemyUnit
     // Start is called before the first frame update
     protected override void OnEnable()
     {
+        base.OnEnable();
         //bullet setup
         GameManager gm = Singleton.instance.GameManager;
         //GetUnitData(unitData);
