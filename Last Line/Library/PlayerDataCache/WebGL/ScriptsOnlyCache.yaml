@@ -42,6 +42,7 @@ ScriptsOnlyBuild:
     - PowerUpSpace
     - ProgressBar
     - SystemButton
+    - SystemTooltip
     - TargetCursor
     - TitleManager
     - Tooltip
@@ -78,6 +79,7 @@ ScriptsOnlyBuild:
     - TMPro.TMP_StyleSheet
     Unity.TextMeshPro.dll:
     - TMPro.TMP_FontAsset
+    - TMPro.TMP_InputField
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
@@ -95,6 +97,8 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.GridLayoutGroup
     - UnityEngine.UI.Image
+    - UnityEngine.UI.LayoutElement
+    - UnityEngine.UI.RectMask2D
     - UnityEngine.UI.Slider
     - UnityEngine.UI.VerticalLayoutGroup
   serializedClasses:
@@ -119,6 +123,11 @@ ScriptsOnlyBuild:
     - TMPro.TMP_GlyphAdjustmentRecord
     - TMPro.TMP_GlyphPairAdjustmentRecord
     - TMPro.TMP_GlyphValueRecord
+    - TMPro.TMP_InputField/OnChangeEvent
+    - TMPro.TMP_InputField/SelectionEvent
+    - TMPro.TMP_InputField/SubmitEvent
+    - TMPro.TMP_InputField/TextSelectionEvent
+    - TMPro.TMP_InputField/TouchScreenKeyboardEvent
     - TMPro.TMP_Sprite
     - TMPro.TMP_SpriteCharacter
     - TMPro.TMP_SpriteGlyph
@@ -167,80 +176,8 @@ ScriptsOnlyBuild:
     fullTypeName: TitleManager
     methodName: StartButtonClicked
   - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: SystemButton
-    methodName: OnMouseClick
-  - assembly: Assembly-CSharp
-    fullTypeName: SystemButton
-    methodName: OnMouseClick
-  - assembly: Assembly-CSharp
-    fullTypeName: SystemButton
-    methodName: OnMouseClick
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverEnter
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverExit
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseClick
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverEnter
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverExit
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseClick
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverEnter
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverExit
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseClick
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverEnter
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseHoverExit
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitButton
-    methodName: OnMouseClick
+    fullTypeName: GameManager
+    methodName: ValidateCoordinates
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
     methodName: AdvancePortalTimers
@@ -278,10 +215,97 @@ ScriptsOnlyBuild:
     fullTypeName: AxisButton
     methodName: GetValue
   - assembly: Assembly-CSharp
-    fullTypeName: Dialogue
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: SystemButton
+    methodName: OnMouseHoverEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: SystemButton
+    methodName: OnMouseHoverExit
+  - assembly: Assembly-CSharp
+    fullTypeName: SystemButton
     methodName: OnMouseClick
   - assembly: Assembly-CSharp
-    fullTypeName: Dialogue
+    fullTypeName: SystemButton
+    methodName: OnMouseHoverEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: SystemButton
+    methodName: OnMouseHoverExit
+  - assembly: Assembly-CSharp
+    fullTypeName: SystemButton
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SystemButton
+    methodName: OnMouseHoverEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: SystemButton
+    methodName: OnMouseHoverExit
+  - assembly: Assembly-CSharp
+    fullTypeName: SystemButton
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverExit
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverExit
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverExit
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
+    methodName: OnMouseHoverExit
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitButton
     methodName: OnMouseClick
   - assembly: Assembly-CSharp
     fullTypeName: Dialogue
@@ -385,6 +409,12 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: MMurray.LastLine.PlayerUnit
     methodName: OnMouseHoverExit
+  - assembly: Assembly-CSharp
+    fullTypeName: SystemButton
+    methodName: OnMouseHoverEnterInputHelp
+  - assembly: Assembly-CSharp
+    fullTypeName: SystemButton
+    methodName: OnMouseHoverExitInputHelp
   - assembly: Assembly-CSharp
     fullTypeName: EndScreenManager
     methodName: EndGame
@@ -410,25 +440,25 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1578}
+      Script: {instanceID: 1588}
     - Class: 114
-      Script: {instanceID: 1638}
+      Script: {instanceID: 1648}
     - Class: 114
-      Script: {instanceID: 2948}
+      Script: {instanceID: 2958}
     - Class: 114
-      Script: {instanceID: 3212}
+      Script: {instanceID: 3222}
     - Class: 114
-      Script: {instanceID: 3574}
+      Script: {instanceID: 3584}
     - Class: 114
-      Script: {instanceID: 5570}
+      Script: {instanceID: 5574}
     - Class: 114
-      Script: {instanceID: 5738}
+      Script: {instanceID: 5742}
     - Class: 114
-      Script: {instanceID: 6176}
+      Script: {instanceID: 6180}
     - Class: 114
-      Script: {instanceID: 7132}
+      Script: {instanceID: 7134}
     - Class: 114
-      Script: {instanceID: 7556}
+      Script: {instanceID: 7558}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -467,23 +497,23 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1578}
+      Script: {instanceID: 1588}
     - Class: 114
-      Script: {instanceID: 1638}
+      Script: {instanceID: 1648}
     - Class: 114
-      Script: {instanceID: 2948}
+      Script: {instanceID: 2958}
     - Class: 114
-      Script: {instanceID: 3212}
+      Script: {instanceID: 3222}
     - Class: 114
-      Script: {instanceID: 3574}
+      Script: {instanceID: 3584}
     - Class: 114
-      Script: {instanceID: 4494}
+      Script: {instanceID: 4504}
     - Class: 114
-      Script: {instanceID: 6176}
+      Script: {instanceID: 6180}
     - Class: 114
-      Script: {instanceID: 7132}
+      Script: {instanceID: 7134}
     - Class: 114
-      Script: {instanceID: 7556}
+      Script: {instanceID: 7558}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -548,105 +578,113 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 660}
     - Class: 114
-      Script: {instanceID: 1578}
+      Script: {instanceID: 1544}
     - Class: 114
-      Script: {instanceID: 1638}
+      Script: {instanceID: 1546}
     - Class: 114
-      Script: {instanceID: 1718}
+      Script: {instanceID: 1548}
     - Class: 114
-      Script: {instanceID: 1778}
+      Script: {instanceID: 1550}
     - Class: 114
-      Script: {instanceID: 2008}
+      Script: {instanceID: 1552}
     - Class: 114
-      Script: {instanceID: 2070}
+      Script: {instanceID: 1588}
     - Class: 114
-      Script: {instanceID: 2072}
+      Script: {instanceID: 1648}
     - Class: 114
-      Script: {instanceID: 2458}
+      Script: {instanceID: 1728}
     - Class: 114
-      Script: {instanceID: 2520}
+      Script: {instanceID: 1784}
     - Class: 114
-      Script: {instanceID: 2630}
+      Script: {instanceID: 1788}
     - Class: 114
-      Script: {instanceID: 2778}
+      Script: {instanceID: 2018}
     - Class: 114
-      Script: {instanceID: 2948}
+      Script: {instanceID: 2080}
     - Class: 114
-      Script: {instanceID: 2990}
+      Script: {instanceID: 2082}
     - Class: 114
-      Script: {instanceID: 3212}
+      Script: {instanceID: 2468}
     - Class: 114
-      Script: {instanceID: 3568}
+      Script: {instanceID: 2530}
     - Class: 114
-      Script: {instanceID: 3574}
+      Script: {instanceID: 2640}
     - Class: 114
-      Script: {instanceID: 3796}
+      Script: {instanceID: 2788}
     - Class: 114
-      Script: {instanceID: 3972}
+      Script: {instanceID: 2958}
     - Class: 114
-      Script: {instanceID: 4000}
+      Script: {instanceID: 3000}
     - Class: 114
-      Script: {instanceID: 4298}
+      Script: {instanceID: 3222}
     - Class: 114
-      Script: {instanceID: 4466}
+      Script: {instanceID: 3578}
     - Class: 114
-      Script: {instanceID: 4632}
+      Script: {instanceID: 3584}
     - Class: 114
-      Script: {instanceID: 4924}
+      Script: {instanceID: 3806}
+    - Class: 114
+      Script: {instanceID: 3982}
+    - Class: 114
+      Script: {instanceID: 4010}
+    - Class: 114
+      Script: {instanceID: 4308}
+    - Class: 114
+      Script: {instanceID: 4476}
+    - Class: 114
+      Script: {instanceID: 4872}
     - Class: 114
       Script: {instanceID: 4932}
     - Class: 114
-      Script: {instanceID: 5008}
+      Script: {instanceID: 4940}
     - Class: 114
-      Script: {instanceID: 5056}
+      Script: {instanceID: 5090}
     - Class: 114
-      Script: {instanceID: 5086}
+      Script: {instanceID: 5542}
     - Class: 114
-      Script: {instanceID: 5538}
+      Script: {instanceID: 5742}
     - Class: 114
-      Script: {instanceID: 5738}
+      Script: {instanceID: 5928}
     - Class: 114
-      Script: {instanceID: 6082}
+      Script: {instanceID: 6086}
     - Class: 114
-      Script: {instanceID: 6176}
+      Script: {instanceID: 6180}
     - Class: 114
-      Script: {instanceID: 6192}
+      Script: {instanceID: 6204}
     - Class: 114
-      Script: {instanceID: 6202}
+      Script: {instanceID: 6296}
     - Class: 114
-      Script: {instanceID: 6294}
+      Script: {instanceID: 6380}
     - Class: 114
-      Script: {instanceID: 6378}
+      Script: {instanceID: 6504}
     - Class: 114
-      Script: {instanceID: 6502}
+      Script: {instanceID: 6748}
     - Class: 114
-      Script: {instanceID: 6746}
-    - Class: 114
-      Script: {instanceID: 7132}
-    - Class: 114
-      Script: {instanceID: 7292}
+      Script: {instanceID: 7134}
     - Class: 114
       Script: {instanceID: 7294}
     - Class: 114
-      Script: {instanceID: 7556}
+      Script: {instanceID: 7296}
     - Class: 114
-      Script: {instanceID: 7948}
+      Script: {instanceID: 7558}
     - Class: 114
-      Script: {instanceID: 8094}
+      Script: {instanceID: 7950}
     - Class: 114
-      Script: {instanceID: 8438}
+      Script: {instanceID: 8096}
     - Class: 114
-      Script: {instanceID: 8482}
+      Script: {instanceID: 8440}
     - Class: 114
-      Script: {instanceID: 8828}
+      Script: {instanceID: 8484}
     - Class: 114
-      Script: {instanceID: 8858}
+      Script: {instanceID: 8830}
     - Class: 114
-      Script: {instanceID: 9096}
+      Script: {instanceID: 8860}
     - Class: 114
       Script: {instanceID: 9928}
     - Class: 114
       Script: {instanceID: 9982}
+    - Class: 114
+      Script: {instanceID: 34640}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -697,33 +735,33 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1578}
+      Script: {instanceID: 1588}
     - Class: 114
-      Script: {instanceID: 1638}
+      Script: {instanceID: 1648}
     - Class: 114
-      Script: {instanceID: 2392}
+      Script: {instanceID: 2402}
     - Class: 114
-      Script: {instanceID: 2948}
+      Script: {instanceID: 2958}
     - Class: 114
-      Script: {instanceID: 3212}
+      Script: {instanceID: 3222}
     - Class: 114
-      Script: {instanceID: 3518}
+      Script: {instanceID: 3528}
     - Class: 114
-      Script: {instanceID: 3550}
+      Script: {instanceID: 3560}
     - Class: 114
-      Script: {instanceID: 3564}
+      Script: {instanceID: 3574}
     - Class: 114
-      Script: {instanceID: 4886}
+      Script: {instanceID: 4894}
     - Class: 114
-      Script: {instanceID: 5220}
+      Script: {instanceID: 5224}
     - Class: 114
-      Script: {instanceID: 6176}
+      Script: {instanceID: 6180}
     - Class: 114
-      Script: {instanceID: 7486}
+      Script: {instanceID: 7488}
     - Class: 114
-      Script: {instanceID: 7556}
+      Script: {instanceID: 7558}
     - Class: 114
-      Script: {instanceID: 8686}
+      Script: {instanceID: 8688}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -756,23 +794,23 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1578}
+      Script: {instanceID: 1588}
     - Class: 114
-      Script: {instanceID: 1638}
+      Script: {instanceID: 1648}
     - Class: 114
-      Script: {instanceID: 2948}
+      Script: {instanceID: 2958}
     - Class: 114
-      Script: {instanceID: 3212}
+      Script: {instanceID: 3222}
     - Class: 114
-      Script: {instanceID: 3574}
+      Script: {instanceID: 3584}
     - Class: 114
-      Script: {instanceID: 6176}
+      Script: {instanceID: 6180}
     - Class: 114
-      Script: {instanceID: 7132}
+      Script: {instanceID: 7134}
     - Class: 114
-      Script: {instanceID: 7556}
+      Script: {instanceID: 7558}
     - Class: 114
-      Script: {instanceID: 8450}
+      Script: {instanceID: 8452}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -794,6 +832,36 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: 0121310e54700878d715a01a8e8a7ed3
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: EnemyUnit_Dozer
+  - hash:
+      serializedVersion: 2
+      Hash: bf9d429e2ea0e57c7f5a29bb155632ae
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: EnemyUnit_Juggernaut
+  - hash:
+      serializedVersion: 2
+      Hash: 04d8c4d545fcfd372b8d71c40cab02cd
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: EnemyUnit_Striker
+  - hash:
+      serializedVersion: 2
+      Hash: f97f8040cfc08232cdb49f3be2b8f37c
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerUnit_Base
+  - hash:
+      serializedVersion: 2
+      Hash: 08226986a8d6c8dfe593cfddfb096a30
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GameManager
   - hash:
       serializedVersion: 2
       Hash: 540882762544409cc4530e60db00e951
@@ -1330,12 +1398,6 @@ ScriptsOnlyBuild:
     className: SpriteShapeGeometryCache
   - hash:
       serializedVersion: 2
-      Hash: bf9d429e2ea0e57c7f5a29bb155632ae
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: EnemyUnit_Juggernaut
-  - hash:
-      serializedVersion: 2
       Hash: 0aac2733ebe009f17fc7ccff024fac0b
     assemblyName: Assembly-CSharp
     namespaceName: 
@@ -1408,7 +1470,7 @@ ScriptsOnlyBuild:
     className: BombExplosion
   - hash:
       serializedVersion: 2
-      Hash: d256055a8dd2016879e526945e92f8e9
+      Hash: fb8556b1510b44586de66a8daae0b6d9
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Menu
@@ -1418,18 +1480,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: DictionaryAsset
-  - hash:
-      serializedVersion: 2
-      Hash: 04d8c4d545fcfd372b8d71c40cab02cd
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: EnemyUnit_Striker
-  - hash:
-      serializedVersion: 2
-      Hash: 51681417e8012082e66143f40c33034c
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: GameManager
   - hash:
       serializedVersion: 2
       Hash: 87403032fcd0f9ff0f3214a599350419
@@ -1628,12 +1678,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro
     namespaceName: TMPro
     className: TMP_FontAsset
-  - hash:
-      serializedVersion: 2
-      Hash: 0121310e54700878d715a01a8e8a7ed3
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: EnemyUnit_Dozer
   - hash:
       serializedVersion: 2
       Hash: dd44170c330b5775fcc5487bb8f41b9b
@@ -2014,7 +2058,7 @@ ScriptsOnlyBuild:
     className: DialogueManager
   - hash:
       serializedVersion: 2
-      Hash: ae565e91eb91a034dd7e1e6462399a19
+      Hash: fbc80e7442e6e342bcf2717d77fbf63d
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: SystemButton
@@ -2036,12 +2080,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: ScrollRect
-  - hash:
-      serializedVersion: 2
-      Hash: f97f8040cfc08232cdb49f3be2b8f37c
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: PlayerUnit_Base
   - hash:
       serializedVersion: 2
       Hash: 9a174471d4db2c0c6d3ac47d2f818db1
@@ -2180,6 +2218,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: UnitButton
+  - hash:
+      serializedVersion: 2
+      Hash: d397fd09bd5e200947a0ad4353fa28a5
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SystemTooltip
   platform: 20
   scenePathNames:
   - Assets/MMurray.LastLine/Scenes/Init.unity

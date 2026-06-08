@@ -29,6 +29,7 @@ public class TitleManager : MonoBehaviour
         startButtonText.text = GetText("startButton");
         continueButtonText.text = GetText("continueButton");
         creditsButtonText.text = GetText("creditsButton");
+        version.text = GetText("versionNumber");
 
         /***save state check***/
         LOLSDK.Instance.LoadState<GameData>(state =>
