@@ -201,7 +201,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 2;
+        //currentLevel = 1;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -648,7 +648,10 @@ public class GameManager : MonoBehaviour
 
         //tutorial check
         if (level == 0)
+        {
            inTutorial = true;
+           coordinatesInputContainer.gameObject.SetActive(false);
+        }
         else
            inTutorial = false;
 
@@ -1372,7 +1375,11 @@ public class GameManager : MonoBehaviour
                 playerUnitType = PlayerUnitType.NoUnitSelected;
                 xCoordinateText.text = "";
                 coordinatesInputField.text = "";
-                coordinatesInputContainer.gameObject.SetActive(true);
+
+                if (currentLevel > 0)
+                    coordinatesInputContainer.gameObject.SetActive(true);
+                else
+                    coordinatesInputContainer.gameObject.SetActive(false);
 
                 //hide points
                 if (points[0].pointImage.enabled)
@@ -1397,8 +1404,11 @@ public class GameManager : MonoBehaviour
                 playerUnitType = PlayerUnitType.NoUnitSelected;
                 xCoordinateText.text = "";
                 coordinatesInputField.text = "";
-                coordinatesInputContainer.gameObject.SetActive(true);
-                //DisplayAlertWithDuration(GetText("enemyPreparing"), 10);
+
+                if (currentLevel > 0)
+                    coordinatesInputContainer.gameObject.SetActive(true);
+                else
+                    coordinatesInputContainer.gameObject.SetActive(false);
 
                 //start portal timers
                 foreach(Portal portal in activePortals)
@@ -1614,6 +1624,7 @@ public class GameManager : MonoBehaviour
                 enteringValueY = false;
                 playerUnitType = PlayerUnitType.NoUnitSelected;
                 xCoordinateText.text = "";
+                
                 if (points[0].pointImage.enabled)
                 {
                     foreach (Point p in points)

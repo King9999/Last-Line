@@ -9,6 +9,7 @@ using LoLSDK;
 /* Contains functionality for the Music, TTS and Exit Game buttons. */
 public class SystemButton : MonoBehaviour
 {
+    [SerializeField]private string key;
     public enum Options { Music, TTS, ExitGame}
     public Options option;
     
@@ -68,6 +69,23 @@ public class SystemButton : MonoBehaviour
                 break;
         }
         
+    }
+
+    public void OnMouseHoverEnter()
+    {
+        Logger.DebugLog("Hovering over system button");
+        Menu menu = Singleton.instance.Menu;
+        if (menu.systemTooltip.gameObject.activeSelf)
+            return;
+
+        menu.systemTooltip.ShowTooltip(true, GetText(key), this);
+    }
+
+    public void OnMouseHoverExit()
+    {
+        Logger.DebugLog("Leaving system button");
+        Menu menu = Singleton.instance.Menu;
+        menu.systemTooltip.ShowTooltip(false);
     }
 
     string GetText(string key)

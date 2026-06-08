@@ -37,7 +37,7 @@ public class UnitButton : MonoBehaviour
         string health = (data.hitPoints < 100) ? data.hitPoints.ToString() : "\u221e"; //\u221e is ascii code for infinity
 
         //menu.tooltip.gameObject.SetActive(true);    
-        menu.tooltip.DisplayUnitTooltip(true, GetText(key), data.unitCost.ToString(), data.unitBuildTime.ToString(),
+        menu.tooltip.DisplayUnitTooltip(true, this, GetText(key), data.unitCost.ToString(), data.unitBuildTime.ToString(),
             data.weaponDamage.ToString(), health);
     }
 

@@ -10,7 +10,7 @@ public class Tooltip : MonoBehaviour
 {
     [SerializeField]private TextMeshProUGUI unitDetails;    //describes what unit does.
     [SerializeField]private TextMeshProUGUI unitCost, unitBuildTime, unitDamage, unitHealth;
-    private const float tooltipYOffset = -120;
+    private const float tooltipYOffset = -130;
     private const float tooltipXOffset = -50;
 
     // Start is called before the first frame update
@@ -21,7 +21,7 @@ public class Tooltip : MonoBehaviour
 
 
 
-    public void DisplayUnitTooltip(bool toggle, string details = "", string cost = "", string buildTime = "", 
+    public void DisplayUnitTooltip(bool toggle, UnitButton button = null, string details = "", string cost = "", string buildTime = "", 
         string damage = "", string health = "")
     {
         if (toggle == false)
@@ -32,7 +32,7 @@ public class Tooltip : MonoBehaviour
 
             //place the tooltip around the mouse's position
             GameManager gm = Singleton.instance.GameManager;
-            gameObject.transform.position = new Vector2(Input.mousePosition.x + tooltipXOffset * gm.screenWidthScale, Input.mousePosition.y + tooltipYOffset * gm.screenHeightScale);
+            gameObject.transform.position = new Vector2(button.transform.position.x + tooltipXOffset * gm.screenWidthScale, button.transform.position.y + tooltipYOffset * gm.screenHeightScale);
             unitDetails.text = details;
             unitCost.text = cost;
             unitBuildTime.text = string.Format("{0} sec.", buildTime);

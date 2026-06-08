@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     public Tooltip tooltip;
+    public SystemTooltip systemTooltip;
     [SerializeField]private TextMeshProUGUI unitLabel, systemLabel, buildQueueLabel, currentLevel;
 
     [Header("---Money---")]

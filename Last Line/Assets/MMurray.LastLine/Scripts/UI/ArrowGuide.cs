@@ -116,7 +116,7 @@ public class ArrowGuide : MonoBehaviour
         while (gameObject.activeSelf)
         {
             float moveSpeed = 1.5f;
-            while(Vector2.Distance(transform.position, targetPos) > 2f /*transform.position.x < targetPos.x*/)
+            while(Vector2.Distance(transform.position, targetPos) > 3f /*transform.position.x < targetPos.x*/)
             {
                 Logger.DebugLogFormat("Distance: {0}", Vector2.Distance(transform.position, targetPos));
                 Vector2 newPos = transform.position;
