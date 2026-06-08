@@ -10,7 +10,7 @@ using LoLSDK;
 public class SystemButton : MonoBehaviour
 {
     [SerializeField]private string key;
-    public enum Options { Music, TTS, ExitGame}
+    public enum Options { Music, TTS, ExitGame, Help}
     public Options option;
     
     public void OnMouseClick()
@@ -86,6 +86,21 @@ public class SystemButton : MonoBehaviour
         Logger.DebugLog("Leaving system button");
         Menu menu = Singleton.instance.Menu;
         menu.systemTooltip.ShowTooltip(false);
+    }
+
+    public void OnMouseHoverEnterInputHelp()
+    {
+        Menu menu = Singleton.instance.Menu;
+        if (menu.inputHelpTooltip.gameObject.activeSelf)
+            return;
+
+        menu.inputHelpTooltip.ShowTooltip(true, GetText(key), this);
+    }
+
+    public void OnMouseHoverExitInputHelp()
+    {
+        Menu menu = Singleton.instance.Menu;
+        menu.inputHelpTooltip.ShowTooltip(false);
     }
 
     string GetText(string key)

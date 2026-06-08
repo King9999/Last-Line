@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     public Tooltip tooltip;
-    public SystemTooltip systemTooltip;
+    public SystemTooltip systemTooltip, inputHelpTooltip;   //input help is for the coordinates input field.
     [SerializeField]private TextMeshProUGUI unitLabel, systemLabel, buildQueueLabel, currentLevel;
 
     [Header("---Money---")]
