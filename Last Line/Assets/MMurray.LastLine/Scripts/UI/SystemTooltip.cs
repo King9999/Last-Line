@@ -8,7 +8,7 @@ using MMurray.LastLine;
 public class SystemTooltip : MonoBehaviour
 {
     [SerializeField]private TextMeshProUGUI helpText; 
-    private const float tooltipYOffset = -60;
+    private const float tooltipYOffset = -80;
     private const float tooltipXOffset = -50;
 
     // Start is called before the first frame update

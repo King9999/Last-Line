@@ -285,9 +285,10 @@ public class GameManager : MonoBehaviour
     {
         bool levelComplete = false;
         int emptyCount = 0;
+
         for (int i = 0; i < activePortals.Count; i++)
         {
-            if (activePortals[i].gameObject.activeSelf && activePortals[i].enemyUnits.Count <= 0)
+            if (/*activePortals[i].gameObject.activeSelf &&*/ activePortals[i].enemyUnits.Count <= 0)
             {
                 emptyCount++;
             }
