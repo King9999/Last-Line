@@ -1591,6 +1591,7 @@ public class GameManager : MonoBehaviour
                 endLevelText.ShowText();
                 Logger.DebugLogFormat("Level {0} complete", currentLevel);
                 coordinatesInputField.text = "";
+                hintText.text = ""; //this is here in case a crystal appears at the same time 
                 break;
 
             case GameState.GoToNextLevel:

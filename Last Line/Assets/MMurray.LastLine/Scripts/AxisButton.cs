@@ -215,6 +215,12 @@ public class AxisButton : MonoBehaviour
                                 break;
 
                         }
+
+                        //level 2 check
+                        if (gm.currentLevel == 2)
+                        {
+                            gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
+                        }
                     }
                     else
                     {
