@@ -17,11 +17,11 @@
       "dialogue_intro_level7":"Commander, we've created a new unit for you. Be very careful with it!",
       "unitButton_straightShooter":"Attacks in a horizontal line. Enter coordinates again to change direction.",
       "dialogue_enemy_incoming":"Commander, the enemy is about to attack! Get ready!",
-      "system_activate_ability":"<color=#0CCF5A>To activate a unit's special ability, re-enter the X and Y values where the unit is located.</color>",
+      "system_activate_ability":"<color=#0CCF5A>To activate a unit's special ability, re-enter the X and Y values where the unit is located. You can move the mouse over a unit to get their location.</color>",
       "system_bomb_intro":"<color=#0CCF5A>You can activate the unit by re-entering its coordinates. <color=#06DDEF>All units</color> in range will be defeated, but <color=#06DDEF>your base will be unaffected</color>. Use caution!</color>",
       "notEnoughMoney":"Not enough scrap!",
       "system_intro_level1_a":"<color=#0CCF5A>Every enemy portal has a visible timer to let you know when their attack starts. Build some units while the enemy is getting ready to attack.</color>",
-      "system_intro1":"<color=#0CCF5A>In this game, you'll create units to defend your base. Start by selecting this unit with the left mouse button.</color>",
+      "system_intro1":"<color=#0CCF5A>In this game, you'll create units to defend your base. Units attack automatically. Start by selecting this unit with the left mouse button.</color>",
       "currentLevel":"WAVE",
       "unitButton_verticalShooter":"Attacks up and down at the same time.",
       "system_game_over_level1":"<color=#0CCF5A>You don't have to wait for a unit to finish building before making another one! You can build up to 3 units at a time if you have enough scrap.</color>",
@@ -87,13 +87,16 @@
       "moneyLabel":"SCRAP",
       "pickupCrystalTutorial":"Select the crystal's coordinates!",
       "dialogue_activate_ability":"Commander, order the new unit to change its direction.",
-      "versionNumber":"v1.1",
-      "dialogue_intro_level6":"This is Mother Base. It looks like you're up against 3 enemy types, but they won't attack at the same time. Check which enemy's going to be ready first and prepare!",
+      "versionNumber":"v1.2",
+      "dialogue_intro_level6":"This is Mother Base. You're up against 3 enemy types, but they won't attack at the same time. Check which enemy's going to be ready first and prepare!",
       "unitEnhanced":"Unit is powered up!",
       "credit_gameDesign":"<color=#0CCF5A>Game Design</color>\nMike Murray",
       "gameOver":"BASE DESTROYED",
       "exitButtonText":"End Game",
       "dialoguePrompt":"[Left click] or [Enter] to continue",
-      "unitDeployed":"Unit is ready."
+      "unitDeployed":"Unit is ready.",
+      "crystalLocation": "Crystal located at",
+      "hintDialogue_level1": "Try building a unit at (3,2)!",
+      "hintDialogue_level2": "Try building a unit at (3,2)!"
    }
 }

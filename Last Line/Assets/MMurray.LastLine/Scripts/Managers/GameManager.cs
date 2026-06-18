@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     [Header("---UI---")]
     [SerializeField]private TextMeshProUGUI alertText;           //used to inform player of various things.
+    [SerializeField]private TextMeshProUGUI hintText;           //gives hints at start of level and when crystal is on screen.
     public TextMeshProUGUI xCoordinateText;        //used to let player know which X coordinate they picked
     public DialogueManager dialogueManager;
     public int triggerIndex;                //used to iterate through conditional triggers.
@@ -175,6 +176,7 @@ public class GameManager : MonoBehaviour
 
         /*******UI setup*****/
         alertText.text = "";
+        hintText.text = "";
         xCoordinateText.text = "";
         readyLabel.text = GetText("readyButtonText");
         exitGameLabel.text = GetText("exitButtonText");
@@ -201,7 +203,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 1;
+        //currentLevel = 1;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -1367,6 +1369,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Normal:
                 //alertText.text = "";
+                hintText.text = "";
                 am.HideGuideArrows();
                 readyButton.gameObject.SetActive(false);
                 axisContainerY.gameObject.SetActive(true);
@@ -1424,6 +1427,10 @@ public class GameManager : MonoBehaviour
                         p.ShowPoint(false);
                     }
                 }
+
+                //show hint
+                HintManager hm = Singleton.instance.HintManager;
+                hintText.text = hm.ShowHint(currentLevel);
                 break;
 
             case GameState.UnitSelectX:
@@ -1870,6 +1877,11 @@ public class GameManager : MonoBehaviour
         //SpeakText(msg);
     }
 
+    public void DisplayHint(string msg)
+    {
+        hintText.text = msg;
+    }
+
     void DestroyBase()
     {
         explodeBase = StartCoroutine(ExplodeBase());
@@ -1980,7 +1992,10 @@ public class GameManager : MonoBehaviour
     {
         foreach(Portal portal in activePortals)
         {
-            portal.timer.ReduceTime(60);
+            if (portal.timer.initTime == 60)
+                portal.timer.ReduceTime(60);
+            else
+                portal.timer.ReduceTime(45);
         }
 
         readyButton.gameObject.SetActive(false);
