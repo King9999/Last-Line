@@ -203,14 +203,13 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        //currentLevel = 1;
+        //currentLevel = 8;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
         if (inTutorial)
         {
             SetGameState(tutorialState = TutorialState.DialogueStartOfLevel);
-
         }
         else
         {
@@ -531,6 +530,7 @@ public class GameManager : MonoBehaviour
                 while (!points[i].IsEmpty());
 
                 points[i].crystal = crystal;
+                hintText.text = GetText("crystalLocation") + " " + points[i].pointAxes.ToString("F0");
                 Logger.DebugLogFormat("Crystal generated at {0}", points[i].pointAxes);
             }
 
@@ -601,6 +601,7 @@ public class GameManager : MonoBehaviour
         crystal.gameObject.SetActive(false);
         powerUpSpace.gameObject.SetActive(false);
         playerBase.gameObject.SetActive(false);
+        hintText.text = "";
     }
 
     bool CancelButtonPressed()
@@ -895,6 +896,7 @@ public class GameManager : MonoBehaviour
                 AddMoney(crystal.GetMoneyValue(), crystal.transform.position, isCrystal: true);
                 point.crystal = null;
                 crystal.gameObject.SetActive(false);
+                hintText.text = "";
 
                 //tutorial check. Explain the origin
                 if (currentLevel == 2)
