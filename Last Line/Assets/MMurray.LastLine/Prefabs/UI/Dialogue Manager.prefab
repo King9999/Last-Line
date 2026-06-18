@@ -1235,7 +1235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
       propertyPath: dialogueKeyList.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
       propertyPath: dialogueKeyList.Array.data[0]
@@ -1258,12 +1258,20 @@ PrefabInstance:
       value: system_intro_level1_b
       objectReference: {fileID: 0}
     - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
+      propertyPath: dialogueKeyList.Array.data[3].key
+      value: system_intro_level1_c
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
       propertyPath: dialogueKeyList.Array.data[1].showArrowGuides
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
       propertyPath: dialogueKeyList.Array.data[2].showArrowGuides
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438292404379811174, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
+      propertyPath: dialogueKeyList.Array.data[3].showArrowGuides
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1681912519623204120, guid: f251f013b208bae54a1c4a5760b02379, type: 3}
       propertyPath: m_Pivot.x
