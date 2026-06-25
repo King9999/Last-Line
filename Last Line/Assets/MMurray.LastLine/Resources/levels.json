@@ -1142,7 +1142,7 @@
         {
             "level": 8,
             "starting_money": 100,
-            "crystal_threshold": 100,
+            "crystal_threshold": 50,
             "crystal_value": 100,
             "portals": [
                 {
@@ -1157,7 +1157,7 @@
                     "enemy_type": 0,
                     "deploy_cooldown": 2.0,
                     "deploy_time": 60.0,
-                    "enemy_count": 20,
+                    "enemy_count": 15,
                     "enemy_path_points": [
                         {
                             "x": 0.0,
@@ -1212,7 +1212,7 @@
                     },
                     "enemy_type": 1,
                     "deploy_cooldown": 3.0,
-                    "deploy_time": 60.0,
+                    "deploy_time": 90.0,
                     "enemy_count": 5,
                     "enemy_path_points": [
                         {

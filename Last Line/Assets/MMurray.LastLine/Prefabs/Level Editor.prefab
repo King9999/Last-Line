@@ -2265,7 +2265,7 @@ MonoBehaviour:
     showLargePlanet: 0
   - level: 8
     startingMoney: 100
-    crystalThreshold: 100
+    crystalThreshold: 50
     crystalValue: 100
     portals:
     - {fileID: 7623516823288258231}
@@ -8734,7 +8734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: enemyCount
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: pointLocation
@@ -13042,7 +13042,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4775052253253935630, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: initTime
-      value: 60
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7141536553807059900, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: m_LocalScale.z
