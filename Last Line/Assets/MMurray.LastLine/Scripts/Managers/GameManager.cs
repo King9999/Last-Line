@@ -203,7 +203,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        //currentLevel = 8;
+        currentLevel = 2;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -1382,7 +1382,7 @@ public class GameManager : MonoBehaviour
                 xCoordinateText.text = "";
                 coordinatesInputField.text = "";
 
-                if (currentLevel > 0)
+                if (currentLevel > 0 && !inTutorial)
                     coordinatesInputContainer.gameObject.SetActive(true);
                 else
                     coordinatesInputContainer.gameObject.SetActive(false);
@@ -1411,7 +1411,7 @@ public class GameManager : MonoBehaviour
                 xCoordinateText.text = "";
                 coordinatesInputField.text = "";
 
-                if (currentLevel > 0)
+                if (currentLevel > 0 && !inTutorial)
                     coordinatesInputContainer.gameObject.SetActive(true);
                 else
                     coordinatesInputContainer.gameObject.SetActive(false);
