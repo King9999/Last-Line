@@ -93,8 +93,16 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
             //reuse existing lasers.
             for(int i = 0; i < lasers.Count; i++)
             {
-                //SetupLaser(lasers[i]);
+                SetupLaser(lasers[i]);
                 lasers[i].transform.position = transform.position;
+                if (i == 0)
+                {
+                    lasers[i].direction = Vector2.up;
+                }
+                else
+                {
+                    lasers[i].direction = Vector2.down;
+                }
                 Vector2 laserRange = new Vector2(transform.position.x, transform.position.y + (lasers[i].distance * lasers[i].direction.y));
                 laserRanges[i] = laserRange;
                 lasers[i].gameObject.SetActive(false);
