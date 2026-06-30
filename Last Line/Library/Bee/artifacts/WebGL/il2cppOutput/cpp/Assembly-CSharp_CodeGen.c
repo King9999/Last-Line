@@ -367,6 +367,7 @@ extern void U3CAnimateCursorU3Ed__5_System_Collections_IEnumerator_Reset_m05D5F4
 extern void U3CAnimateCursorU3Ed__5_System_Collections_IEnumerator_get_Current_m407AC023D7447C7BDDBA93513CB0E3784CD0B74D (void);
 extern void Tooltip_Start_m4AB8523D7CBBB7E82F57487B92149DA47D3F6C82 (void);
 extern void Tooltip_DisplayUnitTooltip_m4D31F4AE3204062C965D78A56C6B3CAF31DC0816 (void);
+extern void Tooltip_GetText_mA2C5FC5DD3683D1E53D19DC0609E9E100B68C5ED (void);
 extern void Tooltip__ctor_m839D8DEE46301BEAA0E8102131A4E7A597860837 (void);
 extern void UnitButton_OnMouseHoverEnter_m4647FDAA3C03FF6B8F44F07DC86AF58C583547EA (void);
 extern void UnitButton_OnMouseHoverExit_m75BFB0599CE8BA0F02E854B5A15375340116E473 (void);
@@ -669,7 +670,7 @@ extern void WebGL_LoadState_mAFD19B9651986746BB21D3A9E3A7A808CB57921C (void);
 extern void WebGL_GetPlayerActivityId_m6E8C59C88CCC4CAB3A2A229EBC29A98E94DA5506 (void);
 extern void WebGL__ctor_mD60DC12EBD827F701F414AABB218F12B71E0D774 (void);
 extern void Helper__ctor_mDE33F2B6351AFED43DC13A4BC5297DC32C6ACB5A (void);
-static Il2CppMethodPointer s_methodPointers[664] = 
+static Il2CppMethodPointer s_methodPointers[665] = 
 {
 	CompleteGame_Start_m88B65950BE4C9C85B3FB473DD2B97241AE2097BF,
 	CompleteGame_OnClick_mB6190E4312BFFC8C6FBA71A2E5223440EE6FD2A8,
@@ -1026,6 +1027,7 @@ static Il2CppMethodPointer s_methodPointers[664] =
 	U3CAnimateCursorU3Ed__5_System_Collections_IEnumerator_get_Current_m407AC023D7447C7BDDBA93513CB0E3784CD0B74D,
 	Tooltip_Start_m4AB8523D7CBBB7E82F57487B92149DA47D3F6C82,
 	Tooltip_DisplayUnitTooltip_m4D31F4AE3204062C965D78A56C6B3CAF31DC0816,
+	Tooltip_GetText_mA2C5FC5DD3683D1E53D19DC0609E9E100B68C5ED,
 	Tooltip__ctor_m839D8DEE46301BEAA0E8102131A4E7A597860837,
 	UnitButton_OnMouseHoverEnter_m4647FDAA3C03FF6B8F44F07DC86AF58C583547EA,
 	UnitButton_OnMouseHoverExit_m75BFB0599CE8BA0F02E854B5A15375340116E473,
@@ -1336,7 +1338,7 @@ static Il2CppMethodPointer s_methodPointers[664] =
 	NULL,
 	NULL,
 };
-static const int32_t s_InvokerIndices[664] = 
+static const int32_t s_InvokerIndices[665] = 
 {
 	4779,
 	4779,
@@ -1693,6 +1695,7 @@ static const int32_t s_InvokerIndices[664] =
 	4675,
 	4779,
 	103,
+	3394,
 	4779,
 	4779,
 	4779,
@@ -2007,7 +2010,7 @@ static const Il2CppTokenRangePair s_rgctxIndices[3] =
 {
 	{ 0x02000089, { 8, 8 } },
 	{ 0x0200008A, { 16, 6 } },
-	{ 0x06000292, { 0, 8 } },
+	{ 0x06000293, { 0, 8 } },
 };
 extern const uint32_t g_rgctx_U3CU3Ec__DisplayClass0_0_1_tD5F084C6C9BD3384B7FE3947AB1801C29E009366;
 extern const uint32_t g_rgctx_U3CU3Ec__DisplayClass0_0_1__ctor_m1B952EAFFE91EF6E55507B5C39459ED8760AEE37;
@@ -2060,7 +2063,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	664,
+	665,
 	s_methodPointers,
 	0,
 	NULL,
