@@ -20,6 +20,7 @@ public class UnitData : ScriptableObject
     public float weaponCooldown;
     public float bulletSpeed;
     public float bulletDistance;
+    public float bulletTime;            //lifetime of the bullet in seconds.
     public int weaponDamage;
     
 }

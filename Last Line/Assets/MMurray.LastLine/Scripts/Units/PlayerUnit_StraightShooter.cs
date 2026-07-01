@@ -13,7 +13,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
     //public Vector2 bulletRange;
     [SerializeField]private float cooldownTimer;            //tracks when weapon fires.
     [SerializeField]private bool reverseDirection;  //if true, unit fires left.
-
+    [SerializeField]float currentBulletTime;
     Coroutine rotateCoroutine;
     // Start is called before the first frame update
     /*void Start()
@@ -58,6 +58,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         unitSpriteRenderer.transform.localEulerAngles = Vector3.zero;
         unitSpriteRenderer.flipY = false;
         cooldownTimer = 0;
+        currentBulletTime = 0;
     }
 
     // Update is called once per frame
@@ -75,6 +76,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         if (!bullet.gameObject.activeSelf && Time.time > cooldownTimer + weaponCooldown)
         {
             //cooldownTimer = Time.time;
+            currentBulletTime = Time.time;
             bullet.gameObject.SetActive(true);
             AudioManager audio = Singleton.instance.AudioManager;
             audio.soundSource.PlayOneShot(audio.bulletSfx, audio.soundVolume);
@@ -86,10 +88,11 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         else
         {
             bulletRange = SetBulletRange(bullet);
-            float distance = Vector2.Distance(bulletRange,  bullet.transform.position);
-            Logger.DebugLog("Straight Shooter Bullet distance to target: " + distance);
+            //float distance = Vector2.Distance(bulletRange, bullet.transform.position);
+            //Logger.DebugLog("Straight Shooter Bullet distance to target: " + distance);
             //if (bullet.transform.position.x > bulletRange.x)
-            if (distance < 0.5f || bullet.bulletStruckUnit)
+            if (bullet.gameObject.activeSelf && (Time.time > currentBulletTime + bulletTime || bullet.bulletStruckUnit))
+            //if (distance < 0.5f || bullet.bulletStruckUnit)
             {
                 cooldownTimer = Time.time;
                 bullet.bulletStruckUnit = false;

@@ -18,6 +18,7 @@ namespace MMurray.LastLine
         public float bulletSpeed;
         public float bulletDistance;   
         public Vector2 bulletRange;         //if a bullet reaches this vector, it's destroyed.
+        public float bulletTime;        //the lifetime of the bullet in seconds. Once this is exceeded, the bullet disappears.
         public int weaponDamage;
 
         public Slider healthBar;        //only visible when unit is damaged to reduce clutter.
@@ -66,6 +67,7 @@ namespace MMurray.LastLine
             bulletSpeed = data.bulletSpeed;
             weaponDamage = data.weaponDamage;
             bulletDistance = data.bulletDistance;
+            bulletTime = data.bulletTime;
         }
 
         /// <summary>
