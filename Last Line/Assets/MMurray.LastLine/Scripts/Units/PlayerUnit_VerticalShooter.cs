@@ -13,6 +13,8 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
     public List<Vector2> bulletRanges, laserRanges;
     private float cooldownTimer;            //tracks when weapon fires.
     public List<Transform> maxRanges; //0 is for top laser, 1 is for bottom laser
+    [SerializeField]float currentLaserTime;
+    [SerializeField]bool laserActive;   //if true, laser is firing.
 
     // Start is called before the first frame update
     /*void Start()
@@ -108,7 +110,9 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
                 lasers[i].gameObject.SetActive(false);
             }
         }
-        cooldownTimer = 0;       
+        cooldownTimer = 0;
+        laserActive = false;
+        currentLaserTime = 0;       
     }
 
     // Update is called once per frame
@@ -175,10 +179,29 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
             {
                 foreach(Laser laser in lasers)
                     laser.gameObject.SetActive(true);
+                laserActive = true;
+                currentLaserTime = Time.time;
+                AudioManager audio = Singleton.instance.AudioManager;
+                audio.soundSource.PlayOneShot(audio.laserSfx, audio.soundVolume);
             }
             else
             {
-                for (int i = 0; i < lasers.Count; i++)
+                if (laserActive && Time.time > currentLaserTime + bulletTime)
+                {
+                    //laser no longer active
+                    laserActive = false;
+                    for (int i = 0; i < lasers.Count; i++)
+                    {
+                        Laser laser = lasers[i];
+                        if (!laser.gameObject.activeSelf)  //nothing is done with this bullet.
+                            continue;
+
+                        laser.transform.position = transform.position;
+                        laser.gameObject.SetActive(false);
+                    }
+                    cooldownTimer = Time.time;
+                }
+                /*for (int i = 0; i < lasers.Count; i++)
                 {
                     Vector2 laserRange = laserRanges[i];
                     //Transform laserRange = maxRanges[i];
@@ -189,7 +212,8 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
                     float distance = Vector2.Distance(laserRange, laser.transform.position);
                     Logger.DebugLogFormat("Laser {0} distance to target: {1}", i, distance);
 
-                    if (distance < 0.5f /*|| laser.bulletStruckUnit*/)
+                    if (Time.time > currentLaserTime + bulletTime)
+                    //if (distance < 0.5f) /*|| laser.bulletStruckUnit)
                     {
                         //cooldownTimer = Time.time;
                         //laser.bulletStruckUnit = false;
@@ -208,7 +232,7 @@ public class PlayerUnit_VerticalShooter : PlayerUnit
                     audio.soundSource.PlayOneShot(audio.laserSfx, audio.soundVolume);
                     cooldownTimer = Time.time;
                     Logger.DebugLog("Lasers ready");
-                }
+                }*/
             }
         //}
     }
