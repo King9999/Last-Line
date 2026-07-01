@@ -14,6 +14,7 @@ public class EnemyUnit_Striker : EnemyUnit
     [SerializeField]private AttackRange attackRange;
     [SerializeField]private PlayerUnit target;          //bullets are fired at this unit
     [SerializeField]private List<PlayerUnit> targets;
+    [SerializeField]float currentBulletTime;
 
     // Start is called before the first frame update
     protected override void OnEnable()
@@ -36,6 +37,7 @@ public class EnemyUnit_Striker : EnemyUnit
 
         cooldownTimer = Time.time / 4;  //so they don't immediately start shooting once the exit the portal.
         strikerCollider = GetComponent<Collider2D>();
+        currentBulletTime = 0;
     }
 
     // Update is called once per frame
@@ -71,11 +73,12 @@ public class EnemyUnit_Striker : EnemyUnit
         }*/
         if (bullet.gameObject.activeSelf)
         {
-            bulletRange = SetBulletRange(bullet);
-            float distance = Vector2.Distance(bulletRange, bullet.transform.position);
+            //bulletRange = SetBulletRange(bullet);
+            //float distance = Vector2.Distance(bulletRange, bullet.transform.position);
             //Logger.DebugLog("Striker Bullet distance to target: " + distance);
             //if (bullet.transform.position.x > bulletRange.x)
-            if (distance < 0.5f || bullet.bulletStruckUnit)
+            if (Time.time > currentBulletTime + bulletTime || bullet.bulletStruckUnit)
+            //if (distance < 0.5f || bullet.bulletStruckUnit)
             {
                 cooldownTimer = Time.time;
                 bullet.bulletStruckUnit = false;
@@ -98,6 +101,7 @@ public class EnemyUnit_Striker : EnemyUnit
             return;
             
         bullet.gameObject.SetActive(true);
+        currentBulletTime = Time.time;
         bullet.direction = direction;
         AudioManager audio = Singleton.instance.AudioManager;
         audio.soundSource.PlayOneShot(audio.bulletSfx, audio.soundVolume);

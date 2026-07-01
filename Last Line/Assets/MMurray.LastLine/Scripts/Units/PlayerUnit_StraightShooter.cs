@@ -152,6 +152,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         bullet.bulletType = Bullet.BulletType.Pierce;
         bullet.distance = 10;       //should be large enough to go off screen.
         bulletRange = SetBulletRange(bullet);
+        bulletTime = 2;
         //bulletRange = new Vector2(transform.position.x + (bullet.distance * bullet.direction.x), transform.position.y);
         Logger.DebugLog("Unit is enhanced");
     }
