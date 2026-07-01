@@ -203,7 +203,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        //currentLevel = 6;
+        //currentLevel = 1;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -1717,6 +1717,8 @@ public class GameManager : MonoBehaviour
                 //show arrow pointing to value. Player cannot pick other values.
                 am.HideGuideArrows();
                 am.arrowUnitSelectX.gameObject.SetActive(true);
+                axisContainerY.gameObject.SetActive(false);
+                axisContainerX.gameObject.SetActive(true);
                 am.arrowUnitSelectX.PointArrow(am.arrowUnitSelectX.arrowLocation, am.arrowUnitSelectX.direction);
                 if (!points[0].pointImage.enabled)
                 {
@@ -1731,6 +1733,8 @@ public class GameManager : MonoBehaviour
                 //show arrow pointing to value. Player cannot pick other values.
                 am.arrowUnitSelectX.gameObject.SetActive(false);
                 am.arrowUnitSelectY.gameObject.SetActive(true);
+                axisContainerX.gameObject.SetActive(false);
+                axisContainerY.gameObject.SetActive(true);
                 am.arrowUnitSelectY.PointArrow(am.arrowUnitSelectY.arrowLocation, am.arrowUnitSelectY.direction);
                 break;
             
@@ -1743,6 +1747,9 @@ public class GameManager : MonoBehaviour
             
             case TutorialState.ActivateAbilitySelectX:
                 am.arrowUnitSelectX.gameObject.SetActive(true);
+                am.arrowUnitSelectY.gameObject.SetActive(false);
+                axisContainerY.gameObject.SetActive(false);
+                axisContainerX.gameObject.SetActive(true);
                 am.arrowUnitSelectX.PointArrow(am.arrowUnitSelectX.arrowLocation, am.arrowUnitSelectX.direction);
                 if (!points[0].pointImage.enabled)
                 {
@@ -1756,6 +1763,8 @@ public class GameManager : MonoBehaviour
             case TutorialState.ActivateAbilitySelectY:
                 am.arrowUnitSelectX.gameObject.SetActive(false);
                 am.arrowUnitSelectY.gameObject.SetActive(true);
+                axisContainerY.gameObject.SetActive(true);
+                axisContainerX.gameObject.SetActive(false);
                 am.arrowUnitSelectY.PointArrow(am.arrowUnitSelectY.arrowLocation, am.arrowUnitSelectY.direction);
                 break;
 
@@ -1764,6 +1773,8 @@ public class GameManager : MonoBehaviour
                 //player that enemy is about to attack.
                 xCoordinateText.text = "";
                 am.arrowUnitSelectY.gameObject.SetActive(false);
+                axisContainerY.gameObject.SetActive(true);
+                axisContainerX.gameObject.SetActive(true);
                 if (points[0].pointImage.enabled)
                 {
                     foreach (Point p in points)
