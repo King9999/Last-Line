@@ -11,7 +11,8 @@ public class Menu : MonoBehaviour
 {
     public Tooltip tooltip;
     public SystemTooltip systemTooltip, inputHelpTooltip;   //input help is for the coordinates input field.
-    [SerializeField]private TextMeshProUGUI unitLabel, systemLabel, buildQueueLabel, currentLevel;
+    [SerializeField]private TextMeshProUGUI unitLabel, systemLabel, buildQueueLabel /*currentLevel*/;
+    [SerializeField]protected TextMeshProUGUI currentLevel;
 
     [Header("---Money---")]
     [SerializeField]private GameObject moneyContainer;
@@ -67,7 +68,7 @@ public class Menu : MonoBehaviour
         moneyValue.text = string.Format("{0:000}", gm.money); //gm.money + " CR";
     }
 
-    public void UpdateLevel(int level)
+    public virtual void UpdateLevel(int level)
     {
         GameManager gm = Singleton.instance.GameManager;
         if (level < 0 || level > gm.maxLevels)

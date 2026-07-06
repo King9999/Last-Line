@@ -27,10 +27,16 @@ public class MinigameManager : MonoBehaviour
     public DialogueManager dialogueManager;
     [SerializeField]private MoneyText moneyText;    //is displayed when an enemy unit is destroyed.
 
+    public float screenWidthScale {get;} = (float)Screen.width / 1024;
+    public float screenHeightScale {get;} = (float)Screen.height / 576;
+
+    //coroutine
+    Coroutine animateCrystal;           //called when a crystal is found
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Singleton.instance.MinigameManager = this;
     }
 
     // Update is called once per frame

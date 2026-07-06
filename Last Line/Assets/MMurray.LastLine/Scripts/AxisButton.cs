@@ -120,7 +120,7 @@ public class AxisButton : MonoBehaviour
             {
                 //gm.playerCoordinates.x = value;
                 //gm.enteringValueX = true;
-                gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
+                gm.xCoordinateText.text = GetText("xCoordinateSelected") + " " + value;
                 gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
             }
             Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
