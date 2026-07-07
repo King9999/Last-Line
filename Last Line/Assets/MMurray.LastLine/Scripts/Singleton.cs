@@ -38,6 +38,9 @@ namespace MMurray.LastLine
         //TTS and music
         public bool ttsEnabled, musicEnabled;
 
+        //minigame check
+        public bool inMinigame;         //when true, some buttons have different behaviour than normal.
+
         void Awake()
         {
             if (instance != null && instance != this)

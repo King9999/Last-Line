@@ -182,60 +182,73 @@ public class AxisButton : MonoBehaviour
         }
         
         //if both X and Y are selected, do the next action.
-        if (gm.enteringValueX && gm.enteringValueY)
+        if (!Singleton.instance.inMinigame)
         {
-            //highlight the point selected.
-            bool pointFound = false;
-            int i = 0;
-            while (!pointFound && i < gm.points.Count)
+            if (gm.enteringValueX && gm.enteringValueY)
             {
-                if (gm.points[i].pointAxes == gm.playerCoordinates)
+                //highlight the point selected.
+                bool pointFound = false;
+                int i = 0;
+                while (!pointFound && i < gm.points.Count)
                 {
-                    pointFound = true;
-                    gm.PlaceUnit(gm.playerUnitType, gm.points[i]);
-
-                    //tutorial check
-                    if (gm.inTutorial)
+                    if (gm.points[i].pointAxes == gm.playerCoordinates)
                     {
-                        switch(gm.tutorialState)
-                        {
-                            case GameManager.TutorialState.UnitSelectY:
-                                gm.SetGameState(gm.tutorialState = GameManager.TutorialState.BuildingFirstUnit);
-                                break;
-                            
-                            case GameManager.TutorialState.UnitSelectSecondUnitY:
-                                gm.SetGameState(gm.tutorialState = GameManager.TutorialState.BuildingSecondUnit);
-                                break;
-                            
-                            case GameManager.TutorialState.ActivateAbilitySelectY:
-                                gm.SetGameState(gm.tutorialState = GameManager.TutorialState.DialogueEnemyIncoming);
-                                break;
-                            
-                            default:
-                                break;
+                        pointFound = true;
+                        gm.PlaceUnit(gm.playerUnitType, gm.points[i]);
 
-                        }
-
-                        //level 2 check
-                        if (gm.currentLevel == 2)
+                        //tutorial check
+                        if (gm.inTutorial)
                         {
-                            gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
+                            switch(gm.tutorialState)
+                            {
+                                case GameManager.TutorialState.UnitSelectY:
+                                    gm.SetGameState(gm.tutorialState = GameManager.TutorialState.BuildingFirstUnit);
+                                    break;
+                                
+                                case GameManager.TutorialState.UnitSelectSecondUnitY:
+                                    gm.SetGameState(gm.tutorialState = GameManager.TutorialState.BuildingSecondUnit);
+                                    break;
+                                
+                                case GameManager.TutorialState.ActivateAbilitySelectY:
+                                    gm.SetGameState(gm.tutorialState = GameManager.TutorialState.DialogueEnemyIncoming);
+                                    break;
+                                
+                                default:
+                                    break;
+
+                            }
+
+                            //level 2 check
+                            if (gm.currentLevel == 2)
+                            {
+                                gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
+                            }
                         }
+                        else
+                        {
+                            //if enemy is preparing, game hasn't begun yet.
+                            gm.SetGameState(gm.gameState = gm.gameStarted ? GameManager.GameState.Normal : GameManager.GameState.EnemyPreparing);
+                        }
+                        Logger.DebugLogFormat("Player entered {0}", gm.points[i].pointAxes);
                     }
                     else
                     {
-                        //if enemy is preparing, game hasn't begun yet.
-                        gm.SetGameState(gm.gameState = gm.gameStarted ? GameManager.GameState.Normal : GameManager.GameState.EnemyPreparing);
+                        i++;
                     }
-                    Logger.DebugLogFormat("Player entered {0}", gm.points[i].pointAxes);
                 }
-                else
-                {
-                    i++;
-                }
+                gm.enteringValueX = false;
+                gm.enteringValueY = false;
             }
-            gm.enteringValueX = false;
-            gm.enteringValueY = false;
+        }
+        else
+        {
+            //we're in mining minigame
+            //check the selected coordinates for a crystal.
+            MinigameManager mm = Singleton.instance.MinigameManager;
+            
+
+            mm.enteringValueX = false;
+            mm.enteringValueY = false;
         }
         //Logger.DebugLogFormat("player Coordinates {0}", gm.playerCoordinates);
     }
