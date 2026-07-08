@@ -38,8 +38,10 @@ namespace MMurray.LastLine
         //TTS and music
         public bool ttsEnabled, musicEnabled;
 
-        //minigame check
+        //minigame stuff
         public bool inMinigame;         //when true, some buttons have different behaviour than normal.
+        public int minigameLevel;               //this is here so that I can pass on level data after the minigame scene is loaded.
+        public int minigameMoney;          //this is amount of scrap collected in the minigame. The player uses this scrap in the next level.
 
         void Awake()
         {

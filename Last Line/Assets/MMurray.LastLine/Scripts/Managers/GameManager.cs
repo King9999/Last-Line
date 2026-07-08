@@ -786,7 +786,7 @@ public class GameManager : MonoBehaviour
         Menu menu = Singleton.instance.Menu;
         crystalThreshold = newLevel.crystal_threshold;
         crystal.SetMoneyValue(newLevel.crystal_value);
-        money = newLevel.starting_money;
+        money = newLevel.starting_money + Singleton.instance.minigameMoney; //money from minigame gets added to the current level if the player played the minigame.
         menu.UpdateMoneyText();
 
         /****LEVEL NUMBER SETUP***/

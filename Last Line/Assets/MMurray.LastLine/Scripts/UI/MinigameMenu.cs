@@ -13,7 +13,7 @@ public class MinigameMenu : Menu
     [SerializeField]private List<CheckBox> crystalLocationCheckboxes;
     [SerializeField]List<Vector2> crystalPoints;
     [SerializeField]Sprite checkmarkSpriteOn, checkmarkSpriteOff;
-    public int level;               //there are 2 levels.
+    //public int level;               //there are 2 levels.
 
     [Serializable]
     public struct CheckBox
@@ -38,7 +38,8 @@ public class MinigameMenu : Menu
         UpdateSystemButtonSprites();
 
         //update text based on level
-        if (level == 1)
+        MinigameManager mm = Singleton.instance.MinigameManager;
+        if (mm.level == 1)
         {
             //set the points
             //crystalPoints.Add(new Point());
@@ -51,6 +52,8 @@ public class MinigameMenu : Menu
             crystalLocationCheckboxes[0].checkBoxText.text = GetText("miningLevel1_coordinates1");
             crystalLocationCheckboxes[1].checkBoxText.text = GetText("miningLevel1_coordinates2");
             crystalLocationCheckboxes[2].checkBoxText.text = GetText("miningLevel1_coordinates3");
+            crystalLocationCheckboxes[3].checkBoxText.text = GetText("miningLevel1_coordinates4");
+            crystalLocationCheckboxes[4].checkBoxText.text = GetText("miningLevel1_coordinates5");
         }
         else
         {

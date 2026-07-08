@@ -8989,6 +8989,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3979e5b6f341b7aaa8ade40e8cbd2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: 0
+  previousState: 0
+  playerCoordinates: {x: 0, y: 0}
+  enteringValueX: 0
+  enteringValueY: 0
+  level: 0
+  minigameLevelData:
+  - level: 1
+    crystals:
+    - crystalLocation: {x: 1, y: 4}
+      crystalValue: 20
+    - crystalLocation: {x: 5, y: 0}
+      crystalValue: 30
+    - crystalLocation: {x: 2, y: 2}
+      crystalValue: 10
+    - crystalLocation: {x: 0, y: 5}
+      crystalValue: 40
+    - crystalLocation: {x: 3, y: 3}
+      crystalValue: 20
+  - level: 2
+    crystals:
+    - crystalLocation: {x: 0, y: 0}
+      crystalValue: 0
+    - crystalLocation: {x: 0, y: 0}
+      crystalValue: 0
+    - crystalLocation: {x: 0, y: 0}
+      crystalValue: 0
+    - crystalLocation: {x: 0, y: 0}
+      crystalValue: 0
+    - crystalLocation: {x: 0, y: 0}
+      crystalValue: 0
+  alertText: {fileID: 0}
+  hintText: {fileID: 0}
+  xCoordinateText: {fileID: 0}
+  dialogueManager: {fileID: 0}
+  moneyText: {fileID: 0}
 --- !u!1 &4442471203434620885
 GameObject:
   m_ObjectHideFlags: 0
