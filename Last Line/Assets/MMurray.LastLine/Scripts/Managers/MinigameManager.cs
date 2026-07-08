@@ -29,6 +29,7 @@ public class MinigameManager : MonoBehaviour
     {
         public Vector2 crystalLocation;
         public int crystalValue;
+        public bool crystalFound;           //if true, player already found this crystal and can't add its value to the total.
     }
 
     [Serializable]
@@ -69,14 +70,7 @@ public class MinigameManager : MonoBehaviour
         Level 1 coordinates:
             (1,4), (5,0), (2,2), (3,3), (0,5)
         *****/
-        if (level == 1)
-        {
-            
-        }
-        else
-        {
-            
-        }
+
     }
 
     // Update is called once per frame
@@ -94,5 +88,12 @@ public class MinigameManager : MonoBehaviour
         }
 
         this.level = level;
+    }
+
+    /*Check a given location on the grid for a crystal. If a crystal is found, money is added to the total. */
+    public void CheckLocation(Vector2 location)
+    {
+        //check if location matches a point in the current level
+        //if there's a match, money is added to total. Prevent player from scanning same location. 
     }
 }

@@ -602,6 +602,7 @@ public class GameManager : MonoBehaviour
         powerUpSpace.gameObject.SetActive(false);
         playerBase.gameObject.SetActive(false);
         hintText.text = "";
+        Singleton.instance.minigameMoney = 0;
     }
 
     bool CancelButtonPressed()
