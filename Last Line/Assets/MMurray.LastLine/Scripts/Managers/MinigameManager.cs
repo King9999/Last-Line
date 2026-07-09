@@ -43,6 +43,8 @@ public class MinigameManager : MonoBehaviour
     public Vector2 playerCoordinates;                 //the coordinates manually entered by player
     public bool enteringValueX, enteringValueY; //determines which axis value is being entered. X is always entered first.
     public int level;               //there are 2 levels.
+    public int money;               //money acquired. It's added to the starting money in the next level.
+    [SerializeField]TargetCursor targetCursor;
 
     [Header("---Minigame---")]
     [SerializeField]List<MinigameLevelData> minigameLevelData;
@@ -51,6 +53,7 @@ public class MinigameManager : MonoBehaviour
     [SerializeField]private TextMeshProUGUI alertText;           //used to inform player of various things.
     [SerializeField]private TextMeshProUGUI hintText;           //gives hints at start of level and when crystal is on screen.
     public TextMeshProUGUI xCoordinateText;        //used to let player know which X coordinate they picked
+    public TextMeshProUGUI coordinatesText;
     public DialogueManager dialogueManager;
     [SerializeField]private MoneyText moneyText;    //is displayed when an enemy unit is destroyed.
 
@@ -59,6 +62,7 @@ public class MinigameManager : MonoBehaviour
 
     //coroutine
     Coroutine animateCrystal;           //called when a crystal is found
+    Coroutine animateCoordinates;
 
     // Start is called before the first frame update
     void Start()
@@ -95,5 +99,39 @@ public class MinigameManager : MonoBehaviour
     {
         //check if location matches a point in the current level
         //if there's a match, money is added to total. Prevent player from scanning same location. 
+        targetCursor.ShowCursor(location);
+        if (animateCoordinates != null)
+                StopCoroutine(animateCoordinates);
+            animateCoordinates = StartCoroutine(ShowCoordinates(location));
+    }
+
+    public void AddMoney(int amount, Vector2 position)
+    {
+        if (amount < 0 || money >= 999)
+            return;
+
+        money = (money + amount <= 999) ? money + amount : 999;
+
+        MinigameMenu menu = Singleton.instance.MinigameMenu;
+        menu.UpdateMoneyText();
+        moneyText.ShowMoneyRewardText(amount, position);
+    }
+        
+
+    //coordinates animate upwards for a duration
+    IEnumerator ShowCoordinates(Vector2 location, float duration = 1)
+    {
+        coordinatesText.transform.position = new Vector2(targetCursor.transform.position.x, targetCursor.transform.position.y + 50);
+        float time = 0;
+        float moveSpeed = 10;
+        coordinatesText.text = location.ToString("F0");  //F0 removes decimal places in a float.
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            Vector2 newPos = coordinatesText.transform.position;
+            coordinatesText.transform.position = new Vector2(newPos.x, newPos.y + moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+        coordinatesText.text = "";
     }
 }
