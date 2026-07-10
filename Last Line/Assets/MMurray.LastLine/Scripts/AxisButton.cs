@@ -256,12 +256,8 @@ public class AxisButton : MonoBehaviour
                     if (mm.points[i].pointAxes == mm.playerCoordinates)
                     {
                         pointFound = true;
-                        mm.CheckLocation(mm.playerCoordinates);
-
-                        
-                        //if enemy is preparing, game hasn't begun yet.
-                        gm.SetGameState(gm.gameState = gm.gameStarted ? GameManager.GameState.Normal : GameManager.GameState.EnemyPreparing);
-                        
+                        mm.CheckLocation(mm.playerCoordinates);                        
+                        mm.SetGameState(mm.gameState = MinigameManager.GameState.Normal);
                         Logger.DebugLogFormat("Player entered {0}", mm.points[i].pointAxes);
                     }
                     else
