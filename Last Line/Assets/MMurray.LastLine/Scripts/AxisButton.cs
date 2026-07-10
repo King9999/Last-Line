@@ -246,9 +246,32 @@ public class AxisButton : MonoBehaviour
             //check the selected coordinates for a crystal.
             MinigameManager mm = Singleton.instance.MinigameManager;
             
+            if (mm.enteringValueX && mm.enteringValueY)
+            {
+                //highlight the point selected.
+                bool pointFound = false;
+                int i = 0;
+                while (!pointFound && i < mm.points.Count)
+                {
+                    if (mm.points[i].pointAxes == mm.playerCoordinates)
+                    {
+                        pointFound = true;
+                        mm.CheckLocation(mm.playerCoordinates);
 
-            mm.enteringValueX = false;
-            mm.enteringValueY = false;
+                        
+                        //if enemy is preparing, game hasn't begun yet.
+                        gm.SetGameState(gm.gameState = gm.gameStarted ? GameManager.GameState.Normal : GameManager.GameState.EnemyPreparing);
+                        
+                        Logger.DebugLogFormat("Player entered {0}", mm.points[i].pointAxes);
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+                mm.enteringValueX = false;
+                mm.enteringValueY = false;
+            }
         }
         //Logger.DebugLogFormat("player Coordinates {0}", gm.playerCoordinates);
     }

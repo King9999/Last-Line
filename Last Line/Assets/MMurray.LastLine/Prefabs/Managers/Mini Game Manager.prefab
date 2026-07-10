@@ -9112,7 +9112,45 @@ MonoBehaviour:
   enteringValueX: 0
   enteringValueY: 0
   level: 0
+  money: 0
   targetCursor: {fileID: 3726780125279632829}
+  points:
+  - {fileID: 601172322501171853}
+  - {fileID: 8403162492728604263}
+  - {fileID: 1851094024093948722}
+  - {fileID: 4909070012332259732}
+  - {fileID: 5351881023934449204}
+  - {fileID: 5414552748947596523}
+  - {fileID: 4109989190420566611}
+  - {fileID: 7649263421943854098}
+  - {fileID: 6855756900080331992}
+  - {fileID: 1435574092078001129}
+  - {fileID: 6169771376190233076}
+  - {fileID: 1965092063923858135}
+  - {fileID: 6650061878140108160}
+  - {fileID: 2033078608321138787}
+  - {fileID: 8303044596070975560}
+  - {fileID: 1131184003894501520}
+  - {fileID: 173065915203492710}
+  - {fileID: 6615961211015218745}
+  - {fileID: 1956613431324630973}
+  - {fileID: 5922780345353255726}
+  - {fileID: 1941692690017710602}
+  - {fileID: 4749111341853769770}
+  - {fileID: 8284114829698805344}
+  - {fileID: 3618915830641869692}
+  - {fileID: 5234573755794304860}
+  - {fileID: 4773874273283472258}
+  - {fileID: 5816538001507265893}
+  - {fileID: 9198499444710254989}
+  - {fileID: 5889163613042485168}
+  - {fileID: 2838749925687735040}
+  - {fileID: 3425285046480769745}
+  - {fileID: 6406642212085728724}
+  - {fileID: 1408232081171781054}
+  - {fileID: 5462610583670175995}
+  - {fileID: 2102855319679399533}
+  - {fileID: 9120766735359540735}
   minigameLevelData:
   - level: 1
     crystals:
@@ -9148,12 +9186,17 @@ MonoBehaviour:
     - crystalLocation: {x: 0, y: 0}
       crystalValue: 0
       crystalFound: 0
+  axisContainerX: {fileID: 6753186529452947482}
+  axisContainerY: {fileID: 6091277455557335786}
   alertText: {fileID: 307621044082546800}
   hintText: {fileID: 3737375649758090238}
   xCoordinateText: {fileID: 4916724045304323343}
   coordinatesText: {fileID: 2548348626117576496}
   dialogueManager: {fileID: 0}
   moneyText: {fileID: 1304010616185713529}
+  coordinatesInputContainer: {fileID: 5708161982047212563}
+  coordinatesInputField: {fileID: 7597316563420410053}
+  coordinatesLabel: {fileID: 5003688166380845960}
 --- !u!1 &4442471203434620885
 GameObject:
   m_ObjectHideFlags: 0

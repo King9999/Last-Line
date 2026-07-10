@@ -45,9 +45,14 @@ public class MinigameManager : MonoBehaviour
     public int level;               //there are 2 levels.
     public int money;               //money acquired. It's added to the starting money in the next level.
     [SerializeField]TargetCursor targetCursor;
+    public List<Point> points;
 
     [Header("---Minigame---")]
     [SerializeField]List<MinigameLevelData> minigameLevelData;
+
+    [Header("---Containers---")]
+    [SerializeField]private GameObject axisContainerX;
+    [SerializeField]private GameObject axisContainerY;
 
     [Header("---UI---")]
     [SerializeField]private TextMeshProUGUI alertText;           //used to inform player of various things.
@@ -56,6 +61,9 @@ public class MinigameManager : MonoBehaviour
     public TextMeshProUGUI coordinatesText;
     public DialogueManager dialogueManager;
     [SerializeField]private MoneyText moneyText;    //is displayed when an enemy unit is destroyed.
+    public GameObject coordinatesInputContainer;
+    [SerializeField]private TMP_InputField coordinatesInputField;
+    [SerializeField]private TextMeshProUGUI coordinatesLabel;
 
     public float screenWidthScale {get;} = (float)Screen.width / 1024;
     public float screenHeightScale {get;} = (float)Screen.height / 576;
@@ -116,8 +124,39 @@ public class MinigameManager : MonoBehaviour
         menu.UpdateMoneyText();
         moneyText.ShowMoneyRewardText(amount, position);
     }
-        
 
+    public void SetGameState(GameState state)
+    {
+        Logger.DebugLogFormat("GameState changed to {0}", gameState);
+        ArrowGuideManager am = Singleton.instance.ArrowGuideManager;
+
+        switch(state)
+        {
+            case GameState.Normal:
+                //alertText.text = "";
+                hintText.text = "";
+                am.HideGuideArrows();
+                axisContainerY.gameObject.SetActive(true);
+                axisContainerX.gameObject.SetActive(true);
+                enteringValueX = false;
+                enteringValueY = false;
+                xCoordinateText.text = "";
+                coordinatesInputField.text = "";
+
+
+                //hide points
+                if (points[0].pointImage.enabled)
+                {
+                    foreach (Point p in points)
+                    {
+                        p.ShowPoint(false);
+                    }
+                }
+                break;
+        }
+    }
+        
+#region Coroutines
     //coordinates animate upwards for a duration
     IEnumerator ShowCoordinates(Vector2 location, float duration = 1)
     {
@@ -134,4 +173,5 @@ public class MinigameManager : MonoBehaviour
         }
         coordinatesText.text = "";
     }
+    #endregion
 }
