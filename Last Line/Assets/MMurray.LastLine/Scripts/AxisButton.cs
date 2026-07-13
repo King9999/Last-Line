@@ -22,7 +22,7 @@ public class AxisButton : MonoBehaviour
         DialogueManager dm = Singleton.instance.DialogueManager;
         MinigameManager mm = Singleton.instance.MinigameManager;
 
-        if (dm.dialogueOpen || gm.UnplayableState())
+        if (dm.dialogueOpen || (gm != null && gm.UnplayableState()))
             return;
         
         AudioManager audio = Singleton.instance.AudioManager;
@@ -32,32 +32,33 @@ public class AxisButton : MonoBehaviour
         if (axisValue == AxisValue.ORIGIN)
         {
             //tutorial check. Exception is made if we're on level 2 to pick up crystal and explain the origin.
-            if (gm.inTutorial)
+            if (!Singleton.instance.inMinigame)
             {
-                if (gm.currentLevel == 2)
+                if (gm.inTutorial)
                 {
-                    if (!gm.enteringValueX && !gm.enteringValueY)
+                    if (gm.currentLevel == 2)
                     {
-                        gm.enteringValueX = true;       //always start with X
-                        gm.playerCoordinates.x = value;
-                        gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
+                        if (!gm.enteringValueX && !gm.enteringValueY)
+                        {
+                            gm.enteringValueX = true;       //always start with X
+                            gm.playerCoordinates.x = value;
+                            gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
 
-                        //change state
-                        gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
-                        Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
-                    }
-                    else
-                    {
-                        gm.playerCoordinates.y = value;
-                        gm.enteringValueY = true;
-                        Logger.DebugLogFormat("player Y: {0}", gm.playerCoordinates.y);
+                            //change state
+                            gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
+                            Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
+                        }
+                        else
+                        {
+                            gm.playerCoordinates.y = value;
+                            gm.enteringValueY = true;
+                            Logger.DebugLogFormat("player Y: {0}", gm.playerCoordinates.y);
+                        }
                     }
                 }
-            }
-            else
-            {
-                if (!Singleton.instance.inMinigame)
+                else
                 {
+                    
                     if (!gm.enteringValueX && !gm.enteringValueY)
                     {
                         gm.enteringValueX = true;       //always start with X
@@ -76,26 +77,26 @@ public class AxisButton : MonoBehaviour
                         //gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
                         Logger.DebugLogFormat("player Y: {0}", gm.playerCoordinates.y);
                     }
+                   
                 }
-                else  //in minigame
+            }
+            else //in minigame
+            {
+                if (!mm.enteringValueX && !mm.enteringValueY)
                 {
-                    //MinigameManager mm = Singleton.instance.MinigameManager;
-                    if (!mm.enteringValueX && !mm.enteringValueY)
-                    {
-                        mm.enteringValueX = true;       //always start with X
-                        mm.playerCoordinates.x = value;
-                        mm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
+                    mm.enteringValueX = true;       //always start with X
+                    mm.playerCoordinates.x = value;
+                    mm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
 
-                        //change state
-                        mm.SetGameState(mm.gameState = MinigameManager.GameState.UnitSelectY);
-                        Logger.DebugLogFormat("player X: {0}", mm.playerCoordinates.x);
-                    }
-                    else
-                    {
-                        mm.playerCoordinates.y = value;
-                        mm.enteringValueY = true;
-                        Logger.DebugLogFormat("player Y: {0}", mm.playerCoordinates.y);
-                    }
+                    //change state
+                    mm.SetGameState(mm.gameState = MinigameManager.GameState.UnitSelectY);
+                    Logger.DebugLogFormat("player X: {0}", mm.playerCoordinates.x);
+                }
+                else
+                {
+                    mm.playerCoordinates.y = value;
+                    mm.enteringValueY = true;
+                    Logger.DebugLogFormat("player Y: {0}", mm.playerCoordinates.y);
                 }
             }
 
@@ -306,7 +307,7 @@ public class AxisButton : MonoBehaviour
                     if (mm.points[i].pointAxes == mm.playerCoordinates)
                     {
                         pointFound = true;
-                        mm.CheckLocation(mm.playerCoordinates);                        
+                        mm.CheckLocation(mm.points[i]);                        
                         mm.SetGameState(mm.gameState = MinigameManager.GameState.Normal);
                         Logger.DebugLogFormat("Player entered {0}", mm.points[i].pointAxes);
                     }

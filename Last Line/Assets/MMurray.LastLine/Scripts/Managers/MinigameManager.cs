@@ -78,6 +78,7 @@ public class MinigameManager : MonoBehaviour
     {
         Singleton.instance.MinigameManager = this;
         SetLevel(Singleton.instance.minigameLevel);
+        //SetLevel(1);
 
         /****crystal setup
         Level 1 coordinates:
@@ -104,14 +105,15 @@ public class MinigameManager : MonoBehaviour
     }
 
     /*Check a given location on the grid for a crystal. If a crystal is found, money is added to the total. */
-    public void CheckLocation(Vector2 location)
+    public void CheckLocation(Point point)
     {
         //check if location matches a point in the current level
-        //if there's a match, money is added to total. Prevent player from scanning same location. 
-        targetCursor.ShowCursor(location);
+        //if there's a match, money is added to total. Prevent player from scanning same location.
+
+        targetCursor.ShowCursor(point.transform.position);
         if (animateCoordinates != null)
                 StopCoroutine(animateCoordinates);
-            animateCoordinates = StartCoroutine(ShowCoordinates(location));
+            animateCoordinates = StartCoroutine(ShowCoordinates(point));
     }
 
     public void AddMoney(int amount, Vector2 position)
@@ -166,12 +168,12 @@ public class MinigameManager : MonoBehaviour
         
 #region Coroutines
     //coordinates animate upwards for a duration
-    IEnumerator ShowCoordinates(Vector2 location, float duration = 1)
+    IEnumerator ShowCoordinates(Point point, float duration = 1)
     {
         coordinatesText.transform.position = new Vector2(targetCursor.transform.position.x, targetCursor.transform.position.y + 50);
         float time = 0;
         float moveSpeed = 10;
-        coordinatesText.text = location.ToString("F0");  //F0 removes decimal places in a float.
+        coordinatesText.text = point.pointAxes.ToString("F0");  //F0 removes decimal places in a float.
         while (time < duration)
         {
             time += Time.deltaTime;

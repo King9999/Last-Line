@@ -56,11 +56,6 @@ public class TitleManager : MonoBehaviour
         });
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     string GetText(string key)
     {
@@ -83,6 +78,8 @@ public class TitleManager : MonoBehaviour
         Singleton.instance.ttsEnabled = true;
         Singleton.instance.saveStateFound = false;
         sf.ChangeSceneFadeOut("Game");
+        //Singleton.instance.inMinigame = true;
+        //sf.ChangeSceneFadeOut("MiniGame");
     }
 
     public void ContinueButtonClicked()
