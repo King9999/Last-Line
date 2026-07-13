@@ -14,10 +14,22 @@ namespace MMurray.LastLine
        public void WriteState(GameData data)
         {
             GameManager gm = Singleton.instance.GameManager;
+            MinigameManager mm = Singleton.instance.MinigameManager;
             Singleton s = Singleton.instance;
             //data.test_unit_pos = gm.testUnit.transform.position;
-            data.level = gm.currentLevel;
-            data.max_levels = gm.maxLevels;
+            if (gm != null)
+            {
+                data.level = gm.currentLevel;
+                data.max_levels = gm.maxLevels;
+            }
+
+            if (mm != null)
+            {
+                data.minigame_level = mm.level;
+                data.level = mm.level == 1 ? 3 : 6;     //minigame 1 counts as level 3, minigame 2 counts as level 6.
+                data.in_minigame = s.inMinigame;
+            }
+
             data.tts_enabled = s.ttsEnabled;
             data.music_enabled = s.musicEnabled;
 
@@ -31,16 +43,24 @@ namespace MMurray.LastLine
             }
 
             //submit progress
-            LOLSDK.Instance.SubmitProgress(0, data.level, gm.maxLevels);    //level 0 is the tutorial.
+            LOLSDK.Instance.SubmitProgress(0, data.level, s.maxLevels/*gm.maxLevels*/);    //level 0 is the tutorial.
             LOLSDK.Instance.SaveState(data);
         }
 
         public void ReadState(GameData data)
         {
             GameManager gm = Singleton.instance.GameManager;
+            MinigameManager mm = Singleton.instance.MinigameManager;
             Singleton s = Singleton.instance;
             //gm.testUnit.transform.position = data.test_unit_pos;
-            gm.currentLevel = data.level;
+            if (gm != null)
+                gm.currentLevel = data.level;
+            
+            if (mm != null)
+            {
+                mm.level = data.minigame_level;
+                s.inMinigame = data.in_minigame;
+            }
             s.musicEnabled = data.music_enabled;
             s.ttsEnabled = data.tts_enabled;
         }

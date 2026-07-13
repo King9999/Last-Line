@@ -378,29 +378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2256b9d06ed312a7bbed437f54d2b8c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tooltip: {fileID: 0}
-  systemTooltip: {fileID: 0}
+  systemTooltip: {fileID: 3955557188899056949}
   inputHelpTooltip: {fileID: 0}
-  unitLabel: {fileID: 0}
-  systemLabel: {fileID: 0}
-  buildQueueLabel: {fileID: 0}
-  currentLevel: {fileID: 7646081044839092222}
-  moneyContainer: {fileID: 1117832155347683493}
-  moneyLabel: {fileID: 5329804272844677747}
-  moneyValue: {fileID: 1439629701857476418}
-  unitButtons: []
-  selectedButton: {fileID: 0}
-  unitsInQueue: []
-  queueIndex: 0
-  ttsButton: {fileID: 473679628413672206}
-  musicButton: {fileID: 1709307795760049361}
-  exitGameButton: {fileID: 2299210703275785218}
-  ttsButtonImage: {fileID: 3565608819200858378}
-  musicButtonImage: {fileID: 1379731005446623317}
-  ttsSpriteOn: {fileID: 0}
-  ttsSpriteOff: {fileID: 0}
-  musicSpriteOn: {fileID: 0}
-  musicSpriteOff: {fileID: 0}
   crystalCoordinatesLabel: {fileID: 7478825951085215717}
   crystalLocationCheckboxes:
   - isOn: 0
@@ -422,8 +401,21 @@ MonoBehaviour:
   - {x: 1, y: 4}
   - {x: 5, y: 0}
   - {x: 2, y: 2}
-  checkmarkSpriteOn: {fileID: 0}
-  checkmarkSpriteOff: {fileID: 0}
+  checkmarkSpriteOn: {fileID: 21300000, guid: 3cf2d80d613f9b8bfa61301e24eb6876, type: 3}
+  checkmarkSpriteOff: {fileID: 21300000, guid: 6ee78a4a3eb87c9a9b17f577c19bae6a, type: 3}
+  currentLevel: {fileID: 7646081044839092222}
+  moneyContainer: {fileID: 1117832155347683493}
+  moneyLabel: {fileID: 5329804272844677747}
+  moneyValue: {fileID: 1439629701857476418}
+  ttsButton: {fileID: 473679628413672206}
+  musicButton: {fileID: 1709307795760049361}
+  exitGameButton: {fileID: 2299210703275785218}
+  ttsButtonImage: {fileID: 3565608819200858378}
+  musicButtonImage: {fileID: 1379731005446623317}
+  ttsSpriteOn: {fileID: 21300000, guid: 78302e7d2643bd67caa65cf302449e6b, type: 3}
+  ttsSpriteOff: {fileID: 21300000, guid: 7388d202ca5d53f02979fe538fc42cb9, type: 3}
+  musicSpriteOn: {fileID: 21300000, guid: 80e4a98a5d0099b6a8ef87775459c6ca, type: 3}
+  musicSpriteOff: {fileID: 21300000, guid: 83970cf85533a5212ae180c5a0aff142, type: 3}
 --- !u!1 &859405357780852272
 GameObject:
   m_ObjectHideFlags: 0

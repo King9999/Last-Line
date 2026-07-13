@@ -24,8 +24,17 @@ public class SystemTooltip : MonoBehaviour
         if (toggle == true)
         {
             //place the tooltip around the mouse's position
-            GameManager gm = Singleton.instance.GameManager;
-            gameObject.transform.position = new Vector2(button.transform.position.x + tooltipXOffset * gm.screenWidthScale, button.transform.position.y + tooltipYOffset * gm.screenHeightScale);
+            if (!Singleton.instance.inMinigame)
+            {
+                GameManager gm = Singleton.instance.GameManager;
+                gameObject.transform.position = new Vector2(button.transform.position.x + tooltipXOffset * gm.screenWidthScale, button.transform.position.y + tooltipYOffset * gm.screenHeightScale);
+            }
+            else
+            {
+                MinigameManager mm = Singleton.instance.MinigameManager;
+                gameObject.transform.position = new Vector2(button.transform.position.x + tooltipXOffset * mm.screenWidthScale, button.transform.position.y + tooltipYOffset * mm.screenHeightScale);
+
+            }
             helpText.text = details;
         }
     }

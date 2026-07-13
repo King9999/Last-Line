@@ -64,6 +64,7 @@ public class MinigameManager : MonoBehaviour
     public GameObject coordinatesInputContainer;
     [SerializeField]private TMP_InputField coordinatesInputField;
     [SerializeField]private TextMeshProUGUI coordinatesLabel;
+    public SystemTooltip inputHelpTooltip;   //input help is for the coordinates input field.
 
     public float screenWidthScale {get;} = (float)Screen.width / 1024;
     public float screenHeightScale {get;} = (float)Screen.height / 576;
@@ -73,10 +74,14 @@ public class MinigameManager : MonoBehaviour
     Coroutine animateCoordinates;
     Coroutine alertCoroutine;
 
+    void Awake()
+    {
+        Singleton.instance.MinigameManager = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        Singleton.instance.MinigameManager = this;
         SetLevel(Singleton.instance.minigameLevel);
         //SetLevel(1);
 
@@ -85,6 +90,17 @@ public class MinigameManager : MonoBehaviour
             (1,4), (5,0), (2,2), (3,3), (0,5)
         *****/
 
+        alertText.text = "";
+        hintText.text = "";
+        xCoordinateText.text = "";
+        //exitGameLabel.text = GetText("exitButtonText");
+        coordinatesLabel.text = GetText("coordinatesLabel");
+        enteringValueX = false;
+        enteringValueY = false;
+        targetCursor.gameObject.SetActive(false);
+
+        //input field setup
+        coordinatesInputField.characterLimit = 2;
     }
 
     // Update is called once per frame
@@ -102,6 +118,15 @@ public class MinigameManager : MonoBehaviour
         }
 
         this.level = level;
+    }
+
+    public void PlayMusic(bool toggle)
+    {
+        AudioManager am = Singleton.instance.AudioManager;
+        if (toggle == true)
+            am.mainMusic.Play();
+        else
+            am.mainMusic.Stop();
     }
 
     /*Check a given location on the grid for a crystal. If a crystal is found, money is added to the total. */
@@ -164,6 +189,12 @@ public class MinigameManager : MonoBehaviour
         if (alertCoroutine != null)
             StopCoroutine(alertCoroutine);
         alertCoroutine = StartCoroutine(Alert(msg, duration));
+    }
+
+    string GetText(string key)
+    {
+        string value = SharedState.LanguageDefs?[key];
+        return value ?? "--missing--";
     }
         
 #region Coroutines

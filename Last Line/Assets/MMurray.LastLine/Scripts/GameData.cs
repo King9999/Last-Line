@@ -25,5 +25,9 @@ namespace MMurray.LastLine
         /*********universal data*********/
         public bool music_enabled = true;
         public bool tts_enabled = true;
+
+        /*******minigame data**********/
+        public int minigame_level;
+        public bool in_minigame;
     }
 }

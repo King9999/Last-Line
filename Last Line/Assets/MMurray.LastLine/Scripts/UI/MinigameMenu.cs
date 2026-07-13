@@ -7,12 +7,31 @@ using MMurray.LastLine;
 using System;
 
 /* modified version of the menu script. */
-public class MinigameMenu : Menu
+public class MinigameMenu : MonoBehaviour
 {
+    public SystemTooltip systemTooltip;
     [SerializeField]private TextMeshProUGUI crystalCoordinatesLabel;
     [SerializeField]private List<CheckBox> crystalLocationCheckboxes;
     [SerializeField]List<Vector2> crystalPoints;
     [SerializeField]Sprite checkmarkSpriteOn, checkmarkSpriteOff;
+    [SerializeField]private TextMeshProUGUI currentLevel;
+
+    [Header("---Money---")]
+    [SerializeField]private GameObject moneyContainer;
+    [SerializeField]private TextMeshProUGUI moneyLabel;
+    [SerializeField]private TextMeshProUGUI moneyValue;
+
+    [Header("---System Buttons---")]
+    [SerializeField]private Button ttsButton;
+    [SerializeField]private Button musicButton;
+    [SerializeField]private Button exitGameButton;
+    [Header("---System Button Images---")]
+    [SerializeField]Image ttsButtonImage;
+    [SerializeField]Image musicButtonImage;
+    [SerializeField]Sprite ttsSpriteOn; 
+    [SerializeField]Sprite ttsSpriteOff;
+    [SerializeField]Sprite musicSpriteOn;
+    [SerializeField]Sprite musicSpriteOff;
     //public int level;               //there are 2 levels.
 
     [Serializable]
@@ -67,7 +86,7 @@ public class MinigameMenu : Menu
         
     }
 
-    public override void UpdateLevel(int level)
+    public void UpdateLevel(int level)
     {
         GameManager gm = Singleton.instance.GameManager;
         if (level < 1 || level > 2)
@@ -76,9 +95,22 @@ public class MinigameMenu : Menu
         currentLevel.text = string.Format("{0} {1}", GetText("miningLevel"), level);
     }
 
+    public void UpdateMoneyText()
+    {
+        MinigameManager mm = Singleton.instance.MinigameManager;
+        moneyValue.text = string.Format("{0:000}", mm.money);
+    }
+
     string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
+    }
+
+    public void UpdateSystemButtonSprites()
+    {
+        Singleton s = Singleton.instance;
+        ttsButtonImage.sprite = s.ttsEnabled ? ttsSpriteOn : ttsSpriteOff;
+        musicButtonImage.sprite = s.musicEnabled ? musicSpriteOn : musicSpriteOff;
     }
 }

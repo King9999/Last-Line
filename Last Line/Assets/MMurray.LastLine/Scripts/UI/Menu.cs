@@ -12,7 +12,7 @@ public class Menu : MonoBehaviour
     public Tooltip tooltip;
     public SystemTooltip systemTooltip, inputHelpTooltip;   //input help is for the coordinates input field.
     [SerializeField]private TextMeshProUGUI unitLabel, systemLabel, buildQueueLabel /*currentLevel*/;
-    [SerializeField]protected TextMeshProUGUI currentLevel;
+    [SerializeField]private TextMeshProUGUI currentLevel;
 
     [Header("---Money---")]
     [SerializeField]private GameObject moneyContainer;
