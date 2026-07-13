@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MMurray.LastLine;
 using UnityEngine.Animations;
+using System;
 
 /* All this script does is hold a value for each button on the X and Y axis. When the button is clicked, the value
 it holds is passed on elsewhere to create an ordered pair. */
@@ -19,6 +20,7 @@ public class AxisButton : MonoBehaviour
     {
         GameManager gm = Singleton.instance.GameManager;
         DialogueManager dm = Singleton.instance.DialogueManager;
+        MinigameManager mm = Singleton.instance.MinigameManager;
 
         if (dm.dialogueOpen || gm.UnplayableState())
             return;
@@ -54,23 +56,46 @@ public class AxisButton : MonoBehaviour
             }
             else
             {
-                if (!gm.enteringValueX && !gm.enteringValueY)
+                if (!Singleton.instance.inMinigame)
                 {
-                    gm.enteringValueX = true;       //always start with X
-                    gm.playerCoordinates.x = value;
-                    gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
+                    if (!gm.enteringValueX && !gm.enteringValueY)
+                    {
+                        gm.enteringValueX = true;       //always start with X
+                        gm.playerCoordinates.x = value;
+                        gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
 
-                    //change state
-                    gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
-                    Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
+                        //change state
+                        gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
+                        Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
+                    }
+                    else
+                    {
+                        gm.playerCoordinates.y = value;
+                        gm.enteringValueY = true;
+                        //change state
+                        //gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
+                        Logger.DebugLogFormat("player Y: {0}", gm.playerCoordinates.y);
+                    }
                 }
-                else
+                else  //in minigame
                 {
-                    gm.playerCoordinates.y = value;
-                    gm.enteringValueY = true;
-                    //change state
-                    //gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
-                    Logger.DebugLogFormat("player Y: {0}", gm.playerCoordinates.y);
+                    //MinigameManager mm = Singleton.instance.MinigameManager;
+                    if (!mm.enteringValueX && !mm.enteringValueY)
+                    {
+                        mm.enteringValueX = true;       //always start with X
+                        mm.playerCoordinates.x = value;
+                        mm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
+
+                        //change state
+                        mm.SetGameState(mm.gameState = MinigameManager.GameState.UnitSelectY);
+                        Logger.DebugLogFormat("player X: {0}", mm.playerCoordinates.x);
+                    }
+                    else
+                    {
+                        mm.playerCoordinates.y = value;
+                        mm.enteringValueY = true;
+                        Logger.DebugLogFormat("player Y: {0}", mm.playerCoordinates.y);
+                    }
                 }
             }
 
@@ -78,107 +103,132 @@ public class AxisButton : MonoBehaviour
 
         else if (axisValue == AxisValue.X_AXIS)
         {
-            gm.playerCoordinates.x = value;
-            gm.enteringValueX = true;
-
-            //tutorial check
-            if (gm.inTutorial)
+            if (!Singleton.instance.MinigameManager)
             {
-                //check which value player picked. 
-                switch(gm.tutorialState)
+                gm.playerCoordinates.x = value;
+                gm.enteringValueX = true;
+
+                //tutorial check
+                if (gm.inTutorial)
                 {
-                    case GameManager.TutorialState.UnitSelectX:
-                        //if player picked incorrect value, we don't continue.
-                        if (value != 3)
-                            return;
-                        gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
-                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectY);
-                        break;
-                    
-                    case GameManager.TutorialState.UnitSelectSecondUnitX:
-                        //if player picked incorrect value, we don't continue.
-                        if (value != 5)
-                            return;
-                        gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
-                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectSecondUnitY);
-                        break;
-                    
-                    case GameManager.TutorialState.ActivateAbilitySelectX:
-                        //if player picked incorrect value, we don't continue.
-                        if (value != 5)
-                            return;
-                        gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
-                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.ActivateAbilitySelectY);
-                        break;
-                    
-                    default:
-                        break;
+                    //check which value player picked. 
+                    switch(gm.tutorialState)
+                    {
+                        case GameManager.TutorialState.UnitSelectX:
+                            //if player picked incorrect value, we don't continue.
+                            if (value != 3)
+                                return;
+                            gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
+                            gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectY);
+                            break;
+                        
+                        case GameManager.TutorialState.UnitSelectSecondUnitX:
+                            //if player picked incorrect value, we don't continue.
+                            if (value != 5)
+                                return;
+                            gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
+                            gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectSecondUnitY);
+                            break;
+                        
+                        case GameManager.TutorialState.ActivateAbilitySelectX:
+                            //if player picked incorrect value, we don't continue.
+                            if (value != 5)
+                                return;
+                            gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
+                            gm.SetGameState(gm.tutorialState = GameManager.TutorialState.ActivateAbilitySelectY);
+                            break;
+                        
+                        default:
+                            break;
 
+                    }
                 }
+                else
+                {
+                    //gm.playerCoordinates.x = value;
+                    //gm.enteringValueX = true;
+                    gm.xCoordinateText.text = GetText("xCoordinateSelected") + " " + value;
+                    gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
+                }
+                Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
             }
-            else
+            else //in minigame
             {
-                //gm.playerCoordinates.x = value;
-                //gm.enteringValueX = true;
-                gm.xCoordinateText.text = GetText("xCoordinateSelected") + " " + value;
-                gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
+                mm.playerCoordinates.x = value;
+                mm.enteringValueX = true;
+                mm.xCoordinateText.text = GetText("xCoordinateSelected") + " " + value;
+                mm.SetGameState(mm.gameState = MinigameManager.GameState.UnitSelectY);
             }
-            Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
         }
-        else
+        else //selected Y axis value
         {
-            //cannot proceed if player is trying to enter a Y value before X
-            if (!gm.enteringValueX)
+            if (!Singleton.instance.inMinigame)
             {
-                gm.DisplayAlertWithDuration(GetText("cannotEnterYBeforeX"));
-                Logger.DebugLogWarning("Cannot enter Y value before X!");
-                return;
-            }
-            gm.playerCoordinates.y = value;
-
-             //tutorial check
-            if (gm.inTutorial)
-            {
-                //check which value player picked. 
-                switch(gm.tutorialState)
+                //cannot proceed if player is trying to enter a Y value before X
+                if (!gm.enteringValueX)
                 {
-                    case GameManager.TutorialState.UnitSelectY:
-                        //if player picked incorrect value, we don't continue.
-                        if (value != 2)
-                            return;
-
-                        gm.enteringValueY = true;
-                        break;
-                    
-                    case GameManager.TutorialState.UnitSelectSecondUnitY:
-                    case GameManager.TutorialState.ActivateAbilitySelectY:
-                        //if player picked incorrect value, we don't continue.
-                        if (value != 3)
-                            return;
-
-                        gm.enteringValueY = true;
-                        break;
-
-                    default:
-                        break;
-                    
-                    /*case GameManager.TutorialState.ActivateAbilitySelectY:
-                        //if player picked incorrect value, we don't continue.
-                        if (value != 3)
-                            return;
-
-                        gm.enteringValueY = true;
-                        //gm.SetGameState(gm.tutorialState = GameManager.TutorialState.DialogueEnemyIncoming);
-                        break;*/
-
+                    gm.DisplayAlertWithDuration(GetText("cannotEnterYBeforeX"));
+                    Logger.DebugLogWarning("Cannot enter Y value before X!");
+                    return;
                 }
+                gm.playerCoordinates.y = value;
+
+                //tutorial check
+                if (gm.inTutorial)
+                {
+                    //check which value player picked. 
+                    switch(gm.tutorialState)
+                    {
+                        case GameManager.TutorialState.UnitSelectY:
+                            //if player picked incorrect value, we don't continue.
+                            if (value != 2)
+                                return;
+
+                            gm.enteringValueY = true;
+                            break;
+                        
+                        case GameManager.TutorialState.UnitSelectSecondUnitY:
+                        case GameManager.TutorialState.ActivateAbilitySelectY:
+                            //if player picked incorrect value, we don't continue.
+                            if (value != 3)
+                                return;
+
+                            gm.enteringValueY = true;
+                            break;
+
+                        default:
+                            break;
+                        
+                        /*case GameManager.TutorialState.ActivateAbilitySelectY:
+                            //if player picked incorrect value, we don't continue.
+                            if (value != 3)
+                                return;
+
+                            gm.enteringValueY = true;
+                            //gm.SetGameState(gm.tutorialState = GameManager.TutorialState.DialogueEnemyIncoming);
+                            break;*/
+
+                    }
+                }
+                else
+                {
+                    gm.enteringValueY = true;
+                }
+                //gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
+                Logger.DebugLogFormat("player Y: {0}", gm.playerCoordinates.y);
             }
-            else
+            else //in minigame
             {
-                gm.enteringValueY = true;
+                if (!mm.enteringValueX)
+                {
+                    mm.DisplayAlertWithDuration(GetText("cannotEnterYBeforeX"));
+                    Logger.DebugLogWarning("Cannot enter Y value before X!");
+                    return;
+                }
+                mm.playerCoordinates.y = value;
+                mm.enteringValueY = true;
+
             }
-            //gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
-            Logger.DebugLogFormat("player Y: {0}", gm.playerCoordinates.y);
         }
         
         //if both X and Y are selected, do the next action.
@@ -244,7 +294,7 @@ public class AxisButton : MonoBehaviour
         {
             //we're in mining minigame
             //check the selected coordinates for a crystal.
-            MinigameManager mm = Singleton.instance.MinigameManager;
+            //MinigameManager mm = Singleton.instance.MinigameManager;
             
             if (mm.enteringValueX && mm.enteringValueY)
             {

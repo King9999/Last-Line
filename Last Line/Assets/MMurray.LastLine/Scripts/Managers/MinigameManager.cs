@@ -71,6 +71,7 @@ public class MinigameManager : MonoBehaviour
     //coroutine
     Coroutine animateCrystal;           //called when a crystal is found
     Coroutine animateCoordinates;
+    Coroutine alertCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -155,6 +156,13 @@ public class MinigameManager : MonoBehaviour
                 break;
         }
     }
+
+    public void DisplayAlertWithDuration(string msg, float duration = 4)
+    {
+        if (alertCoroutine != null)
+            StopCoroutine(alertCoroutine);
+        alertCoroutine = StartCoroutine(Alert(msg, duration));
+    }
         
 #region Coroutines
     //coordinates animate upwards for a duration
@@ -172,6 +180,21 @@ public class MinigameManager : MonoBehaviour
             yield return null;
         }
         coordinatesText.text = "";
+    }
+
+    //shows alert for a duration. Used when an alert only needs to be displayed temporarily.
+    IEnumerator Alert(string msg, float duration = 4)
+    {
+        alertText.text = msg;
+
+        float time = 0;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        alertText.text = "";
     }
     #endregion
 }
