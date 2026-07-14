@@ -57,6 +57,38 @@ public class MinigameMenu : MonoBehaviour
         UpdateSystemButtonSprites();
 
         //update text based on level
+        /*MinigameManager mm = Singleton.instance.MinigameManager;
+        if (mm.level == 1)
+        {
+            //set the points
+            //crystalPoints.Add(new Point());
+            //crystalPoints[0].pointAxes = new Vector2(1, 4);
+            //crystalPoints[1].pointAxes = new Vector2(5, 0);
+            //crystalPoints[2].pointAxes = new Vector2(2, 2);
+        
+
+            //update text
+            crystalLocationCheckboxes[0].checkBoxText.text = GetText("miningLevel1_coordinates1");
+            crystalLocationCheckboxes[1].checkBoxText.text = GetText("miningLevel1_coordinates2");
+            crystalLocationCheckboxes[2].checkBoxText.text = GetText("miningLevel1_coordinates3");
+            crystalLocationCheckboxes[3].checkBoxText.text = GetText("miningLevel1_coordinates4");
+            crystalLocationCheckboxes[4].checkBoxText.text = GetText("miningLevel1_coordinates5");
+        }
+        else
+        {
+            
+        }*/
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    //this must be called in MinigameManager's Start()
+    public void SetupCheckboxes()
+    {
         MinigameManager mm = Singleton.instance.MinigameManager;
         if (mm.level == 1)
         {
@@ -78,12 +110,6 @@ public class MinigameMenu : MonoBehaviour
         {
             
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void UpdateLevel(int level)

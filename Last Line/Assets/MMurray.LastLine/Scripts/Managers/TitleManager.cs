@@ -91,7 +91,13 @@ public class TitleManager : MonoBehaviour
 
         AudioManager audio = Singleton.instance.AudioManager;
         audio.soundSource.PlayOneShot(audio.buttonClickStartGame, audio.soundVolume);
-        sf.ChangeSceneFadeOut("Game");
+
+        //TODO: Check which level we're on. If it's level 3 or 6, load minigame.
+        Logger.DebugLogFormat("current level: {0}", Singleton.instance.gameData.level);
+        if (Singleton.instance.gameData.level == 3 || Singleton.instance.gameData.level == 6)
+            sf.ChangeSceneFadeOut("MiniGame");
+        else
+            sf.ChangeSceneFadeOut("Game");
     }
 
     public void CreditsButtonClicked()

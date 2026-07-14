@@ -43,6 +43,8 @@ namespace MMurray.LastLine
         public int minigameLevel;               //this is here so that I can pass on level data after the minigame scene is loaded.
         public int minigameMoney;          //this is amount of scrap collected in the minigame. The player uses this scrap in the next level.
 
+        //level 
+        public int currentLevel = 0;
         public int maxLevels {get;} = 8;
 
         void Awake()

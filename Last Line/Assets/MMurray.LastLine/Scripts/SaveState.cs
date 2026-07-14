@@ -20,13 +20,15 @@ namespace MMurray.LastLine
             if (gm != null)
             {
                 data.level = gm.currentLevel;
+                s.currentLevel = data.level;
                 data.max_levels = gm.maxLevels;
             }
 
             if (mm != null)
             {
                 data.minigame_level = mm.level;
-                data.level = mm.level == 1 ? 3 : 6;     //minigame 1 counts as level 3, minigame 2 counts as level 6.
+                data.level = (mm.level == 1) ? 3 : 6;     //minigame 1 counts as level 3, minigame 2 counts as level 6.
+                //s.currentLevel = data.level;
                 data.in_minigame = s.inMinigame;
             }
 

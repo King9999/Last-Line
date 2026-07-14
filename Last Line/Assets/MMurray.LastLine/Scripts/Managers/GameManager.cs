@@ -199,11 +199,12 @@ public class GameManager : MonoBehaviour
         if (s.saveStateFound)
         {
             //s.saveState.LoadState(s.saveState.ReadState);
-            currentLevel = s.gameData.level;
+            s.currentLevel = s.gameData.level;
+            currentLevel = s.currentLevel;      //doing this so I don't have to change every instance of currentLevel into the singleton's
             //s.saveState.ReadState(s.gameData);
         }
 
-        //currentLevel = 1;
+        //currentLevel = 2;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);

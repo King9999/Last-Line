@@ -82,7 +82,20 @@ public class MinigameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetLevel(Singleton.instance.minigameLevel);
+        //load save state
+        Singleton s = Singleton.instance;
+        if (s.saveStateFound)
+        {
+            //s.saveState.LoadState(s.saveState.ReadState);
+            s.currentLevel = s.gameData.level;
+            
+            //s.saveState.ReadState(s.gameData);
+        }
+
+        s.minigameLevel = (s.currentLevel == 3) ? 1 : 2;      //minigame 2 occurs at level 6. currentLevel is 2 because level hasn't advanced to 3 yet.
+        SetLevel(s.minigameLevel);
+        MinigameMenu menu = Singleton.instance.MinigameMenu;
+        menu.SetupCheckboxes();
         //SetLevel(1);
 
         /****crystal setup

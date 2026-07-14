@@ -115,11 +115,21 @@ namespace MMurray.GenericCode
             GameManager gm = Singleton.instance.GameManager;
 
             //cleanup any units or other objects.
-            gm.Cleanup();
+            if (gm != null && level != 3 && level != 6)
+            {
+                gm.Cleanup();
 
 
-            //load level
-            gm.LoadLevel(level);
+                //load level
+                gm.LoadLevel(level);
+            }
+            else    //in minigame
+            {
+                MinigameManager mm = Singleton.instance.MinigameManager;
+                Singleton.instance.inMinigame = true;
+                Singleton.instance.currentLevel = level;
+                SceneManager.LoadScene("MiniGame");
+            }
             yield return LoadLevelFadeFromBlack();
         }
 
@@ -136,8 +146,16 @@ namespace MMurray.GenericCode
                 yield return null;
             }
 
-            GameManager gm = Singleton.instance.GameManager;
-            gm.SetGameState(gm.gameState = GameManager.GameState.StartLevel);
+            if (!Singleton.instance.inMinigame)
+            {
+                GameManager gm = Singleton.instance.GameManager;
+                gm.SetGameState(gm.gameState = GameManager.GameState.StartLevel);
+            }
+            else
+            {
+                MinigameManager mm = Singleton.instance.MinigameManager;
+                mm.SetGameState(mm.gameState = MinigameManager.GameState.StartLevel);
+            }
             coroutineOn = false;
         }
     }
