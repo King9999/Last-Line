@@ -106,11 +106,13 @@ public class MinigameManager : MonoBehaviour
         alertText.text = "";
         hintText.text = "";
         xCoordinateText.text = "";
+        coordinatesText.text = "";
         //exitGameLabel.text = GetText("exitButtonText");
         coordinatesLabel.text = GetText("coordinatesLabel");
         enteringValueX = false;
         enteringValueY = false;
         targetCursor.gameObject.SetActive(false);
+        moneyText.gameObject.SetActive(false);
 
         //input field setup
         coordinatesInputField.characterLimit = 2;
