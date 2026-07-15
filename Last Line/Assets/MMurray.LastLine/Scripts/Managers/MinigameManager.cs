@@ -66,6 +66,9 @@ public class MinigameManager : MonoBehaviour
     [SerializeField]private TextMeshProUGUI coordinatesLabel;
     public SystemTooltip inputHelpTooltip;   //input help is for the coordinates input field.
 
+    [Header("---Dialogue---")]
+    public int triggerIndex;                //used to iterate through conditional triggers.
+
     public float screenWidthScale {get;} = (float)Screen.width / 1024;
     public float screenHeightScale {get;} = (float)Screen.height / 576;
 
@@ -116,6 +119,8 @@ public class MinigameManager : MonoBehaviour
 
         //input field setup
         coordinatesInputField.characterLimit = 2;
+
+        SetGameState(gameState = GameState.StartLevel);
     }
 
     // Update is called once per frame
@@ -196,7 +201,127 @@ public class MinigameManager : MonoBehaviour
                     }
                 }
                 break;
+            
+            case GameState.UnitSelectX:
+                //disable Y values, then disable X values.
+                //TODO: Have dialogue during tutorial to explain how to set units
+                DisplayAlert(GetText("unitSelect_x"));
+                coordinatesInputField.text = "";
+                //coordinatesInputContainer.gameObject.SetActive(false);
+                if (!points[0].pointImage.enabled)
+                {
+                    foreach (Point p in points)
+                    {
+                        p.ShowPoint(true);
+                    }
+                }
+                axisContainerY.gameObject.SetActive(false);
+                break;
+            
+            case GameState.UnitSelectY:
+                //disable Y values, then disable X values.
+                //TODO: in tutorial, make mention of origin and how it might be used
+                DisplayAlert(GetText("unitSelect_y"));
+                coordinatesInputField.text = "";
+                //coordinatesInputContainer.gameObject.SetActive(false);
+                //show points
+                if (!points[0].pointImage.enabled)
+                {
+                    foreach (Point p in points)
+                    {
+                        p.ShowPoint(true);
+                    }
+                }
+                axisContainerY.gameObject.SetActive(true);
+                axisContainerX.gameObject.SetActive(false);
+                break;
+            
+
+            case GameState.StartLevel:
+                //look for any opening dialogue. If there's none, game resumes.
+                bool triggerFound = false;
+                int i = 0;
+                while (!triggerFound && i < dialogueManager.condTriggerList.Count)
+                {
+                    if (dialogueManager.condTriggerList[i].level == Singleton.instance.currentLevel &&
+                        dialogueManager.condTriggerList[i].condition == DialogueManager.ConditionalTrigger.Condition.LevelStart)
+                    {
+                        triggerFound = true;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+
+                }
+
+
+                if (triggerFound)
+                {
+                    triggerIndex = i;
+                    SetGameState(gameState = GameState.DialogueStartOfLevel);
+                }
+                else
+                {
+                    SetGameState(gameState = GameState.Normal);
+                }
+                break;
+
+            case GameState.DialogueStartOfLevel:
+                //find correct dialogue to display.
+                bool dialogueFound = false;
+                int j = 0;
+                while (!dialogueFound && j < dialogueManager.dialogueList.Count)
+                {
+                    int dialogueId = dialogueManager.dialogueList[j].dialogueId;
+                    if (dialogueId > 0 && dialogueId == dialogueManager.condTriggerList[triggerIndex].dialogueId /*== dialogueManager.dialogueList[j].dialogueId*/)
+                    {
+                        dialogueFound = true;
+                        coordinatesInputContainer.gameObject.SetActive(false);
+                        Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[j].dialogueKeyList[0];
+                        //string dKey = dialogueManager.dialogueList[j].dialogueKeyList[0].key;
+                        dialogueManager.dialogueList[j].ShowDialogue(keyList);
+                    }
+                    else
+                    {
+                        j++;
+                    }
+                }
+
+                //if no dialogue is found, then just start the game
+                if (!dialogueFound)
+                    SetGameState(gameState = GameState.Normal);
+                break;
+            
+            case GameState.DialogueEndOfLevel:
+                //find correct dialogue to display.
+                dialogueFound = false;
+                j = 0;
+                while (!dialogueFound && j < dialogueManager.dialogueList.Count)
+                {
+                    int dialogueId = dialogueManager.dialogueList[j].dialogueId;
+                    if (dialogueId > 0 && dialogueId == dialogueManager.condTriggerList[triggerIndex].dialogueId)
+                    {
+                        dialogueFound = true;
+                        coordinatesInputContainer.gameObject.SetActive(false);
+                        Dialogue.DialogueKeyList keyList = dialogueManager.dialogueList[j].dialogueKeyList[0];
+                        //string dKey = dialogueManager.dialogueList[j].dialogueKeyList[0].key;
+                        dialogueManager.dialogueList[j].ShowDialogue(keyList);
+                    }
+                    else
+                    {
+                        j++;
+                    }
+                }
+                break;
         }
+    }
+
+    public void DisplayAlert(string msg)
+    {
+        if (alertCoroutine != null)
+            StopCoroutine(alertCoroutine);
+        alertText.text = msg;
     }
 
     public void DisplayAlertWithDuration(string msg, float duration = 4)

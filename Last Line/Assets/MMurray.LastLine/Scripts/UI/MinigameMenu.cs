@@ -90,6 +90,7 @@ public class MinigameMenu : MonoBehaviour
     public void SetupCheckboxes()
     {
         MinigameManager mm = Singleton.instance.MinigameManager;
+        UpdateLevel(mm.level);
         if (mm.level == 1)
         {
             //set the points

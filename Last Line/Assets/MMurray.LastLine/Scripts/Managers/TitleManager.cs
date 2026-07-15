@@ -38,6 +38,7 @@ public class TitleManager : MonoBehaviour
             {
                 Singleton.instance.saveStateFound = true;
                 Singleton.instance.gameData.level = state.data.level;       //will need this for when game manager loads the level.
+                Singleton.instance.gameData.in_minigame = state.data.in_minigame;
 
                 //saved universal settings are applied here
                 Singleton.instance.ttsEnabled = state.data.tts_enabled;
@@ -94,6 +95,7 @@ public class TitleManager : MonoBehaviour
 
         //TODO: Check which level we're on. If it's level 3 or 6, load minigame.
         Logger.DebugLogFormat("current level: {0}", Singleton.instance.gameData.level);
+        Logger.DebugLogFormat("In minigame: {0}", Singleton.instance.gameData.in_minigame);
         if (Singleton.instance.gameData.level == 3 || Singleton.instance.gameData.level == 6)
             sf.ChangeSceneFadeOut("MiniGame");
         else
