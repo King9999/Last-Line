@@ -57,12 +57,12 @@
       "dialogue_end_of_tutorial":"All enemies have retreated. Good job commander, but we can't rest yet. We've detected more enemies coming our way!",
       "noUnitAbility":"Unit has no ability.",
       "system_game_over_level5":"<color=#0CCF5A>The unit that you put in the powered space will decide how easy the enemies are. Try powering up different units to learn what they do!</color>",
-      "unitSelect_x":"Select X value\n(Right click to cancel)",
+      "unitSelect_x":"Select X value\n(Right click or Escape to cancel)",
       "unitButton_bomb":"Captures <color=#E1341E>all units</color> in its range. Base is unaffected. Enter coordinates again to activate.",
       "system_intro4":"<color=#0CCF5A>The column of numbers is called the <color=#06DDEF>Y axis.</color> Select the value on the Y axis.</color>",
       "system_intro_juggernaut":"<color=#0CCF5A>The enemy's new unit is so powerful, <color=#06DDEF>it will destroy your base in 1 hit if it gets too close</color>. Good luck!</color>",
       "reverseFireDirection":"Reversing direction!",
-      "unitSelect_y":"Select Y value\n(Right click to cancel)",
+      "unitSelect_y":"Select Y value\n(Right click or Escape to cancel)",
       "system_game_over_level7":"<color=#0CCF5A>Did you know that the new unit can't be damaged by enemy attacks? Try using it as a shield to protect your units!</color>",
       "ttsOn":"TTS ON",
       "dialogue_intro":"Commander, this is Mother Base. Sorry to wake you up early, but we're under attack! Alpha Quadrant must be defended!",
@@ -119,6 +119,7 @@
       "system_intro_miningLevel1_a": "<color=#0CCF5A>In this mining game, use the given coordinates to pick up crystals. For example, to pick up the crystal located at (1,4), you would first select 1 on the X axis, and then select 4 on the Y axis.</color>",
       "system_intro_miningLevel1_b": "<color=#06DDEF>You cannot choose 4 before 1 because that would result in (4,1), which are different coordinates!</color>",
       "system_end_miningLevel1": "<color=#0CCF5A>Good work, commander. The scrap you collected will be added to the amount of scrap you receive from Mother Base in the next wave.</color>",
-      "beginMiningForCrystals": "Start mining for crystals!"
+      "beginMiningForCrystals": "Start mining for crystals!",
+      "crystalFound": "Crystal received!"
    }
 }

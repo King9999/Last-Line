@@ -9113,6 +9113,7 @@ MonoBehaviour:
   enteringValueY: 0
   level: 0
   money: 0
+  crystalsFound: 0
   targetCursor: {fileID: 3726780125279632829}
   points:
   - {fileID: 601172322501171853}
@@ -9163,11 +9164,11 @@ MonoBehaviour:
     - crystalLocation: {x: 2, y: 2}
       crystalValue: 10
       crystalFound: 0
-    - crystalLocation: {x: 0, y: 5}
-      crystalValue: 40
-      crystalFound: 0
     - crystalLocation: {x: 3, y: 3}
       crystalValue: 20
+      crystalFound: 0
+    - crystalLocation: {x: 0, y: 5}
+      crystalValue: 40
       crystalFound: 0
   - level: 2
     crystals:

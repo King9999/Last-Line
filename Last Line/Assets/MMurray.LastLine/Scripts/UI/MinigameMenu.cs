@@ -11,7 +11,7 @@ public class MinigameMenu : MonoBehaviour
 {
     public SystemTooltip systemTooltip;
     [SerializeField]private TextMeshProUGUI crystalCoordinatesLabel;
-    [SerializeField]private List<CheckBox> crystalLocationCheckboxes;
+    public List<CheckBox> crystalLocationCheckboxes;
     [SerializeField]List<Vector2> crystalPoints;
     [SerializeField]Sprite checkmarkSpriteOn, checkmarkSpriteOff;
     [SerializeField]private TextMeshProUGUI currentLevel;
@@ -37,6 +37,7 @@ public class MinigameMenu : MonoBehaviour
     [Serializable]
     public struct CheckBox
     {
+        public Vector2 crystalLocation;     //used to find the correct checkbox to mark.
         public bool isOn;
         public TextMeshProUGUI checkBoxText;
         public Image checkBoxImage;
@@ -106,11 +107,28 @@ public class MinigameMenu : MonoBehaviour
             crystalLocationCheckboxes[2].checkBoxText.text = GetText("miningLevel1_coordinates3");
             crystalLocationCheckboxes[3].checkBoxText.text = GetText("miningLevel1_coordinates4");
             crystalLocationCheckboxes[4].checkBoxText.text = GetText("miningLevel1_coordinates5");
+
+            //get vectors. This is used to search for correct box to tick.
+            for(int i = 0; i < crystalLocationCheckboxes.Count; i++)
+            {
+                CheckBox box = crystalLocationCheckboxes[i];
+                box.crystalLocation = mm.minigameLevelData[mm.level - 1].crystals[i].crystalLocation;
+                crystalLocationCheckboxes[i] = box;
+            }
         }
         else
         {
             
         }
+    }
+
+    public void ToggleCheckBox(CheckBox box, bool isOn)
+    {
+        box.isOn = isOn;
+        if (box.isOn)
+            box.checkBoxImage.sprite = checkmarkSpriteOn;
+        else
+            box.checkBoxImage.sprite = checkmarkSpriteOff;
     }
 
     public void UpdateLevel(int level)

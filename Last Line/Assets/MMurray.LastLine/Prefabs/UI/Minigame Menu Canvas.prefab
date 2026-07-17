@@ -379,22 +379,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   systemTooltip: {fileID: 3955557188899056949}
-  inputHelpTooltip: {fileID: 0}
   crystalCoordinatesLabel: {fileID: 7478825951085215717}
   crystalLocationCheckboxes:
-  - isOn: 0
+  - crystalLocation: {x: 1, y: 4}
+    isOn: 0
     checkBoxText: {fileID: 9139106579039170657}
     checkBoxImage: {fileID: 5196422599094705833}
-  - isOn: 0
+  - crystalLocation: {x: 5, y: 0}
+    isOn: 0
     checkBoxText: {fileID: 2730906702298837408}
     checkBoxImage: {fileID: 1431203488705814360}
-  - isOn: 0
+  - crystalLocation: {x: 2, y: 2}
+    isOn: 0
     checkBoxText: {fileID: 4275399784824150001}
     checkBoxImage: {fileID: 626891398723861922}
-  - isOn: 0
+  - crystalLocation: {x: 3, y: 3}
+    isOn: 0
     checkBoxText: {fileID: 7417160283839722315}
     checkBoxImage: {fileID: 3278927665360166663}
-  - isOn: 0
+  - crystalLocation: {x: 0, y: 5}
+    isOn: 0
     checkBoxText: {fileID: 7525393099778137856}
     checkBoxImage: {fileID: 4993281022795796187}
   crystalPoints:

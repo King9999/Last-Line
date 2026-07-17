@@ -44,11 +44,12 @@ public class MinigameManager : MonoBehaviour
     public bool enteringValueX, enteringValueY; //determines which axis value is being entered. X is always entered first.
     public int level;               //there are 2 levels.
     public int money;               //money acquired. It's added to the starting money in the next level.
+    public int crystalsFound;
     [SerializeField]TargetCursor targetCursor;
     public List<Point> points;
 
     [Header("---Minigame---")]
-    [SerializeField]List<MinigameLevelData> minigameLevelData;
+    public List<MinigameLevelData> minigameLevelData;
 
     [Header("---Containers---")]
     [SerializeField]private GameObject axisContainerX;
@@ -100,7 +101,7 @@ public class MinigameManager : MonoBehaviour
         SetLevel(s.minigameLevel);
         MinigameMenu menu = Singleton.instance.MinigameMenu;
         menu.SetupCheckboxes();
-        //SetLevel(1);
+        crystalsFound = 0;
 
         /****crystal setup
         Level 1 coordinates:
@@ -127,8 +128,23 @@ public class MinigameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //check for right click or Escape key. They're used to cancel certain actions.
+        if (CancelButtonPressed())
+        {
+            if (gameState == GameState.UnitSelectX || gameState == GameState.UnitSelectY)
+            {
+
+                DisplayAlertWithDuration(GetText("cancelAction"));
+                SetGameState(gameState = GameState.Normal);
+            }
+        }
     }
+
+    bool CancelButtonPressed()
+    {
+        return Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape);
+    }
+
 
     public void SetLevel(int level)
     {
@@ -173,10 +189,32 @@ public class MinigameManager : MonoBehaviour
                 crystal.crystalFound = true;
                 minigameLevelData[level - 1].crystals[i] = crystal;
                 AddMoney(crystal.crystalValue, point.transform.position);
-                //money += crystal.crystalValue;
-                //moneyText.ShowMoneyRewardText(crystal.crystalValue, crystal.crystalLocation);
-                //MinigameMenu menu = Singleton.instance.MinigameMenu;
-                //menu.UpdateMoneyText();
+                DisplayAlertWithDuration(GetText("crystalFound"));
+                
+                //check correct box
+                MinigameMenu menu = Singleton.instance.MinigameMenu;
+                bool boxFound = false;
+                int j = 0;
+                while (!boxFound && j < menu.crystalLocationCheckboxes.Count)
+                {
+                    if (crystal.crystalLocation == menu.crystalLocationCheckboxes[j].crystalLocation)
+                    {
+                        boxFound = true;
+                        menu.ToggleCheckBox(menu.crystalLocationCheckboxes[j], true);
+                        crystalsFound++;
+                    }
+                    else
+                    {
+                        j++;
+                    }
+                }
+
+                //once 3 crystals are found, minigame ends.
+                if (crystalsFound >= 3)
+                {
+                    SetGameState(gameState = GameState.LevelComplete);
+                }
+                
                 //remove crystal from
                 Logger.DebugLog("Crystal Found!");
             }
