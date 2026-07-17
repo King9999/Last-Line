@@ -161,6 +161,7 @@ public class GameManager : MonoBehaviour
     {
         //must always make sure singleton grabs reference to the managers
         Singleton.instance.GameManager = this;
+        Singleton.instance.inMinigame = false;
         buildQueue = new Queue<PlayerUnit>();
         buildTimer = new float[buildLimit];
         progressIndex = 0;

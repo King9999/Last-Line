@@ -166,9 +166,18 @@ public class MinigameManager : MonoBehaviour
         int i = 0;
         while (!crystalFound && i < minigameLevelData[level - 1].crystals.Count)
         {
-            if (point.pointAxes == minigameLevelData[level - 1].crystals[i].crystalLocation)
+            Crystal crystal = minigameLevelData[level - 1].crystals[i];
+            if (point.pointAxes == crystal.crystalLocation && !crystal.crystalFound)
             {
                 crystalFound = true;
+                crystal.crystalFound = true;
+                minigameLevelData[level - 1].crystals[i] = crystal;
+                AddMoney(crystal.crystalValue, point.transform.position);
+                //money += crystal.crystalValue;
+                //moneyText.ShowMoneyRewardText(crystal.crystalValue, crystal.crystalLocation);
+                //MinigameMenu menu = Singleton.instance.MinigameMenu;
+                //menu.UpdateMoneyText();
+                //remove crystal from
                 Logger.DebugLog("Crystal Found!");
             }
             else
@@ -187,7 +196,7 @@ public class MinigameManager : MonoBehaviour
 
         MinigameMenu menu = Singleton.instance.MinigameMenu;
         menu.UpdateMoneyText();
-        moneyText.ShowMoneyRewardText(amount, position);
+        moneyText.ShowMoneyRewardText(amount, position, useWorldToScreenPoint: false);
     }
 
     public void SetGameState(GameState state)

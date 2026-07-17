@@ -17,11 +17,12 @@ public class MoneyText : MonoBehaviour
         animateMoneyCoroutine = StartCoroutine(AnimateMoneyText(moneyText.text, animateTime));
     }*/
 
-    public void ShowMoneyRewardText(int amount, Vector2 position)
+    //if useWorldToScreenPoint is false, that means the position is already using screen position and does not need to be converted.
+    public void ShowMoneyRewardText(int amount, Vector2 position, bool useWorldToScreenPoint = true)
     {
         gameObject.SetActive(true);
         moneyText.text = string.Format("+{0}", amount);
-        moneyText.transform.position = Camera.main.WorldToScreenPoint(position);
+        moneyText.transform.position = useWorldToScreenPoint == true ? Camera.main.WorldToScreenPoint(position) : position;
         //moneyText.alpha = 1;
         animateMoneyCoroutine = StartCoroutine(AnimateMoneyText(animateTime));
     }

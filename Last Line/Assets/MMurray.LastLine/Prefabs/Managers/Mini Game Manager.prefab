@@ -9198,6 +9198,7 @@ MonoBehaviour:
   coordinatesInputField: {fileID: 7597316563420410053}
   coordinatesLabel: {fileID: 5003688166380845960}
   inputHelpTooltip: {fileID: 1908374118734871119}
+  triggerIndex: 0
 --- !u!1 &4442471203434620885
 GameObject:
   m_ObjectHideFlags: 0
@@ -10058,8 +10059,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294704921
+  m_fontColor: {r: 0.099726856, g: 1, b: 0.98322725, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
