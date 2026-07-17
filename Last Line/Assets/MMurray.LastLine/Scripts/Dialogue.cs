@@ -224,81 +224,104 @@ public class Dialogue : MonoBehaviour
 
             //show ready button
             GameManager gm = Singleton.instance.GameManager;
+            MinigameManager mm = Singleton.instance.MinigameManager;
             //if (!gm.inTutorial && !gm.gameStarted /*&& !gm.readyButton.gameObject.activeSelf*/)
                 //gm.readyButton.gameObject.SetActive(true);
 
             //TODO: Check game state and proceed depending on what it is.
             //GameManager gm = Singleton.instance.GameManager;
-            if (gm.inTutorial)
+            if (!Singleton.instance.inMinigame)
             {
-                //gm.SetGameState(gm.tutorialState = GameManager.TutorialState.Normal);
-                switch(gm.tutorialState)
+                if (gm.inTutorial)
                 {
-                    case GameManager.TutorialState.DialogueStartOfLevel:
-                        //gm.SetGameState(gm.tutorialState = GameManager.TutorialState.Normal);
-                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.BuildingFirstUnit);
-                        break;
+                    //gm.SetGameState(gm.tutorialState = GameManager.TutorialState.Normal);
+                    switch(gm.tutorialState)
+                    {
+                        case GameManager.TutorialState.DialogueStartOfLevel:
+                            //gm.SetGameState(gm.tutorialState = GameManager.TutorialState.Normal);
+                            gm.SetGameState(gm.tutorialState = GameManager.TutorialState.BuildingFirstUnit);
+                            break;
 
-                    case GameManager.TutorialState.UnitSelectX:
-                    case GameManager.TutorialState.UnitSelectY:
-                        //the dialogue box should close but we remain on this state so the player can
-                        //choose the X and Y value.
-                        break;
-                    
-                    case GameManager.TutorialState.ActivateAbility:
-                        //activating second unit's ability
-                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.ActivateAbilitySelectX);
-                        break;
+                        case GameManager.TutorialState.UnitSelectX:
+                        case GameManager.TutorialState.UnitSelectY:
+                            //the dialogue box should close but we remain on this state so the player can
+                            //choose the X and Y value.
+                            break;
+                        
+                        case GameManager.TutorialState.ActivateAbility:
+                            //activating second unit's ability
+                            gm.SetGameState(gm.tutorialState = GameManager.TutorialState.ActivateAbilitySelectX);
+                            break;
 
-                    case GameManager.TutorialState.DialogueEnemyIncoming:
-                        gm.SetGameState(gm.tutorialState = GameManager.TutorialState.DeployEnemyUnits);
-                        break;
+                        case GameManager.TutorialState.DialogueEnemyIncoming:
+                            gm.SetGameState(gm.tutorialState = GameManager.TutorialState.DeployEnemyUnits);
+                            break;
 
-                    case GameManager.TutorialState.DialogueEndOfLevel:
-                        //move to next level
-                        gm.SetGameState(gm.gameState = GameManager.GameState.GoToNextLevel);
-                        break;
-                    
-                    case GameManager.TutorialState.CrystalIntro:
-                        gm.DisplayAlert(GetText("pickupCrystalTutorial"));
-                        gm.coordinatesInputContainer.gameObject.SetActive(true);
-                        break;
+                        case GameManager.TutorialState.DialogueEndOfLevel:
+                            //move to next level
+                            gm.SetGameState(gm.gameState = GameManager.GameState.GoToNextLevel);
+                            break;
+                        
+                        case GameManager.TutorialState.CrystalIntro:
+                            gm.DisplayAlert(GetText("pickupCrystalTutorial"));
+                            gm.coordinatesInputContainer.gameObject.SetActive(true);
+                            break;
 
-                    case GameManager.TutorialState.OriginTutorial:
-                        gm.inTutorial = false;
-                        gm.coordinatesInputContainer.gameObject.SetActive(true);
-                        Singleton.instance.ArrowGuideManager.HideGuideArrows();
-                        //hide points
-                        foreach (Point p in gm.points)
-                        {
-                            p.ShowPoint(false);
-                        }
-                        //gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
-                        break;
-                    
+                        case GameManager.TutorialState.OriginTutorial:
+                            gm.inTutorial = false;
+                            gm.coordinatesInputContainer.gameObject.SetActive(true);
+                            Singleton.instance.ArrowGuideManager.HideGuideArrows();
+                            //hide points
+                            foreach (Point p in gm.points)
+                            {
+                                p.ShowPoint(false);
+                            }
+                            //gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
+                            break;
+                        
+                    }
+                    //gm.SetGameState(gm.tutorialState = gm.previousTutorialState);
                 }
-                //gm.SetGameState(gm.tutorialState = gm.previousTutorialState);
-            }
-            else
-            {
-                switch(gm.gameState)
+                else
                 {
-                    case GameManager.GameState.DialogueStartOfLevel:
-                        gm.DisplayAlertWithDuration(GetText("enemyPreparing"), 10);
-                        gm.SetGameState(gm.gameState = GameManager.GameState.EnemyPreparing);
+                    switch(gm.gameState)
+                    {
+                        case GameManager.GameState.DialogueStartOfLevel:
+                            gm.DisplayAlertWithDuration(GetText("enemyPreparing"), 10);
+                            gm.SetGameState(gm.gameState = GameManager.GameState.EnemyPreparing);
+                            break;
+                        
+                        case GameManager.GameState.DialogueEndOfLevel:
+                            //move to next level
+                            gm.SetGameState(gm.gameState = GameManager.GameState.GoToNextLevel);
+                            break;
+                        
+                        case GameManager.GameState.DialogueGameOver:
+                            //restart level
+                            Singleton.instance.ArrowGuideManager.HideGuideArrows();
+                            Singleton.instance.ScreenFade.LoadLevelFadeOut(gm.currentLevel);
+                            break;
+                        
+                        default:
+                            gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
+                            break;
+                    }
+                }
+            }
+            else //in minigame
+            {
+                switch(mm.gameState)
+                {
+                    case MinigameManager.GameState.DialogueStartOfLevel:
+                        mm.DisplayAlertWithDuration(GetText("beginMiningForCrystals"), 10);
+                        mm.SetGameState(mm.gameState = MinigameManager.GameState.Normal);
                         break;
                     
-                    case GameManager.GameState.DialogueEndOfLevel:
+                    case MinigameManager.GameState.DialogueEndOfLevel:
                         //move to next level
-                        gm.SetGameState(gm.gameState = GameManager.GameState.GoToNextLevel);
+                        mm.SetGameState(mm.gameState = MinigameManager.GameState.GoToNextLevel);
                         break;
-                    
-                    case GameManager.GameState.DialogueGameOver:
-                        //restart level
-                        Singleton.instance.ArrowGuideManager.HideGuideArrows();
-                        Singleton.instance.ScreenFade.LoadLevelFadeOut(gm.currentLevel);
-                        break;
-                    
+                                        
                     default:
                         gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
                         break;
@@ -311,6 +334,7 @@ public class Dialogue : MonoBehaviour
             //go to next dialogue
             ShowDialogue(dialogueKeyList[currentKey]);
         }
+        
     }
 
 }

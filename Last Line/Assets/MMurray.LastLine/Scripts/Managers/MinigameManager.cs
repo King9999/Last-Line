@@ -80,6 +80,7 @@ public class MinigameManager : MonoBehaviour
     void Awake()
     {
         Singleton.instance.MinigameManager = this;
+        Singleton.instance.inMinigame = true;
     }
 
     // Start is called before the first frame update
@@ -158,7 +159,23 @@ public class MinigameManager : MonoBehaviour
         targetCursor.ShowCursor(point.transform.position);
         if (animateCoordinates != null)
                 StopCoroutine(animateCoordinates);
-            animateCoordinates = StartCoroutine(ShowCoordinates(point));
+        animateCoordinates = StartCoroutine(ShowCoordinates(point));
+
+        //check for a crystal 
+        bool crystalFound = false;
+        int i = 0;
+        while (!crystalFound && i < minigameLevelData[level - 1].crystals.Count)
+        {
+            if (point.pointAxes == minigameLevelData[level - 1].crystals[i].crystalLocation)
+            {
+                crystalFound = true;
+                Logger.DebugLog("Crystal Found!");
+            }
+            else
+            {
+                i++;
+            }
+        }
     }
 
     public void AddMoney(int amount, Vector2 position)

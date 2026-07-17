@@ -39,6 +39,7 @@ public class TitleManager : MonoBehaviour
                 Singleton.instance.saveStateFound = true;
                 Singleton.instance.gameData.level = state.data.level;       //will need this for when game manager loads the level.
                 Singleton.instance.gameData.in_minigame = state.data.in_minigame;
+                Singleton.instance.inMinigame = Singleton.instance.gameData.in_minigame;
 
                 //saved universal settings are applied here
                 Singleton.instance.ttsEnabled = state.data.tts_enabled;
