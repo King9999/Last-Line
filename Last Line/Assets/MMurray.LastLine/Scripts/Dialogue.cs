@@ -323,7 +323,7 @@ public class Dialogue : MonoBehaviour
                         break;
                                         
                     default:
-                        gm.SetGameState(gm.gameState = GameManager.GameState.Normal);
+                        mm.SetGameState(mm.gameState = MinigameManager.GameState.Normal);
                         break;
                 }
             }

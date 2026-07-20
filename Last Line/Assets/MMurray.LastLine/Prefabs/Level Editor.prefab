@@ -2256,7 +2256,7 @@ MonoBehaviour:
     crystal_value: 0
     portals:
     - point_axes: {x: 5, y: 2}
-      point_position: {x: 813.0332, y: 368.85352}
+      point_position: {x: 586.3, y: 265.9}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 10
@@ -2266,7 +2266,7 @@ MonoBehaviour:
       - {x: -1.4888775, y: 0, z: 1}
       - {x: -3.5143294, y: 1.2997634, z: 1}
       - {x: -7, y: 1.3, z: 1}
-    player_base_position: {x: 270.77072, y: 488.11133}
+    player_base_position: {x: 195.26001, y: 351.9}
     base_point_axes: {x: 1, y: 3}
     power_up_space_position: {x: 0, y: 0}
     power_up_space_point_axes: {x: 0, y: 0}
@@ -2281,7 +2281,7 @@ MonoBehaviour:
     crystal_value: 0
     portals:
     - point_axes: {x: 1, y: 1}
-      point_position: {x: 270.77072, y: 249.59569}
+      point_position: {x: 195.26001, y: 179.9}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
@@ -2291,7 +2291,7 @@ MonoBehaviour:
       - {x: 2, y: 0, z: 1}
       - {x: 2.0342886, y: 4.6643143, z: 1}
       - {x: 5.131258, y: 4.6508245, z: 1}
-    player_base_position: {x: 677.4676, y: 607.36914}
+    player_base_position: {x: 488.54, y: 437.9}
     base_point_axes: {x: 4, y: 4}
     power_up_space_position: {x: 0, y: 0}
     power_up_space_point_axes: {x: 0, y: 0}
@@ -2306,7 +2306,7 @@ MonoBehaviour:
     crystal_value: 50
     portals:
     - point_axes: {x: 5, y: 4}
-      point_position: {x: 813.0332, y: 607.36914}
+      point_position: {x: 586.3, y: 437.9}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
@@ -2316,7 +2316,7 @@ MonoBehaviour:
       - {x: -6.8849707, y: -0.0011806488, z: 1}
       - {x: -6.8974366, y: -1.3152761, z: 1}
     - point_axes: {x: 5, y: 2}
-      point_position: {x: 813.0332, y: 368.85352}
+      point_position: {x: 586.3, y: 265.9}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
@@ -2325,7 +2325,7 @@ MonoBehaviour:
       - {x: 0, y: 0, z: 0}
       - {x: -6.878522, y: -0.0055733323, z: 1}
       - {x: -6.880188, y: 1.0105255, z: 1}
-    player_base_position: {x: 270.77072, y: 488.11133}
+    player_base_position: {x: 195.26001, y: 351.9}
     base_point_axes: {x: 1, y: 3}
     power_up_space_position: {x: 0, y: 0}
     power_up_space_point_axes: {x: 0, y: 0}
@@ -2334,13 +2334,13 @@ MonoBehaviour:
     show_small_planet: 0
     show_medium_planet: 0
     show_large_planet: 0
-  - level: 3
+  - level: 4
     starting_money: 40
     crystal_threshold: 25
     crystal_value: 50
     portals:
     - point_axes: {x: 5, y: 1}
-      point_position: {x: 813.0332, y: 249.59569}
+      point_position: {x: 586.3, y: 179.9}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
@@ -2350,7 +2350,7 @@ MonoBehaviour:
       - {x: 0.0028386116, y: 5.952213, z: 1}
       - {x: -3.0421073, y: 5.951385, z: 1}
     - point_axes: {x: 2, y: 2}
-      point_position: {x: 406.33633, y: 368.85352}
+      point_position: {x: 293.02002, y: 265.9}
       enemy_type: 1
       deploy_cooldown: 3
       deploy_time: 120
@@ -2362,7 +2362,7 @@ MonoBehaviour:
       - {x: -2.1828332, y: 1.6963134, z: -1.9419699}
       - {x: -2.1652575, y: 4.4733186, z: -1.9419699}
       - {x: 1.5520632, y: 4.4733186, z: -1.9419699}
-    player_base_position: {x: 541.902, y: 726.62695}
+    player_base_position: {x: 390.78, y: 523.9}
     base_point_axes: {x: 3, y: 5}
     power_up_space_position: {x: 0, y: 0}
     power_up_space_point_axes: {x: 0, y: 0}
@@ -2371,60 +2371,17 @@ MonoBehaviour:
     show_small_planet: 1
     show_medium_planet: 0
     show_large_planet: 0
-  - level: 4
-    starting_money: 20
-    crystal_threshold: 25
-    crystal_value: 50
-    portals:
-    - point_axes: {x: 1, y: 3}
-      point_position: {x: 270.77072, y: 488.11133}
-      enemy_type: 0
-      deploy_cooldown: 2
-      deploy_time: 60
-      enemy_count: 15
-      enemy_path_points:
-      - {x: 0, y: 0, z: 0}
-      - {x: 8.220037, y: 0.016827822, z: 1}
-    - point_axes: {x: 1, y: 2}
-      point_position: {x: 270.77072, y: 368.85352}
-      enemy_type: 1
-      deploy_cooldown: 3
-      deploy_time: 120
-      enemy_count: 5
-      enemy_path_points:
-      - {x: 0, y: 0, z: 0}
-      - {x: 6.7046714, y: -0.0047810078, z: 1}
-      - {x: 6.688464, y: 1.3956482, z: 1}
-    - point_axes: {x: 2, y: 1}
-      point_position: {x: 406.33633, y: 249.59569}
-      enemy_type: 0
-      deploy_cooldown: 2
-      deploy_time: 60
-      enemy_count: 20
-      enemy_path_points:
-      - {x: 0, y: 0, z: 0}
-      - {x: 5.322952, y: 0.016827822, z: 1}
-      - {x: 5.3207207, y: 2.7161999, z: 0}
-    player_base_position: {x: 813.0332, y: 488.11133}
-    base_point_axes: {x: 5, y: 3}
-    power_up_space_position: {x: 813.0332, y: 249.59569}
-    power_up_space_point_axes: {x: 5, y: 1}
-    toggle_unit: 01010000
-    power_up_space_active: 1
-    show_small_planet: 0
-    show_medium_planet: 1
-    show_large_planet: 0
   - level: 5
     starting_money: 20
     crystal_threshold: 0
     crystal_value: 40
     portals:
     - point_axes: {x: 5, y: 1}
-      point_position: {x: 813.0332, y: 249.59569}
+      point_position: {x: 586.3, y: 179.9}
       enemy_type: 2
       deploy_cooldown: 4
       deploy_time: 60
-      enemy_count: 15
+      enemy_count: 5
       enemy_path_points:
       - {x: 0, y: 0, z: 0}
       - {x: 0.030799389, y: 1.3118424, z: 0}
@@ -2446,11 +2403,11 @@ MonoBehaviour:
       - {x: -4.020047, y: 0.21194363, z: 0}
       - {x: -3.8590863, y: 1.1911218, z: 0}
     - point_axes: {x: 1, y: 1}
-      point_position: {x: 270.77072, y: 249.59569}
+      point_position: {x: 195.26001, y: 179.9}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
-      enemy_count: 20
+      enemy_count: 10
       enemy_path_points:
       - {x: 0, y: 0, z: 0}
       - {x: 0.10313988, y: 2.8275566, z: 0}
@@ -2474,22 +2431,22 @@ MonoBehaviour:
       - {x: 3.7381704, y: 0.14487672, z: 0}
       - {x: 3.5772095, y: 0.6679995, z: 0}
       - {x: 3.5101426, y: 1.2313621, z: 0}
-    player_base_position: {x: 541.902, y: 368.85352}
+    player_base_position: {x: 390.78, y: 265.9}
     base_point_axes: {x: 3, y: 2}
-    power_up_space_position: {x: 541.902, y: 607.36914}
+    power_up_space_position: {x: 390.78, y: 437.9}
     power_up_space_point_axes: {x: 3, y: 4}
     toggle_unit: 01010100
     power_up_space_active: 1
     show_small_planet: 1
     show_medium_planet: 1
     show_large_planet: 0
-  - level: 6
-    starting_money: 40
-    crystal_threshold: 40
+  - level: 7
+    starting_money: 80
+    crystal_threshold: 30
     crystal_value: 40
     portals:
     - point_axes: {x: 3, y: 1}
-      point_position: {x: 541.902, y: 249.59569}
+      point_position: {x: 390.78, y: 179.9}
       enemy_type: 2
       deploy_cooldown: 4
       deploy_time: 120
@@ -2499,11 +2456,11 @@ MonoBehaviour:
       - {x: 3.6141286, y: 0.047289014, z: 0}
       - {x: 3.625778, y: 1.3403823, z: 0}
     - point_axes: {x: 1, y: 5}
-      point_position: {x: 270.77072, y: 726.62695}
+      point_position: {x: 195.26001, y: 523.9}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
-      enemy_count: 30
+      enemy_count: 15
       enemy_path_points:
       - {x: 0, y: 0, z: 0}
       - {x: -0.018778324, y: -1.07686, z: 0}
@@ -2519,11 +2476,11 @@ MonoBehaviour:
       - {x: 5.9768696, y: -3.8567944, z: 0}
       - {x: 6.725386, y: -4.3811617, z: 0}
     - point_axes: {x: 1, y: 1}
-      point_position: {x: 270.77072, y: 249.59569}
+      point_position: {x: 195.26001, y: 179.9}
       enemy_type: 1
       deploy_cooldown: 3
       deploy_time: 90
-      enemy_count: 10
+      enemy_count: 5
       enemy_path_points:
       - {x: 0, y: 0, z: 0}
       - {x: 1.2318015, y: 3.8430793, z: 0}
@@ -2536,81 +2493,26 @@ MonoBehaviour:
       - {x: 6.6766305, y: 3.9378462, z: 0}
       - {x: 6.9738417, y: 3.0638847, z: 0}
       - {x: 7.0473094, y: 1.8585182, z: 0}
-    player_base_position: {x: 813.0332, y: 368.85352}
+    player_base_position: {x: 586.3, y: 265.9}
     base_point_axes: {x: 5, y: 2}
-    power_up_space_position: {x: 406.33633, y: 249.59569}
+    power_up_space_position: {x: 293.02002, y: 179.9}
     power_up_space_point_axes: {x: 2, y: 1}
     toggle_unit: 01010100
     power_up_space_active: 1
     show_small_planet: 0
     show_medium_planet: 0
     show_large_planet: 0
-  - level: 7
-    starting_money: 100
-    crystal_threshold: 0
-    crystal_value: 50
-    portals:
-    - point_axes: {x: 4, y: 1}
-      point_position: {x: 677.4676, y: 249.59569}
-      enemy_type: 2
-      deploy_cooldown: 4
-      deploy_time: 60
-      enemy_count: 15
-      enemy_path_points:
-      - {x: 0, y: 0, z: 0}
-      - {x: -3.5939703, y: -0.014228821, z: 0}
-      - {x: -3.5671892, y: 1.2043214, z: 0}
-    - point_axes: {x: 4, y: 4}
-      point_position: {x: 677.4676, y: 607.36914}
-      enemy_type: 2
-      deploy_cooldown: 4
-      deploy_time: 60
-      enemy_count: 15
-      enemy_path_points:
-      - {x: 0, y: 0, z: 0}
-      - {x: -3.6407518, y: 0.05572176, z: 0}
-      - {x: -3.6005797, y: -2.7027547, z: 0}
-    - point_axes: {x: 5, y: 5}
-      point_position: {x: 813.0332, y: 726.62695}
-      enemy_type: 1
-      deploy_cooldown: 3
-      deploy_time: 120
-      enemy_count: 15
-      enemy_path_points:
-      - {x: 0, y: 0, z: 0}
-      - {x: -6.849438, y: -0.053993702, z: 0}
-      - {x: -8.015146, y: -0.83645535, z: 0}
-      - {x: -8.494205, y: -1.3155136, z: 0}
-      - {x: -8.494205, y: -2.0500698, z: 0}
-      - {x: -8.126927, y: -2.912375, z: 0}
-      - {x: -7.3444653, y: -3.0081868, z: 0}
-      - {x: -6.274568, y: -3.1359358, z: 0}
-      - {x: -5.923259, y: -3.1039984, z: 0}
-      - {x: -4.918785, y: -3.2541852, z: 0}
-      - {x: -3.9161434, y: -3.3289235, z: 0}
-      - {x: -3.3031373, y: -4.1228213, z: -0}
-      - {x: -4.0620227, y: -4.7955494, z: -0}
-      - {x: -5.079179, y: -4.848618, z: -0}
-    player_base_position: {x: 406.33633, y: 368.85352}
-    base_point_axes: {x: 2, y: 2}
-    power_up_space_position: {x: 0, y: 0}
-    power_up_space_point_axes: {x: 0, y: 0}
-    toggle_unit: 01010101
-    power_up_space_active: 0
-    show_small_planet: 0
-    show_medium_planet: 1
-    show_large_planet: 0
   - level: 8
     starting_money: 100
-    crystal_threshold: 100
+    crystal_threshold: 50
     crystal_value: 100
     portals:
     - point_axes: {x: 1, y: 1}
-      point_position: {x: 270.77072, y: 249.59569}
+      point_position: {x: 195.26001, y: 179.9}
       enemy_type: 0
       deploy_cooldown: 2
       deploy_time: 60
-      enemy_count: 20
+      enemy_count: 15
       enemy_path_points:
       - {x: 0, y: 0, z: 0}
       - {x: 0.0011749268, y: 0.5149554, z: 0}
@@ -2621,10 +2523,10 @@ MonoBehaviour:
       - {x: 3.2274907, y: 3.866157, z: 0}
       - {x: 3.4915347, y: 3.4364882, z: 0}
     - point_axes: {x: 5, y: 5}
-      point_position: {x: 813.0332, y: 726.62695}
+      point_position: {x: 586.3, y: 523.9}
       enemy_type: 1
       deploy_cooldown: 3
-      deploy_time: 60
+      deploy_time: 90
       enemy_count: 5
       enemy_path_points:
       - {x: 0, y: 0, z: 0}
@@ -2638,7 +2540,7 @@ MonoBehaviour:
       - {x: -3.6738205, y: -3.8156528, z: 0}
       - {x: -3.7787251, y: -3.4484947, z: 0}
     - point_axes: {x: 5, y: 1}
-      point_position: {x: 813.0332, y: 249.59569}
+      point_position: {x: 586.3, y: 179.9}
       enemy_type: 2
       deploy_cooldown: 4
       deploy_time: 120
@@ -2653,7 +2555,7 @@ MonoBehaviour:
       - {x: -2.9795067, y: 4.04969, z: 0}
       - {x: -3.276672, y: 3.650202, z: 0}
     - point_axes: {x: 1, y: 5}
-      point_position: {x: 270.77072, y: 726.62695}
+      point_position: {x: 195.26001, y: 523.9}
       enemy_type: 3
       deploy_cooldown: 12
       deploy_time: 120
@@ -2668,9 +2570,9 @@ MonoBehaviour:
       - {x: 3.3013837, y: -4.493412, z: 0}
       - {x: 4.0430303, y: -3.8184595, z: 0}
       - {x: 4.067644, y: -3.190819, z: 0}
-    player_base_position: {x: 541.902, y: 488.11133}
+    player_base_position: {x: 390.78, y: 351.9}
     base_point_axes: {x: 3, y: 3}
-    power_up_space_position: {x: 541.902, y: 607.36914}
+    power_up_space_position: {x: 390.78, y: 437.9}
     power_up_space_point_axes: {x: 3, y: 4}
     toggle_unit: 01010101
     power_up_space_active: 1
@@ -5266,7 +5168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2728058057039820361
 Transform:
   m_ObjectHideFlags: 0
@@ -9251,7 +9153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1436739048914159098, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3239290757994061521, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
       propertyPath: m_LocalScale.x
@@ -9662,7 +9564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1436739048914159098, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3239290757994061521, guid: 583f7f2b4c2a470deb5bf3c8003ff2a3, type: 3}
       propertyPath: m_LocalScale.x
@@ -12223,7 +12125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: enemyCount
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4676482123692607989, guid: b6af5c3bd252ca5498eeb1c27ad69cac, type: 3}
       propertyPath: pointLocation

@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
         }
 
         //currentLevel = 2;
-        //currentLevel = s.currentLevel;
+        currentLevel = s.currentLevel;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -646,6 +646,7 @@ public class GameManager : MonoBehaviour
 
         /************get level from JSON***********/
         levelData = JsonUtility.FromJson<Levels>(levelFile.text);
+        LevelData newLevel = null;
 
         //which level?
         if (level < 0 || level >= levelData.levels.Length)
@@ -661,7 +662,26 @@ public class GameManager : MonoBehaviour
            coordinatesInputContainer.gameObject.SetActive(false);
         }
         else
+        {
            inTutorial = false;
+        }
+
+        //find the correct level in levelData.
+        bool levelFound = false;
+        int i = 0;
+        while(!levelFound && i < levelData.levels.Length)
+        {
+            if (level == levelData.levels[i].level)
+            {
+                levelFound = true;
+                newLevel = levelData.levels[i];
+            }
+            else
+            {
+                i++;
+            }
+        }
+        
 
         /*******SAVE DATA********/
         //This is done here because only the current level is saved and nothing else.
@@ -689,11 +709,11 @@ public class GameManager : MonoBehaviour
         totalEnemies = 0;
         accumulatedMoney = 0;
 
-        for (int i = 0; i < levelData.levels[level].portals.Count; i++)
+        for (i = 0; i < newLevel.portals.Count; /*levelData.levels[level].portals.Count;*/ i++)
         {
             /******PORTAL SETUP*******/
             //set portal's point location
-            PortalData portalData = levelData.levels[level].portals[i];
+            PortalData portalData = newLevel.portals[i]; //levelData.levels[level].portals[i];
             Portal portal = null;
             //reuse existing portals if able
             if (i < activePortals.Count)
@@ -769,7 +789,7 @@ public class GameManager : MonoBehaviour
         }
 
         /******BASE SETUP******/
-        LevelData newLevel = levelData.levels[level];
+        //LevelData newLevel = levelData.levels[level];
 
         //make base visible in case it was destroyed
         if (!playerBase.gameObject.activeSelf)
@@ -797,7 +817,7 @@ public class GameManager : MonoBehaviour
         menu.UpdateLevel(level);
 
         /*****POWER UP SPACE SETUP******/
-        if (levelData.levels[level].power_up_space_active)
+        if (newLevel.power_up_space_active /*levelData.levels[level].power_up_space_active*/)
         {
             powerUpSpace.gameObject.SetActive(true);
             powerUpSpace.transform.position = Camera.main.ScreenToWorldPoint(new Vector2(newLevel.power_up_space_position.x * screenWidthScale,
@@ -812,7 +832,7 @@ public class GameManager : MonoBehaviour
 
         /******AVAILABLE PLAYER UNITS******/
         //by default, all unit buttons are visible.
-        for (int i = 0; i < newLevel.toggle_unit.Length; i++)
+        for (i = 0; i < newLevel.toggle_unit.Length; i++)
         {
             menu.unitButtons[i].gameObject.SetActive(newLevel.toggle_unit[i]);
         }
