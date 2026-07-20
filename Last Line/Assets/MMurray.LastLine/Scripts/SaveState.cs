@@ -27,9 +27,11 @@ namespace MMurray.LastLine
             if (mm != null)
             {
                 data.minigame_level = mm.level;
-                data.level = (data.minigame_level == 1) ? 3 : 6;     //minigame 1 counts as level 3, minigame 2 counts as level 6.
+                //data.level = (data.minigame_level == 1) ? 3 : 6;     //minigame 1 counts as level 3, minigame 2 counts as level 6.
+                data.level = s.currentLevel;
                 //s.currentLevel = data.level;
                 data.in_minigame = s.inMinigame;
+                data.minigame_money = s.minigameMoney;
             }
 
             data.tts_enabled = s.ttsEnabled;

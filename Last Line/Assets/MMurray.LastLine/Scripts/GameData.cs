@@ -29,5 +29,6 @@ namespace MMurray.LastLine
         /*******minigame data**********/
         public int minigame_level;
         public bool in_minigame;
+        public int minigame_money;
     }
 }

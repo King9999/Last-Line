@@ -40,6 +40,8 @@ public class TitleManager : MonoBehaviour
                 Singleton.instance.gameData.level = state.data.level;       //will need this for when game manager loads the level.
                 Singleton.instance.gameData.in_minigame = state.data.in_minigame;
                 Singleton.instance.inMinigame = Singleton.instance.gameData.in_minigame;
+                Singleton.instance.currentLevel = state.data.level;
+                Singleton.instance.minigameMoney = state.data.minigame_money;
 
                 //saved universal settings are applied here
                 Singleton.instance.ttsEnabled = state.data.tts_enabled;
@@ -79,9 +81,10 @@ public class TitleManager : MonoBehaviour
         Singleton.instance.musicEnabled = true;
         Singleton.instance.ttsEnabled = true;
         Singleton.instance.saveStateFound = false;
-        sf.ChangeSceneFadeOut("Game");
-        //Singleton.instance.inMinigame = true;
-        //sf.ChangeSceneFadeOut("MiniGame");
+        //sf.ChangeSceneFadeOut("Game");
+        Singleton.instance.inMinigame = true;
+        Singleton.instance.currentLevel = 3;
+        sf.ChangeSceneFadeOut("MiniGame");
     }
 
     public void ContinueButtonClicked()
@@ -97,7 +100,7 @@ public class TitleManager : MonoBehaviour
         //TODO: Check which level we're on. If it's level 3 or 6, load minigame.
         Logger.DebugLogFormat("current level: {0}", Singleton.instance.gameData.level);
         Logger.DebugLogFormat("In minigame: {0}", Singleton.instance.gameData.in_minigame);
-        if (Singleton.instance.gameData.level == 3 || Singleton.instance.gameData.level == 6)
+        if (Singleton.instance.currentLevel == 3 || Singleton.instance.currentLevel == 6)
             sf.ChangeSceneFadeOut("MiniGame");
         else
             sf.ChangeSceneFadeOut("Game");

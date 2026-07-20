@@ -5,6 +5,7 @@ using LoLSDK;
 using MMurray.LastLine;
 using TMPro;
 using System;
+using MMurray.GenericCode;
 
 /* Similar to game manager except much smaller. 
 The minigame works like this:
@@ -408,6 +409,43 @@ public class MinigameManager : MonoBehaviour
                     }
                 }
                 Logger.DebugLog("Minigame complete");
+
+                //check for end of level dialogue
+                triggerFound = false;
+                j = 0;
+                while (!triggerFound && j < dialogueManager.condTriggerList.Count)
+                {
+                    if (dialogueManager.condTriggerList[j].level == Singleton.instance.currentLevel &&
+                        dialogueManager.condTriggerList[j].condition == DialogueManager.ConditionalTrigger.Condition.LevelEnd)
+                    {
+                        triggerFound = true;
+                    }
+                    else
+                    {
+                        j++;
+                    }
+
+                }
+                
+
+                if (triggerFound)
+                {
+                    triggerIndex = j;
+                    SetGameState(gameState = GameState.DialogueEndOfLevel);
+                }
+                else
+                {
+                    SetGameState(gameState = GameState.GoToNextLevel);
+                }
+                break;
+            
+            case GameState.GoToNextLevel:
+                ScreenFade sf = Singleton.instance.ScreenFade;
+                Singleton.instance.minigameMoney = money;
+                Singleton.instance.currentLevel++;
+                Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
+                Logger.DebugLogFormat("Next level: {0}", Singleton.instance.currentLevel);
+                sf.ChangeSceneFadeOut("Game");
                 break;
         }
     }
