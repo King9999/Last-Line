@@ -209,12 +209,6 @@ public class MinigameManager : MonoBehaviour
                     }
                 }
 
-                //once 3 crystals are found, minigame ends.
-                if (crystalsFound >= 3)
-                {
-                    SetGameState(gameState = GameState.LevelComplete);
-                }
-                
                 //remove crystal from
                 Logger.DebugLog("Crystal Found!");
             }
@@ -222,6 +216,22 @@ public class MinigameManager : MonoBehaviour
             {
                 i++;
             }
+
+        }
+
+        if (!crystalFound)
+        {
+            DisplayAlertWithDuration(GetText("nothingAtPoint"));
+        }
+
+        //once 3 crystals are found, minigame ends.
+        if (crystalsFound >= 3)
+        {
+            SetGameState(gameState = GameState.LevelComplete);
+        }
+        else
+        {
+            SetGameState(gameState = GameState.Normal);
         }
     }
 
@@ -377,6 +387,27 @@ public class MinigameManager : MonoBehaviour
                         j++;
                     }
                 }
+                break;
+            
+            case GameState.LevelComplete:
+                hintText.text = "";
+                axisContainerY.gameObject.SetActive(true);
+                axisContainerX.gameObject.SetActive(true);
+                enteringValueX = false;
+                enteringValueY = false;
+                xCoordinateText.text = "";
+                coordinatesInputField.text = "";
+
+
+                //hide points
+                if (points[0].pointImage.enabled)
+                {
+                    foreach (Point p in points)
+                    {
+                        p.ShowPoint(false);
+                    }
+                }
+                Logger.DebugLog("Minigame complete");
                 break;
         }
     }

@@ -308,7 +308,7 @@ public class AxisButton : MonoBehaviour
                     {
                         pointFound = true;
                         mm.CheckLocation(mm.points[i]);                        
-                        mm.SetGameState(mm.gameState = MinigameManager.GameState.Normal);
+                        //mm.SetGameState(mm.gameState = MinigameManager.GameState.Normal);
                         Logger.DebugLogFormat("Player entered {0}", mm.points[i].pointAxes);
                     }
                     else
