@@ -2154,6 +2154,7 @@ MonoBehaviour:
     startingMoney: 0
     crystalThreshold: 0
     crystalValue: 0
+    levelName: tutorialLevel
     portals:
     - {fileID: 1347109710128576793}
     playerBase: {fileID: 3422405583401413984}
@@ -2167,6 +2168,7 @@ MonoBehaviour:
     startingMoney: 50
     crystalThreshold: 0
     crystalValue: 0
+    levelName: wave_1
     portals:
     - {fileID: 4343100708239110590}
     playerBase: {fileID: 1006014949587816341}
@@ -2180,6 +2182,7 @@ MonoBehaviour:
     startingMoney: 20
     crystalThreshold: 50
     crystalValue: 50
+    levelName: wave_2
     portals:
     - {fileID: 5913022976241515316}
     - {fileID: 3329306555367865888}
@@ -2194,6 +2197,7 @@ MonoBehaviour:
     startingMoney: 40
     crystalThreshold: 25
     crystalValue: 50
+    levelName: wave_3
     portals:
     - {fileID: 3633106823646654669}
     - {fileID: 4985966727886893311}
@@ -2208,6 +2212,7 @@ MonoBehaviour:
     startingMoney: 20
     crystalThreshold: 0
     crystalValue: 40
+    levelName: wave_4
     portals:
     - {fileID: 6478031425920468336}
     - {fileID: 693247182246820131}
@@ -2222,6 +2227,7 @@ MonoBehaviour:
     startingMoney: 80
     crystalThreshold: 30
     crystalValue: 40
+    levelName: wave_5
     portals:
     - {fileID: 5523784397188842370}
     - {fileID: 4890772983110074172}
@@ -2237,6 +2243,7 @@ MonoBehaviour:
     startingMoney: 100
     crystalThreshold: 50
     crystalValue: 100
+    levelName: wave_final
     portals:
     - {fileID: 7623516823288258231}
     - {fileID: 2778649873080534962}
@@ -2254,6 +2261,7 @@ MonoBehaviour:
     starting_money: 0
     crystal_threshold: 0
     crystal_value: 0
+    level_name: tutorialLevel
     portals:
     - point_axes: {x: 5, y: 2}
       point_position: {x: 586.3, y: 265.9}
@@ -2279,6 +2287,7 @@ MonoBehaviour:
     starting_money: 50
     crystal_threshold: 0
     crystal_value: 0
+    level_name: wave_1
     portals:
     - point_axes: {x: 1, y: 1}
       point_position: {x: 195.26001, y: 179.9}
@@ -2304,6 +2313,7 @@ MonoBehaviour:
     starting_money: 20
     crystal_threshold: 50
     crystal_value: 50
+    level_name: wave_2
     portals:
     - point_axes: {x: 5, y: 4}
       point_position: {x: 586.3, y: 437.9}
@@ -2338,6 +2348,7 @@ MonoBehaviour:
     starting_money: 40
     crystal_threshold: 25
     crystal_value: 50
+    level_name: wave_3
     portals:
     - point_axes: {x: 5, y: 1}
       point_position: {x: 586.3, y: 179.9}
@@ -2375,6 +2386,7 @@ MonoBehaviour:
     starting_money: 20
     crystal_threshold: 0
     crystal_value: 40
+    level_name: wave_4
     portals:
     - point_axes: {x: 5, y: 1}
       point_position: {x: 586.3, y: 179.9}
@@ -2444,6 +2456,7 @@ MonoBehaviour:
     starting_money: 80
     crystal_threshold: 30
     crystal_value: 40
+    level_name: wave_5
     portals:
     - point_axes: {x: 3, y: 1}
       point_position: {x: 390.78, y: 179.9}
@@ -2506,6 +2519,7 @@ MonoBehaviour:
     starting_money: 100
     crystal_threshold: 50
     crystal_value: 100
+    level_name: wave_final
     portals:
     - point_axes: {x: 1, y: 1}
       point_position: {x: 195.26001, y: 179.9}

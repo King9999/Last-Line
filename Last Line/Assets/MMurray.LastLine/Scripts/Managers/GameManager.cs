@@ -814,7 +814,7 @@ public class GameManager : MonoBehaviour
         menu.UpdateMoneyText();
 
         /****LEVEL NUMBER SETUP***/
-        menu.UpdateLevel(level);
+        menu.UpdateLevel(newLevel.level_name /*level*/);
 
         /*****POWER UP SPACE SETUP******/
         if (newLevel.power_up_space_active /*levelData.levels[level].power_up_space_active*/)

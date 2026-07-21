@@ -68,13 +68,14 @@ public class Menu : MonoBehaviour
         moneyValue.text = string.Format("{0:000}", gm.money); //gm.money + " CR";
     }
 
-    public virtual void UpdateLevel(int level)
+    public virtual void UpdateLevel(string key /*int level*/)
     {
         GameManager gm = Singleton.instance.GameManager;
-        if (level < 0 || level > gm.maxLevels)
-            return;
+        //if (level < 0 || level > gm.maxLevels)
+            //return;
         
-        currentLevel.text = level == 0 ? GetText("tutorialLevel") : string.Format("{0} {1}", GetText("currentLevel"), gm.currentLevel);
+        //currentLevel.text = level == 0 ? GetText("tutorialLevel") : string.Format("{0} {1}", GetText("currentLevel"), gm.currentLevel);
+        currentLevel.text = GetText(key);
     }
 
     public void UpdateSystemButtonSprites()

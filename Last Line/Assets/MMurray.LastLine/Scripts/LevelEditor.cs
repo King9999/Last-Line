@@ -16,6 +16,7 @@ namespace MMurray.LastLine
         public class Level
         {
             public int level, startingMoney, crystalThreshold, crystalValue;
+            public string levelName;
             public List<Portal> portals;
             public PlayerUnit_Base playerBase;
             public PowerUpSpace powerUpSpace;
@@ -113,6 +114,7 @@ namespace MMurray.LastLine
                 {
                     LevelData data = new LevelData();
                     data.level = newLevel.level;
+                    data.level_name = newLevel.levelName;
                     data.starting_money = newLevel.startingMoney;
                     data.crystal_threshold = newLevel.crystalThreshold;
                     data.crystal_value = newLevel.crystalValue;

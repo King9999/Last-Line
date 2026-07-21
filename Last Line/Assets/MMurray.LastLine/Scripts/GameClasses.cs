@@ -9,6 +9,7 @@ namespace MMurray.LastLine
     public class LevelData          //to be written to JSON
     {
         public int level, starting_money, crystal_threshold, crystal_value;
+        public string level_name;       //Wave 1, Wave 2, etc. This is a key to be read by language json.
         public List<PortalData> portals;
         public Vector2 player_base_position, base_point_axes;
         public Vector2 power_up_space_position, power_up_space_point_axes;
