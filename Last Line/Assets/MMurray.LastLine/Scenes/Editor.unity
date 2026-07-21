@@ -223,32 +223,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 533508810704252218, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
-      propertyPath: levelDataList.Array.data[0].level_name
-      value: tutorialLevel
+      propertyPath: levels.Array.data[4].startingMoney
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 533508810704252218, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
-      propertyPath: levelDataList.Array.data[1].level_name
-      value: wave_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 533508810704252218, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
-      propertyPath: levelDataList.Array.data[2].level_name
-      value: wave_2
-      objectReference: {fileID: 0}
-    - target: {fileID: 533508810704252218, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
-      propertyPath: levelDataList.Array.data[3].level_name
-      value: wave_3
-      objectReference: {fileID: 0}
-    - target: {fileID: 533508810704252218, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
-      propertyPath: levelDataList.Array.data[4].level_name
-      value: wave_4
-      objectReference: {fileID: 0}
-    - target: {fileID: 533508810704252218, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
-      propertyPath: levelDataList.Array.data[5].level_name
-      value: wave_5
-      objectReference: {fileID: 0}
-    - target: {fileID: 533508810704252218, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
-      propertyPath: levelDataList.Array.data[6].level_name
-      value: wave_final
+      propertyPath: levelDataList.Array.data[4].starting_money
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2675866935131070744, guid: eb8d80f0ae5c25e2a8a13071b84d529e, type: 3}
       propertyPath: m_Name

@@ -100,7 +100,7 @@ public class TitleManager : MonoBehaviour
         //TODO: Check which level we're on. If it's level 3 or 6, load minigame.
         Logger.DebugLogFormat("current level: {0}", Singleton.instance.gameData.level);
         Logger.DebugLogFormat("In minigame: {0}", Singleton.instance.gameData.in_minigame);
-        if (Singleton.instance.currentLevel == 3 || Singleton.instance.currentLevel == 6)
+        if (Singleton.instance.currentLevel == 3 || Singleton.instance.currentLevel == 7)
             sf.ChangeSceneFadeOut("MiniGame");
         else
             sf.ChangeSceneFadeOut("Game");
