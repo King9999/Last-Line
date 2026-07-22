@@ -293,6 +293,7 @@ public class Dialogue : MonoBehaviour
                         
                         case GameManager.GameState.DialogueEndOfLevel:
                             //move to next level
+                            Singleton.instance.ArrowGuideManager.HideGuideArrows();
                             gm.SetGameState(gm.gameState = GameManager.GameState.GoToNextLevel);
                             break;
                         

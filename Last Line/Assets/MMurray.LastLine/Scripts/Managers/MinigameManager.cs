@@ -51,6 +51,10 @@ public class MinigameManager : MonoBehaviour
 
     [Header("---Minigame---")]
     public List<MinigameLevelData> minigameLevelData;
+    //public Sprite planet1;      //background image.
+    //public Sprite planet2;
+    public SpriteRenderer planet1;
+    public SpriteRenderer planet2;
 
     [Header("---Containers---")]
     [SerializeField]private GameObject axisContainerX;
@@ -156,6 +160,19 @@ public class MinigameManager : MonoBehaviour
         }
 
         this.level = level;
+
+        //set up background
+        //SpriteRenderer planetRenderer = GetComponent<SpriteRenderer>();
+        if (level == 1)
+        {
+            planet1.gameObject.SetActive(true);
+            planet2.gameObject.SetActive(false);
+        }
+        else
+        {
+            planet1.gameObject.SetActive(false);
+            planet2.gameObject.SetActive(true);
+        }
     }
 
     public void PlayMusic(bool toggle)

@@ -107,18 +107,23 @@ public class MinigameMenu : MonoBehaviour
             crystalLocationCheckboxes[2].checkBoxText.text = GetText("miningLevel1_coordinates3");
             crystalLocationCheckboxes[3].checkBoxText.text = GetText("miningLevel1_coordinates4");
             crystalLocationCheckboxes[4].checkBoxText.text = GetText("miningLevel1_coordinates5");
-
-            //get vectors. This is used to search for correct box to tick.
-            for(int i = 0; i < crystalLocationCheckboxes.Count; i++)
-            {
-                CheckBox box = crystalLocationCheckboxes[i];
-                box.crystalLocation = mm.minigameLevelData[mm.level - 1].crystals[i].crystalLocation;
-                crystalLocationCheckboxes[i] = box;
-            }
+            
         }
         else
         {
-            
+            crystalLocationCheckboxes[0].checkBoxText.text = GetText("miningLevel2_coordinates1");
+            crystalLocationCheckboxes[1].checkBoxText.text = GetText("miningLevel2_coordinates2");
+            crystalLocationCheckboxes[2].checkBoxText.text = GetText("miningLevel2_coordinates3");
+            crystalLocationCheckboxes[3].checkBoxText.text = GetText("miningLevel2_coordinates4");
+            crystalLocationCheckboxes[4].checkBoxText.text = GetText("miningLevel2_coordinates5");
+        }
+
+        //get vectors. This is used to search for correct box to tick.
+        for(int i = 0; i < crystalLocationCheckboxes.Count; i++)
+        {
+            CheckBox box = crystalLocationCheckboxes[i];
+            box.crystalLocation = mm.minigameLevelData[mm.level - 1].crystals[i].crystalLocation;
+            crystalLocationCheckboxes[i] = box;
         }
     }
 

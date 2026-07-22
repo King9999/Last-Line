@@ -115,7 +115,7 @@ namespace MMurray.GenericCode
             GameManager gm = Singleton.instance.GameManager;
 
             //cleanup any units or other objects.
-            if (gm != null && level != 3 && level != 7)
+            if (gm != null && level != 3 && level != 6)
             {
                 gm.Cleanup();
 
