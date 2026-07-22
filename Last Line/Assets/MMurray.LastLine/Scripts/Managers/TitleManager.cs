@@ -83,7 +83,7 @@ public class TitleManager : MonoBehaviour
         Singleton.instance.saveStateFound = false;
         sf.ChangeSceneFadeOut("Game");
         //Singleton.instance.inMinigame = true;
-        //Singleton.instance.currentLevel = 3;
+        //Singleton.instance.currentLevel = 6;
         //sf.ChangeSceneFadeOut("MiniGame");
     }
 

@@ -205,7 +205,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        currentLevel = 5;
+        //currentLevel = 7;
         //currentLevel = s.currentLevel;
         LoadLevel(currentLevel);
 
@@ -649,7 +649,7 @@ public class GameManager : MonoBehaviour
         LevelData newLevel = null;
 
         //which level?
-        if (level < 0 || level >= levelData.levels.Length)
+        if (level < 0 || level > Singleton.instance.maxLevels /*>= levelData.levels.Length*/)
         {
             Logger.DebugLogWarning("Invalid level!");
             return;
