@@ -79,5 +79,18 @@ namespace MMurray.LastLine
             string value = SharedState.LanguageDefs?[key];
             return value ?? "--missing--";
         }
+
+        //changes parameters back to default when starting new game.
+        public void ResetAll()
+        {
+            currentLevel = 0;
+            inMinigame = false;
+            minigameMoney = 0;
+            saveStateFound = false;
+            ttsEnabled = true;
+            musicEnabled = true;
+            gameData = new GameData();
+            saveState = new SaveState();
+        }
     }
 }

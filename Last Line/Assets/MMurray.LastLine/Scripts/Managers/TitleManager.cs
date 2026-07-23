@@ -78,9 +78,11 @@ public class TitleManager : MonoBehaviour
         AudioManager audio = Singleton.instance.AudioManager;
         audio.soundSource.PlayOneShot(audio.buttonClickStartGame, audio.soundVolume);
         PlayerPrefs.DeleteAll();
-        Singleton.instance.musicEnabled = true;
-        Singleton.instance.ttsEnabled = true;
-        Singleton.instance.saveStateFound = false;
+        //Singleton.instance.musicEnabled = true;
+        //Singleton.instance.ttsEnabled = true;
+        //Singleton.instance.saveStateFound = false;
+        //Singleton.instance.currentLevel = 0;
+        Singleton.instance.ResetAll();
         sf.ChangeSceneFadeOut("Game");
         //Singleton.instance.inMinigame = true;
         //Singleton.instance.currentLevel = 6;
@@ -116,6 +118,14 @@ public class TitleManager : MonoBehaviour
         AudioManager audio = Singleton.instance.AudioManager;
         audio.soundSource.PlayOneShot(audio.buttonClickStartGame, audio.soundVolume);
         sf.ChangeSceneFadeOut("Credits");
+    }
+
+    public void ResetAllSettings()
+    {
+        Singleton.instance.musicEnabled = true;
+        Singleton.instance.ttsEnabled = true;
+        Singleton.instance.saveStateFound = false;
+        Singleton.instance.currentLevel = 0;
     }
 
 

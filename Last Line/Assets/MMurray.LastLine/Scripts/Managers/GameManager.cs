@@ -197,16 +197,16 @@ public class GameManager : MonoBehaviour
 
         //load save state
         Singleton s = Singleton.instance;
-        if (s.saveStateFound)
+        /*if (s.saveStateFound)
         {
             //s.saveState.LoadState(s.saveState.ReadState);
             s.currentLevel = s.gameData.level;
-            currentLevel = s.currentLevel;      //doing this so I don't have to change every instance of currentLevel into the singleton's
+            //currentLevel = s.currentLevel;      //doing this so I don't have to change every instance of currentLevel into the singleton's
             //s.saveState.ReadState(s.gameData);
-        }
+        }*/
 
-        //currentLevel = 2;
-        //currentLevel = s.currentLevel;
+        currentLevel = s.currentLevel;
+        //currentLevel = 1;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -687,7 +687,8 @@ public class GameManager : MonoBehaviour
         //This is done here because only the current level is saved and nothing else.
         //The player resumes from the beginning of the level.
         Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
-        Logger.DebugLogFormat("Level is now {0}", Singleton.instance.gameData.level);
+        currentLevel = level;
+        Logger.DebugLogFormat("Level is now {0}", currentLevel);
 
 
         //ready button check. button is disabled by default.
@@ -1619,9 +1620,9 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GoToNextLevel:
-                if (currentLevel + 1 <= maxLevels)
+                if (currentLevel + 1 <= Singleton.instance.maxLevels)
                 {
-                    Singleton.instance.ScreenFade.LoadLevelFadeOut(++currentLevel);
+                    Singleton.instance.ScreenFade.LoadLevelFadeOut(++Singleton.instance.currentLevel);
                 }
                 else
                 {

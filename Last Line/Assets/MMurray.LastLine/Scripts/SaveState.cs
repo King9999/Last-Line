@@ -19,9 +19,9 @@ namespace MMurray.LastLine
             //data.test_unit_pos = gm.testUnit.transform.position;
             if (gm != null)
             {
-                data.level = gm.currentLevel;
-                s.currentLevel = data.level;
-                data.max_levels = gm.maxLevels;
+                data.level = s.currentLevel;
+                //s.currentLevel = data.level;
+                data.max_levels = s.maxLevels;
             }
 
             if (mm != null)
