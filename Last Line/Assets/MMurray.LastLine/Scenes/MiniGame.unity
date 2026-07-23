@@ -6722,6 +6722,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1360139926 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1563531181338041019, guid: 59142985c95dc04389ca30ec0b36ffc3, type: 3}
+  m_PrefabInstance: {fileID: 2350709663953084523}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1555805854
 GameObject:
   m_ObjectHideFlags: 0
@@ -12681,6 +12686,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2350709663953084526}
     - target: {fileID: 3113082733020696227, guid: 59142985c95dc04389ca30ec0b36ffc3, type: 3}
+      propertyPath: crystalObject
+      value: 
+      objectReference: {fileID: 1360139926}
+    - target: {fileID: 3113082733020696227, guid: 59142985c95dc04389ca30ec0b36ffc3, type: 3}
       propertyPath: planetRenderer
       value: 
       objectReference: {fileID: 567701970}
@@ -13396,6 +13405,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7674766577306260801, guid: 59142985c95dc04389ca30ec0b36ffc3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7691693312068015997, guid: 59142985c95dc04389ca30ec0b36ffc3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -13580,7 +13593,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7674766577306260801, guid: 59142985c95dc04389ca30ec0b36ffc3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using MMurray.LastLine;
 
 /* Displays text of money awarded to player when an enemy is defeated. Whenever the text is displayed, it animates upward
 for a duration. */
@@ -31,6 +32,12 @@ public class MoneyText : MonoBehaviour
     IEnumerator AnimateMoneyText(float duration)
     {
         float time = 0;
+        float crystalOffset;       //used during minigame to display crystal object beside money text.
+        MinigameManager mm = Singleton.instance.MinigameManager;
+        if (mm != null)
+        {
+            mm.crystalObject.gameObject.SetActive(true);
+        }
         while (time < duration)
         {
            time += Time.deltaTime;
@@ -38,9 +45,19 @@ public class MoneyText : MonoBehaviour
            Vector2 textPos = moneyText.transform.position;
            float yPos = textPos.y + (20 * Time.deltaTime);
            moneyText.transform.position = new Vector2(textPos.x, yPos);
+
+           //show crystal if in minigame
+           if (mm != null)
+            {
+                crystalOffset = 50 * mm.screenWidthScale;
+                mm.crystalObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(moneyText.transform.position.x - crystalOffset, moneyText.transform.position.y, 1));
+                //mm.crystalObject.transform.position = new Vector3(mm.crystalObject.transform.position.x, mm.crystalObject.transform.position.y, 1);
+            }
            yield return null;
         }
         //moneyText.gameObject.SetActive(false);
         gameObject.SetActive(false);
+        if (mm != null)
+            mm.crystalObject.gameObject.SetActive(false);
     }
 }

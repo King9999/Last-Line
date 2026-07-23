@@ -55,6 +55,7 @@ public class MinigameManager : MonoBehaviour
     //public Sprite planet2;
     public SpriteRenderer planet1;
     public SpriteRenderer planet2;
+    public GameObject crystalObject;        //displayed when a crystal is found.
 
     [Header("---Containers---")]
     [SerializeField]private GameObject axisContainerX;
@@ -123,9 +124,15 @@ public class MinigameManager : MonoBehaviour
         enteringValueY = false;
         targetCursor.gameObject.SetActive(false);
         moneyText.gameObject.SetActive(false);
+        crystalObject.gameObject.SetActive(false);
 
         //input field setup
         coordinatesInputField.characterLimit = 2;
+
+        /********MUSIC***********/
+        AudioManager am = Singleton.instance.AudioManager;
+        if (!am.mainMusic.isPlaying)
+            PlayMusic(Singleton.instance.musicEnabled);
 
         SetGameState(gameState = GameState.StartLevel);
     }
@@ -143,6 +150,15 @@ public class MinigameManager : MonoBehaviour
                 SetGameState(gameState = GameState.Normal);
             }
         }
+    }
+
+    public void PlayMusic(bool toggle)
+    {
+        AudioManager am = Singleton.instance.AudioManager;
+        if (toggle == true)
+            am.mainMusic.Play();
+        else
+            am.mainMusic.Stop();
     }
 
     bool CancelButtonPressed()
@@ -175,14 +191,6 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
-    public void PlayMusic(bool toggle)
-    {
-        AudioManager am = Singleton.instance.AudioManager;
-        if (toggle == true)
-            am.mainMusic.Play();
-        else
-            am.mainMusic.Stop();
-    }
 
     /*Check a given location on the grid for a crystal. If a crystal is found, money is added to the total. */
     public void CheckLocation(Point point)
