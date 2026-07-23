@@ -103,7 +103,7 @@ public class EnemyUnit_Juggernaut : EnemyUnit
         if (attackRange.IsTouching(collision) && !juggCollider.IsTouching(collision))
             return;
 
-        if (collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
+        if (juggCollider.IsTouching(collision) && collision.TryGetComponent<PlayerUnit>(out PlayerUnit unit))
         {
             Logger.DebugLog("Hit Unit " + unit.name);
 
