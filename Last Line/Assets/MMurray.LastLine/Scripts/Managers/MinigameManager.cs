@@ -6,6 +6,8 @@ using MMurray.LastLine;
 using TMPro;
 using System;
 using MMurray.GenericCode;
+using UnityEngine.EventSystems;
+using System.Linq;
 
 /* Similar to game manager except much smaller. 
 The minigame works like this:
@@ -140,6 +142,12 @@ public class MinigameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if any keyboard input is recognized, the player can immediately input coordinates in the input field.
+        if (Input.anyKeyDown)
+        {
+            EventSystem.current.SetSelectedGameObject(coordinatesInputField.gameObject, null);
+        }
+
         //check for right click or Escape key. They're used to cancel certain actions.
         if (CancelButtonPressed())
         {
@@ -259,6 +267,85 @@ public class MinigameManager : MonoBehaviour
         {
             SetGameState(gameState = GameState.Normal);
         }
+    }
+
+    /*checks coordinates input field to ensure the characters entered are valid.
+    Only characters in specific positions are checked because it's known that the other
+    characters aren't valid and don't need to be checked. */
+    public void ValidateCoordinates()
+    {
+        if (gameState != GameState.Normal && gameState != GameState.UnitSelectX && gameState != GameState.UnitSelectY)
+        {
+            coordinatesInputField.text = "";
+            return;
+        }
+
+        List<int> validNums = new List<int>();
+
+        if (coordinatesInputField.text.Count() > 0)
+        {
+            xCoordinateText.text = "";
+            alertText.text = "";
+            axisContainerX.gameObject.SetActive(true);
+            axisContainerY.gameObject.SetActive(true);
+            //show grid
+            if (!points[0].pointImage.enabled)
+            {
+                foreach (Point p in points)
+                {
+                    p.ShowPoint(true);
+                }
+            }
+        }
+        else
+        {
+            if (points[0].pointImage.enabled)
+            {
+                foreach (Point p in points)
+                {
+                    p.ShowPoint(false);
+                }
+            }
+        }
+
+        for (int i = 0; i < coordinatesInputField.text.Count(); i++)
+        {
+            if(int.TryParse(coordinatesInputField.text.Substring(i, 1), out int num) && num <= 5)
+            {
+                validNums.Add(num);
+                Logger.DebugLogFormat("Added {0} to validNums", num);
+            }
+            else
+            {
+                Logger.DebugLog("Can't parse");
+                coordinatesInputField.text = coordinatesInputField.text.Replace(coordinatesInputField.text.Substring(i, 1), "");
+            }
+        }
+
+        //if there are 2 valid numbers, then they're accepted and the point is targeted
+        if (validNums.Count() >= 2)
+        {
+            Logger.DebugLog("2 valid nums");
+            coordinatesInputField.text = "";
+            //find the point matching the values.
+            playerCoordinates = new Vector2(validNums[0], validNums[1]);
+
+            int i = 0;
+            bool pointFound = false;
+            while(!pointFound && i < points.Count())
+            {
+                if (playerCoordinates == points[i].pointAxes)
+                {
+                    pointFound = true;
+                    CheckLocation(points[i]);
+                }
+                else
+                {
+                    i++;
+                }
+            }
+        }
+
     }
 
     public void AddMoney(int amount, Vector2 position)

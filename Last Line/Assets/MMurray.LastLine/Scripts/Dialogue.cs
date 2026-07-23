@@ -315,6 +315,7 @@ public class Dialogue : MonoBehaviour
                 {
                     case MinigameManager.GameState.DialogueStartOfLevel:
                         mm.DisplayAlertWithDuration(GetText("beginMiningForCrystals"), 10);
+                        mm.coordinatesInputContainer.gameObject.SetActive(true);
                         mm.SetGameState(mm.gameState = MinigameManager.GameState.Normal);
                         break;
                     
