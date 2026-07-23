@@ -205,7 +205,7 @@ public class GameManager : MonoBehaviour
             //s.saveState.ReadState(s.gameData);
         }
 
-        //currentLevel = 7;
+        currentLevel = 2;
         //currentLevel = s.currentLevel;
         LoadLevel(currentLevel);
 

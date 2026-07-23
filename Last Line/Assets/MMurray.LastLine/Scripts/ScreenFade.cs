@@ -152,11 +152,11 @@ namespace MMurray.GenericCode
                 GameManager gm = Singleton.instance.GameManager;
                 gm.SetGameState(gm.gameState = GameManager.GameState.StartLevel);
             }
-            else
+            /*else
             {
                 MinigameManager mm = Singleton.instance.MinigameManager;
                 mm.SetGameState(mm.gameState = MinigameManager.GameState.StartLevel);
-            }
+            }*/
             coroutineOn = false;
         }
     }
