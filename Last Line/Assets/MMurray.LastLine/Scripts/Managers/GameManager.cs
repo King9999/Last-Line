@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     }
 
     /******MINIGAME STUFF*********/
-    [System.Serializable]
+    /*[System.Serializable]
     public struct MinigameCrystal
     {
         public Vector2 crystalLocation;
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     {
         public int level;
         public List<MinigameCrystal> crystals;
-    }
+    }*/
 
 
 
@@ -93,15 +93,16 @@ public class GameManager : MonoBehaviour
     [SerializeField]private TMP_InputField coordinatesInputField;
     [SerializeField]private TextMeshProUGUI coordinatesLabel;
 
-    [Header("---Menus---")]
+    /*[Header("---Menus---")]
     [SerializeField]Menu menu;
     [SerializeField]MinigameMenu minigameMenu;  //only visible on level 3 and level 6.
+    
 
     [Header("---Minigame---")]
     public List<MinigameLevelData> minigameLevelData;
     public SpriteRenderer planet1;
     public SpriteRenderer planet2;
-    public GameObject crystalObject;        //displayed when a crystal is found.
+    public GameObject crystalObject;        //displayed when a crystal is found.*/
 
     
 
@@ -239,7 +240,7 @@ public class GameManager : MonoBehaviour
         }*/
 
         currentLevel = s.currentLevel;
-        //currentLevel = 1;
+        //currentLevel = 2;
         LoadLevel(currentLevel);
 
         //dialogueManager.dialogueList[0].ShowDialogue(dialogueManager.dialogueList[0].dialogueKeyList[0]);
@@ -415,7 +416,7 @@ public class GameManager : MonoBehaviour
             PlayerUnit unit = buildQueue.Peek();
 
             //update progress bar
-            //Menu menu = Singleton.instance.Menu;
+            Menu menu = Singleton.instance.Menu;
             progressBars[progressIndex].radialBar.fillAmount = (Time.time - buildTimer[progressIndex]) / unit.buildTime;
 
             //update sound
@@ -485,7 +486,7 @@ public class GameManager : MonoBehaviour
         //animateMoneyCoroutine = StartCoroutine(AnimateMoney(newAmount));
         money = (money + amount <= 999) ? money + amount : 999;
 
-        //Menu menu = Singleton.instance.Menu;
+        Menu menu = Singleton.instance.Menu;
         menu.UpdateMoneyText();
 
         if (!isCrystal)
@@ -621,7 +622,7 @@ public class GameManager : MonoBehaviour
             i--;
         }
 
-        //Menu menu = Singleton.instance.Menu;
+        Menu menu = Singleton.instance.Menu;
         for (int i = 0; i < menu.unitsInQueue.Length; i++)
         {
             menu.unitsInQueue[i].enabled = false;
@@ -676,7 +677,7 @@ public class GameManager : MonoBehaviour
     public void LoadLevel(int level)
     {
 
-        if (level == 3 || level == 6)
+        /*if (level == 3 || level == 6)
         {
             //we don't do anything except change the menu
             menu.gameObject.SetActive(false);
@@ -690,7 +691,7 @@ public class GameManager : MonoBehaviour
             menu.gameObject.SetActive(true);
             minigameMenu.gameObject.SetActive(false);
             Singleton.instance.inMinigame = false;
-        }
+        }*/
         
         Logger.DebugLogFormat("X and Y scale: {0}, {1}", screenWidthScale, screenHeightScale);
 
@@ -858,7 +859,7 @@ public class GameManager : MonoBehaviour
 
 
         /*******CRYSTAL & STARTING MONEY SETUP******/
-        //Menu menu = Singleton.instance.Menu;
+        Menu menu = Singleton.instance.Menu;
         crystalThreshold = newLevel.crystal_threshold;
         crystal.SetMoneyValue(newLevel.crystal_value);
         money = newLevel.starting_money + Singleton.instance.minigameMoney; //money from minigame gets added to the current level if the player played the minigame.

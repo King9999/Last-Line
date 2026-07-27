@@ -400,7 +400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &314196200
 Transform:
   m_ObjectHideFlags: 0
@@ -5650,7 +5650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &869240716
 Transform:
   m_ObjectHideFlags: 0
@@ -13124,7 +13124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 692959360922846846, guid: 279d2e16d84d29c6985721d9120c00c7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1616324002359200306, guid: 279d2e16d84d29c6985721d9120c00c7, type: 3}
       propertyPath: m_Pivot.x
