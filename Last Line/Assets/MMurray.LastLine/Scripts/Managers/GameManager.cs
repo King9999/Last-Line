@@ -74,6 +74,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]private TMP_InputField coordinatesInputField;
     [SerializeField]private TextMeshProUGUI coordinatesLabel;
 
+    [Header("---Menus---")]
+    [SerializeField]Menu menu;
+    [SerializeField]MinigameMenu minigameMenu;  //only visible on level 3 and level 6.
+
     
 
     //unit setup
@@ -191,12 +195,16 @@ public class GameManager : MonoBehaviour
         //input field setup
         coordinatesInputField.characterLimit = 2;       //2 values plus 2 brackets and a comma
 
+        //menu setup
+        Singleton s = Singleton.instance;
+        
+
         //the field must only accept chars 0 to 5 and nothing else.
         //coordinatesInputField.text.Contains("012345");
         //coordinatesInputField.placeholder = "test";
 
         //load save state
-        Singleton s = Singleton.instance;
+        
         /*if (s.saveStateFound)
         {
             //s.saveState.LoadState(s.saveState.ReadState);
@@ -642,6 +650,20 @@ public class GameManager : MonoBehaviour
     every unit's position. Also, the game runs in real time so the player might get confused on what they were doing. */
     public void LoadLevel(int level)
     {
+
+        if (level == 3 || level == 6)
+        {
+            //we don't do anything except change the menu
+            menu.gameObject.SetActive(false);
+            minigameMenu.gameObject.SetActive(true);
+            return;
+        }
+        else
+        {
+            menu.gameObject.SetActive(true);
+            minigameMenu.gameObject.SetActive(false);
+        }
+        
         Logger.DebugLogFormat("X and Y scale: {0}, {1}", screenWidthScale, screenHeightScale);
 
         /************get level from JSON***********/
@@ -808,7 +830,7 @@ public class GameManager : MonoBehaviour
 
 
         /*******CRYSTAL & STARTING MONEY SETUP******/
-        Menu menu = Singleton.instance.Menu;
+        //Menu menu = Singleton.instance.Menu;
         crystalThreshold = newLevel.crystal_threshold;
         crystal.SetMoneyValue(newLevel.crystal_value);
         money = newLevel.starting_money + Singleton.instance.minigameMoney; //money from minigame gets added to the current level if the player played the minigame.

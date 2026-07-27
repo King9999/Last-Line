@@ -60,13 +60,21 @@ ScriptsOnlyBuild:
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
+    - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
+    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
+    Unity.2D.Tilemap.Extras.Editor.dll:
+    - UnityEditor.Tilemaps.GameObjectBrush
+    - UnityEditor.Tilemaps.GroupBrush
+    - UnityEditor.Tilemaps.LineBrush
+    - UnityEditor.Tilemaps.RandomBrush
     Unity.TextMeshPro:
     - TMPro.TMP_FontAsset
     - TMPro.TMP_Settings
@@ -331,36 +339,6 @@ ScriptsOnlyBuild:
     fullTypeName: UnitButton
     methodName: OnMouseClick
   - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: AxisButton
-    methodName: GetValue
-  - assembly: Assembly-CSharp
     fullTypeName: SystemButton
     methodName: OnMouseHoverEnterInputHelp
   - assembly: Assembly-CSharp
@@ -372,6 +350,36 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
     methodName: AdvancePortalTimers
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
+  - assembly: Assembly-CSharp
+    fullTypeName: AxisButton
+    methodName: GetValue
   - assembly: Assembly-CSharp
     fullTypeName: AxisButton
     methodName: GetValue
@@ -436,6 +444,12 @@ ScriptsOnlyBuild:
     fullTypeName: EndScreenManager
     methodName: EndGame
   - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
+    fullTypeName: Dialogue
+    methodName: OnMouseClick
+  - assembly: Assembly-CSharp
     fullTypeName: SystemButton
     methodName: OnMouseHoverEnterInputHelp
   - assembly: Assembly-CSharp
@@ -477,12 +491,6 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: AxisButton
     methodName: GetValue
-  - assembly: Assembly-CSharp
-    fullTypeName: Dialogue
-    methodName: OnMouseClick
-  - assembly: Assembly-CSharp
-    fullTypeName: Dialogue
-    methodName: OnMouseClick
   - assembly: Assembly-CSharp
     fullTypeName: Dialogue
     methodName: OnMouseClick
