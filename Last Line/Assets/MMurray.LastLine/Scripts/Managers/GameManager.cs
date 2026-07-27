@@ -34,6 +34,25 @@ public class GameManager : MonoBehaviour
         CrystalIntro, OriginTutorial
     }
 
+    /******MINIGAME STUFF*********/
+    [System.Serializable]
+    public struct MinigameCrystal
+    {
+        public Vector2 crystalLocation;
+        public int crystalValue;
+        public bool crystalFound;           //if true, player already found this crystal and can't add its value to the total.
+    }
+
+    [System.Serializable]
+    public struct MinigameLevelData
+    {
+        public int level;
+        public List<MinigameCrystal> crystals;
+    }
+
+
+
+    /*******INSPECTOR VARIABLES*********/
     public enum PlayerUnitType {NoUnitSelected, /*Base,*/ StraightShooter, VerticalShooter, TrackingBeam, Bomb}
     public PlayerUnitType playerUnitType;
     public GameState gameState, previousState;  //previousState is used by menu window to revert to previous state after menu is closed.
@@ -77,6 +96,12 @@ public class GameManager : MonoBehaviour
     [Header("---Menus---")]
     [SerializeField]Menu menu;
     [SerializeField]MinigameMenu minigameMenu;  //only visible on level 3 and level 6.
+
+    [Header("---Minigame---")]
+    public List<MinigameLevelData> minigameLevelData;
+    public SpriteRenderer planet1;
+    public SpriteRenderer planet2;
+    public GameObject crystalObject;        //displayed when a crystal is found.
 
     
 
@@ -390,7 +415,7 @@ public class GameManager : MonoBehaviour
             PlayerUnit unit = buildQueue.Peek();
 
             //update progress bar
-            Menu menu = Singleton.instance.Menu;
+            //Menu menu = Singleton.instance.Menu;
             progressBars[progressIndex].radialBar.fillAmount = (Time.time - buildTimer[progressIndex]) / unit.buildTime;
 
             //update sound
@@ -460,7 +485,7 @@ public class GameManager : MonoBehaviour
         //animateMoneyCoroutine = StartCoroutine(AnimateMoney(newAmount));
         money = (money + amount <= 999) ? money + amount : 999;
 
-        Menu menu = Singleton.instance.Menu;
+        //Menu menu = Singleton.instance.Menu;
         menu.UpdateMoneyText();
 
         if (!isCrystal)
@@ -596,7 +621,7 @@ public class GameManager : MonoBehaviour
             i--;
         }
 
-        Menu menu = Singleton.instance.Menu;
+        //Menu menu = Singleton.instance.Menu;
         for (int i = 0; i < menu.unitsInQueue.Length; i++)
         {
             menu.unitsInQueue[i].enabled = false;
@@ -656,12 +681,15 @@ public class GameManager : MonoBehaviour
             //we don't do anything except change the menu
             menu.gameObject.SetActive(false);
             minigameMenu.gameObject.SetActive(true);
+            Singleton.instance.inMinigame = true;
+            Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
             return;
         }
         else
         {
             menu.gameObject.SetActive(true);
             minigameMenu.gameObject.SetActive(false);
+            Singleton.instance.inMinigame = false;
         }
         
         Logger.DebugLogFormat("X and Y scale: {0}, {1}", screenWidthScale, screenHeightScale);
