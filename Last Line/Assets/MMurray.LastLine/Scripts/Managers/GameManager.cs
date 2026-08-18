@@ -428,7 +428,8 @@ public class GameManager : MonoBehaviour
             {
                 //deploy unit.
                 am.buildSound.Stop();
-                SpeakText("unitDeployed");
+                DisplayAlertWithDuration(GetText("unitDeployed"));
+                //SpeakText("unitDeployed");
                 activePlayerUnits.Add(unit);
                 unit.gameObject.SetActive(true);
                 buildQueue.Dequeue();
