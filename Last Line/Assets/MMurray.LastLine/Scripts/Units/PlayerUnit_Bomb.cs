@@ -127,7 +127,7 @@ public class PlayerUnit_Bomb : PlayerUnit
     public override void ActivateAbility()
     {
         GameManager gm = Singleton.instance.GameManager;
-        gm.DisplayAlertWithDuration(GetText("bombActivated"));
+        gm.DisplayAlertWithDuration(Singleton.instance.GetText("bombActivated"));
         ActivateBomb();
     }
 
@@ -188,11 +188,11 @@ public class PlayerUnit_Bomb : PlayerUnit
         return bombRange.radius;
     }
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
 
     IEnumerator Flash()
     {

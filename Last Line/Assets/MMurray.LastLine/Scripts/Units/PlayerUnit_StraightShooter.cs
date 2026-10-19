@@ -131,7 +131,7 @@ public class PlayerUnit_StraightShooter : PlayerUnit
     public override void ActivateAbility()
     {
         GameManager gm = Singleton.instance.GameManager;
-        gm.DisplayAlertWithDuration(GetText("reverseFireDirection"));
+        gm.DisplayAlertWithDuration(Singleton.instance.GetText("reverseFireDirection"));
         Logger.DebugLog("Reversing Unit firing direction!");
         reverseDirection = true;
 
@@ -163,11 +163,11 @@ public class PlayerUnit_StraightShooter : PlayerUnit
         cooldownTimer = Time.time;
     }
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
 
     /* Rotate unit on its Z axis until it reaches 180 degrees. Halfway through the rotation, the sprite's Y
     axis is flipped so the shadow appears at the bottom. */

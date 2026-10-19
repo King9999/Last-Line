@@ -38,7 +38,7 @@ public class GameOverText : MonoBehaviour
         float xOffset = 300 * gm.screenWidthScale;
         float yOffset = 50;
         //find the end level text key and populate the list. Must count the number of characters and instantiate object for each one.
-        string clearText = GetText("gameOver");
+        string clearText = Singleton.instance.GetText("gameOver");
         for (int i = 0; i < clearText.Length; i++)
         {
             TextMeshProUGUI textChar = Instantiate(textPrefab, transform);
@@ -51,11 +51,11 @@ public class GameOverText : MonoBehaviour
         }
     }
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
 
     public void ShowText()
     {

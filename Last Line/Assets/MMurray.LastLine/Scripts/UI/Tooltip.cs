@@ -34,16 +34,16 @@ public class Tooltip : MonoBehaviour
             GameManager gm = Singleton.instance.GameManager;
             gameObject.transform.position = new Vector2(button.transform.position.x + tooltipXOffset * gm.screenWidthScale, button.transform.position.y + tooltipYOffset * gm.screenHeightScale);
             unitDetails.text = details;
-            unitCost.text = string.Format("{0} {1}", cost, GetText("scrapText"));
+            unitCost.text = string.Format("{0} {1}", cost, Singleton.instance.GetText("scrapText"));
             unitBuildTime.text = string.Format("{0} sec.", buildTime);
             unitDamage.text = damage;
             unitHealth.text = health;
         }
     }
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
 }

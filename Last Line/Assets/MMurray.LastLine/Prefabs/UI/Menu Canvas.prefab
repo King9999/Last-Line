@@ -2959,10 +2959,7 @@ MonoBehaviour:
   ttsButton: {fileID: 5525307659009639053}
   musicButton: {fileID: 2845696062953702927}
   exitGameButton: {fileID: 8820387428954410462}
-  ttsButtonImage: {fileID: 3409251953909665572}
   musicButtonImage: {fileID: 4301870133712272513}
-  ttsSpriteOn: {fileID: 21300000, guid: 78302e7d2643bd67caa65cf302449e6b, type: 3}
-  ttsSpriteOff: {fileID: 21300000, guid: 7388d202ca5d53f02979fe538fc42cb9, type: 3}
   musicSpriteOn: {fileID: 21300000, guid: 80e4a98a5d0099b6a8ef87775459c6ca, type: 3}
   musicSpriteOff: {fileID: 21300000, guid: 83970cf85533a5212ae180c5a0aff142, type: 3}
 --- !u!1 &5727030054156806380
@@ -4854,7 +4851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2610169445423755213
 RectTransform:
   m_ObjectHideFlags: 0

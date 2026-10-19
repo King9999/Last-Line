@@ -62,7 +62,7 @@ namespace MMurray.LastLine
             maxHitPoints += 1;
             hitPoints = maxHitPoints;
             GameManager gm = Singleton.instance.GameManager;
-            gm.DisplayAlertWithDuration(GetText("unitEnhanced"));
+            gm.DisplayAlertWithDuration(Singleton.instance.GetText("unitEnhanced"));
         }
 
         public void SetInvul()
@@ -97,11 +97,11 @@ namespace MMurray.LastLine
             }*/
         }
 
-        string GetText(string key)
+        /*string GetText(string key)
         {
             string value = SharedState.LanguageDefs?[key];
             return value ?? "--missing--";
-        }
+        }*/
 
         //displays unit's coordinates.
         public void OnMouseHover()

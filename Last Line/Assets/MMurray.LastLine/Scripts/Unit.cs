@@ -83,7 +83,7 @@ namespace MMurray.LastLine
         public virtual void ActivateAbility()
         {
             GameManager gm = Singleton.instance.GameManager;
-            gm.DisplayAlertWithDuration(GetText("noUnitAbility"));
+            gm.DisplayAlertWithDuration(Singleton.instance.GetText("noUnitAbility"));
         }
 
         //fire unit's unique weapon if they have one.
@@ -121,11 +121,11 @@ namespace MMurray.LastLine
             laser.GetComponent<SpriteRenderer>().sortingOrder = 0;
         }
 
-        string GetText(string key)
+        /*string GetText(string key)
         {
             string value = SharedState.LanguageDefs?[key];
             return value ?? "--missing--";
-        }
+        }*/
 
         public void ReduceHitPoints(int amount)
         {

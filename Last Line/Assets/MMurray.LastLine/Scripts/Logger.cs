@@ -9,8 +9,8 @@ using UnityEngine;
 /* This class is only used to test things while in the Unity Editor. This code should not be included in the release build. */
 public static class Logger
 {
-     public static int playerUnitId = 0; 
-     private static int enemyUnitId = 0;     //used to identify units more easily.
+     //public static int playerUnitId = 0; 
+     //private static int enemyUnitId = 0;     //used to identify units more easily.
    [Conditional("UNITY_EDITOR")]
    public static void DebugLog(string logStr)
    {
@@ -29,7 +29,7 @@ public static class Logger
           UnityEngine.Debug.LogWarning(logStr);
      }
 
-   [Conditional("UNITY_EDITOR")]
+   /*[Conditional("UNITY_EDITOR")]
    public static void AddPlayerId(String unitName)
      {
           unitName += playerUnitId.ToString();
@@ -41,5 +41,5 @@ public static class Logger
    { 
           unitName += enemyUnitId.ToString();
           enemyUnitId++; 
-   }
+   }*/
 }

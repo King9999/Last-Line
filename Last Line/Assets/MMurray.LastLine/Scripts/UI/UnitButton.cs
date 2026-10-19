@@ -6,6 +6,7 @@ using MMurray.LastLine;
 
 public class UnitButton : MonoBehaviour
 {
+    Singleton s = Singleton.instance;
     public enum UnitType
     {
         StraightShooter = 2, VerticalShooter, TrackingBeam, Bomb    //values must match values in Game Manager's enum
@@ -37,7 +38,7 @@ public class UnitButton : MonoBehaviour
         string health = (data.hitPoints < 100) ? data.hitPoints.ToString() : "\u221e"; //\u221e is ascii code for infinity
 
         //menu.tooltip.gameObject.SetActive(true);    
-        menu.tooltip.DisplayUnitTooltip(true, this, GetText(key), data.unitCost.ToString(), data.unitBuildTime.ToString(),
+        menu.tooltip.DisplayUnitTooltip(true, this, s.GetText(key), data.unitCost.ToString(), data.unitBuildTime.ToString(),
             data.weaponDamage.ToString(), health);
     }
 
@@ -92,7 +93,7 @@ public class UnitButton : MonoBehaviour
         {
             if (data.unitCost > gm.money)
             {
-                gm.DisplayAlertWithDuration(GetText("notEnoughMoney"));
+                gm.DisplayAlertWithDuration(s.GetText("notEnoughMoney"));
                 gm.playerUnitType = GameManager.PlayerUnitType.NoUnitSelected; //prevents an issue where player could still build unit anyway
             }
             else
@@ -103,9 +104,9 @@ public class UnitButton : MonoBehaviour
         //gm.alertText.text = "Select X value";
     }
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
 }

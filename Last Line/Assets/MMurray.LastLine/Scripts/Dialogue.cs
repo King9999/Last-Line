@@ -35,6 +35,7 @@ public class Dialogue : MonoBehaviour
     void Start()
     {
         canAdvanceDialogue = false;
+        dialogueRead = true;
         currentKey = 0;
         //arrows = new List<ArrowGuide>();
         promptTimer = 1.2f;

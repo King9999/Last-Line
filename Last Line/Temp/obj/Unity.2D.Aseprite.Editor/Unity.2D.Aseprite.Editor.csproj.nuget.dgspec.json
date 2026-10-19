@@ -1,0 +1,665 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Aseprite.Editor.csproj": {}
+  },
+  "projects": {
+    "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Aseprite.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Aseprite.Common.csproj",
+        "projectName": "Unity.2D.Aseprite.Common",
+        "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Aseprite.Common.csproj",
+        "packagesPath": "/home/michael/.nuget/packages/",
+        "outputPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Temp/obj/Unity.2D.Aseprite.Common/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/michael/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Sprite.Editor.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Sprite.Editor.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.Burst.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.Burst.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.Mathematics.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.Mathematics.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.TestRunner.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.TestRunner.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.UI.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.UI.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.TestRunner.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.TestRunner.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.112/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Aseprite.Editor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Aseprite.Editor.csproj",
+        "projectName": "Unity.2D.Aseprite.Editor",
+        "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Aseprite.Editor.csproj",
+        "packagesPath": "/home/michael/.nuget/packages/",
+        "outputPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Temp/obj/Unity.2D.Aseprite.Editor/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/michael/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Aseprite.Common.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Aseprite.Common.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Sprite.Editor.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Sprite.Editor.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.Burst.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.Burst.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.InternalAPIEditorBridge.001.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.InternalAPIEditorBridge.001.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.Mathematics.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.Mathematics.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.TestRunner.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.TestRunner.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.UI.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.UI.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.TestRunner.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.TestRunner.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.112/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Sprite.Editor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Sprite.Editor.csproj",
+        "projectName": "Unity.2D.Sprite.Editor",
+        "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Sprite.Editor.csproj",
+        "packagesPath": "/home/michael/.nuget/packages/",
+        "outputPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Temp/obj/Unity.2D.Sprite.Editor/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/michael/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.TestRunner.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.TestRunner.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.UI.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.UI.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.TestRunner.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.TestRunner.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.112/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.Burst.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.Burst.csproj",
+        "projectName": "Unity.Burst",
+        "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.Burst.csproj",
+        "packagesPath": "/home/michael/.nuget/packages/",
+        "outputPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Temp/obj/Unity.Burst/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/michael/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.UI.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.UI.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.112/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.InternalAPIEditorBridge.001.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.InternalAPIEditorBridge.001.csproj",
+        "projectName": "Unity.InternalAPIEditorBridge.001",
+        "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.InternalAPIEditorBridge.001.csproj",
+        "packagesPath": "/home/michael/.nuget/packages/",
+        "outputPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Temp/obj/Unity.InternalAPIEditorBridge.001/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/michael/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Sprite.Editor.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.2D.Sprite.Editor.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.TestRunner.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.TestRunner.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.UI.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.UI.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.TestRunner.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.TestRunner.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.112/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.Mathematics.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.Mathematics.csproj",
+        "projectName": "Unity.Mathematics",
+        "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Unity.Mathematics.csproj",
+        "packagesPath": "/home/michael/.nuget/packages/",
+        "outputPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Temp/obj/Unity.Mathematics/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/michael/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.UI.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.UI.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.112/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.TestRunner.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.TestRunner.csproj",
+        "projectName": "UnityEditor.TestRunner",
+        "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.TestRunner.csproj",
+        "packagesPath": "/home/michael/.nuget/packages/",
+        "outputPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Temp/obj/UnityEditor.TestRunner/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/michael/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.TestRunner.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.TestRunner.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.112/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.UI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.UI.csproj",
+        "projectName": "UnityEditor.UI",
+        "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.UI.csproj",
+        "packagesPath": "/home/michael/.nuget/packages/",
+        "outputPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Temp/obj/UnityEditor.UI/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/michael/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.TestRunner.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEditor.TestRunner.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.TestRunner.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.TestRunner.csproj"
+              },
+              "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj": {
+                "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.112/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.TestRunner.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.TestRunner.csproj",
+        "projectName": "UnityEngine.TestRunner",
+        "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.TestRunner.csproj",
+        "packagesPath": "/home/michael/.nuget/packages/",
+        "outputPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Temp/obj/UnityEngine.TestRunner/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/michael/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.112/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj",
+        "projectName": "UnityEngine.UI",
+        "projectPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/UnityEngine.UI.csproj",
+        "packagesPath": "/home/michael/.nuget/packages/",
+        "outputPath": "/home/michael/_GameProjects/Last-Line-Standalone/Last-Line/Last Line/Temp/obj/UnityEngine.UI/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/michael/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.112/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

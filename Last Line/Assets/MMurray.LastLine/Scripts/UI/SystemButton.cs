@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 /* Contains functionality for the Music, TTS and Exit Game buttons. */
 public class SystemButton : MonoBehaviour
 {
+    Singleton s = Singleton.instance;
     [SerializeField]private string key;
     public enum Options { Music, TTS, ExitGame, Help}
     public Options option;
@@ -33,11 +34,11 @@ public class SystemButton : MonoBehaviour
                     //TODO: button graphics should change to reflect state
                     if (!Singleton.instance.musicEnabled)
                     {
-                        gm.DisplayAlertWithDuration(GetText("musicOff"));
+                        gm.DisplayAlertWithDuration(s.GetText("musicOff"));
                     }
                     else
                     {
-                        gm.DisplayAlertWithDuration(GetText("musicOn"));
+                        gm.DisplayAlertWithDuration(s.GetText("musicOn"));
                     }
 
                     gm.PlayMusic(Singleton.instance.musicEnabled);
@@ -84,11 +85,11 @@ public class SystemButton : MonoBehaviour
                     //TODO: button graphics should change to reflect state
                     if (!Singleton.instance.musicEnabled)
                     {
-                        mm.DisplayAlertWithDuration(GetText("musicOff"));
+                        mm.DisplayAlertWithDuration(s.GetText("musicOff"));
                     }
                     else
                     {
-                        mm.DisplayAlertWithDuration(GetText("musicOn"));
+                        mm.DisplayAlertWithDuration(s.GetText("musicOn"));
                     }
 
                     mm.PlayMusic(Singleton.instance.musicEnabled);
@@ -135,7 +136,7 @@ public class SystemButton : MonoBehaviour
             if (menu.systemTooltip.gameObject.activeSelf)
                 return;
 
-            menu.systemTooltip.ShowTooltip(true, GetText(key), this);
+            menu.systemTooltip.ShowTooltip(true, s.GetText(key), this);
         }
         else
         {
@@ -143,7 +144,7 @@ public class SystemButton : MonoBehaviour
             if (menu.systemTooltip.gameObject.activeSelf)
                 return;
 
-            menu.systemTooltip.ShowTooltip(true, GetText(key), this);
+            menu.systemTooltip.ShowTooltip(true, s.GetText(key), this);
         }
     }
 
@@ -170,7 +171,7 @@ public class SystemButton : MonoBehaviour
             if (menu.inputHelpTooltip.gameObject.activeSelf)
                 return;
 
-            menu.inputHelpTooltip.ShowTooltip(true, GetText(key), this);
+            menu.inputHelpTooltip.ShowTooltip(true, s.GetText(key), this);
         }
         else
         {
@@ -178,7 +179,7 @@ public class SystemButton : MonoBehaviour
             if (mm.inputHelpTooltip.gameObject.activeSelf)
                 return;
 
-            mm.inputHelpTooltip.ShowTooltip(true, GetText(key), this);
+            mm.inputHelpTooltip.ShowTooltip(true, s.GetText(key), this);
         }
     }
 
@@ -196,9 +197,9 @@ public class SystemButton : MonoBehaviour
         }
     }
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
 }

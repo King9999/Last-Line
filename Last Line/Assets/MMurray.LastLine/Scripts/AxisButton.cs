@@ -9,6 +9,7 @@ using System;
 it holds is passed on elsewhere to create an ordered pair. */
 public class AxisButton : MonoBehaviour
 {
+    Singleton s = Singleton.instance;
     [SerializeField]private int value;
     public enum AxisValue {X_AXIS, Y_AXIS, ORIGIN}
     /// <summary>
@@ -42,7 +43,7 @@ public class AxisButton : MonoBehaviour
                         {
                             gm.enteringValueX = true;       //always start with X
                             gm.playerCoordinates.x = value;
-                            gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
+                            gm.xCoordinateText.text = s.GetText("xCoordinateSelected") + value;
 
                             //change state
                             gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
@@ -63,7 +64,7 @@ public class AxisButton : MonoBehaviour
                     {
                         gm.enteringValueX = true;       //always start with X
                         gm.playerCoordinates.x = value;
-                        gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
+                        gm.xCoordinateText.text = s.GetText("xCoordinateSelected") + value;
 
                         //change state
                         gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
@@ -86,7 +87,7 @@ public class AxisButton : MonoBehaviour
                 {
                     mm.enteringValueX = true;       //always start with X
                     mm.playerCoordinates.x = value;
-                    mm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
+                    mm.xCoordinateText.text = s.GetText("xCoordinateSelected") + value;
 
                     //change state
                     mm.SetGameState(mm.gameState = MinigameManager.GameState.UnitSelectY);
@@ -119,7 +120,7 @@ public class AxisButton : MonoBehaviour
                             //if player picked incorrect value, we don't continue.
                             if (value != 3)
                                 return;
-                            gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
+                            gm.xCoordinateText.text = s.GetText("xCoordinateSelected") + value;
                             gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectY);
                             break;
                         
@@ -127,7 +128,7 @@ public class AxisButton : MonoBehaviour
                             //if player picked incorrect value, we don't continue.
                             if (value != 5)
                                 return;
-                            gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
+                            gm.xCoordinateText.text = s.GetText("xCoordinateSelected") + value;
                             gm.SetGameState(gm.tutorialState = GameManager.TutorialState.UnitSelectSecondUnitY);
                             break;
                         
@@ -135,7 +136,7 @@ public class AxisButton : MonoBehaviour
                             //if player picked incorrect value, we don't continue.
                             if (value != 5)
                                 return;
-                            gm.xCoordinateText.text = GetText("xCoordinateSelected") + value;
+                            gm.xCoordinateText.text = s.GetText("xCoordinateSelected") + value;
                             gm.SetGameState(gm.tutorialState = GameManager.TutorialState.ActivateAbilitySelectY);
                             break;
                         
@@ -148,7 +149,7 @@ public class AxisButton : MonoBehaviour
                 {
                     //gm.playerCoordinates.x = value;
                     //gm.enteringValueX = true;
-                    gm.xCoordinateText.text = GetText("xCoordinateSelected") + " " + value;
+                    gm.xCoordinateText.text = s.GetText("xCoordinateSelected") + " " + value;
                     gm.SetGameState(gm.gameState = GameManager.GameState.UnitSelectY);
                 }
                 Logger.DebugLogFormat("player X: {0}", gm.playerCoordinates.x);
@@ -157,7 +158,7 @@ public class AxisButton : MonoBehaviour
             {
                 mm.playerCoordinates.x = value;
                 mm.enteringValueX = true;
-                mm.xCoordinateText.text = GetText("xCoordinateSelected") + " " + value;
+                mm.xCoordinateText.text = s.GetText("xCoordinateSelected") + " " + value;
                 mm.SetGameState(mm.gameState = MinigameManager.GameState.UnitSelectY);
             }
         }
@@ -168,7 +169,7 @@ public class AxisButton : MonoBehaviour
                 //cannot proceed if player is trying to enter a Y value before X
                 if (!gm.enteringValueX)
                 {
-                    gm.DisplayAlertWithDuration(GetText("cannotEnterYBeforeX"));
+                    gm.DisplayAlertWithDuration(s.GetText("cannotEnterYBeforeX"));
                     Logger.DebugLogWarning("Cannot enter Y value before X!");
                     return;
                 }
@@ -222,7 +223,7 @@ public class AxisButton : MonoBehaviour
             {
                 if (!mm.enteringValueX)
                 {
-                    mm.DisplayAlertWithDuration(GetText("cannotEnterYBeforeX"));
+                    mm.DisplayAlertWithDuration(s.GetText("cannotEnterYBeforeX"));
                     Logger.DebugLogWarning("Cannot enter Y value before X!");
                     return;
                 }
@@ -323,9 +324,9 @@ public class AxisButton : MonoBehaviour
         //Logger.DebugLogFormat("player Coordinates {0}", gm.playerCoordinates);
     }
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
 }
