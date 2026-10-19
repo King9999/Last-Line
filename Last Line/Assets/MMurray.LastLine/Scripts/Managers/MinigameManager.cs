@@ -19,6 +19,7 @@ The minigame works like this:
 */
 public class MinigameManager : MonoBehaviour
 {
+    Singleton s = Singleton.instance;       //used mainly to call GetText
     public enum GameState
     {
         Normal,               //when game state is normal the game is running. Otherwise the game is paused.
@@ -121,7 +122,7 @@ public class MinigameManager : MonoBehaviour
         xCoordinateText.text = "";
         coordinatesText.text = "";
         //exitGameLabel.text = GetText("exitButtonText");
-        coordinatesLabel.text = GetText("coordinatesLabel");
+        coordinatesLabel.text = s.GetText("coordinatesLabel");
         enteringValueX = false;
         enteringValueY = false;
         targetCursor.gameObject.SetActive(false);
@@ -154,7 +155,7 @@ public class MinigameManager : MonoBehaviour
             if (gameState == GameState.UnitSelectX || gameState == GameState.UnitSelectY)
             {
 
-                DisplayAlertWithDuration(GetText("cancelAction"));
+                DisplayAlertWithDuration(s.GetText("cancelAction"));
                 SetGameState(gameState = GameState.Normal);
             }
         }
@@ -223,7 +224,7 @@ public class MinigameManager : MonoBehaviour
                 crystal.crystalFound = true;
                 minigameLevelData[level - 1].crystals[i] = crystal;
                 AddMoney(crystal.crystalValue, point.transform.position);
-                DisplayAlertWithDuration(GetText("crystalFound"));
+                DisplayAlertWithDuration(s.GetText("crystalFound"));
                 
                 //check correct box
                 MinigameMenu menu = Singleton.instance.MinigameMenu;
@@ -255,7 +256,7 @@ public class MinigameManager : MonoBehaviour
 
         if (!crystalFound)
         {
-            DisplayAlertWithDuration(GetText("nothingAtPoint"));
+            DisplayAlertWithDuration(s.GetText("nothingAtPoint"));
         }
 
         //once 3 crystals are found, minigame ends.
@@ -392,7 +393,7 @@ public class MinigameManager : MonoBehaviour
             case GameState.UnitSelectX:
                 //disable Y values, then disable X values.
                 //TODO: Have dialogue during tutorial to explain how to set units
-                DisplayAlert(GetText("unitSelect_x"));
+                DisplayAlert(s.GetText("unitSelect_x"));
                 coordinatesInputField.text = "";
                 //coordinatesInputContainer.gameObject.SetActive(false);
                 if (!points[0].pointImage.enabled)
@@ -408,7 +409,7 @@ public class MinigameManager : MonoBehaviour
             case GameState.UnitSelectY:
                 //disable Y values, then disable X values.
                 //TODO: in tutorial, make mention of origin and how it might be used
-                DisplayAlert(GetText("unitSelect_y"));
+                DisplayAlert(s.GetText("unitSelect_y"));
                 coordinatesInputField.text = "";
                 //coordinatesInputContainer.gameObject.SetActive(false);
                 //show points
@@ -576,11 +577,11 @@ public class MinigameManager : MonoBehaviour
         alertCoroutine = StartCoroutine(Alert(msg, duration));
     }
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
         
 #region Coroutines
     //coordinates animate upwards for a duration

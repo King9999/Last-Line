@@ -34,7 +34,7 @@ namespace MMurray.LastLine
                 data.minigame_money = s.minigameMoney;
             }
 
-            data.tts_enabled = s.ttsEnabled;
+            //data.tts_enabled = s.ttsEnabled;
             data.music_enabled = s.musicEnabled;
 
             //dialogue state setup
@@ -66,7 +66,7 @@ namespace MMurray.LastLine
                 s.inMinigame = data.in_minigame;
             }
             s.musicEnabled = data.music_enabled;
-            s.ttsEnabled = data.tts_enabled;
+            //s.ttsEnabled = data.tts_enabled;
         }
 
         //This LoL code is used to check for an existing save state when the game runs.

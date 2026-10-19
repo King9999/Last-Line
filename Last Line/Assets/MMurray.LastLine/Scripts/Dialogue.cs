@@ -10,6 +10,7 @@ using UnityEngine.Rendering;
 /* Consists of a window and text. Dialogue appears at certain points. Uses keys to call dialogue. */
 public class Dialogue : MonoBehaviour
 {
+    Singleton s = Singleton.instance;
     public int dialogueId;            //matches the corresponding dialogue ID in a conditional trigger. See Dialogue Manager script.
     public TextMeshProUGUI dialogueText;
     [SerializeField]private TextMeshProUGUI promptText;
@@ -50,7 +51,7 @@ public class Dialogue : MonoBehaviour
                 {
                     //show remaining dialogue
                     StopCoroutine(animateTextCoroutine);
-                    dialogueText.text = GetText(dialogueKeyList[currentKey].key);
+                    dialogueText.text = s.GetText(dialogueKeyList[currentKey].key);
                     StartCoroutine(ShowPrompt());
                 }           
             }
@@ -79,7 +80,7 @@ public class Dialogue : MonoBehaviour
             {
                 //show remaining dialogue
                 StopCoroutine(animateTextCoroutine);
-                dialogueText.text = GetText(dialogueKeyList[currentKey].key);
+                dialogueText.text = s.GetText(dialogueKeyList[currentKey].key);
                 StartCoroutine(ShowPrompt());
             }           
         }
@@ -91,11 +92,11 @@ public class Dialogue : MonoBehaviour
     }
 
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
 
     public void ShowDialogue(DialogueKeyList keyList)
     {
@@ -108,17 +109,17 @@ public class Dialogue : MonoBehaviour
         //if (!gm.inTutorial && !gm.gameStarted /*&& gm.readyButton.gameObject.activeSelf*/)
             //gm.readyButton.gameObject.SetActive(false);
 
-        dialogueText.text = GetText(keyList.key);
+        dialogueText.text = s.GetText(keyList.key);
 
 
         Logger.DebugLogFormat("Dialogue text key is {0}", keyList.key);
-        Logger.DebugLogFormat("TTS State: {0}", Singleton.instance.ttsEnabled);
+        //Logger.DebugLogFormat("TTS State: {0}", Singleton.instance.ttsEnabled);
 
-        if (Singleton.instance.ttsEnabled)
+        /*if (Singleton.instance.ttsEnabled)
         {
             LOLSDK.Instance.SpeakText(keyList.key);
             Logger.DebugLog("TTS is playing");
-        }
+        }*/
 
         //check if arrow guides need to be displayed.
         if (keyList.showArrowGuides == true)
@@ -201,7 +202,7 @@ public class Dialogue : MonoBehaviour
     //TODO: NEED TO ADD CODE TO ADVANCE DIALOGUE IF THERE'S MORE TO SHOW!
     IEnumerator ShowPrompt()
     {
-        promptText.text = GetText("dialoguePrompt");
+        promptText.text = s.GetText("dialoguePrompt");
         canAdvanceDialogue = true;
         yield return null;
     }
@@ -263,7 +264,7 @@ public class Dialogue : MonoBehaviour
                             break;
                         
                         case GameManager.TutorialState.CrystalIntro:
-                            gm.DisplayAlert(GetText("pickupCrystalTutorial"));
+                            gm.DisplayAlert(s.GetText("pickupCrystalTutorial"));
                             gm.coordinatesInputContainer.gameObject.SetActive(true);
                             break;
 
@@ -287,7 +288,7 @@ public class Dialogue : MonoBehaviour
                     switch(gm.gameState)
                     {
                         case GameManager.GameState.DialogueStartOfLevel:
-                            gm.DisplayAlertWithDuration(GetText("enemyPreparing"), 10);
+                            gm.DisplayAlertWithDuration(s.GetText("enemyPreparing"), 10);
                             gm.SetGameState(gm.gameState = GameManager.GameState.EnemyPreparing);
                             break;
                         
@@ -314,7 +315,7 @@ public class Dialogue : MonoBehaviour
                 switch(mm.gameState)
                 {
                     case MinigameManager.GameState.DialogueStartOfLevel:
-                        mm.DisplayAlertWithDuration(GetText("beginMiningForCrystals"), 10);
+                        mm.DisplayAlertWithDuration(s.GetText("beginMiningForCrystals"), 10);
                         mm.coordinatesInputContainer.gameObject.SetActive(true);
                         mm.SetGameState(mm.gameState = MinigameManager.GameState.Normal);
                         break;

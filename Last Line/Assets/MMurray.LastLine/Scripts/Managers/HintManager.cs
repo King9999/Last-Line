@@ -38,13 +38,13 @@ public class HintManager : MonoBehaviour
             }
         }
 
-        return GetText(hints[i].hintKey);
+        return Singleton.instance.GetText(hints[i].hintKey);
        
     }
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
 }

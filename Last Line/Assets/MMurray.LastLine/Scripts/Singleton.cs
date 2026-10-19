@@ -41,7 +41,7 @@ namespace MMurray.LastLine
         public bool saveStateFound;
 
         //TTS and music
-        public bool ttsEnabled, musicEnabled;
+        public bool /*ttsEnabled,*/ musicEnabled;
 
         //minigame stuff
         public bool inMinigame;         //when true, some buttons have different behaviour than normal.
@@ -72,11 +72,15 @@ namespace MMurray.LastLine
             Application.runInBackground = false;
 
             //PlayerPrefs.DeleteAll();
-            ttsEnabled = true;      //tts is on by default
+            //ttsEnabled = true;      //tts is on by default
             musicEnabled = true;
 
 
             DontDestroyOnLoad(instance);
+            
+            //call title manager
+            ScreenFade sf = ScreenFade;
+            sf.ChangeSceneFadeOut("Title");
         }
 
         /*public string GetText(string key)
@@ -97,7 +101,7 @@ namespace MMurray.LastLine
         }
 
         //changes parameters back to default when starting new game.
-        public void ResetAll()
+        /*public void ResetAll()
         {
             currentLevel = 0;
             inMinigame = false;
@@ -107,6 +111,6 @@ namespace MMurray.LastLine
             musicEnabled = true;
             gameData = new GameData();
             saveState = new SaveState();
-        }
+        }*/
     }
 }

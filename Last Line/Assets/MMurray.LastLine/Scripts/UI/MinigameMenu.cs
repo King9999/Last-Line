@@ -139,7 +139,7 @@ public class MinigameMenu : MonoBehaviour
     public void UpdateSystemButtonSprites()
     {
         Singleton s = Singleton.instance;
-        ttsButtonImage.sprite = s.ttsEnabled ? ttsSpriteOn : ttsSpriteOff;
+        //ttsButtonImage.sprite = s.ttsEnabled ? ttsSpriteOn : ttsSpriteOff;
         musicButtonImage.sprite = s.musicEnabled ? musicSpriteOn : musicSpriteOff;
     }
 }

@@ -33,15 +33,16 @@ public class CreditsManager : MonoBehaviour
 
     void UpdateLanguage()
     {
-        backButtonText.text = GetText("backButton");
-        mainCreditText.text = GetText("credit_main");
-        gameDesignText.text = GetText("credit_gameDesign");
-        programmerText.text = GetText("credit_program");
-        artText.text = GetText("credit_art");
-        uiText.text = GetText("credit_ui");
-        musicText.text = GetText("credit_music");
-        soundText.text = GetText("credit_sfx");
-        disclaimerText.text = GetText("disclaimer");
+        Singleton s = Singleton.instance;
+        backButtonText.text = s.GetText("backButton");
+        mainCreditText.text = s.GetText("credit_main");
+        gameDesignText.text = s.GetText("credit_gameDesign");
+        programmerText.text = s.GetText("credit_program");
+        artText.text = s.GetText("credit_art");
+        uiText.text = s.GetText("credit_ui");
+        musicText.text = s.GetText("credit_music");
+        soundText.text = s.GetText("credit_sfx");
+        disclaimerText.text = s.GetText("disclaimer");
     }
 
     public void BackButtonClicked()
@@ -53,10 +54,10 @@ public class CreditsManager : MonoBehaviour
         sf.ChangeSceneFadeOut("Title");
     }
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
 
 }

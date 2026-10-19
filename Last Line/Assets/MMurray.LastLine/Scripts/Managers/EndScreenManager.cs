@@ -16,9 +16,10 @@ public class EndScreenManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        exitText.text = GetText("exitButtonText");
-        missionCompleteText.text = GetText("missionComplete");
-        thanksText.text = GetText("thanksForPlaying");
+        Singleton s = Singleton.instance;
+        exitText.text = s.GetText("exitButtonText");
+        missionCompleteText.text = s.GetText("missionComplete");
+        thanksText.text = s.GetText("thanksForPlaying");
 
         //Must call the screen fade since the game begins with a black background on init.
         ScreenFade sf = Singleton.instance.ScreenFade;
@@ -29,12 +30,12 @@ public class EndScreenManager : MonoBehaviour
     public void EndGame()
     {
         //LOLSDK.Instance.SubmitProgress(0, currentLevel, maxLevels);
-        LOLSDK.Instance.CompleteGame();
+        //LOLSDK.Instance.CompleteGame();
     }
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
 }

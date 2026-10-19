@@ -83,7 +83,7 @@ public class TitleManager : MonoBehaviour
         //Singleton.instance.ttsEnabled = true;
         //Singleton.instance.saveStateFound = false;
         //Singleton.instance.currentLevel = 0;
-        Singleton.instance.ResetAll();
+        //Singleton.instance.ResetAll();
         sf.ChangeSceneFadeOut("Game");
         //Singleton.instance.inMinigame = true;
         //Singleton.instance.currentLevel = 6;
@@ -121,13 +121,13 @@ public class TitleManager : MonoBehaviour
         sf.ChangeSceneFadeOut("Credits");
     }
 
-    public void ResetAllSettings()
+    /*public void ResetAllSettings()
     {
         Singleton.instance.musicEnabled = true;
         Singleton.instance.ttsEnabled = true;
         Singleton.instance.saveStateFound = false;
         Singleton.instance.currentLevel = 0;
-    }
+    }*/
 
 
 }

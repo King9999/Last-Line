@@ -32,10 +32,10 @@ public class Menu : MonoBehaviour
     [SerializeField]private Button musicButton;
     [SerializeField]private Button exitGameButton;
     [Header("---System Button Images---")]
-    [SerializeField]Image ttsButtonImage;
+    //[SerializeField]Image ttsButtonImage;
     [SerializeField]Image musicButtonImage;
-    [SerializeField]Sprite ttsSpriteOn; 
-    [SerializeField]Sprite ttsSpriteOff;
+    //[SerializeField]Sprite ttsSpriteOn; 
+    //[SerializeField]Sprite ttsSpriteOff;
     [SerializeField]Sprite musicSpriteOn;
     [SerializeField]Sprite musicSpriteOff;
 
@@ -81,7 +81,7 @@ public class Menu : MonoBehaviour
     public void UpdateSystemButtonSprites()
     {
         Singleton s = Singleton.instance;
-        ttsButtonImage.sprite = s.ttsEnabled ? ttsSpriteOn : ttsSpriteOff;
+        //ttsButtonImage.sprite = s.ttsEnabled ? ttsSpriteOn : ttsSpriteOff;
         musicButtonImage.sprite = s.musicEnabled ? musicSpriteOn : musicSpriteOff;
     }
     /// <summary>

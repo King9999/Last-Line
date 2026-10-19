@@ -13,6 +13,7 @@ using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
+    Singleton s = Singleton.instance;       //used mainly to call GetText
     /// <summary>
     /// Game State
     /// </summary>
@@ -209,9 +210,9 @@ public class GameManager : MonoBehaviour
         alertText.text = "";
         hintText.text = "";
         xCoordinateText.text = "";
-        readyLabel.text = GetText("readyButtonText");
-        exitGameLabel.text = GetText("exitButtonText");
-        coordinatesLabel.text = GetText("coordinatesLabel");
+        readyLabel.text = s.GetText("readyButtonText");
+        exitGameLabel.text = s.GetText("exitButtonText");
+        coordinatesLabel.text = s.GetText("coordinatesLabel");
         //exitButton.gameObject.SetActive(false);     //only appears at end of game.
         targetCursor.gameObject.SetActive(false);
         coordinatesText.text = "";
@@ -222,7 +223,7 @@ public class GameManager : MonoBehaviour
         coordinatesInputField.characterLimit = 2;       //2 values plus 2 brackets and a comma
 
         //menu setup
-        Singleton s = Singleton.instance;
+        //Singleton s = Singleton.instance;
         
 
         //the field must only accept chars 0 to 5 and nothing else.
@@ -404,7 +405,7 @@ public class GameManager : MonoBehaviour
                 //cancel actions and return game state to normal.
                 //StopCoroutine(Alert("", 0));
 
-                DisplayAlertWithDuration(GetText("cancelAction"));
+                DisplayAlertWithDuration(Singleton.instance.GetText("cancelAction"));
                 //if game hasn't started yet, we don't go to normal state.
                 SetGameState(gameState = gameStarted ? GameState.Normal : GameState.EnemyPreparing);
             }
@@ -428,7 +429,7 @@ public class GameManager : MonoBehaviour
             {
                 //deploy unit.
                 am.buildSound.Stop();
-                DisplayAlertWithDuration(GetText("unitDeployed"));
+                DisplayAlertWithDuration(Singleton.instance.GetText("unitDeployed"));
                 //SpeakText("unitDeployed");
                 activePlayerUnits.Add(unit);
                 unit.gameObject.SetActive(true);
@@ -568,7 +569,7 @@ public class GameManager : MonoBehaviour
                 while (!points[i].IsEmpty());
 
                 points[i].crystal = crystal;
-                hintText.text = GetText("crystalLocation") + " " + points[i].pointAxes.ToString("F0");
+                hintText.text = Singleton.instance.GetText("crystalLocation") + " " + points[i].pointAxes.ToString("F0");
                 Logger.DebugLogFormat("Crystal generated at {0}", points[i].pointAxes);
             }
 
@@ -738,7 +739,7 @@ public class GameManager : MonoBehaviour
         /*******SAVE DATA********/
         //This is done here because only the current level is saved and nothing else.
         //The player resumes from the beginning of the level.
-        Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
+        //Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
         currentLevel = level;
         Logger.DebugLogFormat("Level is now {0}", currentLevel);
 
@@ -969,7 +970,7 @@ public class GameManager : MonoBehaviour
             else if (point.crystal != null)
             {
                 //give player money.
-                DisplayAlertWithDuration(GetText("crystalCollected"));
+                DisplayAlertWithDuration(s.GetText("crystalCollected"));
                 AddMoney(crystal.GetMoneyValue(), crystal.transform.position, isCrystal: true);
                 point.crystal = null;
                 crystal.gameObject.SetActive(false);
@@ -988,7 +989,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                DisplayAlertWithDuration(GetText("nothingAtPoint"));
+                DisplayAlertWithDuration(s.GetText("nothingAtPoint"));
             }
         }
         else
@@ -996,7 +997,7 @@ public class GameManager : MonoBehaviour
             if (buildQueue.Count >= buildLimit)
             {
                 //Logger.DebugLog("Build queue full!");
-                DisplayAlertWithDuration(GetText("buildQueueFull"));
+                DisplayAlertWithDuration(s.GetText("buildQueueFull"));
                 SetGameState(gameState = gameStarted ? GameState.Normal : GameState.EnemyPreparing);
                 return;
             }
@@ -1004,7 +1005,7 @@ public class GameManager : MonoBehaviour
             if (!point.IsEmpty() /*point.unit != null || point.crystal != null || point.portal != null*/)
             {
                 //unit is occupying this space or is being built, or a crystal is there.
-                DisplayAlertWithDuration(GetText("spaceOccupied"));
+                DisplayAlertWithDuration(s.GetText("spaceOccupied"));
                 SetGameState(gameState = gameStarted ? GameState.Normal : GameState.EnemyPreparing);
                 return;
             }
@@ -1066,7 +1067,7 @@ public class GameManager : MonoBehaviour
             newUnit.gameObject.SetActive(false);    //stay hidden until finished building.
 
             //add to list
-            DisplayAlertWithDuration(GetText("buildingUnit"));
+            DisplayAlertWithDuration(s.GetText("buildingUnit"));
 
             //spend money
             Menu menu = Singleton.instance.Menu;
@@ -1515,7 +1516,7 @@ public class GameManager : MonoBehaviour
             case GameState.UnitSelectX:
                 //disable Y values, then disable X values.
                 //TODO: Have dialogue during tutorial to explain how to set units
-                DisplayAlert(GetText("unitSelect_x"));
+                DisplayAlert(s.GetText("unitSelect_x"));
                 coordinatesInputField.text = "";
                 //coordinatesInputContainer.gameObject.SetActive(false);
                 if (!points[0].pointImage.enabled)
@@ -1531,7 +1532,7 @@ public class GameManager : MonoBehaviour
             case GameState.UnitSelectY:
                 //disable Y values, then disable X values.
                 //TODO: in tutorial, make mention of origin and how it might be used
-                DisplayAlert(GetText("unitSelect_y"));
+                DisplayAlert(s.GetText("unitSelect_y"));
                 coordinatesInputField.text = "";
                 //coordinatesInputContainer.gameObject.SetActive(false);
                 //show points
@@ -1685,7 +1686,7 @@ public class GameManager : MonoBehaviour
             
             case GameState.GameCompleted:
                 //go to end screen
-                Singleton.instance.saveState.WriteState(Singleton.instance.gameData);   //save progress
+                //Singleton.instance.saveState.WriteState(Singleton.instance.gameData);   //save progress
                 ScreenFade sf = Singleton.instance.ScreenFade;
                 sf.ChangeSceneFadeOut("End Screen");
                 break;
@@ -1739,7 +1740,7 @@ public class GameManager : MonoBehaviour
 
             case TutorialState.UnitSelectX:
                 //disable Y values, then disable X values.
-                DisplayAlert(GetText("unitSelect_x"));
+                DisplayAlert(s.GetText("unitSelect_x"));
                 am.HideGuideArrows();
                 axisContainerY.gameObject.SetActive(false);
 
@@ -1767,7 +1768,7 @@ public class GameManager : MonoBehaviour
             case TutorialState.UnitSelectY:
                 //disable Y values, then disable X values.
                 //TODO: in tutorial, make mention of origin and how it might be used
-                DisplayAlert(GetText("unitSelect_y"));
+                DisplayAlert(s.GetText("unitSelect_y"));
                 axisContainerY.gameObject.SetActive(true);
                 axisContainerX.gameObject.SetActive(false);
                 if (inTutorial)
@@ -1979,13 +1980,13 @@ public class GameManager : MonoBehaviour
     }
 #endregion
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
 
-    void SpeakText(string key)
+    /*void SpeakText(string key)
     {
         Logger.DebugLogFormat("TTS Enabled: {0}", Singleton.instance.ttsEnabled);
         if (Singleton.instance.ttsEnabled)
@@ -1993,7 +1994,7 @@ public class GameManager : MonoBehaviour
             LOLSDK.Instance.SpeakText(key);
             Logger.DebugLog("TTS is playing");
         }
-    }
+    }*/
 
     /*checks coordinates input field to ensure the characters entered are valid.
     Only characters in specific positions are checked because it's known that the other

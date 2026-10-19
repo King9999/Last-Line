@@ -52,7 +52,7 @@ public class DialogueManager : MonoBehaviour
         Singleton.instance.DialogueManager = this;
 
         /***dialogue state check***/
-        LOLSDK.Instance.LoadState<GameData>(state =>
+        /*LOLSDK.Instance.LoadState<GameData>(state =>
         {
             if (state != null)
             {
@@ -64,7 +64,7 @@ public class DialogueManager : MonoBehaviour
                 }
             }
         
-        });
+        });*/
 
         //disable all dialogues and triggers until ready for them
         foreach(Dialogue dialogue in dialogueList)

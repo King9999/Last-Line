@@ -47,7 +47,7 @@ public class SystemButton : MonoBehaviour
                     Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
                     break;
 
-                case Options.TTS:
+                /*case Options.TTS:
                     Singleton.instance.ttsEnabled = !Singleton.instance.ttsEnabled;
                     Logger.DebugLogFormat("TTS enabled: {0}", Singleton.instance.ttsEnabled);
                     if (!Singleton.instance.ttsEnabled)
@@ -61,7 +61,7 @@ public class SystemButton : MonoBehaviour
                     //update button sprites
                     menu.UpdateSystemButtonSprites();
                     Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
-                    break;
+                    break;*/
 
                 case Options.ExitGame:
                     gm.PlayMusic(false);
@@ -98,7 +98,7 @@ public class SystemButton : MonoBehaviour
                     Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
                     break;
 
-                case Options.TTS:
+                /*case Options.TTS:
                     Singleton.instance.ttsEnabled = !Singleton.instance.ttsEnabled;
                     Logger.DebugLogFormat("TTS enabled: {0}", Singleton.instance.ttsEnabled);
                     if (!Singleton.instance.ttsEnabled)
@@ -112,7 +112,7 @@ public class SystemButton : MonoBehaviour
                     //update button sprites
                     menu.UpdateSystemButtonSprites();
                     Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
-                    break;
+                    break;*/
 
                 case Options.ExitGame:
                     mm.PlayMusic(false);
