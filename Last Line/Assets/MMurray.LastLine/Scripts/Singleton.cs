@@ -4,6 +4,7 @@ using UnityEngine;
 using MMurray.LastLine;
 using LoLSDK;
 using MMurray.GenericCode;
+using SimpleJSON;
 
 //we want to disable debug logs when not in unity editor to prevent potential performance issues.
 //#if !(UNITY_EDITOR || DEBUG)
@@ -29,6 +30,10 @@ namespace MMurray.LastLine
         public MinigameMenu MinigameMenu {get; set;}
         public ArrowGuideManager ArrowGuideManager {get; set;}
         public HintManager HintManager {get; set;}
+        JSONNode jsonString;  //used to parse text from dialogue JSON
+
+        [Header("---Dialogue and UI text file---")]
+        public TextAsset dialogueFile;      //language JSON from LoL re-purposed for standalone
 
         //save state data
         public GameData gameData;
@@ -74,10 +79,21 @@ namespace MMurray.LastLine
             DontDestroyOnLoad(instance);
         }
 
-        public string GetText(string key)
+        /*public string GetText(string key)
         {
             string value = SharedState.LanguageDefs?[key];
             return value ?? "--missing--";
+        }*/
+
+        public string GetText(string key)
+        {
+            if (jsonString == null)
+            {
+                jsonString = JSON.Parse(dialogueFile.text);
+            }
+
+            string text = jsonString["dialogue"][key].Value;
+            return text ?? "--Missing--";
         }
 
         //changes parameters back to default when starting new game.

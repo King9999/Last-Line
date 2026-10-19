@@ -26,13 +26,14 @@ public class TitleManager : MonoBehaviour
         sf.FadeIn();
 
         //button text setup
-        startButtonText.text = GetText("startButton");
-        continueButtonText.text = GetText("continueButton");
-        creditsButtonText.text = GetText("creditsButton");
-        version.text = GetText("versionNumber");
+        Singleton s = Singleton.instance;
+        startButtonText.text = s.GetText("startButton");
+        continueButtonText.text = s.GetText("continueButton");
+        creditsButtonText.text = s.GetText("creditsButton");
+        version.text = s.GetText("versionNumber");
 
         /***save state check***/
-        LOLSDK.Instance.LoadState<GameData>(state =>
+        /*LOLSDK.Instance.LoadState<GameData>(state =>
         {
             if (state != null)
             {
@@ -57,15 +58,15 @@ public class TitleManager : MonoBehaviour
                 Logger.DebugLogWarning("Save state not found");
             }
            
-        });
+        });*/
     }
 
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
 
     public void StartButtonClicked()
     {
