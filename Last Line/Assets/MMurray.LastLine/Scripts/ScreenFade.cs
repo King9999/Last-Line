@@ -128,7 +128,7 @@ namespace MMurray.GenericCode
                 MinigameManager mm = Singleton.instance.MinigameManager;
                 Singleton.instance.inMinigame = true;
                 Singleton.instance.currentLevel = level;
-                Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
+                //Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
                 SceneManager.LoadScene("MiniGame");
             }
             yield return LoadLevelFadeFromBlack();

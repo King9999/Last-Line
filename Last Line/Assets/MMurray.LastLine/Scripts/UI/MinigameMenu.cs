@@ -9,6 +9,7 @@ using System;
 /* modified version of the menu script. */
 public class MinigameMenu : MonoBehaviour
 {
+    Singleton s = Singleton.instance;
     public SystemTooltip systemTooltip;
     [SerializeField]private TextMeshProUGUI crystalCoordinatesLabel;
     public List<CheckBox> crystalLocationCheckboxes;
@@ -51,8 +52,8 @@ public class MinigameMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moneyLabel.text = GetText("moneyLabel");
-        crystalCoordinatesLabel.text = GetText("crystalCoordinates");
+        moneyLabel.text = s.GetText("moneyLabel");
+        crystalCoordinatesLabel.text = s.GetText("crystalCoordinates");
         foreach(CheckBox toggle in crystalLocationCheckboxes)
             toggle.checkBoxImage.sprite = checkmarkSpriteOff;
         
@@ -81,20 +82,20 @@ public class MinigameMenu : MonoBehaviour
         
 
             //update text
-            crystalLocationCheckboxes[0].checkBoxText.text = GetText("miningLevel1_coordinates1");
-            crystalLocationCheckboxes[1].checkBoxText.text = GetText("miningLevel1_coordinates2");
-            crystalLocationCheckboxes[2].checkBoxText.text = GetText("miningLevel1_coordinates3");
-            crystalLocationCheckboxes[3].checkBoxText.text = GetText("miningLevel1_coordinates4");
-            crystalLocationCheckboxes[4].checkBoxText.text = GetText("miningLevel1_coordinates5");
+            crystalLocationCheckboxes[0].checkBoxText.text = s.GetText("miningLevel1_coordinates1");
+            crystalLocationCheckboxes[1].checkBoxText.text = s.GetText("miningLevel1_coordinates2");
+            crystalLocationCheckboxes[2].checkBoxText.text = s.GetText("miningLevel1_coordinates3");
+            crystalLocationCheckboxes[3].checkBoxText.text = s.GetText("miningLevel1_coordinates4");
+            crystalLocationCheckboxes[4].checkBoxText.text = s.GetText("miningLevel1_coordinates5");
             
         }
         else
         {
-            crystalLocationCheckboxes[0].checkBoxText.text = GetText("miningLevel2_coordinates1");
-            crystalLocationCheckboxes[1].checkBoxText.text = GetText("miningLevel2_coordinates2");
-            crystalLocationCheckboxes[2].checkBoxText.text = GetText("miningLevel2_coordinates3");
-            crystalLocationCheckboxes[3].checkBoxText.text = GetText("miningLevel2_coordinates4");
-            crystalLocationCheckboxes[4].checkBoxText.text = GetText("miningLevel2_coordinates5");
+            crystalLocationCheckboxes[0].checkBoxText.text = s.GetText("miningLevel2_coordinates1");
+            crystalLocationCheckboxes[1].checkBoxText.text = s.GetText("miningLevel2_coordinates2");
+            crystalLocationCheckboxes[2].checkBoxText.text = s.GetText("miningLevel2_coordinates3");
+            crystalLocationCheckboxes[3].checkBoxText.text = s.GetText("miningLevel2_coordinates4");
+            crystalLocationCheckboxes[4].checkBoxText.text = s.GetText("miningLevel2_coordinates5");
         }
 
         //get vectors. This is used to search for correct box to tick.
@@ -121,7 +122,7 @@ public class MinigameMenu : MonoBehaviour
         if (level < 1 || level > 2)
             return;
         
-        currentLevel.text = string.Format("{0} {1}", GetText("miningLevel"), level);
+        currentLevel.text = string.Format("{0} {1}", s.GetText("miningLevel"), level);
     }
 
     public void UpdateMoneyText()
@@ -130,11 +131,11 @@ public class MinigameMenu : MonoBehaviour
         moneyValue.text = string.Format("{0:000}", mm.money);
     }
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
 
     public void UpdateSystemButtonSprites()
     {

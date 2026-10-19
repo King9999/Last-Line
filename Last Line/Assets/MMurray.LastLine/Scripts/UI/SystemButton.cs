@@ -4,7 +4,7 @@ using UnityEngine;
 using MMurray.LastLine;
 using MMurray.GenericCode;
 using UnityEngine.SceneManagement;
-using LoLSDK;
+//using LoLSDK;
 
 /* Contains functionality for the Music, TTS and Exit Game buttons. */
 public class SystemButton : MonoBehaviour
@@ -44,7 +44,7 @@ public class SystemButton : MonoBehaviour
 
                     //update button sprites
                     menu.UpdateSystemButtonSprites();
-                    Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
+                    //Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
                     break;
 
                 /*case Options.TTS:
@@ -66,7 +66,7 @@ public class SystemButton : MonoBehaviour
                 case Options.ExitGame:
                     gm.PlayMusic(false);
                     //save current state before changing screen
-                    Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
+                    //Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
                     ScreenFade sf = Singleton.instance.ScreenFade;
                     sf.ChangeSceneFadeOut("Title");
                     break;
@@ -95,7 +95,7 @@ public class SystemButton : MonoBehaviour
 
                     //update button sprites
                     menu.UpdateSystemButtonSprites();
-                    Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
+                    //Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
                     break;
 
                 /*case Options.TTS:
@@ -117,7 +117,7 @@ public class SystemButton : MonoBehaviour
                 case Options.ExitGame:
                     mm.PlayMusic(false);
                     //save current state before changing screen
-                    Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
+                    //Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
                     ScreenFade sf = Singleton.instance.ScreenFade;
                     sf.ChangeSceneFadeOut("Title");
                     break;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using MMurray.LastLine;
-using LoLSDK;
+//using LoLSDK;
 using System;
 using UnityEngine.Rendering;
 
@@ -219,7 +219,7 @@ public class Dialogue : MonoBehaviour
             Singleton.instance.DialogueManager.dialogueOpen = false;
             currentKey = 0;
             dialogueRead = true;
-            Singleton.instance.saveState.WriteState(Singleton.instance.gameData);   //save dialogue read state
+            //Singleton.instance.saveState.WriteState(Singleton.instance.gameData);   //save dialogue read state
             gameObject.SetActive(false);
             Logger.DebugLog("Closing Window");
 

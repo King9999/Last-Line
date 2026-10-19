@@ -9,6 +9,7 @@ using UnityEngine.UI;
 /* The menu for the main gameplay. Contains buttons for selecting units and game options. */
 public class Menu : MonoBehaviour
 {
+    Singleton s = Singleton.instance;
     public Tooltip tooltip;
     public SystemTooltip systemTooltip, inputHelpTooltip;   //input help is for the coordinates input field.
     [SerializeField]private TextMeshProUGUI unitLabel, systemLabel, buildQueueLabel /*currentLevel*/;
@@ -54,10 +55,10 @@ public class Menu : MonoBehaviour
 
     void Start()
     {
-        unitLabel.text = GetText("unitLabel");
-        moneyLabel.text = GetText("moneyLabel");
-        systemLabel.text = GetText("systemLabel");
-        buildQueueLabel.text = GetText("buildQueueLabel");
+        unitLabel.text = s.GetText("unitLabel");
+        moneyLabel.text = s.GetText("moneyLabel");
+        systemLabel.text = s.GetText("systemLabel");
+        buildQueueLabel.text = s.GetText("buildQueueLabel");
         //UpdateMoneyText();
         UpdateSystemButtonSprites();    //this is called to update sprites upon loading game state.
     }
@@ -75,7 +76,7 @@ public class Menu : MonoBehaviour
             //return;
         
         //currentLevel.text = level == 0 ? GetText("tutorialLevel") : string.Format("{0} {1}", GetText("currentLevel"), gm.currentLevel);
-        currentLevel.text = GetText(key);
+        currentLevel.text = s.GetText(key);
     }
 
     public void UpdateSystemButtonSprites()
@@ -108,10 +109,10 @@ public class Menu : MonoBehaviour
         tooltip.DisplayUnitTooltip(false);
     }*/
 
-    string GetText(string key)
+    /*string GetText(string key)
     {
         string value = SharedState.LanguageDefs?[key];
         return value ?? "--missing--";
-    }
+    }*/
     
 }

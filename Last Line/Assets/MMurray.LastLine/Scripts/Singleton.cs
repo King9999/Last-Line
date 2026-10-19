@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MMurray.LastLine;
-using LoLSDK;
+//using LoLSDK;
 using MMurray.GenericCode;
 using SimpleJSON;
 
@@ -37,7 +37,7 @@ namespace MMurray.LastLine
 
         //save state data
         public GameData gameData;
-        public SaveState saveState;
+        //public SaveState saveState;
         public bool saveStateFound;
 
         //TTS and music
@@ -68,7 +68,7 @@ namespace MMurray.LastLine
                 //Debug.Log("ScreenFade not null");
             AudioManager = GetComponentInChildren<AudioManager>();
             gameData = new GameData();
-            saveState = new SaveState();
+            //saveState = new SaveState();
             Application.runInBackground = false;
 
             //PlayerPrefs.DeleteAll();

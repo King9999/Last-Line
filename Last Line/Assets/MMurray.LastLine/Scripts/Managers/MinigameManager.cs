@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using LoLSDK;
+//using LoLSDK;
 using MMurray.LastLine;
 using TMPro;
 using System;
@@ -556,7 +556,7 @@ public class MinigameManager : MonoBehaviour
                 ScreenFade sf = Singleton.instance.ScreenFade;
                 Singleton.instance.minigameMoney = money;
                 Singleton.instance.currentLevel++;
-                Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
+                //Singleton.instance.saveState.WriteState(Singleton.instance.gameData);
                 Logger.DebugLogFormat("Next level: {0}", Singleton.instance.currentLevel);
                 sf.ChangeSceneFadeOut("Game");
                 break;
